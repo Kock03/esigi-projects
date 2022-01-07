@@ -11,7 +11,7 @@ export class ProjectsEntity {
     @Column({name:'name'})
     name: string;
 
-    @Column({name:'code'})
+    @Column({name:'code', type:'int'})
     code: number;
 
     @Column({name:'responsible'})
@@ -20,13 +20,13 @@ export class ProjectsEntity {
     @Column({name:'client'})
     client: string;
 
-    @Column({name:'start_date', type:'date'})
+    @Column({name:'start_date'})
     startDate: Date;
 
-    @Column({name:'end_date', type:'date'})
+    @Column({name:'end_date'})
     endDate: Date;
 
-    @Column({name:'contracted_hours', type:'date'})
+    @Column({name:'contracted_hours', type:'datetime'})
     contractedHours: Date;
 
     @Column({name:'value', type:'double'})

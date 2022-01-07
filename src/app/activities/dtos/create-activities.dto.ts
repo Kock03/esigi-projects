@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { IsNotEmpty } from "class-validator";
-import { ProjectsEntity } from "src/app/projects/entity/projects.entity";
+import { ProjectsEntity } from "src/app/projects/projects.entity";
 
 export class CreateActivitieDto{
 
@@ -18,7 +18,7 @@ export class CreateActivitieDto{
     estimatedHours: Date;
 
     @IsNotEmpty()
-    emplyer: string;
+    emplayer: string;
 
     @IsNotEmpty()
     paper: string;

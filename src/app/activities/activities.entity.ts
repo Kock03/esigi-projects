@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { ProjectsEntity } from '../projects/entity/projects.entity';
+import { ProjectsEntity } from '../projects/projects.entity';
 
 @Entity({name: 'activities'})
 export class ActivitiesEntity{
@@ -11,22 +11,22 @@ export class ActivitiesEntity{
     @Column({name:'name'})
     name: string;
 
-    @Column({name:'start_date', type:'date'})
+    @Column({name:'start_date'})
     startDate: Date;
 
-    @Column({name:'end_date', type:'date'})
+    @Column({name:'end_date'})
     endDate: Date;
 
     @Column({name:'estimated_hours', type:'datetime'})
     estimatedHours: Date;
 
     @Column({name:'employer'})
-    emplyer: string;
+    emplayer: string;
 
     @Column({name:'paper'})
     paper: string;
 
-    @Column({name:'status', type:'boolean'})
+    @Column({name:'status'})
     status: boolean;
 
     @ManyToOne(() => ProjectsEntity, projects => projects.activities)

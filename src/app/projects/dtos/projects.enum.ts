@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 enum Type{
-    Projetos,
-    AMS
+    Projetos = 1,
+    AMS = 2,
+    Alocacao = 3
   }

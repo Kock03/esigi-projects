@@ -2,6 +2,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ActivitiesModule } from './app/activities/activities.module';
 import { ProjectsModule } from './app/projects/projects.module';
 
 @Module({
@@ -15,7 +16,7 @@ import { ProjectsModule } from './app/projects/projects.module';
     entities: [__dirname + '/**/*.entity{.js,.ts}'],
     synchronize: true,
   } as TypeOrmModuleOptions
-  ),ProjectsModule,],
+  ),ProjectsModule, ActivitiesModule],
   controllers: [],
   providers: [],
 })

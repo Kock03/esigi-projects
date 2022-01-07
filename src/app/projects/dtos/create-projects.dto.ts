@@ -2,7 +2,6 @@
 
 
 import { IsNotEmpty } from "class-validator";
-import { ActivitiesEntity } from "src/app/activities/activities.entity";
 import { Double } from "typeorm";
 
 export class CreateProjectDto{
@@ -42,8 +41,5 @@ export class CreateProjectDto{
 
     @IsNotEmpty()
     controlHours: boolean;
-
-    @IsNotEmpty()
-    activities: ActivitiesEntity[];
 
 }
