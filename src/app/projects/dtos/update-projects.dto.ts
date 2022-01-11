@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 
 import { IsNotEmpty } from "class-validator";
-import { ActivitiesEntity } from "src/app/activities/activities.entity";
 import { Double } from "typeorm";
 
 export class UpdateProjectDto{
@@ -20,8 +19,5 @@ export class UpdateProjectDto{
 
     @IsNotEmpty()
     controlHours: boolean;
-    
-    @IsNotEmpty()
-    activities: ActivitiesEntity[];
 
 }
