@@ -42,4 +42,7 @@ export class CreateProjectDto{
     @IsNotEmpty()
     controlHours: boolean;
 
+    @IsNotEmpty()
+    status: Status;
+
 }
