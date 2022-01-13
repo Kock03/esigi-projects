@@ -17,7 +17,6 @@ export class ActivitiesService{
     async findAll(){
         const activitiesWithProjects = await this.activitiesRepository
         .createQueryBuilder('activities')
-        .leftJoinAndSelect('activities.projects', 'projects')
         .getMany()
 
         return activitiesWithProjects;
@@ -27,6 +26,7 @@ export class ActivitiesService{
         conditions: FindConditions<ActivitiesEntity>,
         options?: FindOneOptions<ActivitiesEntity>
     ){
+        options = { relations: ['Project']};
         try{
             return await this.activitiesRepository.findOneOrFail(conditions, options);
         }catch(error){

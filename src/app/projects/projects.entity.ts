@@ -44,8 +44,11 @@ export class ProjectsEntity {
     @Column({name:'control_hours'})
     controlHours: boolean;
 
-    @OneToMany(() => ActivitiesEntity, activities => activities.projects)
-    activities: ActivitiesEntity[];
+    @Column({name:'status', type:'int'})
+    status: Status;
+
+    @OneToMany(() => ActivitiesEntity, activities => activities.Project, { cascade: ['insert', 'update', 'remove'], orphanedRowAction: 'delete'})
+    Activities: ActivitiesEntity[];
 
     @CreateDateColumn({ name: 'created_at', type: 'datetime' })
     createdAt: Date;
