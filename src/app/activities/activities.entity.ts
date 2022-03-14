@@ -29,7 +29,7 @@ export class ActivitiesEntity{
     @Column({name:'status'})
     status: boolean;
 
-    @ManyToOne(() => ProjectsEntity, projects => projects.Activities)
+    @ManyToOne(() => ProjectsEntity, projects => projects.activities)
     Project: ProjectsEntity;
 
     @CreateDateColumn({ name: 'created_at', type: 'datetime' })

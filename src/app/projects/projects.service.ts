@@ -15,18 +15,14 @@ export class ProjectsService {
     ){ }
 
     async findAll(){
-        const projectsWhiteActivities = await this.projectsRepository
-        .createQueryBuilder('projects')
-        .getMany();
-
-        return projectsWhiteActivities;
+        return await this.projectsRepository.find();
     }
 
     async findOneOrFaill(
         conditions: FindConditions<ProjectsEntity>,
         options?: FindOneOptions<ProjectsEntity>
     ){
-        options = { relations: ['Activities']};
+        options = { relations: ['activities']};
         try{
               return await this.projectsRepository.findOneOrFail(conditions, options);
         }catch(error){
@@ -40,14 +36,23 @@ export class ProjectsService {
     }
     
     async update(id: string, data: UpdateProjectDto){
-        const project = await this.projectsRepository.findOneOrFail({id});
-        this.projectsRepository.merge(project, data);
-        return await this.projectsRepository.save(project);
+        try{
+            const project = await this.projectsRepository.findOneOrFail({id});
+
+        }catch{
+            throw new NotFoundException();
+        }
+        return await this.projectsRepository.save({id: id, ...data});
     }
 
     async destroy(id: string){
-        await this.projectsRepository.findOneOrFail({id});
-        this.projectsRepository.softDelete({id});
+        try{
+            await this.projectsRepository.findOneOrFail({id}); 
+        }catch{
+            throw new NotFoundException();
+        }
+        
+        return await this.projectsRepository.softDelete({id});
     }
    
 }
