@@ -6,6 +6,7 @@ import { ProjectsCreateComponent } from './projects-create/projects-create.compo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table'  
 import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
@@ -31,7 +32,11 @@ const routes: Routes = [
     FlexLayoutModule,
     MatTabsModule,
     MatButtonModule,
+<<<<<<< HEAD
     ReactiveFormsModule,
+=======
+    MatTableModule
+>>>>>>> 8ab483c7d4e1315b3ab600aa3320eab1290ce0c1
   ],
   entryComponents: [
     ProjectsCreateComponent,
