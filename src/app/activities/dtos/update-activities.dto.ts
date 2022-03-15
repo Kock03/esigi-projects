@@ -10,15 +10,5 @@ export class UpdateActivities{
     @IsNotEmpty()
     endDate: Date
 
-    @IsNotEmpty()
-    estimatedHours: Date;
-
-    @IsNotEmpty()
-    emplyer: string;
-
-    @IsNotEmpty()
-    paper: string; 
-    
-    @IsNotEmpty()
-    status: boolean;
+  
 }

@@ -15,11 +15,7 @@ export class ActivitiesService{
     ){ }
 
     async findAll(){
-        const activitiesWithProjects = await this.activitiesRepository
-        .createQueryBuilder('activities')
-        .getMany()
-
-        return activitiesWithProjects;
+        return await this.activitiesRepository.find();
     }
 
     async findOneOfFall(
@@ -39,13 +35,21 @@ export class ActivitiesService{
         return await this. activitiesRepository.save(activities);
     }
      async update(id: string, data: UpdateActivities){
-         const activitie = await this.activitiesRepository.findOneOrFail({id});
-         this.activitiesRepository.merge(activitie, data);
-         return await this.activitiesRepository.save(activitie);
+         try{
+            const activitie = await this.activitiesRepository.findOneOrFail({id});
+         }catch{
+            throw new NotFoundException();
+         }
+         return await this.activitiesRepository.save({id: id, ...data});
     }
 
     async destroy(id: string){
-        await this.activitiesRepository.findOneOrFail({id});
+        try{
+            await this.activitiesRepository.findOneOrFail({id});
+        }catch{
+            throw new NotFoundException();
+        }
+        
         this.activitiesRepository.softDelete({id});
     }
 
