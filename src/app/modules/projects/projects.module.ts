@@ -32,11 +32,8 @@ const routes: Routes = [
     FlexLayoutModule,
     MatTabsModule,
     MatButtonModule,
-<<<<<<< HEAD
     ReactiveFormsModule,
-=======
     MatTableModule
->>>>>>> 8ab483c7d4e1315b3ab600aa3320eab1290ce0c1
   ],
   entryComponents: [
     ProjectsCreateComponent,
