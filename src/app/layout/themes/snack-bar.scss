@@ -1,0 +1,16 @@
+.success-message {
+    color: black !important;
+    width: 348px;
+    background-color: #6fbb73 !important;
+    .mat-simple-snackbar-action {
+        color: black !important;
+    }
+}
+.error-message {
+    color: #ffffffde !important;
+    width: 348px;
+    background-color: #cf6666 !important;
+    .mat-simple-snackbar-action {
+        color: #ffffffde !important;
+    }
+}

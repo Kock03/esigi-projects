@@ -17,10 +17,10 @@ export class AppComponent {
 
   menuList = [
     {
-      name: 'Home',
-      icon: 'home',
+      name: 'Projetos',
+      icon: 'analytics',
       selected: false,
-      action: 'home',
+      action: '',
     },
   ];
   
