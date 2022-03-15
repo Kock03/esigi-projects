@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-projects-register-tab',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects-register-tab.component.scss']
 })
 export class ProjectsRegisterTabComponent implements OnInit {
+  @Input('form') projectForm!: FormGroup;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  next() {
+    this.onChange.next(true);
   }
 
 }

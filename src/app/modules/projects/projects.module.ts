@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -29,10 +31,12 @@ const routes: Routes = [
     FlexLayoutModule,
     MatTabsModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [
     ProjectsCreateComponent,
     
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class ProjectsModule {}

@@ -1,1 +1,29 @@
-<p>you dont come to Russia, Russia come to you!</p>
+<div id="projectRegisterTab" class="tab">
+    <div class="content-scroll" *ngIf="projectForm">
+      <form (submit)="next()" [formGroup]="projectForm" fxLayout="column">
+        <div fxLayout="row">
+            <div fxFlex="75" fxLayoutGap="16px">       
+                <mat-form-field fxFlex="30" appearance="outline">
+                  <mat-label>Nome</mat-label>
+                  <input
+                    matInput
+                    formControlName="name"
+                    placeholder="Nome" />
+                </mat-form-field>
+                >
+                <div fxFlex="25" fxLayoutGap="16px">
+                  <mat-form-field fxFlex="15" appearance="outline">
+                    <mat-label>Código</mat-label>
+                    <input
+                      matInput
+                      placeholder="Código"
+                      formControlName="code"
+                     />
+                  </mat-form-field>
+                </div>
+              </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

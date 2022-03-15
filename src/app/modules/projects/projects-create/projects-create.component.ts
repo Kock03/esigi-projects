@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,14 +8,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./projects-create.component.scss']
 })
 export class ProjectsCreateComponent implements OnInit {
+  projectForm!: FormGroup;
   step: number = 1;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.initForm();  
+  }
+
+  initForm(): void {
+    this.projectForm = this.fb.group({
+      name: ['', Validators.required],
+      code: ['', Validators.required],
+    })
   }
 
   handleStep(number: number): void {
