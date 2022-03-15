@@ -1,1 +1,50 @@
-<p>projects-create works!</p>
+<div id="customerCreate" class="page">
+  <h2 class="title">Cadastro de Collaborador</h2>
+  <div fxLayout="row" class="tab" fxLayoutGap="16px">
+    <div
+    (click)="handleStep(1)"
+      fxLayout="column"
+      class="tab-group"
+    >
+      <p class="tab-item">Cadastro</p>
+      <span class="tab-border"></span>
+    </div>
+    <div
+    (click)="handleStep(2)"
+      fxLayout="column"
+      class="tab-group"
+    >
+      <p class="tab-item">Recursos/Atividades</p>
+      <span class="tab-border"></span>
+    </div>
+    <div
+    (click)="handleStep(3)"
+      fxLayout="column"
+      class="tab-group"
+    >
+      <p class="tab-item">Acompanhamento</p>
+      <span class="tab-border"></span>
+    </div>
+  </div>
+ 
+  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
+    <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+      Voltar
+    </button>
+    <button
+      mat-flat-button
+      *ngIf="step != 4"
+      (click)="navigate('next')"
+      color="primary"
+    >
+      Continuar
+    </button>
+    <button
+      mat-flat-button
+      *ngIf="step == 4"
+      color="primary"
+    >
+      Salvar
+    </button>
+  </div>
+</div>
