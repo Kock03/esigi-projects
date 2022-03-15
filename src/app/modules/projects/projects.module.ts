@@ -5,7 +5,6 @@ import { ProjectsCreateComponent } from './projects-create/projects-create.compo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
-import { ProjectsRegisterComponent } from './projects-create/projects-register/projects-register.component';
 import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProjectsCreateComponent,
-    ProjectsRegisterComponent,
     ProjectsResourcesTabComponent,
     ProjectsRegisterTabComponent,
     ProjectsPanelTabComponent,
