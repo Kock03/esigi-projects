@@ -1,4 +1,10 @@
-.content-scroll {
+#projectRegisterTab{
+  max-width: 1400px;
+  width: 100%;
+
+  .content-scroll {
     overflow: auto;
     height: calc(100vh - 280px);
   }
+
+}

@@ -2,17 +2,16 @@
     <div class="content-scroll" *ngIf="projectForm">
       <form (submit)="next()" [formGroup]="projectForm" fxLayout="column">
         <div fxLayout="row">
-            <div fxFlex="75" fxLayoutGap="16px">       
-                <mat-form-field fxFlex="30" appearance="outline">
+            <div fxFlex="100" fxLayoutGap="16px">       
+                <mat-form-field fxFlex="65" appearance="outline">
                   <mat-label>Nome</mat-label>
                   <input
                     matInput
                     formControlName="name"
                     placeholder="Nome" />
                 </mat-form-field>
-                >
                 <div fxFlex="25" fxLayoutGap="16px">
-                  <mat-form-field fxFlex="15" appearance="outline">
+                  <mat-form-field fxFlex="35" appearance="outline">
                     <mat-label>Código</mat-label>
                     <input
                       matInput
