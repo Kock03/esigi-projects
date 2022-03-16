@@ -61,7 +61,7 @@ export class ProjectsEntity {
   @Column({ type: 'int', nullable: true })
   status: Status;
 
-  @OneToMany(() => ActivitiesEntity, (activities) => activities.Project, {
+  @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })

@@ -21,7 +21,7 @@ export class ActivitiesService {
     conditions: FindConditions<ActivitiesEntity>,
     options?: FindOneOptions<ActivitiesEntity>,
   ) {
-    options = { relations: ['Project'] };
+    options = { relations: ['project'] };
     try {
       return await this.activitiesRepository.findOneOrFail(conditions, options);
     } catch (error) {

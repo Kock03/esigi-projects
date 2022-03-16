@@ -1,14 +1,11 @@
 /* eslint-disable prettier/prettier */
 
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty } from 'class-validator';
 
-export class UpdateActivities{
-    
-    @IsNotEmpty()
-    name: string;
+export class UpdateActivities {
+  @IsNotEmpty()
+  startDate: Date;
 
-    @IsNotEmpty()
-    endDate: Date
-
-  
+  @IsNotEmpty()
+  endDate: Date;
 }

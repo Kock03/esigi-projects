@@ -24,8 +24,8 @@ export class ActivitiesEntity {
   @Column()
   endDate: Date;
 
-  @ManyToOne(() => ProjectsEntity, (projects) => projects.activities)
-  Project: ProjectsEntity;
+  @ManyToOne(() => ProjectsEntity, (project) => project.activities)
+  project: ProjectsEntity;
 
   @CreateDateColumn()
   createdAt: Date;

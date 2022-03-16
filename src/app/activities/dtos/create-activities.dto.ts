@@ -1,19 +1,18 @@
 /* eslint-disable prettier/prettier */
 
-import { IsNotEmpty } from "class-validator";
-import { ProjectsEntity } from "src/app/projects/projects.entity";
+import { IsNotEmpty } from 'class-validator';
+import { ProjectsEntity } from 'src/app/projects/projects.entity';
 
-export class CreateActivitieDto{
+export class CreateActivitieDto {
+  @IsNotEmpty()
+  name: string;
 
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  startDate: Date;
 
-    @IsNotEmpty()
-    startDate: Date;
+  @IsNotEmpty()
+  endDate: Date;
 
-    @IsNotEmpty()
-    endDate: Date;
-
-    @IsNotEmpty()
-    projects: ProjectsEntity;
+  @IsNotEmpty()
+  project: ProjectsEntity;
 }
