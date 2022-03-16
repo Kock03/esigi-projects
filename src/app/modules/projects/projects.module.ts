@@ -9,7 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table'  
 import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
-import { ProjectsPanelTabComponent } from './projects-create/projects-register-tab/projects-panel-tab/projects-panel-tab.component';
+import { ProjectsPanelTabComponent} from './projects-create/projects-panel-tab/projects-panel-tab.component';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
