@@ -11,7 +11,11 @@ import { ProjectsResourcesTabComponent } from './projects-create/projects-resour
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ProjectsResourcesDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 
 const routes: Routes = [
   {
@@ -26,6 +30,7 @@ const routes: Routes = [
     ProjectsResourcesTabComponent,
     ProjectsRegisterTabComponent,
     ProjectsPanelTabComponent,
+    ProjectsResourcesDialog,
   ],
   imports: [
     RouterModule.forChild(routes), 
@@ -36,9 +41,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatTableModule,
     MatInputModule,
+    MatDialogModule,
+    MatIconModule,
+    MatDatepickerModule
   ],
   entryComponents: [
     ProjectsCreateComponent,
+    ProjectsResourcesDialog,
     
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
