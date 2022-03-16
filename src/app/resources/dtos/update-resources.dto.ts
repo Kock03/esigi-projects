@@ -1,11 +1,13 @@
+import { IsNotEmpty } from 'class-validator';
+import { ActivitiesEntity } from 'src/app/activities/activities.entity';
 
-import { IsNotEmpty } from "class-validator";
+export class UpdateResources {
+  @IsNotEmpty()
+  name: string;
 
-export class UpdateResources{
-    
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  isActive: Boolean;
 
-    @IsNotEmpty()
-    isActive: Boolean
+  @IsNotEmpty()
+  activity: ActivitiesEntity;
 }

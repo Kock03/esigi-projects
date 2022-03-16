@@ -1,16 +1,19 @@
-import { IsNotEmpty } from "class-validator";
+import { isNotEmpty, IsNotEmpty } from 'class-validator';
+import { ActivitiesEntity } from 'src/app/activities/activities.entity';
 
-export class CreateResourceDto{
+export class CreateResourceDto {
+  @IsNotEmpty()
+  name: string;
 
-    @IsNotEmpty()
-    name: string;
+  @IsNotEmpty()
+  role: string;
 
-    @IsNotEmpty()
-    role: string;
+  @IsNotEmpty()
+  hours: string;
 
-    @IsNotEmpty()
-    hours: string; 
+  @IsNotEmpty()
+  isActive: boolean;
 
-    @IsNotEmpty()
-    isActive: boolean;
+  @IsNotEmpty()
+  activity: ActivitiesEntity;
 }
