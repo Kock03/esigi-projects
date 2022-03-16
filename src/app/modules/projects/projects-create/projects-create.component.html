@@ -1,5 +1,10 @@
 <div id="customerCreate" class="page">
-  <h2 class="title">Cadastro de Collaborador</h2>
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <button (click)="goBackProjects()" color="primary" mat-button>
+      <mat-icon> chevron_left </mat-icon>
+    </button>
+    <h2>Projetos</h2>
+  </div>
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
     <div (click)="handleStep(1)" fxLayout="column" class="tab-group">
       <p class="tab-item">Cadastro</p>
@@ -38,12 +43,12 @@
     </button>
     <button
       mat-flat-button
-      *ngIf="step != 4"
+      *ngIf="step != 2"
       (click)="navigate('next')"
       color="primary"
     >
       Continuar
     </button>
-    <button mat-flat-button *ngIf="step == 4" color="primary">Salvar</button>
+    <button mat-flat-button *ngIf="step == 2" color="primary">Salvar</button>
   </div>
 </div>

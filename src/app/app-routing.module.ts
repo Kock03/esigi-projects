@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { PortalComponent } from './modules/projects/portal/portal/portal.component';
 
 const routes: Routes = [
   {
     path: '',
 
-    redirectTo: '/projetos/novo',
+    redirectTo: '/portal',
 
     pathMatch: 'full',
   },
@@ -19,6 +20,8 @@ const routes: Routes = [
         m => m.ProjectsModule
       ),
   },
+
+  { path: 'portal', component: PortalComponent },
 ];
 
 @NgModule({

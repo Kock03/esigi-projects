@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProjectsCreateComponent implements OnInit {
   projectForm!: FormGroup;
   step: number = 1;
+  range = new FormGroup({});
+  controlHours: boolean = true;
 
   constructor(
     private router: Router,
@@ -25,6 +27,17 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       code: ['', Validators.required],
+      responsible: ['', Validators.required],
+      client: ['', Validators.required],
+      projectTypes: [null, Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      contractedHours: ['', Validators.required],
+      value: ['', Validators.required],
+      controlHours: [null, Validators.required],
+      managerEnvolti: ['', Validators.required],
+      status: ['', Validators.required],
+      
     })
   }
 
@@ -41,4 +54,7 @@ export class ProjectsCreateComponent implements OnInit {
 
   handleChanges(value: any): void { }
 
+  goBackProjects() {
+    this.router.navigate(['projetos/novo']);
+  }
 }
