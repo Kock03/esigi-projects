@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ActivitiesModule } from './app/activities/activities.module';
 import { ProjectsModule } from './app/projects/projects.module';
+import { ResourcesModule } from './app/resources/resources.module';
 
 @Module({
   imports: [ ConfigModule.forRoot(), TypeOrmModule.forRoot({
@@ -16,7 +17,7 @@ import { ProjectsModule } from './app/projects/projects.module';
     entities: [__dirname + '/**/*.entity{.js,.ts}'],
     synchronize: true,
   } as TypeOrmModuleOptions
-  ),ProjectsModule, ActivitiesModule],
+  ),ProjectsModule, ActivitiesModule, ResourcesModule],
   controllers: [],
   providers: [],
 })

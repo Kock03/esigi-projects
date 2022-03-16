@@ -1,12 +1,11 @@
-/* eslint-disable prettier/prettier */
 
 import { IsNotEmpty } from "class-validator";
 
-export class UpdateActivities{
+export class UpdateResources{
     
     @IsNotEmpty()
     name: string;
 
     @IsNotEmpty()
-    endDate: Date
+    isActive: Boolean
 }

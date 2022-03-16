@@ -15,17 +15,5 @@ export class CreateActivitieDto{
     endDate: Date;
 
     @IsNotEmpty()
-    estimatedHours: Date;
-
-    @IsNotEmpty()
-    emplayer: string;
-
-    @IsNotEmpty()
-    paper: string;
-
-    @IsNotEmpty()
-    status: boolean;
-
-    @IsNotEmpty()
     projects: ProjectsEntity;
 }

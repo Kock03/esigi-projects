@@ -17,18 +17,6 @@ export class ActivitiesEntity{
     @Column({name:'end_date'})
     endDate: Date;
 
-    @Column({name:'estimated_hours', type:'datetime'})
-    estimatedHours: Date;
-
-    @Column({name:'employer'})
-    emplayer: string;
-
-    @Column({name:'paper'})
-    paper: string;
-
-    @Column({name:'status'})
-    status: boolean;
-
     @ManyToOne(() => ProjectsEntity, projects => projects.Activities)
     Project: ProjectsEntity;
 
