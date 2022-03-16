@@ -1,68 +1,78 @@
 /* eslint-disable prettier/prettier */
 import { ActivitiesEntity } from 'src/app/activities/activities.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Double, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Double,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { SpatialScaleType } from './dtos/spatial-scale-type.enum';
 import { Status } from './dtos/status.enum';
 import { Type } from './dtos/type.enum';
 
 @Entity({ name: 'projects' })
 export class ProjectsEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column()
+  name: string;
 
-    @Column({ name: 'name' })
-    name: string;
+  @Column({ type: 'int', unique: true })
+  code: number;
 
-    @Column({ name: 'code', type: 'int', unique: true })
-    code: number;
+  @Column()
+  responsible: string;
 
-    @Column({ name: 'responsible' })
-    responsible: string;
+  @Column()
+  client: string;
 
-    @Column({ name: 'client' })
-    client: string;
+  @Column({ nullable: true })
+  startDate: Date;
 
-    @Column({ name: 'start_date', nullable: true })
-    startDate: Date;
+  @Column({ nullable: true })
+  endDate: Date;
 
-    @Column({ name: 'end_date', nullable: true })
-    endDate: Date;
+  @Column()
+  contractedHours: Date;
 
-    @Column({ name: 'contracted_hours', type: 'datetime' })
-    contractedHours: Date;
+  @Column({ type: 'double', nullable: true })
+  value: Double;
 
-    @Column({ name: 'value', type: 'double', nullable: true })
-    value: Double;
+  @Column()
+  managerEnvolti: string;
 
-    @Column({ name: "manager_envolti" })
-    managerEnvolti: string;
+  @Column({ type: 'int' })
+  type: Type;
 
-    @Column({ name: 'Type', type: 'int' })
-    type: Type;
+  @Column({ nullable: true })
+  spatialScale: boolean;
 
-    @Column({ name: 'spatial_scale', nullable: true })
-    spatialScale: boolean;
+  @Column({ type: 'int', nullable: true })
+  spatialScaleType: SpatialScaleType;
 
-    @Column({ type: 'int', nullable: true })
-    spatialScaleType: SpatialScaleType;
+  @Column({ nullable: true })
+  controlHours: boolean;
 
-    @Column({ name: 'control_hours', nullable: true })
-    controlHours: boolean;
+  @Column({ type: 'int', nullable: true })
+  status: Status;
 
-    @Column({ name: 'status', type: 'int', nullable: true })
-    status: Status;
+  @OneToMany(() => ActivitiesEntity, (activities) => activities.Project, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  activities: ActivitiesEntity[];
 
-    @OneToMany(() => ActivitiesEntity, activities => activities.Project, { cascade: ['insert', 'update', 'remove'], orphanedRowAction: 'delete' })
-    activities: ActivitiesEntity[];
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @CreateDateColumn({ name: 'created_at', type: 'datetime' })
-    createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
-    updatedAt: Date;
-
-    @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
-    deletedAt: Date;
-
+  @DeleteDateColumn()
+  deletedAt: Date;
 }
