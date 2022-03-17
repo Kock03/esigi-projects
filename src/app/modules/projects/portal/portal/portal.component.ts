@@ -17,10 +17,11 @@ export class PortalComponent implements OnInit {
   }
 
   async navigateToAllocationProject() {
-    this.router.navigate(['/projetos']);
+    this.router.navigate(['/alocacao']);
   }
 
   async navigateToAms() {
+    this.router.navigate(['/ams']);
   }
 
 }

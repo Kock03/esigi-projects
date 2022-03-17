@@ -22,6 +22,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PortalComponent } from './portal/portal/portal.component';
 import { ProjectsResourcesDialog } from './projects-create/projects-allocation-resources-tab/projects-allocation-resources-dialog.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ProjectsAmsPanelTabComponent } from './projects-ams-create/projects-ams-panel-tab/projects-ams-panel-tab.component';
+import { ProjectsAmsCreateComponent } from './projects-ams-create/projects-ams-create.component';
+
 
 const routes: Routes = [
   {
@@ -37,6 +40,8 @@ const routes: Routes = [
     ProjectsRegisterTabComponent,
     ProjectsPanelTabComponent,
     ProjectsResourcesDialog,
+    ProjectsAmsPanelTabComponent,
+    ProjectsAmsCreateComponent,
 
   ],
   imports: [
@@ -61,6 +66,7 @@ const routes: Routes = [
   entryComponents: [
     ProjectsCreateComponent,
     ProjectsResourcesDialog,
+    ProjectsAmsCreateComponent,
     
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

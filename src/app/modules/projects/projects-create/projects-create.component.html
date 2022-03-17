@@ -25,13 +25,13 @@
     [form]="projectForm"
     (onChange)="handleChanges($event)"
   >
-  </app-projects-allocation--register-tab>
-  <app-projects-resources-tab
+ </app-projects-allocation-register-tab>
+  <app-projects-allocation-resources-tab
     [hidden]="step != 2"
     (onChange)="handleChanges($event)"
   >
   </app-projects-allocation-resources-tab>
-  <app-projects-panel-tab
+  <app-projects-allocation-panel-tab
     [hidden]="step != 3"
     (onChange)="handleChanges($event)"
   >
