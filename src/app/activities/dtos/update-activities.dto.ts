@@ -4,10 +4,10 @@ import { IsNotEmpty } from 'class-validator';
 
 export class UpdateActivities {
   @IsNotEmpty()
-  startDate: Date;
+  name: string;
 
   @IsNotEmpty()
-  name: string;
+  startDate: Date;
 
   @IsNotEmpty()
   endDate: Date;
