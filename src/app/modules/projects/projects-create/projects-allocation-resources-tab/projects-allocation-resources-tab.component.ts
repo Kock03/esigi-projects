@@ -11,8 +11,8 @@ export interface Resources{
 }
 @Component({
   selector: 'app-projects-resources-tab',
-  templateUrl: './projects-resources-tab.component.html',
-  styleUrls: ['./projects-resources-tab.component.scss'],
+  templateUrl: './projects-allocation-resources-tab.component.html',
+  styleUrls: ['./projects-allocation-resources-tab.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 

@@ -8,8 +8,8 @@ export interface Panel {
 }
 @Component({
   selector: 'app-projects-panel-tab',
-  templateUrl: './projects-panel-tab.component.html',
-  styleUrls: ['./projects-panel-tab.component.scss'],
+  templateUrl: './projects-allocation-panel-tab.component.html',
+  styleUrls: ['./projects-allocation-panel-tab.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProjectsPanelTabComponent implements OnInit {

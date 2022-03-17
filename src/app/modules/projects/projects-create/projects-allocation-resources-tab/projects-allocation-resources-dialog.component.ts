@@ -26,8 +26,8 @@ export class PickDateAdapter extends NativeDateAdapter {
 }
 @Component({
     selector: 'projects-resources-dialog',
-    templateUrl: 'projects-resources-dialog.html',
-    styleUrls: ['./projects-resources-tab.component.scss'],
+    templateUrl: 'projects-allocation-resources-dialog.html',
+    styleUrls: ['./projects-allocation-resources-tab.component.scss'],
     providers: [
       { provide: DateAdapter, useClass: PickDateAdapter },
       { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },
