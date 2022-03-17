@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectsResourcesTabComponent } from './projects-resources-tab.component';
+import { ProjectsResourcesTabComponent } from './projects-allocation-resources-tab.component';
 
 describe('ProjectsResourcesTabComponent', () => {
   let component: ProjectsResourcesTabComponent;

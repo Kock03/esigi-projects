@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectsPanelTabComponent } from './projects-panel-tab.component';
+import { ProjectsPanelTabComponent } from './projects-allocation-panel-tab.component';
 
 describe('ProjectsPanelTabComponent', () => {
   let component: ProjectsPanelTabComponent;

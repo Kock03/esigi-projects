@@ -7,9 +7,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table'  
-import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
-import { ProjectsRegisterTabComponent} from './projects-create/projects-register-tab/projects-register-tab.component'
-import { ProjectsPanelTabComponent} from './projects-create/projects-panel-tab/projects-panel-tab.component';
+import { ProjectsResourcesTabComponent } from './projects-create/projects-allocation-resources-tab/projects-allocation-resources-tab.component';
+import { ProjectsRegisterTabComponent} from './projects-create/projects-allocation-register-tab/projects-allocation-register-tab.component'
+import { ProjectsPanelTabComponent} from './projects-create/projects-allocation-panel-tab/projects-allocation-panel-tab.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PortalComponent } from './portal/portal/portal.component';
-import { ProjectsResourcesDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
+import { ProjectsResourcesDialog } from './projects-create/projects-allocation-resources-tab/projects-allocation-resources-dialog.component';
 import { NgxMaskModule } from 'ngx-mask';
 
 const routes: Routes = [
@@ -56,6 +56,7 @@ const routes: Routes = [
     MatNativeDateModule,
     NgxMaskModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
   entryComponents: [
     ProjectsCreateComponent,

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsul
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
-import { ProjectsResourcesDialog } from './projects-resources-dialog.component';
+import { ProjectsResourcesDialog } from './projects-allocation-resources-dialog.component';
 
 export interface Resources{
   name: string;

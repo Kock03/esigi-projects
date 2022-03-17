@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectsRegisterTabComponent } from './projects-register-tab.component';
+import { ProjectsRegisterTabComponent } from './projects-allocation-register-tab.component';
 
 describe('ProjectsRegisterTabComponent', () => {
   let component: ProjectsRegisterTabComponent;
