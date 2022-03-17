@@ -1,10 +1,10 @@
 <div #portal class="page">
-    <div class="portal-content" fxLayout="row wrap" fxLayoutAlign="center center" >
-        <div class="box-management-purple">
+    <div class="portal-content" fxLayout="row wrap" fxLayoutAlign="space-around center" >
+        <div class="box-management-purple" (click)="navigateToAllocationProject">
           <img src="../../../assets/icons/purple-rocket-icon.png" class="rocket-button" />
           <a>Projeto de Alocação</a>
         </div>
-        <div class="box-management-blue">
+        <div class="box-management-blue" (click)="navigateToAms">
           <img src="../../../assets/icons/blue-rocket-icon.png" class="rocket-button" />
           <a>Projeto AMS</a>
         </div>
