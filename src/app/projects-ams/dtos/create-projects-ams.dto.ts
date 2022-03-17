@@ -1,26 +1,22 @@
-/* eslint-disable prettier/prettier */
-
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Double } from 'typeorm';
-import { SpatialScaleType } from './spatial-scale-type.enum';
-import { Status } from './status.enum';
-import { Type } from './type.enum';
+import { ActivitiesEntity } from 'src/app/activities/activities.entity';
+import { Status } from 'src/app/projects/dtos/status.enum';
+import { Type } from 'src/app/projects/dtos/type.enum';
 
-export class UpdateProjectDto {
-  @IsNotEmpty()
+export class CreateProjectsAmsDto {
   @MinLength(3)
   @MaxLength(100)
   @IsString()
   @ApiProperty()
+  @IsNotEmpty()
   name: string;
 
   @IsNotEmpty()
@@ -46,45 +42,28 @@ export class UpdateProjectDto {
   @ApiProperty()
   startDate: Date;
 
-  @IsOptional()
   @ApiProperty()
-  endDate: Date;
-
-  @IsOptional()
-  @ApiProperty()
+  @IsNotEmpty()
   contractedHours: number;
-
-  @IsOptional()
-  @ApiProperty()
-  value: Double;
 
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  managerEnvolti: string;
+  projectManager: string;
 
   @IsNotEmpty()
   @IsEnum(Type)
   @ApiProperty()
   type: Type;
 
-  // @IsOptional()
-  // @ApiProperty()
-  // spatialScale: boolean;
-
-  // @IsOptional()
-  // @IsEnum(SpatialScaleType)
-  // @ApiProperty()
-  // spatialScaleType: SpatialScaleType;
-
-  // @IsOptional()
-  // @ApiProperty()
-  // controlHours: boolean;
-
-  @IsOptional()
+  @IsNotEmpty()
   @IsEnum(Status)
   @ApiProperty()
   status: Status;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  activities: ActivitiesEntity[];
 }

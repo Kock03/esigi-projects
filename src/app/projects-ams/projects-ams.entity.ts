@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-import { ActivitiesEntity } from 'src/app/activities/activities.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,11 +8,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Status } from './dtos/status.enum';
-import { Type } from './dtos/type.enum';
+import { ActivitiesEntity } from '../activities/activities.entity';
+import { Status } from '../projects/dtos/status.enum';
+import { Type } from '../projects/dtos/type.enum';
 
-@Entity({ name: 'projects' })
-export class ProjectsEntity {
+@Entity({ name: 'projects_ams' })
+export class ProjectsAmsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,16 +33,10 @@ export class ProjectsEntity {
   startDate: Date;
 
   @Column()
-  endDate: Date;
-
-  @Column()
   contractedHours: number;
 
-  @Column({ type: 'double' })
-  value: Double;
-
   @Column()
-  managerEnvolti: string;
+  projectManager: string;
 
   @Column({ type: 'int' })
   type: Type;
