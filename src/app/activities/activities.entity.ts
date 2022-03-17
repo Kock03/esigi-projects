@@ -5,10 +5,7 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
-<<<<<<< HEAD
-=======
   OneToMany,
->>>>>>> feature/178-cadastro-recursos
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -20,7 +17,6 @@ export class ActivitiesEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-<<<<<<< HEAD
   @Column()
   name: string;
 
@@ -33,6 +29,11 @@ export class ActivitiesEntity {
   @ManyToOne(() => ProjectsEntity, (project) => project.activities)
   project: ProjectsEntity;
 
+  @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {
+    cascade: ['insert', 'update', 'soft-remove'],
+  })
+  resource: ResourcesEntity[];
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -41,31 +42,4 @@ export class ActivitiesEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
-=======
-  @Column({ name: 'name' })
-  name: string;
-
-  @Column({ name: 'start_date' })
-  startDate: Date;
-
-  @Column({ name: 'end_date' })
-  endDate: Date;
-
-  @ManyToOne(() => ProjectsEntity, (projects) => projects.Activities)
-  Project: ProjectsEntity;
-
-  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
-  updatedAt: Date;
-
-  @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
-  deletedAt: Date;
-
-  @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {
-    cascade: ['insert', 'update', 'soft-remove'],
-  })
-  resource: ResourcesEntity[];
->>>>>>> feature/178-cadastro-recursos
 }

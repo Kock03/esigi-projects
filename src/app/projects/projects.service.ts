@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
+import { NotFoundException } from '../exceptions/not-found-exception';
 import { CreateProjectDto } from './dtos/create-projects.dto';
 import { UpdateProjectDto } from './dtos/update-projects.dto';
 import { ProjectsEntity } from './projects.entity';
@@ -24,8 +25,8 @@ export class ProjectsService {
     options = { relations: ['activities'] };
     try {
       return await this.projectsRepository.findOneOrFail(conditions, options);
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    } catch {
+      throw new NotFoundException();
     }
   }
 

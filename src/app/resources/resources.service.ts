@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { ResourcesEntity } from './resources.entity';
 import { CreateResourceDto } from './dtos/create-resources.dto';
 import { UpdateResources } from './dtos/update-resources.dto';
+import { NotFoundException } from '../exceptions/not-found-exception';
 
 @Injectable()
 export class ResourcesService {
@@ -22,8 +23,8 @@ export class ResourcesService {
   ) {
     try {
       return await this.resourcesRepository.findOneOrFail(conditions, options);
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    } catch {
+      throw new NotFoundException();
     }
   }
 
@@ -32,13 +33,19 @@ export class ResourcesService {
     return await this.resourcesRepository.save(resources);
   }
   async update(id: string, data: UpdateResources) {
-    const resource = await this.resourcesRepository.findOneOrFail({ id });
-    this.resourcesRepository.merge(resource, data);
-    return await this.resourcesRepository.save(resource);
+    try {
+      await this.resourcesRepository.findOneOrFail({ id });
+    } catch {
+      throw new NotFoundException();
+    }
+    return await this.resourcesRepository.save({ id: id, ...data });
   }
 
   async destroy(id: string) {
-    await this.resourcesRepository.findOneOrFail({ id });
-    this.resourcesRepository.softDelete({ id });
+    try {
+      await this.resourcesRepository.findOneOrFail({ id });
+    } catch {
+      this.resourcesRepository.softDelete({ id });
+    }
   }
 }

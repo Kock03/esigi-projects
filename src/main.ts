@@ -14,18 +14,11 @@ async function bootstrap() {
   //   .addTag('projects')
   //   .build();
 
-<<<<<<< HEAD
   // const document = SwaggerModule.createDocument(app, config, {
   //   deepScanRoutes: true,
   // });
 
   // SwaggerModule.setup('api', app, document);
-=======
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document);
-
-  app.enableCors();
->>>>>>> feature/178-cadastro-recursos
 
   // app.useGlobalPipes(
   //   new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true})
