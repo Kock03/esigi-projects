@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-projects-allocation-resources-tab',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects-allocation-resources-tab.component.scss']
 })
 export class ProjectsAllocationResourcesTabComponent implements OnInit {
+  @Input('form') projectForm!: FormGroup;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

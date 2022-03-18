@@ -17,7 +17,7 @@ export class PortalComponent implements OnInit {
   }
 
   async navigateToAllocationProject() {
-    this.router.navigate(['/alocacao']);
+    this.router.navigate(['/novo']);
   }
 
   async navigateToAms() {

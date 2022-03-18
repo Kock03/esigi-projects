@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectsAmsCreateComponent } from './projects-ams-create.component';
+import { ProjectsPanelTabComponent } from './projects-panel-tab.component';
 
-describe('ProjectsAmsCreateComponent', () => {
-  let component: ProjectsAmsCreateComponent;
-  let fixture: ComponentFixture<ProjectsAmsCreateComponent>;
+describe('ProjectsPanelTabComponent', () => {
+  let component: ProjectsPanelTabComponent;
+  let fixture: ComponentFixture<ProjectsPanelTabComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectsAmsCreateComponent ]
+      declarations: [ ProjectsPanelTabComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectsAmsCreateComponent);
+    fixture = TestBed.createComponent(ProjectsPanelTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
