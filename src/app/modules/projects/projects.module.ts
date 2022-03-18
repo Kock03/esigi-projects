@@ -15,7 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table'  
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
@@ -34,10 +34,10 @@ import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/
 
 
 const routes: Routes = [
-  // {
-  //   path: 'alocacao',
-  //   component: ProjectsCreateComponent,
-  // },
+  {
+    path: 'alocacao',
+    component: ProjectsCreateComponent,
+  },
 ];
 
 @NgModule({
@@ -66,6 +66,7 @@ const routes: Routes = [
     MatIconModule,
     MatDividerModule,
     MatSelectModule,
+    FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaskModule,

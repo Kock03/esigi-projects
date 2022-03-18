@@ -1,6 +1,6 @@
 <div id="projectRegisterTab" class="tab">
-    <div class="content-scroll" *ngIf="projectForm">
-      <form (submit)="next()" [formGroup]="projectForm" fxLayout="column">
+    <div class="content-scroll" >
+      <form (submit)="next()" *ngIf="projectForm" [formGroup]="projectForm" fxLayout="column">
         <div fxFlex="100" fxLayoutGap="16px">
           <mat-form-field fxFlex="25" appearance="outline">
             <mat-label>Tipo de Projeto</mat-label>
@@ -25,7 +25,7 @@
           </mat-form-field>
           <mat-form-field fxFlex="50" appearance="outline">
             <mat-label>Responsável</mat-label>
-            <mat-select matInput disableRipple formControlName="responsible">
+            <mat-select matInput formControlName="responsible">
               <mat-option [value]="1">João da Silva</mat-option>
               <mat-option [value]="2">Fernando Garcia</mat-option>
               <mat-option [value]="3">Paulo Pereira</mat-option>
@@ -84,7 +84,7 @@
           </mat-form-field>
           <mat-form-field fxFlex="35" appearance="outline">
             <mat-label>Gerente Envolti</mat-label>
-            <mat-select matInput disableRipple formControlName="managerEnvolti">
+            <mat-select matInput  formControlName="managerEnvolti">
               <mat-option [value]="1">Wellington</mat-option>
               <mat-option [value]="2">Charles</mat-option>
               <mat-option [value]="3">Danilo</mat-option>
@@ -92,7 +92,7 @@
           </mat-form-field>
           <mat-form-field fxFlex="35" appearance="outline">
             <mat-label>Status</mat-label>
-            <mat-select matInput disableRipple formControlName="status">
+            <mat-select matInput  formControlName="status">
               <mat-option [value]="1">Em elaboração</mat-option>
               <mat-option [value]="2">Enviada</mat-option>
               <mat-option [value]="3">Parada</mat-option>

@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./projects-create.component.scss']
 })
 export class ProjectsCreateComponent implements OnInit {
-  
+
   projectForm!: FormGroup;
   step: number = 1;
   range = new FormGroup({});
