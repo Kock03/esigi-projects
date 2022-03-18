@@ -1,0 +1,8 @@
+#projectRegisterTab{
+  max-width: 1200px;
+  
+    .content-scroll {
+        overflow: auto;
+        height: calc(100vh - 280px);
+      }
+}
