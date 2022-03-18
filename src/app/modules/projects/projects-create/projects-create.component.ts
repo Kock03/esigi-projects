@@ -35,8 +35,11 @@ export class ProjectsCreateComponent implements OnInit {
       controlHours: [null, Validators.required],
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+
+      range: this.fb.group({
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+      })
     });
   }
 
