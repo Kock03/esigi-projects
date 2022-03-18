@@ -51,10 +51,7 @@ export class ProjectsEntity {
   @Column({ type: 'int' })
   status: Status;
 
-  @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {
-    cascade: ['insert', 'update', 'remove'],
-    orphanedRowAction: 'delete',
-  })
+  @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {})
   activities: ActivitiesEntity[];
 
   @CreateDateColumn()

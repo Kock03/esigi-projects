@@ -25,6 +25,7 @@ import { ResourcesModule } from './app/resources/resources.module';
     ProjectsModule,
     ProjectsAmsModule,
     ActivitiesModule,
+    ResourcesModule,
   ],
   controllers: [],
   providers: [],
