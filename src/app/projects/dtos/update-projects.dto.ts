@@ -70,19 +70,6 @@ export class UpdateProjectDto {
   @ApiProperty()
   type: Type;
 
-  // @IsOptional()
-  // @ApiProperty()
-  // spatialScale: boolean;
-
-  // @IsOptional()
-  // @IsEnum(SpatialScaleType)
-  // @ApiProperty()
-  // spatialScaleType: SpatialScaleType;
-
-  // @IsOptional()
-  // @ApiProperty()
-  // controlHours: boolean;
-
   @IsOptional()
   @IsEnum(Status)
   @ApiProperty()

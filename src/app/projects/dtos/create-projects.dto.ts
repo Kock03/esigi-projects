@@ -71,21 +71,6 @@ export class CreateProjectDto {
   @ApiProperty()
   type: Type;
 
-  // @IsNotEmpty()
-  // @IsBoolean()
-  // @ApiProperty()
-  // spatialScale: boolean;
-
-  // @IsNotEmpty()
-  // @IsEnum(SpatialScaleType)
-  // @ApiProperty()
-  // spatialScaleType: SpatialScaleType;
-
-  // @IsNotEmpty()
-  // @IsBoolean()
-  // @ApiProperty()
-  // controlHours: boolean;
-
   @IsNotEmpty()
   @IsEnum(Status)
   @ApiProperty()
