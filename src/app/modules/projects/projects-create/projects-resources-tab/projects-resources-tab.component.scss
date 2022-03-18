@@ -1,0 +1,33 @@
+#projectAtivityTab {
+  padding-bottom: 10px;
+  max-width: 1220px;
+
+  table {
+    width: 100%;
+  }
+
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 150px;
+    width: 100%;
+    border-radius: 10px;
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+.button-dialog {
+  margin-left: 140px;
+}
+
+.title-dialog {
+  text-align: center;
+}

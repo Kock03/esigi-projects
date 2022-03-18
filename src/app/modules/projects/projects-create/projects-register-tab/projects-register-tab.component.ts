@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-projects-register-tab',
   templateUrl: './projects-register-tab.component.html',
-  styleUrls: ['./projects-register-tab.component.scss']
+  styleUrls: ['./projects-register-tab.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProjectsRegisterTabComponent implements OnInit {
   @Input('form') projectForm!: FormGroup;

@@ -1,0 +1,45 @@
+<div id="projectActivityDialog" class="dialog">
+    <div class="content-scroll" *ngIf="activityForm">
+        <h2 mat-dialog-title class="title-dialog">Cadastro Atividade</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="activityForm" fxLayout="column">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Atividade</mat-label>
+                    <input matInput disableRipple formControlName="name" placeholder="Atividade" />
+                </mat-form-field>
+
+                <div fxFlex="100" fxLayoutGap="16px">
+
+                    <mat-form-field fxFlex="50" appearance="outline">
+                        <mat-label>Data de Início</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="47" appearance="outline">
+                        <mat-label>Data de Término</mat-label>
+                        <input matInput [matDatepicker]="paypicker" formControlName="endDate"
+                            placeholder="Data de Término" />
+                        <mat-datepicker-toggle matSuffix [for]="paypicker"></mat-datepicker-toggle>
+                        <mat-datepicker #paypicker></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <div class="button-dialog">
+                <button mat-flat-button mat-dialog-close (click)="onNoClick()">
+                    Cancelar
+                </button>
+                <button color="primary" [disabled]="activityForm.invalid" mat-flat-button [mat-dialog-close]="true"
+                    (click)="save()">
+                    Salvar
+                </button>
+            </div>
+        </mat-dialog-actions>
+    </div>
+</div>

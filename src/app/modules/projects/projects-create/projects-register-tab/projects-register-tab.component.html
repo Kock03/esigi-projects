@@ -1,11 +1,6 @@
 <div id="projectRegisterTab" class="tab">
-  <div class="content-scroll">
-    <form
-      (submit)="next()"
-      *ngIf="projectForm"
-      [formGroup]="projectForm"
-      fxLayout="column"
-    >
+  <div class="content-scroll" *ngIf="projectForm">
+    <form (submit)="next()" [formGroup]="projectForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="25" appearance="outline">
           <mat-label>Tipo de Projeto</mat-label>
@@ -42,47 +37,26 @@
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Previsão de início e fim</mat-label>
           <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-            <input
-              matStartDate
-              formControlName="startDate"
-              placeholder="Início"
-            />
+            <input matStartDate formControlName="startDate" placeholder="Início" />
             <input matEndDate formControlName="endDate" placeholder="Fim" />
           </mat-date-range-input>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Horas Contratadas</mat-label>
-          <input
-            matInput
-            formControlName="contractedHours"
-            placeholder="Horas Contratadas"
-          />
+          <input matInput formControlName="contractedHours" placeholder="Horas Contratadas" />
         </mat-form-field>
 
-        <mat-checkbox
-          fxFlex="35"
-          fxLayoutAlign="center start"
-          class="checkbox"
-          color="primary"
-          formControlName="controlHours"
-          >Controle de horas</mat-checkbox
-        >
+        <mat-checkbox fxFlex="35" fxLayoutAlign="center start" class="checkbox" color="primary"
+          formControlName="controlHours">Controle de horas</mat-checkbox>
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Valor do Projeto</mat-label>
-          <input
-            matInput
-            formControlName="value"
-            placeholder="Valor do projeto"
-          />
+          <input matInput formControlName="value" placeholder="Valor do projeto" />
         </mat-form-field>
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Gerente Envolti</mat-label>

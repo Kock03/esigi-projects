@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectsCreateComponent implements OnInit {
   projectForm!: FormGroup;
+  project!: any;
   step: number = 1;
   range = new FormGroup({});
   controlHours: boolean = true;
+  Activities!: any;
+
+  get activityArray() {
+    return this.projectForm.controls['Activities'] as FormArray;
+  }
 
   constructor(
     private router: Router,
@@ -37,6 +43,10 @@ export class ProjectsCreateComponent implements OnInit {
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+
+      Activities: this.fb.array(this.project ? this.project.Activities : [], [
+        Validators.required,
+      ]),
     });
   }
 
