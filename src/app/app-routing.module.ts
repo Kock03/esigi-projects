@@ -14,6 +14,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
 
+  { path: 'portal', component: PortalComponent },
+
   {
     path: 'projetos',
     loadChildren: () =>
@@ -22,9 +24,7 @@ const routes: Routes = [
       ),
   },
 
-  { path: 'portal', component: PortalComponent },
-
-  { path: 'novo', component: ProjectsCreateComponent },
+  
 
   // { path: 'ams', component: ProjectsAmsCreateComponent },
 ];
