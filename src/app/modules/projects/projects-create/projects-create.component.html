@@ -26,6 +26,7 @@
     (onChange)="handleChanges($event)">
   </app-projects-resources-tab>
   <app-projects-panel-tab [hidden]="step != 3" [form]="projectForm" (onChange)="handleChanges($event)">
+
   </app-projects-panel-tab>
 
   <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
@@ -37,4 +38,5 @@
     </button>
     <button mat-flat-button *ngIf="step == 2" color="primary">Salvar</button>
   </div>
+
 </div>

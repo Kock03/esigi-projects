@@ -11,17 +11,17 @@
         </mat-form-field>
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="name" placeholder="Nome" />
+          <input matInput disableRipple formControlName="name" placeholder="Nome" />
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Código</mat-label>
-          <input matInput placeholder="Código" formControlName="code" />
+          <input matInput disableRipple placeholder="Código" formControlName="code" />
         </mat-form-field>
       </div>
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>Cliente</mat-label>
-          <input matInput formControlName="client" placeholder="Cliente" />
+          <input matInput disableRipple formControlName="client" placeholder="Cliente" />
         </mat-form-field>
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>Responsável</mat-label>
@@ -60,7 +60,7 @@
         </mat-form-field>
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Gerente Envolti</mat-label>
-          <mat-select matInput formControlName="managerEnvolti">
+          <mat-select matInput disableRipple formControlName="managerEnvolti">
             <mat-option [value]="1">Wellington</mat-option>
             <mat-option [value]="2">Charles</mat-option>
             <mat-option [value]="3">Danilo</mat-option>
@@ -68,7 +68,7 @@
         </mat-form-field>
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Status</mat-label>
-          <mat-select matInput formControlName="status">
+          <mat-select matInput disableRipple formControlName="status">
             <mat-option [value]="1">Em elaboração</mat-option>
             <mat-option [value]="2">Enviada</mat-option>
             <mat-option [value]="3">Parada</mat-option>
