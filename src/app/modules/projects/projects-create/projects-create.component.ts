@@ -5,10 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-projects-create',
   templateUrl: './projects-create.component.html',
-  styleUrls: ['./projects-create.component.scss']
+  styleUrls: ['./projects-create.component.scss'],
 })
 export class ProjectsCreateComponent implements OnInit {
-
   projectForm!: FormGroup;
   step: number = 1;
   range = new FormGroup({});
@@ -17,11 +16,11 @@ export class ProjectsCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-  ) { }
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.initForm();  
+    this.initForm();
   }
 
   initForm(): void {
@@ -36,12 +35,9 @@ export class ProjectsCreateComponent implements OnInit {
       controlHours: [null, Validators.required],
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
-
-      DateInput: this.fb.group({
-        startDate: ['', Validators.required],
-        endDate: ['', Validators.required],
-      }),
-    })
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+    });
   }
 
   handleStep(number: number): void {
@@ -55,7 +51,7 @@ export class ProjectsCreateComponent implements OnInit {
     }
   }
 
-  handleChanges(value: any): void { }
+  handleChanges(value: any): void {}
 
   goBackProjects() {
     this.router.navigate(['portal']);
