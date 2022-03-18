@@ -14,9 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-
-
-import { ProjectsCreateComponent } from './modules/projects/projects-create/projects-create.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 

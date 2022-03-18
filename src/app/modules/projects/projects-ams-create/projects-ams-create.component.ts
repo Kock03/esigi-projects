@@ -43,6 +43,6 @@ export class ProjectsAmsCreateComponent implements OnInit {
   handleChanges(value: any): void { }
 
   goBackProjects() {
-    this.router.navigate(['projetos/novo']);
+    this.router.navigate(['portal']);
   }
 }

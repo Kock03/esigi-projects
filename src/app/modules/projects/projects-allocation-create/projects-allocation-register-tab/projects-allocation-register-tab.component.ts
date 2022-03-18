@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-projects-register-tab',
+  selector: 'app-projects-allocation-register-tab',
   templateUrl: './projects-allocation-register-tab.component.html',
   styleUrls: ['./projects-allocation-register-tab.component.scss']
 })
-export class ProjectsRegisterTabComponent implements OnInit {
+export class ProjectsAllocationRegisterTabComponent implements OnInit {
   @Input('form') projectForm!: FormGroup;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 

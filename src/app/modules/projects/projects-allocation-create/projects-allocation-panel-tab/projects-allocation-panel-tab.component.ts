@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+
+
 
 export interface Panel {
   resource: string,
   hoursRun: string,
   status: string,
 }
+
 @Component({
-  selector: 'app-projects-panel-tab',
+  selector: 'app-projects-allocation-panel-tab',
   templateUrl: './projects-allocation-panel-tab.component.html',
-  styleUrls: ['./projects-allocation-panel-tab.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./projects-allocation-panel-tab.component.scss']
 })
-export class ProjectsPanelTabComponent implements OnInit {
+export class ProjectsAllocationPanelTabComponent implements OnInit {
   @ViewChild('panelTable') panelTable!: MatTable<any>; 
   displayedPanel: string[] = [
     'resource',

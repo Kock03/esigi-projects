@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-projects-create',
-  templateUrl: './projects-create.component.html',
-  styleUrls: ['./projects-create.component.scss']
+  selector: 'app-projects-allocation-create',
+  templateUrl: './projects-allocation-create.component.html',
+  styleUrls: ['./projects-allocation-create.component.scss']
 })
-export class ProjectsCreateComponent implements OnInit {
+export class ProjectsAllocationCreateComponent implements OnInit {
+
   projectForm!: FormGroup;
   step: number = 1;
   range = new FormGroup({});
@@ -58,3 +59,4 @@ export class ProjectsCreateComponent implements OnInit {
     this.router.navigate(['portal']);
   }
 }
+
