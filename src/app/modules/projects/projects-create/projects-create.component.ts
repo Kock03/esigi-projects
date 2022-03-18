@@ -31,14 +31,16 @@ export class ProjectsCreateComponent implements OnInit {
       responsible: ['', Validators.required],
       client: ['', Validators.required],
       projectTypes: [null, Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
       contractedHours: ['', Validators.required],
       value: ['', Validators.required],
       controlHours: [null, Validators.required],
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
-      
+
+      DateInput: this.fb.group({
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+      }),
     })
   }
 
