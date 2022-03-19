@@ -13,25 +13,29 @@
 
                     <ng-container matColumnDef="startDate">
                         <th mat-header-cell *matHeaderCellDef>Início</th>
-                        <td mat-cell *matCellDef="let finance">
+                        <td mat-cell *matCellDef="let activity">
                             {{ activity.startDate | date: 'dd/MM/yyyy' }}
                         </td>
                     </ng-container>
 
                     <ng-container matColumnDef="endDate">
                         <th mat-header-cell *matHeaderCellDef>Término</th>
-                        <td mat-cell *matCellDef="let finance">
+                        <td mat-cell *matCellDef="let activity">
                             {{ activity.endDate | date: 'dd/MM/yyyy' }}
                         </td>
                     </ng-container>
 
                     <ng-container matColumnDef="icon">
                         <th mat-header-cell *matHeaderCellDef style="text-align: end">
-                            <button class="edit-button" mat-flat-button color="primary" (click)="openDialog()">
+                            <button class="edit-button" mat-flat-button (click)="openDialog()">
                                 <mat-icon>add</mat-icon>
                             </button>
                         </th>
                         <td class="button-tab" mat-cell *matCellDef="let activity; let index = index">
+                            <button class="table-button" mat-button (click)="openDialogResources()">
+                                <mat-icon>supervised_user_circle</mat-icon>
+                            </button>
+
                             <button class="table-button" mat-button (click)="getActivity(activity, index)">
                                 <mat-icon>edit</mat-icon>
                             </button>

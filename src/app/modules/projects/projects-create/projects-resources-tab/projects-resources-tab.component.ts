@@ -11,6 +11,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ProjectActivityDialog } from './projects-activities-dialog.component';
+import { ProjectResourceDialog } from './projects-resources-dialog.component';
 
 @Component({
   selector: 'app-projects-resources-tab',
@@ -70,6 +71,13 @@ export class ProjectsResourcesTabComponent implements OnInit {
         this.activityArray.insert(0, this.fb.group(activity));
         this.activityTable.renderRows();
       }
+    });
+  }
+
+  openDialogResources() {
+    const dialogRef = this.dialog.open(ProjectResourceDialog, {
+      width: '500px',
+      height: '450',
     });
   }
 

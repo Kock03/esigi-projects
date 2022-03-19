@@ -23,6 +23,7 @@ import { ProjectsRegisterTabComponent } from './projects-create/projects-registe
 import { ProjectsResourcesTabComponent } from './projects-create/projects-resources-tab/projects-resources-tab.component';
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
 import { ProjectActivityDialog } from './projects-create/projects-resources-tab/projects-activities-dialog.component';
+import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     ProjectsResourcesTabComponent,
     ProjectsPanelTabComponent,
     ProjectActivityDialog,
+    ProjectResourceDialog,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -65,6 +67,7 @@ const routes: Routes = [
     ProjectsResourcesTabComponent,
     ProjectsPanelTabComponent,
     ProjectActivityDialog,
+    ProjectResourceDialog,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
