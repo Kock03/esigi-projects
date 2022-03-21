@@ -7,7 +7,7 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'esigi-projects';
@@ -23,17 +23,16 @@ export class AppComponent {
       action: 'projetos',
     },
   ];
-  
+
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-
   ngOnInit(): void {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
         this.activeMenu = res.url.split('/')[1];
       });
@@ -56,5 +55,4 @@ export class AppComponent {
   navigate(route: string) {
     this.router.navigate([route]);
   }
-
 }
