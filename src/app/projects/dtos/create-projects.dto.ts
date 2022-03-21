@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -46,7 +47,7 @@ export class CreateProjectDto {
   @ApiProperty()
   startDate: Date;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   endDate: Date;
 
@@ -54,7 +55,7 @@ export class CreateProjectDto {
   @ApiProperty()
   contractedHours: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   @ApiProperty()
   value: Double;
@@ -64,7 +65,7 @@ export class CreateProjectDto {
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  managerEnvolti: string;
+  managerEnvoltiProjectManager: string;
 
   @IsNotEmpty()
   @IsEnum(Type)

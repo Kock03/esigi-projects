@@ -9,7 +9,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProjectsAmsEntity } from '../projects-ams/projects-ams.entity';
 import { ProjectsEntity } from '../projects/projects.entity';
 import { ResourcesEntity } from '../resources/resources.entity';
 
@@ -29,9 +28,6 @@ export class ActivitiesEntity {
 
   @ManyToOne(() => ProjectsEntity, (project) => project.activities)
   project: ProjectsEntity;
-
-  @ManyToOne(() => ProjectsAmsEntity, (projectAms) => projectAms.activities)
-  projectAms: ProjectsAmsEntity;
 
   @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {
     cascade: ['insert', 'update', 'soft-remove'],

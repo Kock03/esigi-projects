@@ -9,7 +9,6 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { ProjectsAmsEntity } from 'src/app/projects-ams/projects-ams.entity';
 import { ProjectsEntity } from 'src/app/projects/projects.entity';
 
 export class CreateActivitieDto {
@@ -32,9 +31,4 @@ export class CreateActivitieDto {
   @ApiProperty()
   @IsObject()
   project: ProjectsEntity;
-
-  @IsOptional()
-  @ApiProperty()
-  @IsObject()
-  projectAms: ProjectsAmsEntity;
 }

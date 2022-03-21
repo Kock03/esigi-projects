@@ -33,17 +33,17 @@ export class ProjectsEntity {
   @Column()
   startDate: Date;
 
-  @Column()
+  @Column({ nullable: true })
   endDate: Date;
 
   @Column()
   contractedHours: number;
 
-  @Column({ type: 'double' })
+  @Column({ type: 'double', nullable: true })
   value: Double;
 
   @Column()
-  managerEnvolti: string;
+  managerEnvoltiProjectManager: string;
 
   @Column({ type: 'int' })
   type: Type;

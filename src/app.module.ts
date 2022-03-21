@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { ActivitiesModule } from './app/activities/activities.module';
-import { ProjectsAmsModule } from './app/projects-ams/projects-ams.module';
 import { ProjectsModule } from './app/projects/projects.module';
 import { ResourcesModule } from './app/resources/resources.module';
 
@@ -23,7 +22,6 @@ import { ResourcesModule } from './app/resources/resources.module';
       namingStrategy: new SnakeNamingStrategy(),
     } as TypeOrmModuleOptions),
     ProjectsModule,
-    ProjectsAmsModule,
     ActivitiesModule,
     ResourcesModule,
   ],

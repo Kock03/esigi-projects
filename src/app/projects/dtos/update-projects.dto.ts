@@ -63,7 +63,7 @@ export class UpdateProjectDto {
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  managerEnvolti: string;
+  managerEnvoltiProjectManager: string;
 
   @IsNotEmpty()
   @IsEnum(Type)
