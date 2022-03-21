@@ -42,8 +42,8 @@ export class ProjectsCreateComponent implements OnInit {
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
 
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      // startDate: ['', Validators.required],
+      // endDate: ['', Validators.required],
 
       Activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
@@ -70,6 +70,6 @@ export class ProjectsCreateComponent implements OnInit {
   handleChanges(value: any): void {}
 
   goBackProjects() {
-    this.router.navigate(['portal']);
+    this.router.navigate(['projetos']);
   }
 }

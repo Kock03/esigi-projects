@@ -1,13 +1,24 @@
-<div #portalPage class="page">
-    <div class="portal-content" fxLayout="row" fxLayoutAlign="center center" >
-        <div class="box-management-purple" (click)="navigateToProject() ">
-          <img src="../../../assets/icons/purple-rocket-icon.png" class="rocket-button" />
-          <a>Projeto de Alocação</a>
-        </div>
-        <div class="box-management-blue" (click)="navigateToProject()">
-          <img src="../../../assets/icons/blue-rocket-icon.png" class="rocket-button" />
-          <a>Projeto AMS</a>
-        </div>
+<div id="portal-page" class="page">
+ 
+    <div class="portal-content" fxLayout="row" fxLayoutAlign="space-evenly">
+      <button
+      (click)="navigateToProject()"
+        class="box-management-purple"
+        fxLayout="column">
+        <img
+          src="../../../assets/icons/purple-rocket-icon.png"
+          class="rocket-button" />
+        <a>Projeto de Alocação</a>
+      </button>
+      <button
+        (click)="navigateToProject()"
+        class="box-management-blue"
+        fxLayout="column">
+        <img
+          src="../../../assets/icons/blue-rocket-icon.png"
+          class="rocket-button" />
+        <a>Projeto AMS</a>
+      </button>
     </div>
   </div>
   

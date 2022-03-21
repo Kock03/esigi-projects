@@ -63,7 +63,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
       width: '500px',
-      height: '450',
+      height: '300px',
     });
 
     dialogRef.afterClosed().subscribe((activity) => {
@@ -77,14 +77,14 @@ export class ProjectsResourcesTabComponent implements OnInit {
   openDialogResources() {
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
       width: '500px',
-      height: '450',
+      height: '450px',
     });
   }
 
   getActivity(activitySelected: any, index: number) {
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
       width: '500px',
-      height: '550px',
+      height: '300px',
       data: activitySelected,
     });
 

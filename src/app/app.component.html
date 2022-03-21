@@ -24,7 +24,9 @@
     <mat-divider></mat-divider>
     <div *ngFor="let menu of menuList">
       <button
-        [ngClass]="{ active: menu.action == activeMenu }"
+      [ngClass]="{
+        active: menu.action.startsWith(this.activeMenu)
+      }"
         mat-button
         class="menu-button"
         (click)="navigate(menu.action)"

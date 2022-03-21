@@ -6,15 +6,15 @@
     <h2>Projetos</h2>
   </div>
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
-    <div (click)="handleStep(1)" fxLayout="column" class="tab-group">
+    <div   [ngClass]="{ done: step > 0, active: step == 1 }" (click)="handleStep(1)" fxLayout="column" class="tab-group">
       <p class="tab-item">Cadastro</p>
       <span class="tab-border"></span>
     </div>
-    <div (click)="handleStep(2)" fxLayout="column" class="tab-group">
+    <div [ngClass]="{ done: step > 1, active: step == 2 }" (click)="handleStep(2)" fxLayout="column" class="tab-group">
       <p class="tab-item">Recursos/Atividades</p>
       <span class="tab-border"></span>
     </div>
-    <div (click)="handleStep(3)" fxLayout="column" class="tab-group">
+    <div   [ngClass]="{ done: step > 2, active: step == 3 }" (click)="handleStep(3)" fxLayout="column" class="tab-group">
       <p class="tab-item">Acompanhamento</p>
       <span class="tab-border"></span>
     </div>
@@ -33,10 +33,10 @@
     <button mat-button *ngIf="step != 1" (click)="navigate('back')">
       Voltar
     </button>
-    <button mat-flat-button *ngIf="step != 2" (click)="navigate('next')" color="primary">
+    <button mat-flat-button *ngIf="step != 3" (click)="navigate('next')" color="primary">
       Continuar
     </button>
-    <button mat-flat-button *ngIf="step == 2" color="primary">Salvar</button>
+    <button mat-flat-button *ngIf="step == 3" color="primary">Salvar</button>
   </div>
 
 </div>

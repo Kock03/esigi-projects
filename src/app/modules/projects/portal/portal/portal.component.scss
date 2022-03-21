@@ -1,46 +1,45 @@
 #portal-page {
+
     .portal-content {
-      margin: auto;
       width: 100%;
-      max-width: 1280px;
+      display: flex;
+      margin-top: 70px;
+      margin-left: 23%;
     }
-  }
+
+    .rocket-button {
+      max-width: 180px;
+      padding: 20px;
+      width: 100%;
+      box-align: center;
+      width: 100%;
+    }
+    
+    a {
+      font-size: 18px !important;
+      font-family: "Branding";
+      text-align: center !important;
+      margin-left: 45px;
+      margin-right: 35px;
+    }
+    
+    .box-management-blue,
+    .box-management-purple {
+      border-style: groove;
+      border-width: 3px;
+      border-radius: 10px;
+      border-color: #6935AB;
+      background-color: white;
+      text-align: justify;
+      text-align: center !important;
+      max-width: 250px;
+      width: 100%;
+      margin: 16px;
+      cursor: pointer;
+    }
+     }
   
-  .rocket-button{
-    max-width: 180px;
-    padding: 20px;
-    width: 100%;
-  }
-  a{
-    font-size: 20px !important;
-    font-family: "Branding";
-    text-align: center !important;
-  }
   
-  .box-management-blue,
-  .box-management-purple {
-    border-style: groove;
-    border-width: 3px;
-    border-radius: 10px;
-    border-color: #6935AB;
-    background-color: white;
-    transition: background-color 0.5s;
-    text-align: justify;
-    text-align: center !important;
-    max-width: 250px;
-    width: 100%;
-    // margin: 175px;
-    cursor: pointer;
-  }
-  
-  .box-management-purple:hover {
-    background-color: #dbc7f3;
-    transition: background-color 0.5s;
-  
-  }
-  
-  .box-management-blue:hover {
-    background-color: #dceef3;
-    transition: background-color 0.5s
-  }
+
+   
   

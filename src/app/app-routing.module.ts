@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: '',
 
-    redirectTo: '/portal',
+    redirectTo: '/projetos',
 
     pathMatch: 'full',
   },
 
-  { path: 'portal', component: PortalComponent },
+  { path: 'projetos', component: PortalComponent },
 
   {
     path: 'projetos',

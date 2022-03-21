@@ -19,8 +19,8 @@ export class AppComponent {
     {
       name: 'Projetos',
       icon: 'analytics',
-      selected: true,
-      action: '/portal',
+      selected: false,
+      action: 'projetos',
     },
   ];
   
