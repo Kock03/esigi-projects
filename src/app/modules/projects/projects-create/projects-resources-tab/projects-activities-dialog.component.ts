@@ -45,6 +45,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 export class ProjectActivityDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
+  range = new FormGroup({});
   activityForm!: FormGroup;
 
   Date: any;
@@ -62,8 +63,10 @@ export class ProjectActivityDialog {
   initForm(): void {
     this.activityForm = this.fb.group({
       name: [null],
-      startDate: [null, Validators.required],
-      endDate: [null, Validators.required],
+      range: this.fb.group({
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+      }),
     });
     if (this.data) {
       this.activityForm.patchValue(this.data);
