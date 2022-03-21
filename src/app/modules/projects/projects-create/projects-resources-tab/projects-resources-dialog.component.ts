@@ -1,13 +1,31 @@
-import { Component } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
 
 @Component({
-    selector: 'projects-resources-dialog',
-    templateUrl: 'projects-resources-dialog.html',
-  })
+  selector: 'projects-resources-dialog',
+  templateUrl: 'projects-resources-dialog.html',
+})
+export class ProjectResourceDialog {
+  @Input() resourceArray!: FormArray;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
+  @ViewChild('resourceTable') resourceTable!: MatTable<any>;
 
-export class ProjectResourceDialog{
+  displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
 
-  constructor(){}
+  dataResource: [] = [];
+  resourceForm!: FormGroup;
+
+  index: any = null;
+  resource: any;
+
+  constructor() {}
 
   step = 0;
 
@@ -22,4 +40,4 @@ export class ProjectResourceDialog{
   prevStep() {
     this.step--;
   }
-} 
+}

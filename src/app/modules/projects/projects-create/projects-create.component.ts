@@ -14,6 +14,7 @@ export class ProjectsCreateComponent implements OnInit {
   range = new FormGroup({});
   controlHours: boolean = true;
   Activities!: any;
+  Resources!: any;
 
   get activityArray() {
     return this.projectForm.controls['Activities'] as FormArray;
@@ -46,6 +47,9 @@ export class ProjectsCreateComponent implements OnInit {
       // endDate: ['', Validators.required],
 
       Activities: this.fb.array(this.project ? this.project.Activities : [], [
+        Validators.required,
+      ]),
+      Resources: this.fb.array(this.project ? this.project.Resources : [], [
         Validators.required,
       ]),
 

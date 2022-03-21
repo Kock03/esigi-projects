@@ -24,7 +24,13 @@ export class ProjectsResourcesTabComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('activityTable') activityTable!: MatTable<any>;
 
-  displayedColumns: string[] = ['name', 'startDate', 'endDate', 'icon'];
+  displayedColumns: string[] = [
+    'name',
+    'startDate',
+    'endDate',
+    'resources',
+    'icon',
+  ];
 
   data: [] = [];
   activityForm!: FormGroup;

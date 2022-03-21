@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,15 @@ $esigi-projects-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$esigi-projects-theme: mat.define-light-theme((
-  color: (
-    primary: $esigi-projects-primary,
-    accent: $esigi-projects-accent,
-    warn: $esigi-projects-warn,
+$esigi-projects-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $esigi-projects-primary,
+      accent: $esigi-projects-accent,
+      warn: $esigi-projects-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -96,7 +97,6 @@ html {
     border-radius: 4px;
   }
 
-
   .done {
     .tab-border {
       border-color: #ff6a39 !important;
@@ -132,12 +132,40 @@ html {
 .title {
   margin-bottom: 24px !important;
 }
+.table-styles {
+  max-width: 1220px;
 
+  table {
+    width: 100%;
+  }
+
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 150px;
+    width: 100%;
+    border-radius: 10px;
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .edit-button {
+      background-color: transparent !important;
+      color: white;
+    }
+  }
+}
 .table-button {
   height: 100%;
 
   mat-icon {
-    color: #753BBD;
+    color: #753bbd;
   }
 }
 
@@ -155,14 +183,12 @@ html {
       color: #673ab7;
     }
   }
-
 }
 
 .content-scroll {
   overflow: auto;
   height: calc(100vh - 280px);
 }
-
 
 html,
 body {
@@ -174,6 +200,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
