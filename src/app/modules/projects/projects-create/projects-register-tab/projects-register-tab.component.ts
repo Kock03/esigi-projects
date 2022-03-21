@@ -11,6 +11,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @Input('form') projectForm!: FormGroup;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
+  projectType: any;
   // projectForm!: FormGroup;
 
   range = new FormGroup({});

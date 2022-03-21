@@ -15,10 +15,20 @@ export class PortalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
   async navigateToProject() {
     this.router.navigate(['projetos/alocacao']);
+  }
+
+  checkProjectTypeAllocation(){
+    sessionStorage.setItem('projectType', '1'); 
+    console.log (sessionStorage)
+  }
+  checkProjectTypeAms(){
+    sessionStorage.setItem('projectType', '2');
+    console.log (sessionStorage)
   }
 
 }
