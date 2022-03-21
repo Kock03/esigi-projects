@@ -155,6 +155,12 @@ html {
       color: #673ab7;
     }
   }
+
+}
+
+.content-scroll {
+  overflow: auto;
+  height: calc(100vh - 280px);
 }
 
 
