@@ -23,8 +23,6 @@ export class ProjectResourceDialog {
   
 
   displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
-
-  dataResource: [] = [];
   resourceForm!: FormGroup;
   step = 0;
 
@@ -33,6 +31,7 @@ export class ProjectResourceDialog {
   accordion: any;
   resourcesArray!: FormArray;
   dataTable: [] = [];
+
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -81,13 +80,12 @@ export class ProjectResourceDialog {
   getResource(resourceSelected: any, index: number) {
     this.resourceForm.patchValue(resourceSelected)
     this.Accordion.openAll();
-   
-    //todo - edição
-
+    
   }
 
   onNoClick(): void {
     this.Accordion.closeAll();
+   
   }
 
   async saveResource() {
