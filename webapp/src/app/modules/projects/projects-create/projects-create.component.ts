@@ -25,7 +25,6 @@ export class ProjectsCreateComponent implements OnInit {
     return this.projectForm.controls['Resources'] as FormArray;
   }
 
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -49,14 +48,12 @@ export class ProjectsCreateComponent implements OnInit {
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
 
-
       Activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
+        this.Resources.fb.array(this.project ? this.project.Resources : [], [
+          Validators.required,
+        ]),
       ]),
-      Resources: this.fb.array(this.project ? this.project.Resources : [], [
-        Validators.required,
-      ]),
-
       range: this.fb.group({
         startDate: ['', Validators.required],
         endDate: ['', Validators.required],
