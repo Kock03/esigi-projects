@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  PROJECT_MS: 'localhost:3506/api/v1/',
+  message: 'LOCAL',
+  protocol: 'http',
 };
 
 /*

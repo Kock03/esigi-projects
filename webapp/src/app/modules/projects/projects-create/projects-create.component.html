@@ -6,7 +6,7 @@
     <h2>Projetos</h2>
   </div>
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
-    <div   [ngClass]="{ done: step > 0, active: step == 1 }" (click)="handleStep(1)" fxLayout="column" class="tab-group">
+    <div [ngClass]="{ done: step > 0, active: step == 1 }" (click)="handleStep(1)" fxLayout="column" class="tab-group">
       <p class="tab-item">Cadastro</p>
       <span class="tab-border"></span>
     </div>
@@ -14,7 +14,7 @@
       <p class="tab-item">Recursos/Atividades</p>
       <span class="tab-border"></span>
     </div>
-    <div   [ngClass]="{ done: step > 2, active: step == 3 }" (click)="handleStep(3)" fxLayout="column" class="tab-group">
+    <div [ngClass]="{ done: step > 2, active: step == 3 }" (click)="handleStep(3)" fxLayout="column" class="tab-group">
       <p class="tab-item">Acompanhamento</p>
       <span class="tab-border"></span>
     </div>
@@ -22,8 +22,8 @@
 
   <app-projects-register-tab [hidden]="step != 1" [form]="projectForm" (onChange)="handleChanges($event)">
   </app-projects-register-tab>
-  <app-projects-resources-tab [hidden]="step != 2" [form]="projectForm" [activityArray]="activityArray" [resourcesArray]="resourcesArray"
-    (onChange)="handleChanges($event)">
+  <app-projects-resources-tab [hidden]="step != 2" [form]="projectForm" [activityArray]="activityArray"
+    [resourcesArray]="resourcesArray" (onChange)="handleChanges($event)">
   </app-projects-resources-tab>
   <app-projects-panel-tab [hidden]="step != 3" [form]="projectForm" (onChange)="handleChanges($event)">
 
@@ -36,7 +36,7 @@
     <button mat-flat-button *ngIf="step != 3" (click)="navigate('next')" color="primary">
       Continuar
     </button>
-    <button mat-flat-button *ngIf="step == 3" color="primary">Salvar</button>
+    <button mat-flat-button *ngIf="step == 3" color="primary" (click)="saveProject()">Salvar</button>
   </div>
 
 </div>
