@@ -55,6 +55,10 @@ export class ProjectsCreateComponent implements OnInit {
       activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
       ]),
+      range: this.fb.group({
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+      }),
     });
   }
 
@@ -62,8 +66,8 @@ export class ProjectsCreateComponent implements OnInit {
     let data = this.projectForm.getRawValue();
 
     try {
-      const colaborators = await this.projectProvider.store(data);
-      sessionStorage.clear();
+      const project = await this.projectProvider.store(data);
+      this.router.navigate(['home']);
     } catch (error: any) {
       console.log('ERROR 132' + error);
     }
