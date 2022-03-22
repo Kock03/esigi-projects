@@ -21,8 +21,6 @@ export class ProjectResourceDialog {
   Accordion!: MatAccordion;
 
   displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
-
-  dataResource: [] = [];
   resourceForm!: FormGroup;
   step = 0;
 
