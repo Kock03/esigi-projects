@@ -14,12 +14,12 @@ export class ProjectsCreateComponent implements OnInit {
   step: number = 1;
   range = new FormGroup({});
   controlHours: boolean = true;
-  Activities!: any;
+  activities!: any;
   Resources!: any;
   projectType: any;
 
   get activityArray() {
-    return this.projectForm.controls['Activities'] as FormArray;
+    return this.projectForm.controls['activities'] as FormArray;
   }
 
   get resourcesArray() {
@@ -43,16 +43,16 @@ export class ProjectsCreateComponent implements OnInit {
       code: ['', Validators.required],
       responsible: ['', Validators.required],
       client: ['', Validators.required],
-      projectTypes: [null, Validators.required],
+      type: [null, Validators.required],
       contractedHours: ['', Validators.required],
-      value: ['', Validators.required],
+      value: [0, Validators.required],
       controlHours: [null, Validators.required],
-      managerEnvolti: ['', Validators.required],
+      managerEnvoltiProjectManager: ['', Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
 
-      Activities: this.fb.array(this.project ? this.project.Activities : [], [
+      activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
       ]),
     });

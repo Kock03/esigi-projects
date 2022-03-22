@@ -2,6 +2,7 @@
 
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsBoolean,
   IsEnum,
   IsNotEmpty,
@@ -11,6 +12,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { ActivitiesEntity } from 'src/app/activities/activities.entity';
 import { Double } from 'typeorm';
 import { SpatialScaleType } from './spatial-scale-type.enum';
 import { Status } from './status.enum';
@@ -76,4 +78,9 @@ export class CreateProjectDto {
   @IsEnum(Status)
   @ApiProperty()
   status: Status;
+
+  @IsOptional()
+  @IsArray()
+  @ApiProperty()
+  activities: ActivitiesEntity[];
 }
