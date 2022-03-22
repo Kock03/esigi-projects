@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectProvider } from 'src/providers/project.provider';
 
 @Component({
   selector: 'app-projects-create',
@@ -28,7 +29,8 @@ export class ProjectsCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private projectProvider: ProjectProvider
   ) {}
 
   ngOnInit(): void {
@@ -50,15 +52,23 @@ export class ProjectsCreateComponent implements OnInit {
 
       Activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
-        this.Resources.fb.array(this.project ? this.project.Resources : [], [
-          Validators.required,
-        ]),
       ]),
       range: this.fb.group({
         startDate: ['', Validators.required],
         endDate: ['', Validators.required],
       }),
     });
+  }
+
+  async saveProject() {
+    let data = this.projectForm.getRawValue();
+
+    try {
+      const colaborators = await this.projectProvider.store(data);
+      sessionStorage.clear();
+    } catch (error: any) {
+      console.log('ERROR 132' + error);
+    }
   }
 
   handleStep(number: number): void {

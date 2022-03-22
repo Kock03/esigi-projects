@@ -12,18 +12,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    [AppComponent, ToolbarComponent],
-    [AppComponent],
-
-  ],
+  declarations: [[AppComponent, ToolbarComponent], [AppComponent]],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,9 +36,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
     MatTableModule,
     NgxMaskModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [MatTableModule]
+  exports: [MatTableModule],
 })
-export class AppModule { }
+export class AppModule {}
