@@ -21,8 +21,10 @@ import { ProjectResourceDialog } from './projects-resources-dialog.component';
 })
 export class ProjectsResourcesTabComponent implements OnInit {
   @Input() activityArray!: FormArray;
+  @Input() resourcesArray!: FormArray;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('activityTable') activityTable!: MatTable<any>;
+
 
   displayedColumns: string[] = [
     'name',
@@ -84,6 +86,9 @@ export class ProjectsResourcesTabComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
       width: '500px',
       height: '450px',
+      data: {
+             array: this.resourcesArray
+            }
     });
   }
 

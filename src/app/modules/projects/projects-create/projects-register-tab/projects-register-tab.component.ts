@@ -12,13 +12,14 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   projectType: any;
-  // projectForm!: FormGroup;
+
 
   range = new FormGroup({});
 
   constructor() { }
 
   ngOnInit(): void {
+    this.projectType = sessionStorage.getItem('project_type')
   }
 
   next() {

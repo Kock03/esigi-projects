@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent implements OnInit {
+  project: any;
 
   constructor(
     private router: Router,
@@ -19,16 +20,14 @@ export class PortalComponent implements OnInit {
   }
 
   async navigateToProject() {
-    this.router.navigate(['projetos/alocacao']);
+    
   }
 
-  checkProjectTypeAllocation(){
-    sessionStorage.setItem('projectType', '1'); 
-    console.log (sessionStorage)
-  }
-  checkProjectTypeAms(){
-    sessionStorage.setItem('projectType', '2');
-    console.log (sessionStorage)
+ 
+  handleProject(number: number): void {
+      this.project = number;
+      sessionStorage.setItem('project_type', this.project.toString());
+      this.router.navigate(['projetos/alocacao']);
   }
 
 }

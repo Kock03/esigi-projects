@@ -15,10 +15,16 @@ export class ProjectsCreateComponent implements OnInit {
   controlHours: boolean = true;
   Activities!: any;
   Resources!: any;
+  projectType: any;
 
   get activityArray() {
     return this.projectForm.controls['Activities'] as FormArray;
   }
+
+  get resourcesArray() {
+    return this.projectForm.controls['Resources'] as FormArray;
+  }
+
 
   constructor(
     private router: Router,
@@ -43,8 +49,6 @@ export class ProjectsCreateComponent implements OnInit {
       managerEnvolti: ['', Validators.required],
       status: ['', Validators.required],
 
-      // startDate: ['', Validators.required],
-      // endDate: ['', Validators.required],
 
       Activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,

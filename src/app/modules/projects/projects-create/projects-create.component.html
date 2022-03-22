@@ -22,7 +22,7 @@
 
   <app-projects-register-tab [hidden]="step != 1" [form]="projectForm" (onChange)="handleChanges($event)">
   </app-projects-register-tab>
-  <app-projects-resources-tab [hidden]="step != 2" [form]="projectForm" [activityArray]="activityArray"
+  <app-projects-resources-tab [hidden]="step != 2" [form]="projectForm" [activityArray]="activityArray" [resourcesArray]="resourcesArray"
     (onChange)="handleChanges($event)">
   </app-projects-resources-tab>
   <app-projects-panel-tab [hidden]="step != 3" [form]="projectForm" (onChange)="handleChanges($event)">
