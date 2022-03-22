@@ -45,7 +45,8 @@ export class ResourcesService {
     try {
       await this.resourcesRepository.findOneOrFail({ id });
     } catch {
-      this.resourcesRepository.softDelete({ id });
+      throw new NotFoundException();
     }
+    return await this.resourcesRepository.softDelete({ id });
   }
 }

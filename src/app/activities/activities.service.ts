@@ -51,6 +51,6 @@ export class ActivitiesService {
       throw new NotFoundException();
     }
 
-    this.activitiesRepository.softDelete({ id });
+    return await this.activitiesRepository.softDelete({ id });
   }
 }
