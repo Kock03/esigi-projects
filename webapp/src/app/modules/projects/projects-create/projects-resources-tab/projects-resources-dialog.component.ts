@@ -15,12 +15,10 @@ import { MatTable } from '@angular/material/table';
   templateUrl: 'projects-resources-dialog.html',
 })
 export class ProjectResourceDialog {
- 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('resourceTable') resourceTable!: MatTable<any>;
   @ViewChild('accordion', { static: true })
   Accordion!: MatAccordion;
-  
 
   displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
 
@@ -41,8 +39,11 @@ export class ProjectResourceDialog {
   ) {}
 
   ngOnInit(): void {
-   this.resourcesArray = this.data.array;
-   console.log("🚀 ~ file: projects-resources-dialog.component.ts ~ line 45 ~ ProjectResourceDialog ~ ngOnInit ~ this.resourcesArray", this.resourcesArray)
+    this.resourcesArray = this.data.array;
+    console.log(
+      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 45 ~ ProjectResourceDialog ~ ngOnInit ~ this.resourcesArray',
+      this.resourcesArray
+    );
     this.initForm();
     if (this.resourcesArray.value.length > 0) {
       this.dataTable = this.resourcesArray.value;
@@ -79,11 +80,10 @@ export class ProjectResourceDialog {
   }
 
   getResource(resourceSelected: any, index: number) {
-    this.resourceForm.patchValue(resourceSelected)
+    this.resourceForm.patchValue(resourceSelected);
     this.Accordion.openAll();
-   
-    //todo - edição
 
+    //todoTeste - edição
   }
 
   onNoClick(): void {
