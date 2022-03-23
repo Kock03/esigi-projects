@@ -13,9 +13,6 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   projectType: any;
 
-
-  range = new FormGroup({});
-
   constructor() { }
 
   ngOnInit(): void {
