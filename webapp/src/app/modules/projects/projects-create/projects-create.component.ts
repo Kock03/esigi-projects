@@ -68,6 +68,7 @@ export class ProjectsCreateComponent implements OnInit {
     try {
       const project = await this.projectProvider.store(data);
       this.router.navigate(['home']);
+      console.log(data);
     } catch (error: any) {
       console.log('ERROR 132' + error);
     }
