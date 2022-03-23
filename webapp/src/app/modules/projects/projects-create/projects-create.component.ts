@@ -23,7 +23,7 @@ export class ProjectsCreateComponent implements OnInit {
   }
 
   get resourcesArray() {
-    return this.projectForm.controls['Resources'] as FormArray;
+    return this.projectForm.controls['resources'] as FormArray;
   }
 
   constructor(
@@ -55,10 +55,12 @@ export class ProjectsCreateComponent implements OnInit {
       activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
       ]),
-      range: this.fb.group({
-        startDate: ['', Validators.required],
-        endDate: ['', Validators.required],
-      }),
+
+      resources: this.fb.array(this.project ? this.project.Activities : [], [
+        Validators.required,
+      ]),
+
+
     });
   }
 
