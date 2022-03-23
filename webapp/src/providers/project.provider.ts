@@ -23,7 +23,7 @@ export class ProjectProvider {
   findOne(id: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.PROJECT_MS + 'projects', { id: id })
+        .get(environment.PROJECT_MS + 'projects/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

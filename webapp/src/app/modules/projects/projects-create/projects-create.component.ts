@@ -17,6 +17,7 @@ export class ProjectsCreateComponent implements OnInit {
   activities!: any;
   Resources!: any;
   projectType: any;
+  projectId!: string | null; 
 
   get activityArray() {
     return this.projectForm.controls['activities'] as FormArray;
@@ -36,6 +37,7 @@ export class ProjectsCreateComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   }
+
 
   initForm(): void {
     this.projectForm = this.fb.group({
@@ -69,7 +71,8 @@ export class ProjectsCreateComponent implements OnInit {
 
     try {
       const project = await this.projectProvider.store(data);
-      this.router.navigate(['home']);
+      this.router.navigate(['projetos']);
+      sessionStorage.clear();
       console.log(data);
     } catch (error: any) {
       console.log('ERROR 132' + error);

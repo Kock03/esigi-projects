@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { debounceTime, distinctUntilChanged, fromEvent, Subject } from 'rxjs';
+import { IProjects } from 'src/app/interfaces/iproject';
+import { ProjectProvider } from 'src/providers/project.provider';
 
 
 export interface Panel {
@@ -14,6 +18,11 @@ export interface Panel {
 })
 export class ProjectsPanelTabComponent implements OnInit {
   @ViewChild('projectTable') projectTable!: MatTable<any>;
+  @ViewChild(MatSort) sort: MatSort = new MatSort();
+  @ViewChild('filter', { static: true }) filter!: ElementRef;
+
+  projects!: IProjects[];
+  filteredProjectList = new MatTableDataSource();
 
   displayedPanel: string[] = [
     'ressource',
@@ -31,9 +40,36 @@ export class ProjectsPanelTabComponent implements OnInit {
 
   filteredProjectPanelList!: any[];
 
-  constructor() { }
+  constructor(
+    private projectProvider: ProjectProvider
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getProjecsList();
+    this.initFilter();
+  }
+
+  ngAfterViewInit(): void {}
+
+  async getProjecsList() {
+    this.filteredProjectList.data = this.projects =
+   
+      await this.projectProvider.findAll();
+    this.filteredProjectList.sort = this.sort;
+  }
+
+  initFilter() {
+    fromEvent(this.filter.nativeElement, 'keyup')
+      .pipe(debounceTime(200), distinctUntilChanged())
+
+      .subscribe((res) => {
+        this.filteredProjectList.data = this.projects.filter(
+          (project) =>
+          project.ressource
+              .toLocaleLowerCase()
+              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+        );
+      });
   }
 
 }
