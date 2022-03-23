@@ -18,7 +18,6 @@ export interface Panel {
 })
 export class ProjectsPanelTabComponent implements OnInit {
   @ViewChild('projectTable') projectTable!: MatTable<any>;
-  @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
   projects!: IProjects[];
@@ -38,24 +37,21 @@ export class ProjectsPanelTabComponent implements OnInit {
     },
   ];
 
-  filteredProjectPanelList!: any[];
 
   constructor(
     private projectProvider: ProjectProvider
   ) { }
 
   async ngOnInit(): Promise<void> {
-    await this.getProjecsList();
+    await this.getProjectsList();
     this.initFilter();
   }
 
   ngAfterViewInit(): void {}
 
-  async getProjecsList() {
+  async getProjectsList() {
     this.filteredProjectList.data = this.projects =
-   
       await this.projectProvider.findAll();
-    this.filteredProjectList.sort = this.sort;
   }
 
   initFilter() {
