@@ -26,7 +26,9 @@ export class ActivitiesEntity {
   @Column()
   endDate: Date;
 
-  @ManyToOne(() => ProjectsEntity, (project) => project.activities)
+  @ManyToOne(() => ProjectsEntity, (project) => project.activities, {
+    eager: true,
+  })
   project: ProjectsEntity;
 
   @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {

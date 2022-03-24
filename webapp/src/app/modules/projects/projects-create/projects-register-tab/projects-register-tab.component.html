@@ -5,9 +5,9 @@
         <mat-form-field fxFlex="25" appearance="outline">
           <mat-label>Tipo de Projeto</mat-label>
           <mat-select matInput disableRipple formControlName="type">
-            <mat-option [value]="1" *ngIf="projectType === '1'" style="disabled">Projeto</mat-option>
-            <mat-option [value]="2" *ngIf="projectType === '1'" style="disabled">Alocação</mat-option>
-            <mat-option [value]="2" *ngIf="projectType === '2'" style="disabled">AMS</mat-option>
+            <mat-option [value]="1" *ngIf="projectType === '1'">Projeto</mat-option>
+            <mat-option [value]="2" *ngIf="projectType === '1'">Alocação</mat-option>
+            <mat-option [value]="2" *ngIf="projectType === '2'">AMS</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="50" appearance="outline">
