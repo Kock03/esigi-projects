@@ -39,6 +39,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
 
   index: any = null;
   activity: any;
+ 
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
@@ -46,7 +47,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
     if (this.activityArray.value.length > 0) {
       this.data = this.activityArray.value;
     }
-
     this.initObservables();
   }
 

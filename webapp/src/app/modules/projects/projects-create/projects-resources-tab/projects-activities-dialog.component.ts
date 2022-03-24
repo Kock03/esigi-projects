@@ -13,6 +13,7 @@ import {
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivityProvider } from 'src/providers/activity.provider';
 
 export const PICK_FORMATS = {
   parse: { dateInput: { month: 'numeric', year: 'numeric', day: 'numeric' } },
@@ -49,15 +50,19 @@ export class ProjectActivityDialog {
   activityForm!: FormGroup;
 
   Date: any;
+  projectId!: string;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectActivityDialog>,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any, 
+    private activityProvider: ActivityProvider
   ) {}
 
   ngOnInit(): void {
+    this.projectId = sessionStorage.getItem('project_id')!;
     this.initForm();
+   
   }
 
   initForm(): void {
@@ -65,6 +70,7 @@ export class ProjectActivityDialog {
       name: [null],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+      project: {id: this.projectId}
     });
     if (this.data) {
       this.activityForm.patchValue(this.data);
@@ -77,6 +83,13 @@ export class ProjectActivityDialog {
 
   async save() {
     const data = this.activityForm.getRawValue();
-    this.dialogRef.close(data);
+    try{
+      this.activityProvider.store(data);
+      this.dialogRef.close(data);
+    } catch (error: any) {
+      console.log('ERROR 132' + error);
+    }
+
+ 
   }
 }

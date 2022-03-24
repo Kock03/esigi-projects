@@ -71,9 +71,7 @@ export class ProjectsCreateComponent implements OnInit {
 
     try {
       const project = await this.projectProvider.store(data);
-      // this.router.navigate(['projetos']);
-      sessionStorage.clear();
-      console.log(data);
+      sessionStorage.setItem('project_id', project.id);
     } catch (error: any) {
       console.log('ERROR 132' + error);
     }
