@@ -17,9 +17,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
-  declarations: [[AppComponent, ToolbarComponent], [AppComponent]],
+  declarations: [[AppComponent, ToolbarComponent], [AppComponent,
+    ConfirmDialogComponent,
+  
+    SnackBarComponent,
+  ]],
   imports: [
     BrowserModule,
     AppRoutingModule,
