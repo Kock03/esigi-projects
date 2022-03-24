@@ -19,6 +19,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackBarService} from 'src/services/snackbar.service';
 
 @NgModule({
   declarations: [[AppComponent, ToolbarComponent], [AppComponent,
@@ -43,8 +45,9 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     MatTableModule,
     NgxMaskModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
-  providers: [],
+  providers: [SnackBarService],
   bootstrap: [AppComponent],
   exports: [MatTableModule],
 })

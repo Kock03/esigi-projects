@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectProvider } from 'src/providers/project.provider';
+import { SnackBarService} from 'src/services/snackbar.service';
 
 @Component({
   selector: 'app-projects-create',
   templateUrl: './projects-create.component.html',
   styleUrls: ['./projects-create.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProjectsCreateComponent implements OnInit {
   projectForm!: FormGroup;
@@ -18,6 +20,10 @@ export class ProjectsCreateComponent implements OnInit {
   Resources!: any;
   projectType: any;
   projectId!: string | null; 
+
+  validations = [
+    ['name', 'client', 'managerEnvoltiProjectManager', 'status'],
+  ];
 
   get activityArray() {
     return this.projectForm.controls['activities'] as FormArray;
@@ -31,7 +37,8 @@ export class ProjectsCreateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private projectProvider: ProjectProvider
+    private projectProvider: ProjectProvider,
+    private snackbarService: SnackBarService,
   ) {}
 
   ngOnInit(): void {
@@ -72,15 +79,27 @@ export class ProjectsCreateComponent implements OnInit {
     try {
       const project = await this.projectProvider.store(data);
       // this.router.navigate(['projetos']);
+      this.snackbarService.successMessage('Projeto cadastrado com sucesso');
       sessionStorage.clear();
       console.log(data);
     } catch (error: any) {
+      this.snackbarService.showError(
+        error.error?.message ?? 'Ocorreu um erro, tente novamente'
+      );
       console.log('ERROR 132' + error);
     }
   }
 
   handleStep(number: number): void {
-    this.step = number;
+    if (!this.checkValid() && this.step < number) {
+      this.snackbarService.showAlert('Verifique os campos');
+    } else if (this.step - number < 1) {
+      this.step = number;
+      sessionStorage.setItem('project_tab', this.step.toString());
+    } else {
+      this.step = number;
+      sessionStorage.setItem('project_tab', this.step.toString());
+    }
   }
   navigate(direction: string) {
     if (this.step > 1 && direction === 'back') {
@@ -88,6 +107,18 @@ export class ProjectsCreateComponent implements OnInit {
     } else if (this.step < 4 && direction === 'next') {
       this.step += 1;
     }
+  }
+  checkValid(): boolean {
+    let isValid = true;
+    const validations = this.validations[this.step - 1];
+    for (let index = 0; index < validations.length; index++) {
+      if (this.projectForm.controls[validations[index]].invalid) {
+        isValid = false;
+  
+        this.projectForm.markAllAsTouched();
+      }
+    }
+    return isValid;
   }
 
   handleChanges(value: any): void {}
