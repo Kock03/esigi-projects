@@ -7,6 +7,7 @@ import { ProjectProvider } from 'src/providers/project.provider';
 
 
 export interface Panel {
+  name: string;
   ressource: string;
   hours: string;
   status: string;
@@ -19,11 +20,14 @@ export interface Panel {
 export class ProjectsPanelTabComponent implements OnInit {
   @ViewChild('projectTable') projectTable!: MatTable<any>;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
+  @ViewChild(MatSort) sort: MatSort = new MatSort();
+
 
   projects!: IProjects[];
   filteredProjectList = new MatTableDataSource();
 
   displayedPanel: string[] = [
+    'name',
     'ressource',
     'hours',
     'status',
@@ -31,6 +35,7 @@ export class ProjectsPanelTabComponent implements OnInit {
 
   panels: Panel[] = [
     {
+      name: 'htpx',
       ressource: 'João da Silva',
       hours: '170',
       status: 'ativo',
@@ -52,6 +57,7 @@ export class ProjectsPanelTabComponent implements OnInit {
   async getProjectsList() {
     this.filteredProjectList.data = this.projects =
       await this.projectProvider.findAll();
+      this.filteredProjectList.sort = this.sort;
   }
 
   initFilter() {
