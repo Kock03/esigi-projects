@@ -31,10 +31,10 @@ import { environment } from "src/environments/environment";
       });
     }
   
-    update(activity: any): Promise<any> {
+    update(id: string | null, activity: any): Promise<any> {
       return new Promise((resolve, reject) => {
         this.apiGateway
-          .put(environment.PROJECT_MS + 'activities', activity)
+          .put(environment.PROJECT_MS + 'activities/:id', { id: id}, activity)
           .subscribe((response: HttpResponse<any>) => {
             resolve(response.body);
           }, reject);
@@ -51,10 +51,10 @@ import { environment } from "src/environments/environment";
       });
     }
   
-    destroy(activity: any): Promise<any> {
+    destroy(id: string | null): Promise<any> {
       return new Promise((resolve, reject) => {
         this.apiGateway
-          .delete(environment.PROJECT_MS + 'activities', activity)
+          .delete(environment.PROJECT_MS + 'activities/:id', {id: id})
           .subscribe((response: HttpResponse<any>) => {
             resolve(response.body);
           }, reject);

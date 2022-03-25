@@ -42,11 +42,11 @@
                     <td class="button-tab" mat-cell *matCellDef="let activity; let index = index">
 
 
-                        <button class="table-button" mat-button (click)="getActivity(activity, index)">
+                        <button class="table-button" mat-button (click)="getActivity(activity, activity.id)">
                             <mat-icon>edit</mat-icon>
                         </button>
 
-                        <button class="table-button" mat-button (click)="deleteActivity(index)">
+                        <button class="table-button" mat-button (click)="deleteActivity(activity.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

@@ -78,9 +78,9 @@ export class ProjectsCreateComponent implements OnInit {
 
     try {
       const project = await this.projectProvider.store(data);
-      // this.router.navigate(['projetos']);
+       
       this.snackbarService.successMessage('Projeto cadastrado com sucesso');
-      sessionStorage.clear();
+      sessionStorage.setItem('project_id', project.id)
       console.log(data);
     } catch (error: any) {
       this.snackbarService.showError(
@@ -124,6 +124,7 @@ export class ProjectsCreateComponent implements OnInit {
   handleChanges(value: any): void {}
 
   goBackProjects() {
+    sessionStorage.clear();
     this.router.navigate(['projetos']);
   }
 }
