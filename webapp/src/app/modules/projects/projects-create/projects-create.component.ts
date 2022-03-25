@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ProjectProvider } from 'src/providers/project.provider';
-import { SnackBarService} from 'src/services/snackbar.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 
 @Component({
   selector: 'app-projects-create',
@@ -19,11 +20,9 @@ export class ProjectsCreateComponent implements OnInit {
   activities!: any;
   Resources!: any;
   projectType: any;
-  projectId!: string | null; 
+  projectId!: string | null;
 
-  validations = [
-    ['name', 'client', 'managerEnvoltiProjectManager', 'status'],
-  ];
+  validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
   get activityArray() {
     return this.projectForm.controls['activities'] as FormArray;
@@ -38,13 +37,12 @@ export class ProjectsCreateComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private projectProvider: ProjectProvider,
-    private snackbarService: SnackBarService,
+    private snackbarService: SnackBarService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.initForm();
   }
-
 
   initForm(): void {
     this.projectForm = this.fb.group({
@@ -68,8 +66,6 @@ export class ProjectsCreateComponent implements OnInit {
       resources: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
       ]),
-
-
     });
   }
 
@@ -114,7 +110,7 @@ export class ProjectsCreateComponent implements OnInit {
     for (let index = 0; index < validations.length; index++) {
       if (this.projectForm.controls[validations[index]].invalid) {
         isValid = false;
-  
+
         this.projectForm.markAllAsTouched();
       }
     }

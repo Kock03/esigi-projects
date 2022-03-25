@@ -10,6 +10,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
+import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -24,6 +25,8 @@ export class ProjectResourceDialog {
   resourceForm!: FormGroup;
   step = 0;
 
+  collaborators!: any[];
+
   index: any = null;
   resource: any;
   accordion: any;
@@ -33,10 +36,12 @@ export class ProjectResourceDialog {
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
     private fb: FormBuilder,
+    private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
+    this.getCollaboratorList();
     this.resourcesArray = this.data.array;
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 45 ~ ProjectResourceDialog ~ ngOnInit ~ this.resourcesArray',
@@ -105,5 +110,9 @@ export class ProjectResourceDialog {
 
   setStep(index: number) {
     this.step = index;
+  }
+  async getCollaboratorList() {
+    this.collaborators = await this.collaboratorProvider.findAll();
+    console.log(this.collaborators);
   }
 }

@@ -25,7 +25,7 @@ import { ProjectsResourcesTabComponent } from './projects-create/projects-resour
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
 import { ProjectActivityDialog } from './projects-create/projects-resources-tab/projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
-
+import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 
 const routes: Routes = [
   {
@@ -73,5 +73,6 @@ const routes: Routes = [
     ProjectResourceDialog,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [CollaboratorProvider],
 })
 export class ProjectsModule {}
