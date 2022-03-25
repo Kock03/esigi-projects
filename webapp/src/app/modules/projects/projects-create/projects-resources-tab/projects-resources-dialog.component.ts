@@ -11,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
 import { ActivityProvider } from 'src/providers/activity.provider';
+import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
 @Component({
   selector: 'app-projects-resources-dialog',
@@ -26,6 +27,8 @@ export class ProjectResourceDialog {
   resourceForm!: FormGroup;
   step = 0;
 
+  collaborators!: any[];
+
   index: any = null;
   resource: any;
   accordion: any;
@@ -39,10 +42,12 @@ export class ProjectResourceDialog {
     private fb: FormBuilder,
     private activityProvider: ActivityProvider,
     private resourceProvider: ResourceProvider,
+    private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
+    this.getCollaboratorList();
     this.activityId = sessionStorage.getItem('activity_id')!;
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
@@ -116,5 +121,10 @@ export class ProjectResourceDialog {
 
   setStep(index: number) {
     this.step = index;
+  }
+
+  async getCollaboratorList() {
+    this.collaborators = await this.collaboratorProvider.findAll();
+    console.log(this.collaborators);
   }
 }
