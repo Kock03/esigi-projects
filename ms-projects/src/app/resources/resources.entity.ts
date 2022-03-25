@@ -16,13 +16,13 @@ export class ResourcesEntity {
   id: string;
 
   @Column()
-  name: string;
+  resource: string;
 
   @Column()
-  role: string;
+  paper: string;
 
   @Column()
-  hours: string;
+  estimatedHours: string;
 
   @Column()
   isActive: Boolean;

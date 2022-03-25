@@ -76,11 +76,11 @@
           <td class="button-tab" mat-cell *matCellDef="let resource; let index = index">
 
 
-            <button (click)="getResource(resource, index)" class="table-button" mat-button>
+            <button (click)="getResource(resource, resource.id)" class="table-button" mat-button>
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button (click)="deleteResource(index)" class="table-button" mat-button>
+            <button (click)="deleteResource(resource.id)" class="table-button" mat-button>
               <mat-icon>delete</mat-icon>
             </button>
           </td>

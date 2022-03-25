@@ -3,6 +3,7 @@ import {
   IsBoolean,
   isNotEmpty,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -15,21 +16,21 @@ export class CreateResourceDto {
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  name: string;
+  resource: string;
 
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  role: string;
+  paper: string;
 
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  hours: string;
+  estimatedHours: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   @ApiProperty()
   isActive: boolean;

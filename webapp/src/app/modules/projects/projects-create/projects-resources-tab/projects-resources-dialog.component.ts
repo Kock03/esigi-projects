@@ -10,6 +10,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
+import { ActivityProvider } from 'src/providers/activity.provider';
+import { ResourceProvider } from 'src/providers/resource.provider';
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -27,43 +29,31 @@ export class ProjectResourceDialog {
   index: any = null;
   resource: any;
   accordion: any;
-  resourcesArray!: FormArray;
   dataTable: [] = [];
+  activityId!: string;
+  method: string = '';
+  resourceId!: string | null;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
     private fb: FormBuilder,
+    private activityProvider: ActivityProvider,
+    private resourceProvider: ResourceProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
-    this.resourcesArray = this.data.array;
+    this.activityId = sessionStorage.getItem('activity_id')!;
     console.log(
-      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 45 ~ ProjectResourceDialog ~ ngOnInit ~ this.resourcesArray',
-      this.resourcesArray
+      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
+      this.activityId
     );
     this.initForm();
-    if (this.resourcesArray.value.length > 0) {
-      this.dataTable = this.resourcesArray.value;
-    }
-
-    this.initObservables();
   }
 
-  ngAfterViewInit(): void {}
-
-  initObservables() {
-    this.resourcesArray.valueChanges.subscribe((res) => {
-      const isNullIndex = this.resourcesArray.value.findIndex(
-        (resource: any) => resource == null
-      );
-      if (isNullIndex !== -1) {
-        this.resourcesArray.removeAt(isNullIndex);
-      }
-      if (res) {
-        this.dataTable = this.resourcesArray.value;
-      }
-    });
+  async getResourceList() {
+    const resourceList = await this.activityProvider.findOne(this.activityId);
+    this.dataTable = resourceList.resource;
   }
 
   initForm(): void {
@@ -71,17 +61,19 @@ export class ProjectResourceDialog {
       resource: [null],
       paper: ['', Validators.required],
       estimatedHours: ['', Validators.required],
+      isActive: [true],
+      activity: { id: this.activityId },
     });
     if (this.dataTable) {
       this.resourceForm.patchValue(this.dataTable);
     }
   }
 
-  getResource(resourceSelected: any, index: number) {
+  getResource(resourceSelected: any, id: string) {
+    this.method = 'edit';
+    this.resourceId = id;
     this.resourceForm.patchValue(resourceSelected);
     this.Accordion.openAll();
-
-    //todoTeste - edição
   }
 
   onNoClick(): void {
@@ -90,17 +82,36 @@ export class ProjectResourceDialog {
 
   async saveResource() {
     const data = this.resourceForm.getRawValue();
-    if (data) {
-      this.resourcesArray.insert(0, this.fb.group(data));
-      this.resourceTable.renderRows();
-      this.Accordion.closeAll();
-      this.initForm();
-      console.log(data);
+    if (this.method === 'edit') {
+      try {
+        const resource = await this.resourceProvider.update(
+          this.resourceId,
+          data
+        );
+        this.method = '';
+        this.Accordion.closeAll();
+        this.initForm();
+
+        this.getResourceList();
+      } catch (error: any) {
+        console.log('ERROR 132' + error);
+      }
+    } else {
+      try {
+        const resource = await this.resourceProvider.store(data);
+
+        this.Accordion.closeAll();
+        this.initForm();
+        this.getResourceList();
+      } catch (error: any) {
+        console.log('ERROR 132' + error);
+      }
     }
   }
 
-  deleteResource(index: number) {
-    this.resourcesArray.removeAt(index);
+  async deleteResource(id: string) {
+    let deleteResource = await this.resourceProvider.destroy(id);
+    this.getResourceList();
   }
 
   setStep(index: number) {

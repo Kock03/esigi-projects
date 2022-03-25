@@ -99,22 +99,19 @@ export class ProjectsResourcesTabComponent implements OnInit {
     });
   }
 
-  openDialogResources() {
+  openDialogResources(id: string) {
+    this.activityId = id;
+    sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
       width: '500px',
       height: '450px',
-      data: {
-        array: this.resourcesArray,
-      },
     });
   }
 
   async getActivity(activitySelected: any, id: string) {
-    console.log("🚀 ~ file: projects-resources-tab.component.ts ~ line 113 ~ ProjectsResourcesTabComponent ~ getActivity ~ id", id)
     this.method = 'edit';
     sessionStorage.setItem('method', this.method);
     this.activityId = id;
-    console.log("🚀 ~ file: projects-resources-tab.component.ts ~ line 117 ~ ProjectsResourcesTabComponent ~ getActivity ~  this.activityId ",  this.activityId )
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
       width: '500px',

@@ -27,7 +27,7 @@
                 <ng-container matColumnDef="resources">
                     <th mat-header-cell *matHeaderCellDef>Recursos</th>
                     <td mat-cell *matCellDef="let activity; let index = index">
-                        <button class="table-button" mat-button (click)="openDialogResources()">
+                        <button class="table-button" mat-button (click)="openDialogResources(activity.id)">
                             <mat-icon>supervised_user_circle</mat-icon>
                         </button>
                     </td>

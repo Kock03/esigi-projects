@@ -21,7 +21,7 @@ import { environment } from "src/environments/environment";
       });
     }
   
-    findOne(id: string): Promise<any> {
+    findOne(id: string | null): Promise<any> {
       return new Promise((resolve, reject) => {
         this.apiGateway
           .get(environment.PROJECT_MS + 'resources/:id', { id: id })
@@ -31,10 +31,10 @@ import { environment } from "src/environments/environment";
       });
     }
   
-    update(resource: any): Promise<any> {
+    update(id: string | null, resource: any): Promise<any> {
       return new Promise((resolve, reject) => {
         this.apiGateway
-          .put(environment.PROJECT_MS + 'resources', resource)
+          .put(environment.PROJECT_MS + 'resources/:id', {id: id}, resource)
           .subscribe((response: HttpResponse<any>) => {
             resolve(response.body);
           }, reject);
@@ -51,10 +51,10 @@ import { environment } from "src/environments/environment";
       });
     }
   
-    destroy(resource: any): Promise<any> {
+    destroy(id: string | null): Promise<any> {
       return new Promise((resolve, reject) => {
         this.apiGateway
-          .delete(environment.PROJECT_MS + 'resources', resource)
+          .delete(environment.PROJECT_MS + 'resources/:id', {id: id})
           .subscribe((response: HttpResponse<any>) => {
             resolve(response.body);
           }, reject);

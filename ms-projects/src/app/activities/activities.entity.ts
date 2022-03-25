@@ -31,6 +31,7 @@ export class ActivitiesEntity {
 
   @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {
     cascade: ['insert', 'update', 'soft-remove'],
+    eager: true
   })
   resource: ResourcesEntity[];
 
