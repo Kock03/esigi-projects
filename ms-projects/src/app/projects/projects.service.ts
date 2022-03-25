@@ -22,13 +22,13 @@ export class ProjectsService {
     conditions: FindConditions<ProjectsEntity>,
     options?: FindOneOptions<ProjectsEntity>,
   ) {
-    options = { relations: ['activities'] };
     try {
       return await this.projectsRepository.findOneOrFail(conditions, options);
     } catch {
       throw new NotFoundException();
     }
   }
+  
 
   async store(data: CreateProjectDto) {
     const project = this.projectsRepository.create(data);

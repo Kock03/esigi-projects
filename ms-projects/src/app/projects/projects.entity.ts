@@ -53,6 +53,7 @@ export class ProjectsEntity {
 
   @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {
     cascade: ['insert', 'update', 'soft-remove'],
+    eager: true
   })
   activities: ActivitiesEntity[];
 
