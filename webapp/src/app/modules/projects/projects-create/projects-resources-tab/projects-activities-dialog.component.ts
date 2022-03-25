@@ -38,6 +38,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 @Component({
   selector: 'projects-activities-dialog',
   templateUrl: 'projects-activities-dialog.html',
+  styleUrls: ['projects-activities-dialog.scss'],
   providers: [
     { provide: DateAdapter, useClass: PickDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },

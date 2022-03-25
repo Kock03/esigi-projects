@@ -73,23 +73,6 @@ export class ProjectsCreateComponent implements OnInit {
     });
   }
 
-  async saveProject() {
-    let data = this.projectForm.getRawValue();
-
-    try {
-      const project = await this.projectProvider.store(data);
-       
-      this.snackbarService.successMessage('Projeto cadastrado com sucesso');
-      sessionStorage.setItem('project_id', project.id)
-      console.log(data);
-    } catch (error: any) {
-      this.snackbarService.showError(
-        error.error?.message ?? 'Ocorreu um erro, tente novamente'
-      );
-      console.log('ERROR 132' + error);
-    }
-  }
-
   handleStep(number: number): void {
     if (!this.checkValid() && this.step < number) {
       this.snackbarService.showAlert('Verifique os campos');
@@ -101,6 +84,26 @@ export class ProjectsCreateComponent implements OnInit {
       sessionStorage.setItem('project_tab', this.step.toString());
     }
   }
+
+  async saveProject() {
+    let data = this.projectForm.getRawValue();
+
+    try {
+      const project = await this.projectProvider.store(data);
+       
+      this.snackbarService.successMessage('Projeto cadastrado com sucesso');
+      sessionStorage.setItem('project_id', project.id)
+      this.navigate('next');
+      console.log(data);
+
+    } catch (error: any) {
+      this.snackbarService.showError(
+        error.error?.message ?? 'Ocorreu um erro, tente novamente'
+      );
+      console.log('ERROR 132' + error);
+    }
+  }
+  
   navigate(direction: string) {
     if (this.step > 1 && direction === 'back') {
       this.step -= 1;
