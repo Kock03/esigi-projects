@@ -51,11 +51,11 @@ export class ProjectsEntity {
   @Column({ type: 'int' })
   status: Status;
 
-  @OneToMany(() => ActivitiesEntity, (activities) => activities.Project, {
+  @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {
     cascade: ['insert', 'update', 'soft-remove'],
     eager: true
   })
-  Activities: ActivitiesEntity[];
+  activities: ActivitiesEntity[];
 
   @CreateDateColumn()
   createdAt: Date;

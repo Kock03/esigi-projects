@@ -35,5 +35,5 @@ export class UpdateResources {
   isActive: boolean;
 
   @IsOptional()
-  Activity: ActivitiesEntity;
+  activity: ActivitiesEntity;
 }

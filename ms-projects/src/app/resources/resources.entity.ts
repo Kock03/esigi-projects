@@ -40,5 +40,5 @@ export class ResourcesEntity {
   deletedAt: Date;
 
   @ManyToOne(() => ActivitiesEntity)
-  Activity: ActivitiesEntity;
+  activity: ActivitiesEntity;
 }

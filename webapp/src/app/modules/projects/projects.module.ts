@@ -28,7 +28,6 @@ import { ProjectResourceDialog } from './projects-create/projects-resources-tab/
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 
 
-
 const routes: Routes = [
   {
     path: 'lista',

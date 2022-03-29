@@ -29,11 +29,11 @@ export class ProjectsCreateComponent implements OnInit {
   ];
 
   get activityArray() {
-    return this.projectForm.controls['Activities'] as FormArray;
+    return this.projectForm.controls['activities'] as FormArray;
   }
 
   get resourcesArray() {
-    return this.projectForm.controls['Resources'] as FormArray;
+    return this.projectForm.controls['resources'] as FormArray;
   }
 
   constructor(
@@ -72,11 +72,11 @@ export class ProjectsCreateComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
 
-      Activities: this.fb.array(this.project ? this.project.Activities : [], [
+      activities: this.fb.array(this.project ? this.project.activities : [], [
         Validators.required,
       ]),
 
-      Resources: this.fb.array(this.project ? this.project.Resources : [], [
+      resources: this.fb.array(this.project ? this.project.resources : [], [
         Validators.required,
       ]),
 
@@ -106,7 +106,7 @@ export class ProjectsCreateComponent implements OnInit {
       sessionStorage.setItem('project_id', project.id)
       this.navigate('next');
       console.log(data);
-     
+
     } catch (error: any) {
       this.snackbarService.showError(
         error.error?.message ?? 'Ocorreu um erro, tente novamente'

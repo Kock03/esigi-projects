@@ -24,19 +24,32 @@
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let panel">
-              {{ panel.status == 1 
-                ? "Em elaboração" 
-                : panel.status == 2
-                ? "Enviada"
-                : panel.status == 3
-                ? "Parada"
-                : panel.status == 4
-                ? "Declinada"
-                : "Nova proposta"
-               }}
+          <td mat-cell *matCellDef="let panel">
+            {{ panel.status == 1
+            ? "Em elaboração"
+            : panel.status == 2
+            ? "Enviada"
+            : panel.status == 3
+            ? "Parada"
+            : panel.status == 4
+            ? "Declinada"
+            : "Nova proposta"
+            }}
           </td>
         </ng-container>
+
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td class="button-tab" mat-cell *matCellDef="let panel" style="text-align: end">
+            <button class="table-button" mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="table-button" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedPanel; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedPanel"></tr>
       </table>
