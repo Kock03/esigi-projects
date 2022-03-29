@@ -4,4 +4,5 @@ export interface IProjects {
   ressource: string;
   hours: string;
   status: string;
+  icon: any;
 }

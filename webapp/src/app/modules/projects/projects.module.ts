@@ -26,7 +26,6 @@ import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/
 import { ProjectActivityDialog } from './projects-create/projects-resources-tab/projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 
-
 const routes: Routes = [
   {
     path: 'alocacao',
