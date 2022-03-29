@@ -27,6 +27,9 @@ export class ResourcesEntity {
   @Column()
   isActive: Boolean;
 
+  @Column()
+  collaboratorId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
