@@ -21,6 +21,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SnackBarService} from 'src/services/snackbar.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [[AppComponent, ToolbarComponent], [AppComponent,
@@ -46,6 +47,7 @@ import { SnackBarService} from 'src/services/snackbar.service';
     NgxMaskModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatSelectModule,
   ],
   providers: [SnackBarService],
   bootstrap: [AppComponent],
