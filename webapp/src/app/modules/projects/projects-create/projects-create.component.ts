@@ -106,7 +106,7 @@ export class ProjectsCreateComponent implements OnInit {
       sessionStorage.setItem('project_id', project.id)
       this.navigate('next');
       console.log(data);
-
+     
     } catch (error: any) {
       this.snackbarService.showError(
         error.error?.message ?? 'Ocorreu um erro, tente novamente'
