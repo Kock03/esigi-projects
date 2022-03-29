@@ -52,7 +52,11 @@ export class ProjectsPanelTabComponent implements OnInit {
     this.initFilter();
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewChecked(){
+  //  this.getProjectsList();
+  }
+
+
 
   async getProjectsList() {
     this.filteredProjectList.data = this.projects =
