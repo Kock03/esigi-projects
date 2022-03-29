@@ -82,5 +82,5 @@ export class CreateProjectDto {
   @IsOptional()
   @IsArray()
   @ApiProperty()
-  activities: ActivitiesEntity[];
+  Activities: ActivitiesEntity[];
 }
