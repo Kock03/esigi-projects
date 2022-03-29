@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { from, Observable } from 'rxjs';
 import { FindConditions, FindOneOptions, Like, Repository } from 'typeorm';
 import { NotFoundException } from '../exceptions/not-found-exception';
 import { CreateProjectDto } from './dtos/create-projects.dto';
@@ -18,6 +19,7 @@ export class ProjectsService {
     return await this.projectsRepository.find();
   }
 
+
   async findOneOrFaill(
     conditions: FindConditions<ProjectsEntity>,
     options?: FindOneOptions<ProjectsEntity>,
@@ -31,13 +33,12 @@ export class ProjectsService {
 
   findProject(query): Promise<ProjectsEntity[]> {
     return this.projectsRepository.find({
-      where: {
-        name: Like(`${query.name}%`),
-        code: Like(`${query.code}%`),
-        responsible: Like(`${query.responsible}%`),
-        client: Like(`${query.client}%`),
-        managerEnvoltiProjectManager: Like(`${query.managerEnvoltiProjectManager}%`),
-      }
+      where: [
+        { name: Like(`${query.name}%`) },
+        { code: Like(`${query.code}%`) },
+        { responsible: Like(`${query.responsible}%`) },
+        { client: Like(`${query.client}%`) },
+        { managerEnvoltiProjectManager: Like(`${query.managerEnvoltiProjectManager}%`) },]
     });
   }
 
