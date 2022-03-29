@@ -26,14 +26,14 @@ export class ActivitiesEntity {
   @Column()
   endDate: Date;
 
-  @ManyToOne(() => ProjectsEntity, (project) => project.Activities)
-  Project: ProjectsEntity;
+  @ManyToOne(() => ProjectsEntity, (project) => project.activities)
+  project: ProjectsEntity;
 
-  @OneToMany(() => ResourcesEntity, (resource) => resource.Activity, {
+  @OneToMany(() => ResourcesEntity, (resource) => resource.activity, {
     cascade: ['insert', 'update', 'soft-remove'],
     eager: true
   })
-  Resource: ResourcesEntity[];
+  resource: ResourcesEntity[];
 
   @CreateDateColumn()
   createdAt: Date;
