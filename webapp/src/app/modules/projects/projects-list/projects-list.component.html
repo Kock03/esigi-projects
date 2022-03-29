@@ -53,11 +53,22 @@
       </ng-container>
 
       <ng-container matColumnDef="icon">
-        <th mat-header-cell *matHeaderCellDef></th>
+        <th  mat-header-cell
+        *matHeaderCellDef
+        clas="icon"
+        style="text-align: end">
+        <button
+          class="edit-button"
+          mat-flat-button
+          clas="icon"
+          color="primary">
+          <mat-icon>add</mat-icon>
+        </button></th>
         <td
           class="button-tab"
           mat-cell
           *matCellDef="let project"
+          clas="icon"
           style="text-align: end"
         >
           <button class="table-button" mat-button>

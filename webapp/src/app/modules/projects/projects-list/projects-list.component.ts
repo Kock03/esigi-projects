@@ -14,6 +14,7 @@ export class ProjectsListComponent implements OnInit {
     'name',
     'client',
     'managerEnvoltiProjectManager',
+    'icon'
   ];
 
   
