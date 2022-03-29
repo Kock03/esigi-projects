@@ -10,6 +10,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CreateProjectDto } from './dtos/create-projects.dto';
 import { UpdateProjectDto } from './dtos/update-projects.dto';
@@ -17,12 +18,18 @@ import { ProjectsService } from './projects.service';
 
 @Controller('api/v1/projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService) {}
+  constructor(private readonly projectsService: ProjectsService) { }
 
   @Get()
   async index() {
     return await this.projectsService.findAll();
   }
+
+  @Get('find')
+  findListProject(@Query() query: any) {
+    return this.projectsService.findProject(query);
+  }
+
 
   @Post()
   async store(@Body() body: CreateProjectDto) {

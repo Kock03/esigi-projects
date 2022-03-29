@@ -36,5 +36,5 @@ export class CreateResourceDto {
   isActive: boolean;
 
   @IsNotEmpty()
-  activity: ActivitiesEntity;
+  Activity: ActivitiesEntity;
 }
