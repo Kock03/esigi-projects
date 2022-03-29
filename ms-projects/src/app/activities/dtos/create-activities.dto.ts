@@ -30,5 +30,5 @@ export class CreateActivitieDto {
   @IsOptional()
   @ApiProperty()
   @IsObject()
-  project: ProjectsEntity;
+  Project: ProjectsEntity;
 }

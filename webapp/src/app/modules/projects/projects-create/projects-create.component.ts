@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectProvider } from 'src/providers/project.provider';
-import { SnackBarService} from 'src/services/snackbar.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 import { MatTable } from '@angular/material/table';
 import { filter, pairwise } from 'rxjs';
 
@@ -22,18 +22,18 @@ export class ProjectsCreateComponent implements OnInit {
   activities!: any;
   Resources!: any;
   projectType: any;
-  projectId!: string | null; 
+  projectId!: string | null;
 
   validations = [
     ['name', 'client', 'managerEnvoltiProjectManager', 'status']
   ];
 
   get activityArray() {
-    return this.projectForm.controls['activities'] as FormArray;
+    return this.projectForm.controls['Activities'] as FormArray;
   }
 
   get resourcesArray() {
-    return this.projectForm.controls['resources'] as FormArray;
+    return this.projectForm.controls['Resources'] as FormArray;
   }
 
   constructor(
@@ -42,16 +42,16 @@ export class ProjectsCreateComponent implements OnInit {
     private fb: FormBuilder,
     private projectProvider: ProjectProvider,
     private snackbarService: SnackBarService,
-    
-  ) {}
-  
+
+  ) { }
+
 
   ngOnInit(): void {
     if (sessionStorage.getItem('project_tab') == undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
 
-  
+
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
     this.initForm();
   }
@@ -72,11 +72,11 @@ export class ProjectsCreateComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
 
-      activities: this.fb.array(this.project ? this.project.Activities : [], [
+      Activities: this.fb.array(this.project ? this.project.Activities : [], [
         Validators.required,
       ]),
 
-      resources: this.fb.array(this.project ? this.project.Activities : [], [
+      Resources: this.fb.array(this.project ? this.project.Resources : [], [
         Validators.required,
       ]),
 
@@ -101,7 +101,7 @@ export class ProjectsCreateComponent implements OnInit {
 
     try {
       const project = await this.projectProvider.store(data);
-       
+
       this.snackbarService.successMessage('Projeto cadastrado com sucesso');
       sessionStorage.setItem('project_id', project.id)
       this.navigate('next');
@@ -115,7 +115,7 @@ export class ProjectsCreateComponent implements OnInit {
       sessionStorage.setItem('project_tab', this.step.toString());
     }
   }
-  
+
   navigate(direction: string) {
 
     if (this.step > 1 && direction === 'back') {
@@ -130,30 +130,30 @@ export class ProjectsCreateComponent implements OnInit {
 
 
 
- } 
- checkValid(): boolean {
-  let isValid = true;
-  const validations = this.validations[this.step - 1];
-if(validations !== undefined) {
-  for (let index = 0; index < validations.length; index++) {
-    if (this.projectForm.controls[validations[index]].invalid) {
-      isValid = false;
+  }
+  checkValid(): boolean {
+    let isValid = true;
+    const validations = this.validations[this.step - 1];
+    if (validations !== undefined) {
+      for (let index = 0; index < validations.length; index++) {
+        if (this.projectForm.controls[validations[index]].invalid) {
+          isValid = false;
 
-      this.projectForm.markAllAsTouched();
+          this.projectForm.markAllAsTouched();
+        }
+      }
     }
+    return isValid;
+  }
+
+  handleChanges(value: any): void { }
+
+  goBackProjects() {
+    sessionStorage.clear();
+    this.router.navigate(['projetos']);
   }
 }
-  return isValid;
-}
-
-handleChanges(value: any): void { }
-
-goBackProjects() {
-  sessionStorage.clear();
-  this.router.navigate(['projetos']);
-}
-}
 
 
- 
+
 
