@@ -42,8 +42,10 @@ export class ProjectsListComponent implements OnInit {
       await this.projectsProvider.findAll();
   }
 
-  async editProject(projectSelected: any) {
+  async editProject(projectSelected: any, projectId: string) {
     this.project = projectSelected;
     sessionStorage.setItem('project_type', this.project.type.toString());
+
+    this.router.navigate([`projetos/cadastro/${projectId}`]);
   }
 }

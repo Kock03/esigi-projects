@@ -12,11 +12,12 @@ const routes: Routes = [
     redirectTo: '/projetos/lista',
     pathMatch: 'full',
   },
-  // { path: 'lista', component: ProjectsListComponent },
+
   {
     path: 'projeto/tipo',
     component: PortalComponent,
   },
+
   {
     path: 'projetos',
     loadChildren: () =>
@@ -24,7 +25,6 @@ const routes: Routes = [
         (m) => m.ProjectsModule
       ),
   },
-  // { path: 'ams', component: ProjectsAmsCreateComponent },
 ];
 
 @NgModule({

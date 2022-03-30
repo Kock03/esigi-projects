@@ -5,29 +5,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-portal',
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class PortalComponent implements OnInit {
   project: any;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
+  async navigateToProject() {}
 
-  async navigateToProject() {
-    
-  }
-
- 
   handleProject(number: number): void {
-      this.project = number;
-      sessionStorage.setItem('project_type', this.project.toString());
-      this.router.navigate(['projetos/alocacao']);
+    this.project = number;
+    sessionStorage.setItem('project_type', this.project.toString());
+    this.router.navigate(['projetos/cadastro']);
   }
-
 }

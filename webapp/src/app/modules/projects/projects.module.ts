@@ -32,12 +32,14 @@ const routes: Routes = [
     path: 'lista',
     component: ProjectsListComponent,
   },
+
   {
-    path: 'projetos/lista',
-    component: ProjectsListComponent,
+    path: 'cadastro/:id',
+    component: ProjectsCreateComponent,
   },
+
   {
-    path: 'alocacao',
+    path: 'cadastro',
     component: ProjectsCreateComponent,
   },
 ];

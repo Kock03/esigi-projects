@@ -59,7 +59,7 @@
           </button>
         </th>
         <td class="button-tab" mat-cell *matCellDef="let project" clas="icon" style="text-align: end">
-          <button class="table-button" mat-button (click)="editProject(project)">
+          <button class="table-button" mat-button (click)="editProject(project, project.id)">
             <mat-icon>edit</mat-icon>
           </button>
           <button class="table-button" mat-button>
