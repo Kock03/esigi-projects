@@ -36,7 +36,7 @@
     <button mat-flat-button *ngIf="step == 2 " (click)="navigate('next')" color="primary">
       Continuar
     </button>
-    <button mat-flat-button *ngIf="step == 1" color="primary"  (click)="saveProject()" >Salvar</button>
+    <button mat-flat-button *ngIf="step == 1" color="primary"  (click)="navigate('next')" (click)="saveProject()" >Salvar</button>
   </div>
 
 </div>
