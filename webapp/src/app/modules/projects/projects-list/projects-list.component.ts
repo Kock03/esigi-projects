@@ -18,7 +18,6 @@ export class ProjectsListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-
   displayedProjects: string[] = [
     'type',
     'name',
@@ -49,11 +48,10 @@ export class ProjectsListComponent implements OnInit {
       .pipe(debounceTime(200), distinctUntilChanged())
 
       .subscribe((res) => {
-        this.filteredProjectList.data = this.projects.filter(
-          (project) =>
+        this.filteredProjectList.data = this.projects.filter((project) =>
           project.name
-              .toLocaleLowerCase()
-              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+            .toLocaleLowerCase()
+            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
         );
       });
   }
@@ -117,9 +115,10 @@ export class ProjectsListComponent implements OnInit {
       await this.projectsProvider.findAll();
   }
 
-  async editProject(projectSelected: any) {
+  async editProject(projectSelected: any, projectId: string) {
     this.project = projectSelected;
     sessionStorage.setItem('project_type', this.project.type.toString());
-    this.router.navigate(['projeto/alocacao:id']);
+
+    this.router.navigate([`projetos/cadastro/${projectId}`]);
   }
 }

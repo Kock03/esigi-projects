@@ -50,10 +50,10 @@ export class ProjectProvider {
     });
   }
 
-  destroy(project: any): Promise<any> {
+  destroy(projectId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.PROJECT_MS + 'projects', project)
+        .delete(environment.PROJECT_MS + 'projects/' + projectId )
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
