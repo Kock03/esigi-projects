@@ -9,32 +9,30 @@ import { ProjectsListComponent } from './modules/projects/projects-list/projects
 const routes: Routes = [
   {
     path: '',
-
     redirectTo: '/projetos/lista',
-
     pathMatch: 'full',
   },
-
   // { path: 'lista', component: ProjectsListComponent },
-
-
-  // { path: 'projetos', component: PortalComponent },
-
+  {
+    path: 'projeto/tipo',
+    component: PortalComponent,
+  },
   {
     path: 'projetos',
     loadChildren: () =>
       import('./modules/projects/projects.module').then(
-        m => m.ProjectsModule
+        (m) => m.ProjectsModule
       ),
   },
-
-  
-
   // { path: 'ams', component: ProjectsAmsCreateComponent },
 ];
 
 @NgModule({
-  imports: [ BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

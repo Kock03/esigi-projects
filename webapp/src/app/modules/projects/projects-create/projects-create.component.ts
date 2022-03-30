@@ -6,7 +6,6 @@ import { SnackBarService } from 'src/services/snackbar.service';
 import { MatTable } from '@angular/material/table';
 import { filter, pairwise } from 'rxjs';
 
-
 @Component({
   selector: 'app-projects-create',
   templateUrl: './projects-create.component.html',
@@ -24,9 +23,7 @@ export class ProjectsCreateComponent implements OnInit {
   projectType: any;
   projectId!: string | null;
 
-  validations = [
-    ['name', 'client', 'managerEnvoltiProjectManager', 'status']
-  ];
+  validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
   get activityArray() {
     return this.projectForm.controls['activities'] as FormArray;
@@ -41,21 +38,17 @@ export class ProjectsCreateComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private projectProvider: ProjectProvider,
-    private snackbarService: SnackBarService,
-
-  ) { }
-
+    private snackbarService: SnackBarService
+  ) {}
 
   ngOnInit(): void {
     if (sessionStorage.getItem('project_tab') == undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
 
-
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
     this.initForm();
   }
-
 
   initForm(): void {
     this.projectForm = this.fb.group({
@@ -79,8 +72,6 @@ export class ProjectsCreateComponent implements OnInit {
       resources: this.fb.array(this.project ? this.project.resources : [], [
         Validators.required,
       ]),
-
-
     });
   }
 
@@ -103,10 +94,9 @@ export class ProjectsCreateComponent implements OnInit {
       const project = await this.projectProvider.store(data);
 
       this.snackbarService.successMessage('Projeto cadastrado com sucesso');
-      sessionStorage.setItem('project_id', project.id)
+      sessionStorage.setItem('project_id', project.id);
       this.navigate('next');
       console.log(data);
-
     } catch (error: any) {
       this.snackbarService.showError(
         error.error?.message ?? 'Ocorreu um erro, tente novamente'
@@ -117,19 +107,13 @@ export class ProjectsCreateComponent implements OnInit {
   }
 
   navigate(direction: string) {
-
     if (this.step > 1 && direction === 'back') {
       this.step -= 1;
     } else if (this.checkValid() && this.step < 4 && direction === 'next') {
       this.step += 1;
     } else {
       this.snackbarService.showAlert('Verifique os campos');
-
     }
-
-
-
-
   }
   checkValid(): boolean {
     let isValid = true;
@@ -146,14 +130,10 @@ export class ProjectsCreateComponent implements OnInit {
     return isValid;
   }
 
-  handleChanges(value: any): void { }
+  handleChanges(value: any): void {}
 
   goBackProjects() {
     sessionStorage.clear();
-    this.router.navigate(['projetos']);
+    this.router.navigate(['projetos/lista']);
   }
 }
-
-
-
-

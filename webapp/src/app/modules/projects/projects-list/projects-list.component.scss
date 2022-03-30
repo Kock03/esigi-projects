@@ -1,36 +1,34 @@
-#projectList{
-    max-width: 1220px;
+#projectList {
+  max-width: 1220px;
 
-    .search {
-        width: 100%;
-        max-width: 1205px;
-        margin-right: 5px;
-        mat-form-field {
-          width: 100%;
-        }
-      }
+  .search {
+    width: 100%;
+    max-width: 1205px;
+    margin-right: 5px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
 
-      .envolti-table {
-        margin-top: 20px;
-        overflow: auto;
-        max-height: 150px;
-        width: 100%;
-        border-radius: 10px;
-  
-        .mat-column-icon {
-          width: 50px;
-        }
-    
-        .button-tab {
-          white-space: nowrap;
-          overflow: hidden;
-        }
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 150px;
+    width: 100%;
+    border-radius: 10px;
 
-        .icon {
-          color: #753BBD !important;
-          background-color: rgb(253, 253, 253);
-        }
-    
-      }
-    
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .iconAdd {
+      // color: #753bbd !important;
+      background-color: rgb(253, 253, 253);
+    }
+  }
 }

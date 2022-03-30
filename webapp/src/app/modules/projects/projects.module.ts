@@ -27,13 +27,15 @@ import { ProjectActivityDialog } from './projects-create/projects-resources-tab/
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 
-
 const routes: Routes = [
   {
     path: 'lista',
     component: ProjectsListComponent,
   },
-
+  {
+    path: 'projetos/lista',
+    component: ProjectsListComponent,
+  },
   {
     path: 'alocacao',
     component: ProjectsCreateComponent,
