@@ -47,8 +47,13 @@
 
       <ng-container matColumnDef="managerEnvoltiProjectManager">
         <th mat-header-cell *matHeaderCellDef>Gerente Envolti</th>
-        <td mat-cell *matCellDef="let project">
-          {{ project.managerEnvoltiProjectManager }}
+        <td mat-cell *matCellDef="let panel">
+          {{ panel.status == 1
+          ? "Wellington"
+          : panel.status == 2
+          ? "Charles"
+          : "Danilo"
+          }}
         </td>
       </ng-container>
 
