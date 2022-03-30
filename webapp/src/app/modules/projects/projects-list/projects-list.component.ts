@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 import { IProjects } from 'src/app/interfaces/iproject';
 import { ProjectProvider } from 'src/providers/project.provider';
+import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 
 @Component({
   selector: 'app-projects-list',
@@ -32,7 +34,9 @@ export class ProjectsListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private projectsProvider: ProjectProvider
+    private projectsProvider: ProjectProvider,
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -52,6 +56,37 @@ export class ProjectsListComponent implements OnInit {
               .includes(this.filter.nativeElement.value.toLocaleLowerCase())
         );
       });
+  }
+
+  async deleteProject(projectId: any) {
+    const options = {
+      data: {
+        title: 'Anteção',
+        subtitle: 'Você tem certeza que deseja excluir este projeto?',
+      },
+      panelClass: 'confirm-modal',
+    };
+
+    this.dialogService.open(options);
+
+    this.dialogService.confirmed().subscribe(async confirmed => {
+      if (confirmed) {
+        try {
+          const collaborators = await this.projectsProvider.destroy(
+            projectId
+          );
+          this.getProjectList();
+
+          this.snackbarService.successMessage(
+            'Projeto Excluido Com Sucesso'
+          );
+        } catch (error) {
+          console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao Excluir');
+          this.getProjectList();
+        }
+      }
+    });
   }
 
   async selectList(ev: any) {
