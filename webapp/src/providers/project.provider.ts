@@ -30,10 +30,10 @@ export class ProjectProvider {
     });
   }
 
-  update(project: any): Promise<any> {
+  update(id: string | null, project: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .put(environment.PROJECT_MS + 'projects', project)
+        .put(environment.PROJECT_MS + 'projects/:id', { id: id }, project)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

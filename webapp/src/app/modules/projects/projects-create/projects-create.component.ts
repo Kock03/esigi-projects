@@ -5,6 +5,7 @@ import { ProjectProvider } from 'src/providers/project.provider';
 import { SnackBarService } from 'src/services/snackbar.service';
 import { MatTable } from '@angular/material/table';
 import { filter, pairwise } from 'rxjs';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-projects-create',
@@ -22,6 +23,8 @@ export class ProjectsCreateComponent implements OnInit {
   Resources!: any;
   projectType: any;
   projectId!: string | null;
+  // method: string = '';
+  // accordion!: MatAccordion;
 
   validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
@@ -41,13 +44,33 @@ export class ProjectsCreateComponent implements OnInit {
     private snackbarService: SnackBarService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if (sessionStorage.getItem('project_tab') == undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
 
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
+    await this.getProject();
     this.initForm();
+    await this.setFormValue();
+  }
+
+  async setFormValue() {
+    if (this.project) {
+      this.projectForm.patchValue(this.project);
+    }
+  }
+
+  async getProject() {
+    try {
+      this.project = await this.projectProvider.findOne(this.projectId);
+    } catch (error) {
+      console.log(error);
+    }
+    // this.method = 'edit';
+    // this.projectId = id;
+    // this.projectForm.patchValue(projectSelected);
+    // this.accordion.openAll();
   }
 
   initForm(): void {
@@ -106,6 +129,19 @@ export class ProjectsCreateComponent implements OnInit {
     }
   }
 
+  async editProject() {
+    let data = this.projectForm.getRawValue();
+    try {
+      const porject = await this.projectProvider.update(this.projectId, data);
+      this.router.navigate(['projetos/lista']);
+      this.snackbarService.successMessage('Projeto atualizado com sucesso');
+    } catch (err: any) {
+      this.snackbarService.showError(
+        err.error?.message ?? 'Ocorreu um erro, tente novamente'
+      );
+    }
+  }
+
   navigate(direction: string) {
     if (this.step > 1 && direction === 'back') {
       this.step -= 1;
@@ -115,6 +151,7 @@ export class ProjectsCreateComponent implements OnInit {
       this.snackbarService.showAlert('Verifique os campos');
     }
   }
+
   checkValid(): boolean {
     let isValid = true;
     const validations = this.validations[this.step - 1];
