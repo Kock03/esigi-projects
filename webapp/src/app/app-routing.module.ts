@@ -4,17 +4,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { PortalComponent } from './modules/projects/portal/portal/portal.component';
 import { ProjectsCreateComponent } from './modules/projects/projects-create/projects-create.component';
+import { ProjectsListComponent } from './modules/projects/projects-list/projects-list.component';
 
 const routes: Routes = [
   {
     path: '',
 
-    redirectTo: '/projetos',
+    redirectTo: '/projetos/lista',
 
     pathMatch: 'full',
   },
 
-  { path: 'projetos', component: PortalComponent },
+  // { path: 'lista', component: ProjectsListComponent },
+
+
+  // { path: 'projetos', component: PortalComponent },
 
   {
     path: 'projetos',

@@ -25,9 +25,15 @@ import { ProjectsResourcesTabComponent } from './projects-create/projects-resour
 import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/projects-panel-tab.component';
 import { ProjectActivityDialog } from './projects-create/projects-resources-tab/projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
 
 
 const routes: Routes = [
+  {
+    path: 'lista',
+    component: ProjectsListComponent,
+  },
+
   {
     path: 'alocacao',
     component: ProjectsCreateComponent,
@@ -42,6 +48,7 @@ const routes: Routes = [
     ProjectsPanelTabComponent,
     ProjectActivityDialog,
     ProjectResourceDialog,
+    ProjectsListComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -71,6 +78,7 @@ const routes: Routes = [
     ProjectsPanelTabComponent,
     ProjectActivityDialog,
     ProjectResourceDialog,
+    ProjectsListComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
