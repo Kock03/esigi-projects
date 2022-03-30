@@ -5,19 +5,10 @@
 
   <div fxLayoutAlign="space-between">
     <form class="search" fxLayout="row" fxLayoutGap="16px">
-      <mat-form-field appearance="outline" fxFlex="80">
+      <mat-form-field appearance="outline" fxFlex="100">
         <mat-label>Buscar Projetos</mat-label>
         <input matInput placeholder="Projeto" #filter matInput />
         <mat-icon matSuffix style="cursor: pointer">search</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="20" appearance="outline">
-        <mat-label>Filtro</mat-label>
-        <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
-          <mat-option [value]="1">Todos</mat-option>
-          <mat-option [value]="2">Ativos</mat-option>
-          <mat-option [value]="3">Inativos</mat-option>
-        </mat-select>
       </mat-form-field>
     </form>
   </div>
@@ -67,7 +58,7 @@
           <button class="table-button" mat-button (click)="editProject(project, project.id)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button class="table-button" mat-button>
+          <button class="table-button" mat-button (click)="deleteProject(project.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

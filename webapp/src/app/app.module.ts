@@ -19,16 +19,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SnackBarService} from 'src/services/snackbar.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarService } from 'src/services/snackbar.service';
 import { MatSelectModule } from '@angular/material/select';
+import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
-  declarations: [[AppComponent, ToolbarComponent], [AppComponent,
-    ConfirmDialogComponent,
-  
+  declarations: [
+    AppComponent,
+    ToolbarComponent,
+    AppComponent,
     SnackBarComponent,
-  ]],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,9 +50,10 @@ import { MatSelectModule } from '@angular/material/select';
     NgxMaskModule,
     HttpClientModule,
     MatSnackBarModule,
+    ConfirmDialogModule,
     MatSelectModule,
   ],
-  providers: [SnackBarService],
+  providers: [SnackBarService, ConfirmDialogService],
   bootstrap: [AppComponent],
   exports: [MatTableModule],
 })
