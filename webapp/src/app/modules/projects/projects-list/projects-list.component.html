@@ -13,7 +13,7 @@
 
       <mat-form-field fxFlex="20" appearance="outline">
         <mat-label>Filtro</mat-label>
-        <mat-select matInput disableRipple>
+        <mat-select  (selectionChange)="selectList($event)" matInput disableRipple>
           <mat-option [value]="1">Todos</mat-option>
           <mat-option [value]="2">Ativos</mat-option>
           <mat-option [value]="3">Inativos</mat-option>
