@@ -13,7 +13,7 @@
 
       <mat-form-field fxFlex="20" appearance="outline">
         <mat-label>Filtro</mat-label>
-        <mat-select matInput disableRipple>
+        <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
           <mat-option [value]="1">Todos</mat-option>
           <mat-option [value]="2">Ativos</mat-option>
           <mat-option [value]="3">Inativos</mat-option>
@@ -39,7 +39,7 @@
       </ng-container>
 
       <ng-container matColumnDef="client">
-        <th mat-header-cell *matHeaderCellDef>Posição</th>
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
         <td mat-cell *matCellDef="let project">
           {{ project.client }}
         </td>
@@ -47,8 +47,13 @@
 
       <ng-container matColumnDef="managerEnvoltiProjectManager">
         <th mat-header-cell *matHeaderCellDef>Gerente Envolti</th>
-        <td mat-cell *matCellDef="let project">
-          {{ project.managerEnvoltiProjectManager }}
+        <td mat-cell *matCellDef="let panel">
+          {{ panel.status == 1
+          ? "Wellington"
+          : panel.status == 2
+          ? "Charles"
+          : "Danilo"
+          }}
         </td>
       </ng-container>
 
