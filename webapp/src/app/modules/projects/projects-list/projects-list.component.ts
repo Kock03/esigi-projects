@@ -35,7 +35,7 @@ export class ProjectsListComponent implements OnInit {
     private router: Router,
     private projectsProvider: ProjectProvider,
     private snackbarService: SnackBarService,
-    private dialogService: ConfirmDialogService,
+    private dialogService: ConfirmDialogService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -67,17 +67,13 @@ export class ProjectsListComponent implements OnInit {
 
     this.dialogService.open(options);
 
-    this.dialogService.confirmed().subscribe(async confirmed => {
+    this.dialogService.confirmed().subscribe(async (confirmed) => {
       if (confirmed) {
         try {
-          const collaborators = await this.projectsProvider.destroy(
-            projectId
-          );
+          const collaborators = await this.projectsProvider.destroy(projectId);
           this.getProjectList();
 
-          this.snackbarService.successMessage(
-            'Projeto Excluido Com Sucesso'
-          );
+          this.snackbarService.successMessage('Projeto Excluido Com Sucesso');
         } catch (error) {
           console.log('ERROR 132' + error);
           this.snackbarService.showError('Falha ao Excluir');
@@ -119,6 +115,6 @@ export class ProjectsListComponent implements OnInit {
     this.project = projectSelected;
     sessionStorage.setItem('project_type', this.project.type.toString());
 
-    this.router.navigate([`projetos/cadastro/${projectId}`]);
+    this.router.navigate([`projetos/${projectId}`]);
   }
 }

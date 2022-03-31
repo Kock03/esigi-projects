@@ -34,14 +34,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'cadastro/:id',
+    path: ':id',
     component: ProjectsCreateComponent,
   },
 
-  {
-    path: 'cadastro',
-    component: ProjectsCreateComponent,
-  },
+  // {
+  //   path: 'cadastro',
+  //   component: ProjectsCreateComponent,
+  // },
 ];
 
 @NgModule({

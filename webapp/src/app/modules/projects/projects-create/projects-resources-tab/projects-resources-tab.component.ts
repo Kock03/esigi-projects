@@ -22,8 +22,6 @@ import { ProjectResourceDialog } from './projects-resources-dialog.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectsResourcesTabComponent implements OnInit {
-  @Input() activityArray!: FormArray;
-  @Input() resourcesArray!: FormArray;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('activityTable') activityTable!: MatTable<any>;
 

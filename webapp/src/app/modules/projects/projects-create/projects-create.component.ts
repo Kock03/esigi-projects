@@ -28,14 +28,6 @@ export class ProjectsCreateComponent implements OnInit {
 
   validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
-  get activityArray() {
-    return this.projectForm.controls['activities'] as FormArray;
-  }
-
-  get resourcesArray() {
-    return this.projectForm.controls['resources'] as FormArray;
-  }
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -49,8 +41,11 @@ export class ProjectsCreateComponent implements OnInit {
       sessionStorage.setItem('project_tab', '1');
     }
 
+    this.projectId = this.route.snapshot.paramMap.get('id');
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
+
     await this.getProject();
+    console.log(this.project);
     this.initForm();
     await this.setFormValue();
   }
@@ -63,6 +58,7 @@ export class ProjectsCreateComponent implements OnInit {
 
   async getProject() {
     try {
+      // this.projectId = this.route.snapshot.paramMap.get('id');
       this.project = await this.projectProvider.findOne(this.projectId);
     } catch (error) {
       console.log(error);
@@ -87,14 +83,6 @@ export class ProjectsCreateComponent implements OnInit {
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-
-      activities: this.fb.array(this.project ? this.project.activities : [], [
-        Validators.required,
-      ]),
-
-      resources: this.fb.array(this.project ? this.project.resources : [], [
-        Validators.required,
-      ]),
     });
   }
 
@@ -130,7 +118,7 @@ export class ProjectsCreateComponent implements OnInit {
   }
 
   async editProject() {
-    let data = this.projectForm.getRawValue();
+    const data = this.projectForm.getRawValue();
     try {
       const porject = await this.projectProvider.update(this.projectId, data);
       this.router.navigate(['projetos/lista']);
