@@ -6,14 +6,23 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProjectProvider {
-  constructor(private apiGateway: ApiGateway) {}
+  constructor(private apiGateway: ApiGateway) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .get(environment.PROJECT_MS + 'projects')
+        .subscribe((response: HttpResponse<any>) => {
+          resolve(response.body);
+        }, reject);
+    });
+  }
+
+  findByName(query: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiGateway.get(environment.PROJECT_MS + `projects/find?${query}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -53,7 +62,7 @@ export class ProjectProvider {
   destroy(projectId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.PROJECT_MS + 'projects/' + projectId )
+        .delete(environment.PROJECT_MS + 'projects/' + projectId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
