@@ -42,6 +42,7 @@ export class ProjectsCreateComponent implements OnInit {
     }
 
     this.projectId = this.route.snapshot.paramMap.get('id');
+    console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
 
     await this.getProject();
@@ -58,15 +59,10 @@ export class ProjectsCreateComponent implements OnInit {
 
   async getProject() {
     try {
-      // this.projectId = this.route.snapshot.paramMap.get('id');
       this.project = await this.projectProvider.findOne(this.projectId);
     } catch (error) {
       console.log(error);
     }
-    // this.method = 'edit';
-    // this.projectId = id;
-    // this.projectForm.patchValue(projectSelected);
-    // this.accordion.openAll();
   }
 
   initForm(): void {

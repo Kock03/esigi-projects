@@ -6,7 +6,7 @@
           <mat-label>Tipo de Projeto</mat-label>
           <mat-select matInput disableRipple formControlName="type">
             <mat-option [value]="1" *ngIf="projectType === '1'">Projeto</mat-option>
-            <mat-option [value]="2" *ngIf="projectType === '1'">Alocação</mat-option>
+            <mat-option [value]="3" *ngIf="projectType === '1'">Alocação</mat-option>
             <mat-option [value]="2" *ngIf="projectType === '2'">AMS</mat-option>
           </mat-select>
         </mat-form-field>
@@ -72,9 +72,10 @@
         </mat-form-field>
       </div>
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field floatLabel="always" *ngIf="projectType === '1'" style="disabled" fxFlex="70" appearance="outline" >
+        <mat-form-field floatLabel="always" *ngIf="projectType === '1'" style="disabled" fxFlex="70"
+          appearance="outline">
           <mat-label>Valor do Projeto</mat-label>
-          <input matInput type="number"formControlName="value"  class="example-right-align" placeholder="00,00" >
+          <input ma tInput type="number" formControlName="value" class="example-right-align" placeholder="00,00">
           <span matPrefix>R$&nbsp;</span>
         </mat-form-field>
         <mat-checkbox *ngIf="projectType === '1'" style="disabled" fxFlex="30" fxLayoutAlign="center start"
