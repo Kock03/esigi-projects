@@ -25,6 +25,7 @@
       <span class="tab-border"></span>
     </div>
     <div
+    *ngIf="projectId !== 'cadastro'"
       [ngClass]="{ done: step > 2, active: step == 3 }"
       (click)="handleStep(3)"
       fxLayout="column"
