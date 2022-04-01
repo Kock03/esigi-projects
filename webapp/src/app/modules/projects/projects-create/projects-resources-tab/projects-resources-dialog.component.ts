@@ -47,7 +47,8 @@ export class ProjectResourceDialog {
   ) {}
 
   ngOnInit(): void {
-    this.getCollaboratorList();
+    const col = this.getCollaboratorList();
+    console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',

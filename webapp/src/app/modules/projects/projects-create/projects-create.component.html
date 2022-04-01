@@ -65,8 +65,8 @@
     </button>
 
     <button
+     *ngIf="projectId !== 'cadastro'"
       mat-flat-button
-      *ngIf="step == 2"
       (click)="navigate('next')"
       color="primary"
     >
