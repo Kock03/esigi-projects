@@ -124,7 +124,13 @@ export class ProjectsListComponent implements OnInit {
 
   async editProject(projectSelected: any, projectId: string) {
     this.project = projectSelected;
-    sessionStorage.setItem('project_type', this.project.type.toString());
+    console.log(this.project);
+    if (this.project.type === 3) {
+      const type = 1;
+      sessionStorage.setItem('project_type', type.toString());
+    } else {
+      sessionStorage.setItem('project_type', this.project.type.toString());
+    }
 
     this.router.navigate([`projetos/${projectId}`]);
   }

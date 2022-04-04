@@ -28,7 +28,7 @@
 
   </app-projects-panel-tab>
 
-  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
+  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px" *ngIf="projectId == 'cadastro'">
     <button mat-button *ngIf="step != 1" (click)="navigate('back')">
       Voltar
     </button>

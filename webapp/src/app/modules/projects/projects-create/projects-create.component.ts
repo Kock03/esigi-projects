@@ -69,13 +69,13 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       code: ['', Validators.required],
-      responsible: ['', Validators.required],
+      responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
       controlHours: [null, Validators.required],
-      managerEnvoltiProjectManager: ['', Validators.required],
+      managerEnvoltiProjectManager: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -115,6 +115,7 @@ export class ProjectsCreateComponent implements OnInit {
 
   async editProject() {
     const data = this.projectForm.getRawValue();
+    console.log(data);
     try {
       const porject = await this.projectProvider.update(this.projectId, data);
       this.router.navigate(['projetos/lista']);
