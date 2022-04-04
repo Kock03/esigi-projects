@@ -109,10 +109,6 @@ export class ProjectsListComponent implements OnInit {
     // }
   }
 
-  editCollaborator(collaboratorId: any) {
-    this.router.navigate([`colaborador/${collaboratorId}`]);
-  }
-
   createProject() {
     this.router.navigate(['projeto/tipo']);
   }

@@ -17,6 +17,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectType = sessionStorage.getItem('project_type')
+    console.log("🚀 ~ file: projects-register-tab.component.ts ~ line 20 ~ ProjectsRegisterTabComponent ~ ngOnInit ~  this.projectType",  this.projectType)
   }
 
   next() {

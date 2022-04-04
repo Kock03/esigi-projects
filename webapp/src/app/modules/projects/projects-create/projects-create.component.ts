@@ -37,7 +37,7 @@ export class ProjectsCreateComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    if (sessionStorage.getItem('project_tab') == undefined) {
+    if (sessionStorage.getItem('project_tab') !== undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
 
@@ -45,8 +45,9 @@ export class ProjectsCreateComponent implements OnInit {
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
 
-    await this.getProject();
+    // await this.getProject();
     console.log(this.project);
+
     this.initForm();
     await this.setFormValue();
   }
