@@ -17,7 +17,7 @@ export class ProjectsPanelTabComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
 
-  displayedPanel: string[] = ['name', 'ressource', 'hours', 'status', 'icon'];
+  displayedPanel: string[] = ['ressource', 'hours', 'status', 'icon'];
   ressource: any;
 
 
