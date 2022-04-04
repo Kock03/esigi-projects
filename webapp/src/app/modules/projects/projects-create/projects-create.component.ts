@@ -84,6 +84,7 @@ export class ProjectsCreateComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
     });
+    
   }
 
   handleStep(number: number): void {

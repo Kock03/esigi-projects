@@ -51,8 +51,8 @@ export class ProjectsResourcesTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tab = sessionStorage.getItem('project_tab')!  
-    if(this.tab === '2'){
+    this.method = sessionStorage.getItem('method')!  
+    if(this.method === 'edit'){
       this.getActivityList();
     }
    
