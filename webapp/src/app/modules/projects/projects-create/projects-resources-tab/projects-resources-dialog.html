@@ -11,7 +11,7 @@
         <form [formGroup]="resourceForm" fxLayout="column">
           <mat-form-field appearance="outline">
             <mat-label>Recurso</mat-label>
-            <input matInput disableRipple formControlName="resource" placeholder="Nome do Recurso" />
+            <input matInput disableRipple formControlName="collaboratorId" placeholder="Nome do Recurso" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -48,7 +48,7 @@
         <ng-container matColumnDef="resource">
           <th mat-header-cell *matHeaderCellDef>Recurso</th>
           <td mat-cell *matCellDef="let resource">
-            {{ resource.resource }}
+            {{ resource.collaboratorId }}
           </td>
         </ng-container>
 

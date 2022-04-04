@@ -50,6 +50,7 @@ export class ProjectResourceDialog {
     const col = this.getCollaboratorList();
     console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
+    this.getResourceList()
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
       this.activityId
@@ -64,7 +65,7 @@ export class ProjectResourceDialog {
 
   initForm(): void {
     this.resourceForm = this.fb.group({
-      resource: [null],
+      collaboratorId: [null],
       paper: ['', Validators.required],
       estimatedHours: ['', Validators.required],
       isActive: [true],
