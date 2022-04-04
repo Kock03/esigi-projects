@@ -41,6 +41,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   projectId!: string | null;
   activityId!: string | null;
   method: string = '';
+  tab!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +51,11 @@ export class ProjectsResourcesTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getActivityList();
+    this.tab = sessionStorage.getItem('project_tab')!  
+    if(this.tab === '2'){
+      this.getActivityList();
+    }
+   
     // if (this.activityArray.value.length > 0) {
     //   this.data = this.activityArray.value;
     // }
@@ -58,10 +63,10 @@ export class ProjectsResourcesTabComponent implements OnInit {
   }
 
   async getActivityList() {
-    // this.projectId = sessionStorage.getItem('project_id');
-    // const activity = await this.projectProvider.findOne(this.projectId);
-    // this.data = activity.activities;
-    // console.log(this.data);
+    this.projectId = sessionStorage.getItem('project_id');
+    const activity = await this.projectProvider.findOne(this.projectId);
+    this.data = activity.activities;
+    console.log(this.data);
   }
 
   // initObservables() {
