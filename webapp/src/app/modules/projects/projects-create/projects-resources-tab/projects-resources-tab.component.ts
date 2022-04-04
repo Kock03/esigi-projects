@@ -58,10 +58,10 @@ export class ProjectsResourcesTabComponent implements OnInit {
   }
 
   async getActivityList() {
-    this.projectId = sessionStorage.getItem('project_id');
-    const activity = await this.projectProvider.findOne(this.projectId);
-    this.data = activity.activities;
-    console.log(this.data);
+    // this.projectId = sessionStorage.getItem('project_id');
+    // const activity = await this.projectProvider.findOne(this.projectId);
+    // this.data = activity.activities;
+    // console.log(this.data);
   }
 
   // initObservables() {

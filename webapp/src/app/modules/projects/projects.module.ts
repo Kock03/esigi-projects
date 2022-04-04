@@ -38,10 +38,10 @@ const routes: Routes = [
     component: ProjectsCreateComponent,
   },
 
-  // {
-  //   path: 'cadastro',
-  //   component: ProjectsCreateComponent,
-  // },
+  {
+    path: 'cadastro',
+    component: ProjectsCreateComponent,
+  },
 ];
 
 @NgModule({
