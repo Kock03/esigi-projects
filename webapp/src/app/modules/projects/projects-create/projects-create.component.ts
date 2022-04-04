@@ -44,10 +44,15 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
-
-    await this.getProject();
-    this.initForm();
-    await this.setFormValue();
+    
+    if (this.projectId !== 'cadastro') {
+      await this.getProject();
+      this.initForm();
+      this.setFormValue();
+      
+    } else {
+      this.initForm();
+    }
   }
 
   async setFormValue() {

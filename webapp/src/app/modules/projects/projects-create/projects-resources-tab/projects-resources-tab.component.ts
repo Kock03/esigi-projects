@@ -41,6 +41,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   projectId!: string | null;
   activityId!: string | null;
   method: string = '';
+  tab!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +51,11 @@ export class ProjectsResourcesTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getActivityList();
+    this.tab = sessionStorage.getItem('project_tab')!  
+    if(this.tab === '2'){
+      this.getActivityList();
+    }
+   
     // if (this.activityArray.value.length > 0) {
     //   this.data = this.activityArray.value;
     // }
