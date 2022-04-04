@@ -65,6 +65,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   async getActivityList() {
     this.projectId = sessionStorage.getItem('project_id');
     const activity = await this.projectProvider.findOne(this.projectId);
+    console.log("🚀 ~ file: projects-resources-tab.component.ts ~ line 68 ~ ProjectsResourcesTabComponent ~ getActivityList ~ activity", activity)
     this.data = activity.activities;
     console.log(this.data);
   }
