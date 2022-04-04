@@ -45,9 +45,7 @@ export class ProjectsCreateComponent implements OnInit {
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
 
-    // await this.getProject();
-    console.log(this.project);
-
+    await this.getProject();
     this.initForm();
     await this.setFormValue();
   }
