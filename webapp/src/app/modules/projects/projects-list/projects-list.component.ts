@@ -36,7 +36,7 @@ export class ProjectsListComponent implements OnInit {
     private projectsProvider: ProjectProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     await this.getProjectList();
@@ -64,6 +64,9 @@ export class ProjectsListComponent implements OnInit {
         );
         const params = `name=${this.filter.nativeElement.value}`;
         this.searchProjects(params);
+        if (this.filter.nativeElement.value === '') {
+          this.getProjectList()
+        }
       });
   }
 

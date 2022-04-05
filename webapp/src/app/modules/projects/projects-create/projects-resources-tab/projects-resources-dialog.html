@@ -9,9 +9,14 @@
       </mat-expansion-panel-header>
       <mat-dialog-content class="mat-typography">
         <form [formGroup]="resourceForm" fxLayout="column">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Recurso</mat-label>
-            <input matInput disableRipple formControlName="resource" placeholder="Nome do Recurso" />
+            <mat-select type="text" #filter>
+              <mat-option *ngFor="let collaborator of collaborators" [value]="collaborator.id"
+                formControlName="collaboratorId">
+                {{collaborator.firstNameCorporateName}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">

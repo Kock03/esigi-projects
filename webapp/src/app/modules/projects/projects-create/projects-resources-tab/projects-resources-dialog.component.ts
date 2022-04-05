@@ -1,5 +1,6 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Inject,
   Input,
@@ -9,7 +10,9 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
+import { ICollaborator } from 'src/app/interfaces/icollaborator';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
@@ -20,15 +23,15 @@ import { ResourceProvider } from 'src/providers/resource.provider';
 export class ProjectResourceDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('resourceTable') resourceTable!: MatTable<any>;
-  @ViewChild('accordion', { static: true })
-  Accordion!: MatAccordion;
+  @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
+  @ViewChild('filter', { static: true }) filter!: ElementRef;
 
   displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
   resourceForm!: FormGroup;
   step = 0;
 
-  collaborators!: any[];
-
+  collaborators!: ICollaborator[];
+  filteredCollaboratorList = new MatTableDataSource();
   index: any = null;
   resource: any;
   accordion: any;
@@ -44,7 +47,7 @@ export class ProjectResourceDialog {
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getCollaboratorList();
@@ -54,6 +57,34 @@ export class ProjectResourceDialog {
       this.activityId
     );
     this.initForm();
+    this.initFilter();
+  }
+
+  async searchCollaborators(query?: string) {
+    try {
+      this.collaborators = await this.collaboratorProvider.findByName(query);
+      console.log(this.collaborators);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  initFilter() {
+    fromEvent(this.filter.nativeElement, 'keyup')
+      .pipe(debounceTime(200), distinctUntilChanged())
+
+      .subscribe((res) => {
+        this.filteredCollaboratorList.data = this.collaborators.filter(
+          (collaborator) =>
+            collaborator.firstNameCorporateName
+              .toLocaleLowerCase()
+              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+
+        )
+        const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
+        this.searchCollaborators(params);
+      });
+
   }
 
   async getResourceList() {
@@ -63,7 +94,7 @@ export class ProjectResourceDialog {
 
   initForm(): void {
     this.resourceForm = this.fb.group({
-      resource: [null],
+      collaboratorId: [null],
       paper: ['', Validators.required],
       estimatedHours: ['', Validators.required],
       isActive: [true],
@@ -124,7 +155,7 @@ export class ProjectResourceDialog {
   }
 
   async getCollaboratorList() {
-    this.collaborators = await this.collaboratorProvider.findAll();
+    this.collaborators = await this.collaboratorProvider.findActive();
     console.log(this.collaborators);
   }
 }

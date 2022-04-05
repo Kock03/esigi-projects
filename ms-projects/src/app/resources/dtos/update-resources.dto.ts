@@ -15,7 +15,7 @@ export class UpdateResources {
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  name: string;
+  collaboratorId: string;
 
   @IsNotEmpty()
   @MinLength(3)
