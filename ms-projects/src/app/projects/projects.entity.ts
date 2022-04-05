@@ -51,9 +51,12 @@ export class ProjectsEntity {
   @Column({ type: 'int' })
   status: Status;
 
+  @Column({ nullable: true })
+  hourControl: boolean;
+
   @OneToMany(() => ActivitiesEntity, (activities) => activities.project, {
     cascade: ['insert', 'update', 'soft-remove'],
-    eager: true
+    eager: true,
   })
   activities: ActivitiesEntity[];
 

@@ -44,12 +44,11 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
-    
+
     if (this.projectId !== 'cadastro') {
       await this.getProject();
       this.initForm();
       this.setFormValue();
-      
     } else {
       this.initForm();
     }
@@ -78,13 +77,12 @@ export class ProjectsCreateComponent implements OnInit {
       type: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
-      controlHours: [null, Validators.required],
+      hourControl: [null, Validators.required],
       managerEnvoltiProjectManager: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
     });
-    
   }
 
   handleStep(number: number): void {
