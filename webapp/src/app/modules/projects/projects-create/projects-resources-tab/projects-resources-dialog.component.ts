@@ -95,8 +95,6 @@ export class ProjectResourceDialog {
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
     console.log(resourceList.resource)
-    // this.collaborator = await this.collaboratorProvider.findOne(resourceList.resource.collaboratorId)
-    // resourceList.resource.collaboratorId = this.collaborator.firstNameCorporateName;
     console.log(resourceList)
     this.dataTable = resourceList.resource;
   }
