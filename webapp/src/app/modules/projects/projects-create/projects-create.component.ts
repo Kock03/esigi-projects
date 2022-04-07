@@ -45,9 +45,13 @@ export class ProjectsCreateComponent implements OnInit {
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
 
-    await this.getProject();
-    this.initForm();
-    await this.setFormValue();
+    if (this.projectId !== 'cadastro') {
+      await this.getProject();
+      this.initForm();
+      this.setFormValue();
+    } else {
+      this.initForm();
+    }
   }
 
   async setFormValue() {
@@ -73,7 +77,7 @@ export class ProjectsCreateComponent implements OnInit {
       type: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
-      controlHours: [null, Validators.required],
+      hourControl: [null, Validators.required],
       managerEnvoltiProjectManager: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],

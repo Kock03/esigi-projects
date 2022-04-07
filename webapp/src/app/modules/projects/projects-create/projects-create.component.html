@@ -11,7 +11,7 @@
       <span class="tab-border"></span>
     </div>
     <div [ngClass]="{ done: step > 1, active: step == 2 }" (click)="handleStep(2)" fxLayout="column" class="tab-group">
-      <p class="tab-item">Recursos/Atividades</p>
+      <p class="tab-item">Atividades/Recursos</p>
       <span class="tab-border"></span>
     </div>
     <div *ngIf="projectId !== 'cadastro'" [ngClass]="{ done: step > 2, active: step == 3 }" (click)="handleStep(3)"

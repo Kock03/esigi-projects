@@ -83,4 +83,9 @@ export class CreateProjectDto {
   @IsArray()
   @ApiProperty()
   activities: ActivitiesEntity[];
+
+  @IsOptional()
+  @IsBoolean()
+  @ApiProperty()
+  hourControl: boolean;
 }

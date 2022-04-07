@@ -16,9 +16,6 @@ export class ResourcesEntity {
   id: string;
 
   @Column()
-  resource: string;
-
-  @Column()
   paper: string;
 
   @Column()

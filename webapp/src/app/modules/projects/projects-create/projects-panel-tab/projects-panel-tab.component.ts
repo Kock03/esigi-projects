@@ -6,12 +6,7 @@ import { debounceTime, distinctUntilChanged, fromEvent, Subject } from 'rxjs';
 import { IProjects } from 'src/app/interfaces/iproject';
 import { ProjectProvider } from 'src/providers/project.provider';
 
-export interface Panel {
-  name: string;
-  ressource: string;
-  hours: string;
-  status: string;
-}
+
 @Component({
   selector: 'app-projects-panel-tab',
   templateUrl: './projects-panel-tab.component.html',
@@ -22,23 +17,20 @@ export class ProjectsPanelTabComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
 
-  displayedPanel: string[] = ['name', 'ressource', 'hours', 'status', 'icon'];
+  displayedPanel: string[] = ['ressource', 'hours', 'status', 'icon'];
+  ressource: any;
 
-  panels: Panel[] = [
-    {
-      name: 'htpx',
-      ressource: 'João da Silva',
-      hours: '170',
-      status: 'ativo',
-    },
-  ];
 
   constructor(
     private projectProvider: ProjectProvider,
-    private router: Router
+    private router: Router,
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void{
+    this.getResourceList
+  }
+
+  async getResourceList(){
 
   }
 

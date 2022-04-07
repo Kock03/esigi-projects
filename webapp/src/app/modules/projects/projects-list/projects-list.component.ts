@@ -30,6 +30,7 @@ export class ProjectsListComponent implements OnInit {
   projects!: IProjects[];
   project!: any;
   projectId!: string;
+  method: string = '';
 
   constructor(
     private router: Router,
@@ -64,6 +65,9 @@ export class ProjectsListComponent implements OnInit {
         );
         const params = `name=${this.filter.nativeElement.value}`;
         this.searchProjects(params);
+        if (this.filter.nativeElement.value === '') {
+          this.getProjectList();
+        }
       });
   }
 
@@ -119,6 +123,7 @@ export class ProjectsListComponent implements OnInit {
   }
 
   async editProject(projectSelected: any, projectId: string) {
+    this.method = 'edit'
     this.project = projectSelected;
     console.log(this.project);
     if (this.project.type === 3) {
@@ -127,7 +132,8 @@ export class ProjectsListComponent implements OnInit {
     } else {
       sessionStorage.setItem('project_type', this.project.type.toString());
     }
-
+    sessionStorage.setItem('project_id', projectId);
+    sessionStorage.setItem('method', this.method);
     this.router.navigate([`projetos/${projectId}`]);
   }
 }
