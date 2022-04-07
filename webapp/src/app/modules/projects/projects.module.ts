@@ -26,6 +26,7 @@ import { ProjectsPanelTabComponent } from './projects-create/projects-panel-tab/
 import { ProjectActivityDialog } from './projects-create/projects-resources-tab/projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const routes: Routes = [
   {
@@ -74,6 +75,7 @@ const routes: Routes = [
     MatCheckboxModule,
     MatDialogModule,
     MatExpansionModule,
+    MatAutocompleteModule,
   ],
   entryComponents: [
     ProjectsCreateComponent,

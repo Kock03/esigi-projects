@@ -10,6 +10,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
+import { fromEvent, debounceTime, distinctUntilChanged, Observable, async, map, startWith, tap } from 'rxjs';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
@@ -28,6 +29,9 @@ export class ProjectResourceDialog {
   step = 0;
 
   collaborators!: any[];
+  filteredCollaborators?: any[];
+
+
 
   index: any = null;
   resource: any;
@@ -36,6 +40,8 @@ export class ProjectResourceDialog {
   activityId!: string;
   method: string = '';
   resourceId!: string | null;
+  filteredCollaboratorList: any;
+  filter: any;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -44,7 +50,7 @@ export class ProjectResourceDialog {
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
@@ -56,6 +62,24 @@ export class ProjectResourceDialog {
     );
     this.initForm();
   }
+
+  inputChange(text: any) {
+    console.log(text.target.value)
+    this._filter(text.target.value)
+  };
+
+  displayFn(user: any): string {
+    return user && user.firstNameCorporateName ? user.firstNameCorporateName : '';
+  }
+
+  private _filter(name: string): any[] {
+    const filterValue = name.toUpperCase();
+
+    if (name == null || '') return this.filteredCollaborators = this.collaborators
+
+    return this.filteredCollaborators = this.collaborators.filter(collaborators => collaborators.firstNameCorporateName.toUpperCase().includes(filterValue));
+  }
+
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
@@ -88,6 +112,7 @@ export class ProjectResourceDialog {
 
   async saveResource() {
     const data = this.resourceForm.getRawValue();
+    console.log(data)
     if (this.method === 'edit') {
       try {
         const resource = await this.resourceProvider.update(
@@ -127,5 +152,8 @@ export class ProjectResourceDialog {
   async getCollaboratorList() {
     this.collaborators = await this.collaboratorProvider.findAll();
     console.log(this.collaborators);
+
   }
+
+
 }

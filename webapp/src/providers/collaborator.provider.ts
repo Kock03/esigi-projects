@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CollaboratorProvider {
+ 
   constructor(private apiGateway: ApiGateway) { }
 
   ngOnInit(): void { }
