@@ -37,7 +37,7 @@ export class ProjectsCreateComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    if (sessionStorage.getItem('project_tab') == undefined) {
+    if (sessionStorage.getItem('project_tab') !== undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
 
@@ -45,10 +45,13 @@ export class ProjectsCreateComponent implements OnInit {
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
 
-    await this.getProject();
-    console.log(this.project);
-    this.initForm();
-    await this.setFormValue();
+    if (this.projectId !== 'cadastro') {
+      await this.getProject();
+      this.initForm();
+      this.setFormValue();
+    } else {
+      this.initForm();
+    }
   }
 
   async setFormValue() {
@@ -69,13 +72,13 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       code: ['', Validators.required],
-      responsible: ['', Validators.required],
+      responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
-      controlHours: [null, Validators.required],
-      managerEnvoltiProjectManager: ['', Validators.required],
+      hourControl: [null, Validators.required],
+      managerEnvoltiProjectManager: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -115,6 +118,7 @@ export class ProjectsCreateComponent implements OnInit {
 
   async editProject() {
     const data = this.projectForm.getRawValue();
+    console.log(data);
     try {
       const porject = await this.projectProvider.update(this.projectId, data);
       this.router.navigate(['projetos/lista']);

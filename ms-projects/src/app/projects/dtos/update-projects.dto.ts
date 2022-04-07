@@ -2,6 +2,7 @@
 
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsBoolean,
   IsEnum,
   IsNotEmpty,
   IsNumber,
@@ -74,4 +75,9 @@ export class UpdateProjectDto {
   @IsEnum(Status)
   @ApiProperty()
   status: Status;
+
+  @IsOptional()
+  @IsBoolean()
+  @ApiProperty()
+  hourControl: boolean;
 }

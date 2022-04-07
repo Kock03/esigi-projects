@@ -14,6 +14,7 @@ import { ActivityProvider } from 'src/providers/activity.provider';
 import { ProjectProvider } from 'src/providers/project.provider';
 import { ProjectActivityDialog } from './projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-resources-dialog.component';
+import { ResourceProvider} from 'src/providers/resource.provider';
 
 @Component({
   selector: 'app-projects-resources-tab',
@@ -41,16 +42,22 @@ export class ProjectsResourcesTabComponent implements OnInit {
   projectId!: string | null;
   activityId!: string | null;
   method: string = '';
+  tab!: string;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     private projectProvider: ProjectProvider,
-    private activityProvider: ActivityProvider
+    private activityProvider: ActivityProvider,
+    private resourceProvider: ResourceProvider,
   ) {}
 
   ngOnInit(): void {
-    this.getActivityList();
+    this.method = sessionStorage.getItem('method')!  
+    if(this.method === 'edit'){
+      this.getActivityList();
+    }
+   
     // if (this.activityArray.value.length > 0) {
     //   this.data = this.activityArray.value;
     // }
@@ -60,7 +67,15 @@ export class ProjectsResourcesTabComponent implements OnInit {
   async getActivityList() {
     this.projectId = sessionStorage.getItem('project_id');
     const activity = await this.projectProvider.findOne(this.projectId);
+    console.log("🚀 ~ file: projects-resources-tab.component.ts ~ line 68 ~ ProjectsResourcesTabComponent ~ getActivityList ~ activity", activity)
     this.data = activity.activities;
+    console.log(this.data);
+  }
+
+  async getResourceList(){
+    this.projectId = sessionStorage.getItem('project_id');
+    const ressource = await this.resourceProvider.findOne(this.projectId);
+    this.data = ressource.ressources;
     console.log(this.data);
   }
 

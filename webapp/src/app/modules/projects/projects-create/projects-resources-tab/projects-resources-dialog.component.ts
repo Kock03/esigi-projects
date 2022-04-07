@@ -13,6 +13,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
 import { ICollaborator } from 'src/app/interfaces/icollaborator';
+import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
@@ -26,19 +27,20 @@ export class ProjectResourceDialog {
   @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-  displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
+  displayedColumns: string[] = ['collaboratorId', 'paper', 'estimatedHours', 'icon'];
   resourceForm!: FormGroup;
   step = 0;
 
   collaborators!: ICollaborator[];
   filteredCollaboratorList = new MatTableDataSource();
   index: any = null;
-  resource: any;
+  resource!: IResource;
   accordion: any;
   dataTable: [] = [];
   activityId!: string;
   method: string = '';
   resourceId!: string | null;
+  collaborator!: ICollaborator;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -50,14 +52,17 @@ export class ProjectResourceDialog {
   ) { }
 
   ngOnInit(): void {
-    this.getCollaboratorList();
+    const col = this.getCollaboratorList();
+    console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
+    this.getResourceList()
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
       this.activityId
     );
     this.initForm();
     this.initFilter();
+
   }
 
   async searchCollaborators(query?: string) {
@@ -89,6 +94,10 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
+    console.log(resourceList.resource)
+    // this.collaborator = await this.collaboratorProvider.findOne(resourceList.resource.collaboratorId)
+    // resourceList.resource.collaboratorId = this.collaborator.firstNameCorporateName;
+    console.log(resourceList)
     this.dataTable = resourceList.resource;
   }
 
