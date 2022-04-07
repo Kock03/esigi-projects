@@ -1,5 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-projects-register-tab',
@@ -12,16 +20,24 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   projectType: any;
+  projectId: any;
+  codeInputDisabled = new FormControl({ disabled: true });
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.projectType = sessionStorage.getItem('project_type')
-    console.log("🚀 ~ file: projects-register-tab.component.ts ~ line 20 ~ ProjectsRegisterTabComponent ~ ngOnInit ~  this.projectType",  this.projectType)
+    this.projectId = this.route.snapshot.paramMap.get('id');
+
+    this.projectType = sessionStorage.getItem('project_type');
+    console.log(
+      '🚀 ~ file: projects-register-tab.component.ts ~ line 20 ~ ProjectsRegisterTabComponent ~ ngOnInit ~  this.projectType',
+      this.projectType
+    );
+
+    this.codeInputDisabled.disable();
   }
 
   next() {
     this.onChange.next(true);
   }
-
 }
