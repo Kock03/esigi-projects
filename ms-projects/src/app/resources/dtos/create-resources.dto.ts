@@ -17,7 +17,7 @@ export class CreateResourceDto {
   @IsString()
   @ApiProperty()
   collaboratorId: string;
-  
+
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)

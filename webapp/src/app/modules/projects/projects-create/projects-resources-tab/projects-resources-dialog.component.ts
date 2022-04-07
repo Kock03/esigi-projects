@@ -1,5 +1,6 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Inject,
   Input,
@@ -9,8 +10,10 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatTable } from '@angular/material/table';
-import { fromEvent, debounceTime, distinctUntilChanged, Observable, async, map, startWith, tap } from 'rxjs';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
+import { ICollaborator } from 'src/app/interfaces/icollaborator';
+import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
@@ -21,10 +24,10 @@ import { ResourceProvider } from 'src/providers/resource.provider';
 export class ProjectResourceDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('resourceTable') resourceTable!: MatTable<any>;
-  @ViewChild('accordion', { static: true })
-  Accordion!: MatAccordion;
+  @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
+  @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-  displayedColumns: string[] = ['resource', 'paper', 'estimatedHours', 'icon'];
+  displayedColumns: string[] = ['collaboratorId', 'paper', 'estimatedHours', 'icon'];
   resourceForm!: FormGroup;
   step = 0;
 
@@ -34,14 +37,15 @@ export class ProjectResourceDialog {
 
 
   index: any = null;
-  resource: any;
+  resource!: IResource;
   accordion: any;
   dataTable: [] = [];
   activityId!: string;
   method: string = '';
   resourceId!: string | null;
   filteredCollaboratorList: any;
-  filter: any;
+  // filter: any;
+  collaborator!: ICollaborator;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -62,6 +66,35 @@ export class ProjectResourceDialog {
       this.activityId
     );
     this.initForm();
+    this.initFilter();
+
+  }
+
+  async searchCollaborators(query?: string) {
+    try {
+      this.collaborators = await this.collaboratorProvider.findByName(query);
+      console.log(this.collaborators);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  initFilter() {
+    fromEvent(this.filter.nativeElement, 'keyup')
+      .pipe(debounceTime(200), distinctUntilChanged())
+
+      .subscribe((res) => {
+        this.filteredCollaboratorList.data = this.collaborators.filter(
+          (collaborator) =>
+            collaborator.firstNameCorporateName
+              .toLocaleLowerCase()
+              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+
+        )
+        const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
+        this.searchCollaborators(params);
+      });
+
   }
 
   inputChange(text: any) {
@@ -84,6 +117,8 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
+    console.log(resourceList.resource)
+    console.log(resourceList)
     this.dataTable = resourceList.resource;
   }
 
@@ -151,7 +186,7 @@ export class ProjectResourceDialog {
   }
 
   async getCollaboratorList() {
-    this.collaborators = await this.collaboratorProvider.findAll();
+    this.collaborators = await this.collaboratorProvider.findActive();
     console.log(this.collaborators);
 
   }
