@@ -27,7 +27,7 @@ export class ProjectResourceDialog {
   @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-  displayedColumns: string[] = ['collaboratorId', 'paper', 'estimatedHours', 'icon'];
+  displayedColumns: string[] = ['firstNameCorporateName', 'paper', 'estimatedHours', 'icon'];
   resourceForm!: FormGroup;
   step = 0;
 
