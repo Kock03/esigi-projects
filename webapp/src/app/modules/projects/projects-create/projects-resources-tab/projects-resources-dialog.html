@@ -10,14 +10,17 @@
       <mat-dialog-content class="mat-typography">
         <form [formGroup]="resourceForm" fxLayout="column">
 
-          <mat-form-field appearance="fill">
-            <mat-label>Recurso</mat-label>
-            <mat-select formControlName="collaboratorId" #filter>
-              <mat-option *ngFor="let collaborator of collaborators" value={{collaborator.id}}>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Colaborador</mat-label>
+            <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
+              (input)="inputChange($event)" formControlName="collaboratorId">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
                 {{collaborator.firstNameCorporateName}}
               </mat-option>
-            </mat-select>
+            </mat-autocomplete>
           </mat-form-field>
+
 
           <mat-form-field appearance="outline">
             <mat-label>Papel</mat-label>
