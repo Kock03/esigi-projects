@@ -79,11 +79,12 @@ export class ProjectResourceDialog {
   }
 
   initFilter() {
+
     fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(debounceTime(200), distinctUntilChanged())
 
       .subscribe((res) => {
-        this.filteredCollaboratorList.data = this.collaborators.filter(
+        this.filteredCollaborators = this.collaborators.filter(
           (collaborator) =>
             collaborator.firstNameCorporateName
               .toLocaleLowerCase()
@@ -102,10 +103,14 @@ export class ProjectResourceDialog {
   };
 
   displayFn(user: any): string {
+    if (typeof user === 'string' && this.collaborators) {
+      return this.collaborators.find(collaborator => collaborator.id === user)
+    }
     return user && user.firstNameCorporateName ? user.firstNameCorporateName : '';
   }
 
   private _filter(name: string): any[] {
+    console.log(name);
     const filterValue = name.toUpperCase();
 
     if (name == null || '') return this.filteredCollaborators = this.collaborators
@@ -132,6 +137,16 @@ export class ProjectResourceDialog {
     if (this.dataTable) {
       this.resourceForm.patchValue(this.dataTable);
     }
+
+    this.resourceForm.controls['collaboratorId'].valueChanges.subscribe(res => {
+      console.log(res.id)
+      if (res && res.id) {
+        this.resourceForm.controls['collaboratorId'].setValue(res.id, { emitEvent: false })
+      }
+    })
+
+
+
   }
 
   getResource(resourceSelected: any, id: string) {
