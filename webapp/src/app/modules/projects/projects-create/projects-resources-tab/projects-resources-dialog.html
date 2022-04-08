@@ -9,24 +9,14 @@
       </mat-expansion-panel-header>
       <mat-dialog-content class="mat-typography">
         <form [formGroup]="resourceForm" fxLayout="column">
-<<<<<<< HEAD
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Colaborador</mat-label>
-            <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto" (input)="inputChange($event)">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" formControlName="resource">
-              <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
-                {{collaborator.firstNameCorporateName}}
-              </mat-option>
-            </mat-autocomplete>
-=======
+
           <mat-form-field appearance="fill">
             <mat-label>Recurso</mat-label>
-            <mat-select formControlName="collaboratorId">
-              <mat-option *ngFor="let collaborator of collaborators" value={{collaborator.id}} #filter>
+            <mat-select formControlName="collaboratorId"  #filter>
+              <mat-option *ngFor="let collaborator of collaborators" value={{collaborator.id}}>
                 {{collaborator.firstNameCorporateName}}
               </mat-option>
             </mat-select>
->>>>>>> 5ab40963734102639f35602c9a9f25c83e063f15
           </mat-form-field>
 
           <mat-form-field appearance="outline">

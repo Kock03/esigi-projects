@@ -44,7 +44,6 @@ export class ProjectResourceDialog {
   method: string = '';
   resourceId!: string | null;
   filteredCollaboratorList: any;
-  // filter: any;
   collaborator!: ICollaborator;
 
   constructor(
