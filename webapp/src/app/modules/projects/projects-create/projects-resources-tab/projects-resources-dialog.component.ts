@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -27,14 +27,17 @@ export class ProjectResourceDialog {
   @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-  displayedColumns: string[] = ['collaboratorId', 'paper', 'estimatedHours', 'icon'];
+  displayedColumns: string[] = [
+    'collaboratorId',
+    'paper',
+    'estimatedHours',
+    'icon',
+  ];
   resourceForm!: FormGroup;
   step = 0;
 
   collaborators!: any[];
   filteredCollaborators?: any[];
-
-
 
   index: any = null;
   resource!: IResource;
@@ -45,6 +48,7 @@ export class ProjectResourceDialog {
   resourceId!: string | null;
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
+  collaboratorForm = new FormControl();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -53,20 +57,19 @@ export class ProjectResourceDialog {
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
     console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
-    this.getResourceList()
+    this.getResourceList();
     console.log(
       '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
       this.activityId
     );
     this.initForm();
     this.initFilter();
-
   }
 
   async searchCollaborators(query?: string) {
@@ -79,50 +82,53 @@ export class ProjectResourceDialog {
   }
 
   initFilter() {
-
     fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(debounceTime(200), distinctUntilChanged())
 
       .subscribe((res) => {
-        this.filteredCollaborators = this.collaborators.filter(
-          (collaborator) =>
-            collaborator.firstNameCorporateName
-              .toLocaleLowerCase()
-              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
-
-        )
+        this.filteredCollaborators = this.collaborators.filter((collaborator) =>
+          collaborator.firstNameCorporateName
+            .toLocaleLowerCase()
+            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+        );
         const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
         this.searchCollaborators(params);
       });
-
   }
 
   inputChange(text: any) {
-    console.log(text.target.value)
-    this._filter(text.target.value)
-  };
+    console.log(text.target.value);
+    this._filter(text.target.value);
+  }
 
   displayFn(user: any): string {
     if (typeof user === 'string' && this.collaborators) {
-      return this.collaborators.find(collaborator => collaborator.id === user)
+      return this.collaborators.find(
+        (collaborator) => collaborator.id === user
+      );
     }
-    return user && user.firstNameCorporateName ? user.firstNameCorporateName : '';
+    return user && user.firstNameCorporateName
+      ? user.firstNameCorporateName
+      : '';
   }
 
   private _filter(name: string): any[] {
     console.log(name);
     const filterValue = name.toUpperCase();
 
-    if (name == null || '') return this.filteredCollaborators = this.collaborators
+    if (name == null || '')
+      return (this.filteredCollaborators = this.collaborators);
 
-    return this.filteredCollaborators = this.collaborators.filter(collaborators => collaborators.firstNameCorporateName.toUpperCase().includes(filterValue));
+    return (this.filteredCollaborators = this.collaborators.filter(
+      (collaborators) =>
+        collaborators.firstNameCorporateName.toUpperCase().includes(filterValue)
+    ));
   }
-
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
-    console.log(resourceList.resource)
-    console.log(resourceList)
+    console.log(resourceList.resource);
+    console.log(resourceList);
     this.dataTable = resourceList.resource;
   }
 
@@ -138,15 +144,13 @@ export class ProjectResourceDialog {
       this.resourceForm.patchValue(this.dataTable);
     }
 
-    this.resourceForm.controls['collaboratorId'].valueChanges.subscribe(res => {
-      console.log(res.id)
+    this.collaboratorForm.valueChanges.subscribe((res) => {
       if (res && res.id) {
-        this.resourceForm.controls['collaboratorId'].setValue(res.id, { emitEvent: false })
+        this.resourceForm.controls['collaboratorId'].setValue(res.id, {
+          emitEvent: true,
+        });
       }
-    })
-
-
-
+    });
   }
 
   getResource(resourceSelected: any, id: string) {
@@ -162,7 +166,7 @@ export class ProjectResourceDialog {
 
   async saveResource() {
     const data = this.resourceForm.getRawValue();
-    console.log(data)
+    console.log(data);
     if (this.method === 'edit') {
       try {
         const resource = await this.resourceProvider.update(
@@ -202,8 +206,5 @@ export class ProjectResourceDialog {
   async getCollaboratorList() {
     this.collaborators = await this.collaboratorProvider.findActive();
     console.log(this.collaborators);
-
   }
-
-
 }
