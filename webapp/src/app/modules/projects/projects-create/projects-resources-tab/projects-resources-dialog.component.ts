@@ -48,7 +48,7 @@ export class ProjectResourceDialog {
   resourceId!: string | null;
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
-  collaboratorForm = new FormControl();
+  collaboratorControl = new FormControl();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -57,17 +57,12 @@ export class ProjectResourceDialog {
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
-    console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
     this.getResourceList();
-    console.log(
-      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
-      this.activityId
-    );
     this.initForm();
     this.initFilter();
   }
@@ -75,7 +70,6 @@ export class ProjectResourceDialog {
   async searchCollaborators(query?: string) {
     try {
       this.collaborators = await this.collaboratorProvider.findByName(query);
-      console.log(this.collaborators);
     } catch (error) {
       console.error(error);
     }
@@ -97,7 +91,6 @@ export class ProjectResourceDialog {
   }
 
   inputChange(text: any) {
-    console.log(text.target.value);
     this._filter(text.target.value);
   }
 
@@ -113,7 +106,6 @@ export class ProjectResourceDialog {
   }
 
   private _filter(name: string): any[] {
-    console.log(name);
     const filterValue = name.toUpperCase();
 
     if (name == null || '')
@@ -127,8 +119,6 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
-    console.log(resourceList.resource);
-    console.log(resourceList);
     this.dataTable = resourceList.resource;
   }
 
@@ -144,7 +134,7 @@ export class ProjectResourceDialog {
       this.resourceForm.patchValue(this.dataTable);
     }
 
-    this.collaboratorForm.valueChanges.subscribe((res) => {
+    this.collaboratorControl.valueChanges.subscribe((res) => {
       if (res && res.id) {
         this.resourceForm.controls['collaboratorId'].setValue(res.id, {
           emitEvent: true,
@@ -205,6 +195,5 @@ export class ProjectResourceDialog {
 
   async getCollaboratorList() {
     this.collaborators = await this.collaboratorProvider.findActive();
-    console.log(this.collaborators);
   }
 }
