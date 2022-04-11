@@ -13,7 +13,7 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Colaborador</mat-label>
             <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
-              (input)="inputChange($event)" formControlName="collaboratorId">
+              (input)="inputChange($event)" [formControl]="collaboratorForm">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
                 {{collaborator.firstNameCorporateName}}
