@@ -16,13 +16,22 @@ export class ResourcesService {
     private httpService: HttpService,
   ) {}
 
+  // INACABADO!
   async findAll() {
-    const col = this.httpService.get(
-      'http://localhost:3501/api/v1/collaborators',
-    );
-    console.log(col);
-    // const pro = await this.resourcesRepository.find();
-    // inacabado!
+    // const collaboratorIdList = await this.resourcesRepository.query(`select colaboratorId from resources`);
+
+    // <---- AQUI ENTRARÁ O NOVO MÉTODO QUE PRECISA SER FEITO NO MS-COLLABORATOR, PASSANDO O COLLABORATORIDLIST
+    //E RETORNANDO UM VETOR DE COLLABORATOR ( PESQUISE POR SELECT IN PARA OBTER TODODS OS COLABORADORES PASSANDO VARIOS IDS)
+
+    // const col = this.httpService.get(
+    //   'http://localhost:3501/api/v1/collaborators',
+    // ); ---->
+
+    // resources.map(resource => {{
+    //   resource.collaborator = this.collaboratorList.find(collaborator => collaborator.id === resource.collaboratorId);
+    //   return resource
+    // })
+
     return await this.resourcesRepository.find();
   }
 
