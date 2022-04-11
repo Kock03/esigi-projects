@@ -22,7 +22,7 @@ export class ResourcesService {
     );
     console.log(col);
     // const pro = await this.resourcesRepository.find();
-    // incabado!
+    // inacabado!
     return await this.resourcesRepository.find();
   }
 
