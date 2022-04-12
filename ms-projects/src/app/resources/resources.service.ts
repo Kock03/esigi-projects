@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { ResourcesEntity } from './resources.entity';
@@ -17,18 +17,23 @@ export class ResourcesService {
   ) {}
 
   // INACABADO!
+  // `1- montar o ventor com a lista de id de colaboradores`
+  // `2- lista de colaboradores com as informações`
+  // `3- percorrer a lista de recursos, verificar com a lista de colabores, validar o id desse registro com o id do vetor`
+  // `4- adicionar prop de colaborador com as informações do ms-collaborator`
   async findAll() {
-    // const collaboratorIdList = await this.resourcesRepository.query(`select colaboratorId from resources`);
+    // const resources = await this.resourcesRepository.find()titea
+    const collaboratorIdList = await this.resourcesRepository.find({
+      select: ['collaboratorId'],
+    });
 
-    // <---- AQUI ENTRARÁ O NOVO MÉTODO QUE PRECISA SER FEITO NO MS-COLLABORATOR, PASSANDO O COLLABORATORIDLIST
-    //E RETORNANDO UM VETOR DE COLLABORATOR ( PESQUISE POR SELECT IN PARA OBTER TODODS OS COLABORADORES PASSANDO VARIOS IDS)
-
-    // const col = this.httpService.get(
-    //   'http://localhost:3501/api/v1/collaborators',
-    // ); ---->
+    const collaborators = this.httpService.post(
+      'http://localhost:3501/api/v1/collaborators/list',
+      collaboratorIdList,
+    );
 
     // resources.map(resource => {{
-    //   resource.collaborator = this.collaboratorList.find(collaborator => collaborator.id === resource.collaboratorId);
+    //   resource.collaboratorId = collaborators(collaborator => collaborator.id === resource.collaboratorId);
     //   return resource
     // })
 
