@@ -35,7 +35,7 @@ export class ProjectsService {
     return this.projectsRepository.find({
       where: [
         { name: Like(`${query.name}%`) },
-        { code: Like(`${query.code}%`) },
+        { code: Like(`${query.code}%`) }, //id
         { responsible: Like(`${query.responsible}%`) },
         { client: Like(`${query.client}%`) },
         { managerEnvoltiProjectManager: Like(`${query.managerEnvoltiProjectManager}%`) },]
