@@ -10,7 +10,7 @@
       <p class="tab-item">Cadastro</p>
       <span class="tab-border"></span>
     </div>
-    <div [ngClass]="{ done: step > 1, active: step == 2 }" (click)="handleStep(2)" fxLayout="column" class="tab-group">
+    <div [ngClass]="{ done: step > 1, active: step == 2, disabled: projectId === 'cadastro' && step === 1 }" (click)="handleStep(2)" fxLayout="column" class="tab-group">
       <p class="tab-item">Atividades/Recursos</p>
       <span class="tab-border"></span>
     </div>
