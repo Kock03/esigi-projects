@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
+  IsEnum,
   isNotEmpty,
   IsNotEmpty,
   IsOptional,
@@ -9,6 +10,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ActivitiesEntity } from 'src/app/activities/activities.entity';
+import { Paper } from './paper.enum';
 
 export class CreateResourceDto {
   @IsNotEmpty()
@@ -21,9 +23,9 @@ export class CreateResourceDto {
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)
-  @IsString()
+  @IsEnum(Paper)
   @ApiProperty()
-  paper: string;
+  paper: Paper;
 
   @IsNotEmpty()
   @IsString()

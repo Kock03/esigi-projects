@@ -35,14 +35,25 @@
             </mat-autocomplete>
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field fxFlex="50" appearance="outline">
             <mat-label>Papel</mat-label>
-            <input
-              matInput
-              disableRipple
-              formControlName="paper"
-              placeholder="Papel do Recurso"
-            />
+            <mat-select disableRipple formControlName="paper">
+              <mat-option [value]="1">Gerente de Projeto</mat-option>
+              <mat-option [value]="2">Arquiteto de Software</mat-option>
+              <mat-option [value]="3">Analista de Dados</mat-option>
+              <mat-option [value]="4">Analista de Testes</mat-option>
+              <mat-option [value]="5">Engenheiro de Software</mat-option>
+              <mat-option [value]="6">Desenvolvedor Angular</mat-option>
+              <mat-option [value]="7">Desenvolvedor React</mat-option>
+              <mat-option [value]="8">Desenvolvedor C#</mat-option>
+              <mat-option [value]="9">Desenvolvedor  Java</mat-option>
+              <mat-option [value]="10">Desenvolvedor PHP</mat-option>
+              <mat-option [value]="11">Desenvolvedor Node</mat-option>
+              <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
+              <mat-option [value]="13">Desenvolvedor C++</mat-option>
+              <mat-option [value]="14">Desenvolvedor Python</mat-option>
+              <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -55,7 +66,7 @@
             />
           </mat-form-field>
           <mat-checkbox
-          *ngIf="method === 'add'"
+          *ngIf="method === 'edit'"
             style="disabled"
             fxFlex="30"
             fxLayoutAlign="start start"
@@ -68,7 +79,7 @@
       </mat-dialog-content>
       <mat-dialog-actions>
         <div class="button-dialog">
-          <button mat-flat-button (click)="accordion.closeAll()">
+          <button mat-flat-button (click)="onNoClick()">
             Cancelar
           </button>
           <button

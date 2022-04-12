@@ -29,7 +29,7 @@ export class CreateProjectDto {
   @IsNotEmpty()
   @IsNumber()
   @ApiProperty()
-  code: number;
+  code: number; //id: string
 
   @IsNotEmpty()
   @MinLength(3)

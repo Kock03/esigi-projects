@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -17,6 +17,8 @@ import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
+import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -27,17 +29,14 @@ export class ProjectResourceDialog {
   @ViewChild('accordion', { static: true }) Accordion!: MatAccordion;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
-  displayedColumns: string[] = [
-    'collaboratorId',
-    'paper',
-    'estimatedHours',
-    'icon',
-  ];
+  displayedColumns: string[] = ['collaboratorId', 'paper', 'estimatedHours', 'icon'];
   resourceForm!: FormGroup;
   step = 0;
 
   collaborators!: any[];
   filteredCollaborators?: any[];
+
+
 
   index: any = null;
   resource!: IResource;
@@ -48,7 +47,7 @@ export class ProjectResourceDialog {
   resourceId!: string | null;
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
-  collaboratorControl = new FormControl();
+  code!: string; //id
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -56,20 +55,29 @@ export class ProjectResourceDialog {
     private activityProvider: ActivityProvider,
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
+    console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
-    this.getResourceList();
+    this.getResourceList()
+    console.log(
+      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
+      this.activityId
+    );
     this.initForm();
     this.initFilter();
+
   }
 
   async searchCollaborators(query?: string) {
     try {
       this.collaborators = await this.collaboratorProvider.findByName(query);
+      console.log(this.collaborators);
     } catch (error) {
       console.error(error);
     }
@@ -80,45 +88,41 @@ export class ProjectResourceDialog {
       .pipe(debounceTime(200), distinctUntilChanged())
 
       .subscribe((res) => {
-        this.filteredCollaborators = this.collaborators.filter((collaborator) =>
-          collaborator.firstNameCorporateName
-            .toLocaleLowerCase()
-            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
-        );
+        this.filteredCollaboratorList.data = this.collaborators.filter(
+          (collaborator) =>
+            collaborator.firstNameCorporateName
+              .toLocaleLowerCase()
+              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+
+        )
         const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
         this.searchCollaborators(params);
       });
+
   }
 
   inputChange(text: any) {
-    this._filter(text.target.value);
-  }
+    console.log(text.target.value)
+    this._filter(text.target.value)
+  };
 
   displayFn(user: any): string {
-    if (typeof user === 'string' && this.collaborators) {
-      return this.collaborators.find(
-        (collaborator) => collaborator.id === user
-      );
-    }
-    return user && user.firstNameCorporateName
-      ? user.firstNameCorporateName
-      : '';
+    return user && user.firstNameCorporateName ? user.firstNameCorporateName : '';
   }
 
   private _filter(name: string): any[] {
     const filterValue = name.toUpperCase();
 
-    if (name == null || '')
-      return (this.filteredCollaborators = this.collaborators);
+    if (name == null || '') return this.filteredCollaborators = this.collaborators
 
-    return (this.filteredCollaborators = this.collaborators.filter(
-      (collaborators) =>
-        collaborators.firstNameCorporateName.toUpperCase().includes(filterValue)
-    ));
+    return this.filteredCollaborators = this.collaborators.filter(collaborators => collaborators.firstNameCorporateName.toUpperCase().includes(filterValue));
   }
+
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
+    console.log(resourceList.resource)
+    console.log(resourceList)
     this.dataTable = resourceList.resource;
   }
 
@@ -133,14 +137,6 @@ export class ProjectResourceDialog {
     if (this.dataTable) {
       this.resourceForm.patchValue(this.dataTable);
     }
-
-    this.collaboratorControl.valueChanges.subscribe((res) => {
-      if (res && res.id) {
-        this.resourceForm.controls['collaboratorId'].setValue(res.id, {
-          emitEvent: true,
-        });
-      }
-    });
   }
 
   getResource(resourceSelected: any, id: string) {
@@ -151,13 +147,16 @@ export class ProjectResourceDialog {
   }
 
   onNoClick(): void {
+    this.method = '';
     this.Accordion.closeAll();
+    this.initForm();
   }
 
   async saveResource() {
     const data = this.resourceForm.getRawValue();
-    console.log(data);
+    console.log(data)
     if (this.method === 'edit') {
+      console.log("🚀 ~ file: projects-resources-dialog.component.ts ~ line 161 ~ ProjectResourceDialog ~ saveResource ~ this.method ", this.method )
       try {
         const resource = await this.resourceProvider.update(
           this.resourceId,
@@ -184,9 +183,33 @@ export class ProjectResourceDialog {
     }
   }
 
+
+  
   async deleteResource(id: string) {
-    let deleteResource = await this.resourceProvider.destroy(id);
-    this.getResourceList();
+    const options = {
+      data: {
+        title: 'Anteção',
+        subtitle: 'Você tem certeza que deseja excluir este recurso?',
+      },
+      panelClass: 'confirm-modal',
+    };
+
+    this.dialogService.open(options);
+
+    this.dialogService.confirmed().subscribe(async (confirmed) => {
+      if (confirmed) {
+        try {
+          let deleteResource = await this.resourceProvider.destroy(id);
+          this.getResourceList();
+
+          this.snackbarService.successMessage('Recurso Excluido Com Sucesso');
+        } catch (error) {
+          console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao Excluir');
+          this.getResourceList();
+        }
+      }
+    });
   }
 
   setStep(index: number) {
@@ -195,5 +218,9 @@ export class ProjectResourceDialog {
 
   async getCollaboratorList() {
     this.collaborators = await this.collaboratorProvider.findActive();
+    console.log(this.collaborators);
+
   }
+
+
 }

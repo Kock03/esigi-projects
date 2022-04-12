@@ -54,6 +54,7 @@ const routes: Routes = [
     ProjectActivityDialog,
     ProjectResourceDialog,
     ProjectsListComponent,
+    PortalComponent
   ],
   imports: [
     RouterModule.forChild(routes),
