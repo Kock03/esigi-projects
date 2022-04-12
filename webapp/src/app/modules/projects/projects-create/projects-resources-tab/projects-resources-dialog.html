@@ -55,7 +55,7 @@
             />
           </mat-form-field>
           <mat-checkbox
-          *ngIf="method === 'add'"
+          *ngIf="method === 'edit'"
             style="disabled"
             fxFlex="30"
             fxLayoutAlign="start start"
@@ -68,7 +68,7 @@
       </mat-dialog-content>
       <mat-dialog-actions>
         <div class="button-dialog">
-          <button mat-flat-button (click)="accordion.closeAll()">
+          <button mat-flat-button (click)="onNoClick()">
             Cancelar
           </button>
           <button

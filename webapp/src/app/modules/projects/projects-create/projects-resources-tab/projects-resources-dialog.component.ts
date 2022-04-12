@@ -151,13 +151,16 @@ export class ProjectResourceDialog {
   }
 
   onNoClick(): void {
+    this.method = '';
     this.Accordion.closeAll();
+    this.initForm();
   }
 
   async saveResource() {
     const data = this.resourceForm.getRawValue();
     console.log(data);
     if (this.method === 'edit') {
+      console.log("🚀 ~ file: projects-resources-dialog.component.ts ~ line 161 ~ ProjectResourceDialog ~ saveResource ~ this.method ", this.method )
       try {
         const resource = await this.resourceProvider.update(
           this.resourceId,
