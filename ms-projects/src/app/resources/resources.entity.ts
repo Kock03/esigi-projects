@@ -9,14 +9,16 @@ import {
 } from 'typeorm';
 import { ActivitiesEntity } from '../activities/activities.entity';
 import { ProjectsEntity } from '../projects/projects.entity';
+import { ICollaborator } from './_model/collaborator.model';
 
 @Entity({ name: 'resources' })
 export class ResourcesEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // TODO - revisar para enum
   @Column()
-  paper: string;
+  paper: number;
 
   @Column()
   estimatedHours: string;
@@ -38,4 +40,6 @@ export class ResourcesEntity {
 
   @ManyToOne(() => ActivitiesEntity)
   activity: ActivitiesEntity;
+
+  collaborator: ICollaborator;
 }

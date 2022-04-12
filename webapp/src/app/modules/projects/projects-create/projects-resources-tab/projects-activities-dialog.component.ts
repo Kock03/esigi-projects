@@ -6,7 +6,7 @@ import {
   EventEmitter,
   Inject,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {
   NativeDateAdapter,
   DateAdapter,
@@ -54,6 +54,7 @@ export class ProjectActivityDialog {
   projectId!: string;
   method!: string;
   activityId!: string | null;
+  collaboratorControl = new FormControl();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectActivityDialog>,

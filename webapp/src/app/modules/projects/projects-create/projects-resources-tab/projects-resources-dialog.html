@@ -46,7 +46,7 @@
               <mat-option [value]="6">Desenvolvedor Angular</mat-option>
               <mat-option [value]="7">Desenvolvedor React</mat-option>
               <mat-option [value]="8">Desenvolvedor C#</mat-option>
-              <mat-option [value]="9">Desenvolvedor  Java</mat-option>
+              <mat-option [value]="9">Desenvolvedor Java</mat-option>
               <mat-option [value]="10">Desenvolvedor PHP</mat-option>
               <mat-option [value]="11">Desenvolvedor Node</mat-option>
               <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
@@ -65,23 +65,22 @@
               placeholder="Estimativa de Horas"
             />
           </mat-form-field>
+          <!-- TODO - oq seria isso style="disabled" ? -->
           <mat-checkbox
-          *ngIf="method === 'edit'"
-            style="disabled"
+            *ngIf="method === 'edit'"
             fxFlex="30"
             fxLayoutAlign="start start"
             class="checkbox"
             color="primary"
             formControlName="isActive"
-            >Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo': 'Inativo'}}</mat-checkbox
+            >Recurso {{resourceForm.controls['isActive'].value == true ?
+            'Ativo': 'Inativo'}}</mat-checkbox
           >
         </form>
       </mat-dialog-content>
       <mat-dialog-actions>
         <div class="button-dialog">
-          <button mat-flat-button (click)="onNoClick()">
-            Cancelar
-          </button>
+          <button mat-flat-button (click)="onNoClick()">Cancelar</button>
           <button
             color="primary"
             [disabled]="resourceForm.invalid"
@@ -103,7 +102,7 @@
         <ng-container matColumnDef="collaboratorId">
           <th mat-header-cell *matHeaderCellDef>Colaborador</th>
           <td mat-cell *matCellDef="let resource">
-            {{ resource.collaboratorId }}
+            {{ resource.collaborator.firstNameCorporateName }}
           </td>
         </ng-container>
 

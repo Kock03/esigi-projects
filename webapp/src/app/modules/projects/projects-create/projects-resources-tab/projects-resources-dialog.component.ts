@@ -7,10 +7,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTable } from '@angular/material/table';
 import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
 import { ICollaborator } from 'src/app/interfaces/icollaborator';
 import { IResource } from 'src/app/interfaces/iresource';
@@ -36,8 +36,6 @@ export class ProjectResourceDialog {
   collaborators!: any[];
   filteredCollaborators?: any[];
 
-
-
   index: any = null;
   resource!: IResource;
   accordion: any;
@@ -48,6 +46,8 @@ export class ProjectResourceDialog {
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
   code!: string; //id
+
+  collaboratorControl = new FormControl();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -65,10 +65,6 @@ export class ProjectResourceDialog {
     console.log(col);
     this.activityId = sessionStorage.getItem('activity_id')!;
     this.getResourceList()
-    console.log(
-      '🚀 ~ file: projects-resources-dialog.component.ts ~ line 46 ~ ProjectResourceDialog ~ ngOnInit ~ this.activityId ',
-      this.activityId
-    );
     this.initForm();
     this.initFilter();
 
@@ -121,8 +117,12 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
-    console.log(resourceList.resource)
-    console.log(resourceList)
+    // TODO - Revisar, esta sendo usado atividade, porém retorna todos 
+    // os relacionamentos, com projeto todo aninhado, o provider
+    // utilizado é de atividade, porém foi declarado uma constante
+    // como se fosse uma lista de recurso. e existe dados que não
+    // serão utilizados. pode se recuperar os recursos com o id da atividade
+    // assim retornando apenas uma lista de recurso direta
     this.dataTable = resourceList.resource;
   }
 
