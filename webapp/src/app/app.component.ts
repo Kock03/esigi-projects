@@ -20,7 +20,7 @@ export class AppComponent {
       name: 'Projetos',
       icon: 'analytics',
       selected: false,
-      action: 'projetos',
+      action: 'projetos/lista',
     },
   ];
 
@@ -54,5 +54,6 @@ export class AppComponent {
 
   navigate(route: string) {
     this.router.navigate([route]);
+    sessionStorage.clear();
   }
 }

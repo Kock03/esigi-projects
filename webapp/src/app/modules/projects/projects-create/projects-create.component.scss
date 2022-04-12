@@ -12,4 +12,11 @@
     .title {
       margin: 0 !important;
     }
+
+    .disabled {
+      pointer-events: none;
+      color: grey!important;
+      opacity: 0.5;
+      cursor: block;
+    }
   }
