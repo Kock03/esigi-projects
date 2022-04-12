@@ -1,4 +1,8 @@
-<div>
+
+<div  fxLayout="row" fxLayoutAlign="center center">
+  <button class="button" (click)="close()" color="primary" mat-button>
+    <mat-icon> chevron_left </mat-icon>
+  </button>
   <mat-accordion #accordion="matAccordion" [multi]="true">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -77,8 +81,8 @@
             'Ativo': 'Inativo'}}</mat-checkbox
           >
         </form>
-      </mat-dialog-content>
-      <mat-dialog-actions>
+      
+    
         <div class="button-dialog">
           <button mat-flat-button (click)="onNoClick()">Cancelar</button>
           <button
@@ -90,13 +94,15 @@
             Salvar
           </button>
         </div>
-      </mat-dialog-actions>
+      </mat-dialog-content>
     </mat-expansion-panel>
   </mat-accordion>
+
+
 </div>
 
 <div class="table-styles tab">
-  <div class="content-scroll">
+  <div>
     <div class="envolti-table mat-elevation-z4" fxLayout="column">
       <table mat-table [dataSource]="dataTable" #resourceTable>
         <ng-container matColumnDef="collaboratorId">
@@ -158,4 +164,6 @@
       </table>
     </div>
   </div>
+
+
 </div>
