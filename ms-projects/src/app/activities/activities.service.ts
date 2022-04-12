@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { first } from 'rxjs';
 import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { NotFoundException } from '../exceptions/not-found-exception';
 import { ActivitiesEntity } from './activities.entity';
@@ -12,6 +14,7 @@ export class ActivitiesService {
   constructor(
     @InjectRepository(ActivitiesEntity)
     private readonly activitiesRepository: Repository<ActivitiesEntity>,
+    private httpService: HttpService,
   ) {}
 
   async findAll() {
@@ -24,7 +27,28 @@ export class ActivitiesService {
   ) {
     options = { relations: ['project'] };
     try {
-      return await this.activitiesRepository.findOneOrFail(conditions, options);
+      const activities =  await this.activitiesRepository.findOneOrFail(conditions, options);
+
+      const collaboratorIdList = activities.resource.map(resource => {
+        return resource.collaboratorId;
+      })
+  
+      const collaborators =  this.httpService.post(
+        'http://localhost:3501/api/v1/collaborators/list',
+        {idList: collaboratorIdList},
+      );
+      collaborators.pipe(first())
+      .subscribe(res => {
+        if (res.data){
+          console.log(res.data)
+        }
+
+      })
+      // resources.map(resource => {{
+      //   resource.collaboratorId = collaborators(collaborator => collaborator.id === resource.collaboratorId);
+      //   return resource
+      // })
+      return activities;
     } catch {
       throw new NotFoundException();
     }
