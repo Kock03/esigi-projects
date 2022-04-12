@@ -52,6 +52,7 @@ import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.
     MatSnackBarModule,
     ConfirmDialogModule,
     MatSelectModule,
+    MatIconModule,
   ],
   providers: [SnackBarService, ConfirmDialogService],
   bootstrap: [AppComponent],

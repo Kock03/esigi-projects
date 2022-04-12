@@ -14,7 +14,9 @@ export class PortalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async navigateToProject() {}
+  goBackProjects(){
+    this.router.navigate(['projetos/lista'])
+  }
 
   handleProject(number: number): void {
     this.project = number;

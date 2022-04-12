@@ -17,6 +17,8 @@ import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
+import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -56,6 +58,8 @@ export class ProjectResourceDialog {
     private activityProvider: ActivityProvider,
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -187,9 +191,33 @@ export class ProjectResourceDialog {
     }
   }
 
+
+  
   async deleteResource(id: string) {
-    let deleteResource = await this.resourceProvider.destroy(id);
-    this.getResourceList();
+    const options = {
+      data: {
+        title: 'Anteção',
+        subtitle: 'Você tem certeza que deseja excluir este recurso?',
+      },
+      panelClass: 'confirm-modal',
+    };
+
+    this.dialogService.open(options);
+
+    this.dialogService.confirmed().subscribe(async (confirmed) => {
+      if (confirmed) {
+        try {
+          let deleteResource = await this.resourceProvider.destroy(id);
+          this.getResourceList();
+
+          this.snackbarService.successMessage('Recurso Excluido Com Sucesso');
+        } catch (error) {
+          console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao Excluir');
+          this.getResourceList();
+        }
+      }
+    });
   }
 
   setStep(index: number) {

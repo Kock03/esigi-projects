@@ -15,6 +15,8 @@ import { ProjectProvider } from 'src/providers/project.provider';
 import { ProjectActivityDialog } from './projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-resources-dialog.component';
 import { ResourceProvider} from 'src/providers/resource.provider';
+import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { SnackBarService } from 'src/services/snackbar.service';
 
 @Component({
   selector: 'app-projects-resources-tab',
@@ -50,6 +52,8 @@ export class ProjectsResourcesTabComponent implements OnInit {
     private projectProvider: ProjectProvider,
     private activityProvider: ActivityProvider,
     private resourceProvider: ResourceProvider,
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService
   ) {}
 
   ngOnInit(): void {
@@ -139,8 +143,31 @@ export class ProjectsResourcesTabComponent implements OnInit {
     });
   }
 
+
   async deleteActivity(id: string) {
-    let deleteActivity = await this.activityProvider.destroy(id);
-    this.getActivityList();
+    const options = {
+      data: {
+        title: 'Anteção',
+        subtitle: 'Você tem certeza que deseja excluir esta atividade?',
+      },
+      panelClass: 'confirm-modal',
+    };
+
+    this.dialogService.open(options);
+
+    this.dialogService.confirmed().subscribe(async (confirmed) => {
+      if (confirmed) {
+        try {
+          let deleteActivity = await this.activityProvider.destroy(id);
+          this.getActivityList();
+
+          this.snackbarService.successMessage('Atividade Excluida Com Sucesso');
+        } catch (error) {
+          console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao Excluir');
+          this.getActivityList();
+        }
+      }
+    });
   }
 }
