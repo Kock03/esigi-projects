@@ -1,4 +1,8 @@
-<div>
+
+<div  fxLayout="row" fxLayoutAlign="center center">
+  <button class="button" (click)="close()" color="primary" mat-button>
+    <mat-icon> chevron_left </mat-icon>
+  </button>
   <mat-accordion #accordion="matAccordion" [multi]="true">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -46,7 +50,7 @@
               <mat-option [value]="6">Desenvolvedor Angular</mat-option>
               <mat-option [value]="7">Desenvolvedor React</mat-option>
               <mat-option [value]="8">Desenvolvedor C#</mat-option>
-              <mat-option [value]="9">Desenvolvedor  Java</mat-option>
+              <mat-option [value]="9">Desenvolvedor Java</mat-option>
               <mat-option [value]="10">Desenvolvedor PHP</mat-option>
               <mat-option [value]="11">Desenvolvedor Node</mat-option>
               <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
@@ -66,22 +70,21 @@
             />
           </mat-form-field>
           <mat-checkbox
-          *ngIf="method === 'edit'"
+            *ngIf="method === 'edit'"
             style="disabled"
             fxFlex="30"
             fxLayoutAlign="start start"
             class="checkbox"
             color="primary"
             formControlName="isActive"
-            >Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo': 'Inativo'}}</mat-checkbox
+            >Recurso {{resourceForm.controls['isActive'].value == true ?
+            'Ativo': 'Inativo'}}</mat-checkbox
           >
         </form>
-      </mat-dialog-content>
-      <mat-dialog-actions>
+      
+    
         <div class="button-dialog">
-          <button mat-flat-button (click)="onNoClick()">
-            Cancelar
-          </button>
+          <button mat-flat-button (click)="onNoClick()">Cancelar</button>
           <button
             color="primary"
             [disabled]="resourceForm.invalid"
@@ -91,13 +94,15 @@
             Salvar
           </button>
         </div>
-      </mat-dialog-actions>
+      </mat-dialog-content>
     </mat-expansion-panel>
   </mat-accordion>
+
+
 </div>
 
 <div class="table-styles tab">
-  <div class="content-scroll">
+  <div>
     <div class="envolti-table mat-elevation-z4" fxLayout="column">
       <table mat-table [dataSource]="dataTable" #resourceTable>
         <ng-container matColumnDef="collaboratorId">
@@ -159,4 +164,6 @@
       </table>
     </div>
   </div>
+
+
 </div>

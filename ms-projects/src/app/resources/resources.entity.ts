@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { ActivitiesEntity } from '../activities/activities.entity';
 import { ProjectsEntity } from '../projects/projects.entity';
+import { Paper } from './dtos/paper.enum';
 
 @Entity({ name: 'resources' })
 export class ResourcesEntity {
@@ -16,7 +17,7 @@ export class ResourcesEntity {
   id: string;
 
   @Column()
-  paper: string;
+  paper: Paper;
 
   @Column()
   estimatedHours: string;
