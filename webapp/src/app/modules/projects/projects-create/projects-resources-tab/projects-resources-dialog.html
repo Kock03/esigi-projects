@@ -12,25 +12,10 @@
           <form [formGroup]="resourceForm" fxLayout="column">
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Colaborador</mat-label>
-              <input
-                type="text"
-                placeholder="Colaborador"
-                aria-label="text"
-                #filter
-                matInput
-                [matAutocomplete]="auto"
-                (input)="inputChange($event)"
-                [formControl]="collaboratorControl"
-              />
-              <mat-autocomplete
-                autoActiveFirstOption
-                #auto="matAutocomplete"
-                [displayWith]="displayFn"
-              >
-                <mat-option
-                  *ngFor="let collaborator of filteredCollaborators"
-                  [value]="collaborator"
-                >
+              <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
+                (input)="inputChange($event)" [formControl]="collaboratorControl" />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
                   {{collaborator.firstNameCorporateName}}
                 </mat-option>
               </mat-autocomplete>
@@ -59,34 +44,17 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Estimativa de Horas</mat-label>
-              <input
-                matInput
-                disableRipple
-                formControlName="estimatedHours"
-                placeholder="Estimativa de Horas"
-              />
+              <input matInput disableRipple formControlName="estimatedHours" placeholder="Estimativa de Horas" />
             </mat-form-field>
-            <mat-checkbox
-              *ngIf="method === 'edit'"
-              style="disabled"
-              fxFlex="30"
-              fxLayoutAlign="start start"
-              class="checkbox"
-              color="primary"
-              formControlName="isActive"
-              >Recurso {{resourceForm.controls['isActive'].value == true ?
-              'Ativo': 'Inativo'}}</mat-checkbox
-            >
+            <mat-checkbox *ngIf="method === 'edit'" style="disabled" fxFlex="30" fxLayoutAlign="start start"
+              class="checkbox" color="primary" formControlName="isActive">Recurso
+              {{resourceForm.controls['isActive'].value == true ?
+              'Ativo': 'Inativo'}}</mat-checkbox>
           </form>
 
           <div class="button-dialog">
             <button mat-flat-button (click)="onNoClick()">Cancelar</button>
-            <button
-              color="primary"
-              [disabled]="resourceForm.invalid"
-              mat-flat-button
-              (click)="saveResource()"
-            >
+            <button color="primary" [disabled]="resourceForm.invalid" mat-flat-button (click)="saveResource()">
               Salvar
             </button>
           </div>
@@ -102,7 +70,7 @@
           <ng-container matColumnDef="collaboratorId">
             <th mat-header-cell *matHeaderCellDef>Colaborador</th>
             <td mat-cell *matCellDef="let resource">
-              {{ resource.collaboratorId }}
+              {{ resource.collaborator.firstNameCorporateName }}
             </td>
           </ng-container>
 
@@ -120,40 +88,21 @@
 
           <ng-container matColumnDef="icon">
             <th mat-header-cell *matHeaderCellDef style="text-align: end">
-              <button
-                class="edit-button"
-                mat-flat-button
-                (click)="accordion.openAll()"
-              >
+              <button class="edit-button" mat-flat-button (click)="accordion.openAll()">
                 <mat-icon>add</mat-icon>
               </button>
             </th>
-            <td
-              class="button-tab"
-              mat-cell
-              *matCellDef="let resource; let index = index"
-            >
-              <button
-                (click)="getResource(resource, resource.id)"
-                class="table-button"
-                mat-button
-              >
+            <td class="button-tab" mat-cell *matCellDef="let resource; let index = index">
+              <button (click)="getResource(resource, resource.id)" class="table-button" mat-button>
                 <mat-icon>edit</mat-icon>
               </button>
 
-              <button
-                (click)="deleteResource(resource.id)"
-                class="table-button"
-                mat-button
-              >
+              <button (click)="deleteResource(resource.id)" class="table-button" mat-button>
                 <mat-icon>delete</mat-icon>
               </button>
             </td>
           </ng-container>
-          <tr
-            mat-header-row
-            *matHeaderRowDef="displayedColumns; sticky: true"
-          ></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>
@@ -162,7 +111,7 @@
 
 </div>
 <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
-  <button class="button" (click)="close()"   color="primary" mat-flat-button>
-     Voltar
+  <button class="button" (click)="close()" color="primary" mat-flat-button>
+    Voltar
   </button>
 </div>

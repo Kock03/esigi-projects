@@ -2,7 +2,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {  FindConditions, FindOneOptions, Repository } from 'typeorm';
+import { FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { NotFoundException } from '../exceptions/not-found-exception';
 import { ActivitiesEntity } from './activities.entity';
 import { CreateActivitieDto } from './dtos/create-activities.dto';
