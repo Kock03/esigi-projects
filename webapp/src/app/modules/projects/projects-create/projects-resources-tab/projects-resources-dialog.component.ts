@@ -8,10 +8,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTable } from '@angular/material/table';
 import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
 import { ICollaborator } from 'src/app/interfaces/icollaborator';
 import { IResource } from 'src/app/interfaces/iresource';
@@ -69,7 +69,7 @@ export class ProjectResourceDialog {
   ngOnInit(): void {
     const col = this.getCollaboratorList();
     this.activityId = sessionStorage.getItem('activity_id')!;
-    this.getResourceList();
+    this.getResourceList()
     this.initForm();
     this.initFilter();
   }
@@ -126,6 +126,12 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
+    // TODO - Revisar, esta sendo usado atividade, porém retorna todos 
+    // os relacionamentos, com projeto todo aninhado, o provider
+    // utilizado é de atividade, porém foi declarado uma constante
+    // como se fosse uma lista de recurso. e existe dados que não
+    // serão utilizados. pode se recuperar os recursos com o id da atividade
+    // assim retornando apenas uma lista de recurso direta
     this.dataTable = resourceList.resource;
   }
 

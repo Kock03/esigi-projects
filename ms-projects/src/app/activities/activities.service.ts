@@ -2,9 +2,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { resourceUsage } from 'process';
-import { first, retry } from 'rxjs';
-import { Any, FindConditions, FindOneOptions, Repository } from 'typeorm';
+import {  FindConditions, FindOneOptions, Repository } from 'typeorm';
 import { NotFoundException } from '../exceptions/not-found-exception';
 import { ActivitiesEntity } from './activities.entity';
 import { CreateActivitieDto } from './dtos/create-activities.dto';
@@ -36,37 +34,25 @@ export class ActivitiesService {
       const collaboratorIdList = activities.resource.map((resource) => {
         return resource.collaboratorId;
       });
+      // TODO - Substituir futuramente e remover o toPromise()
+      const collaborators = await this.httpService
+        .post('http://localhost:3501/api/v1/collaborators/list', {
+          idList: collaboratorIdList,
+        })
+        .toPromise();
 
-      const collaborators = this.httpService.post(
-        'http://localhost:3501/api/v1/collaborators/list',
-        { idList: collaboratorIdList },
-      );
-      collaborators.pipe(first()).subscribe((res) => {
-        if (res.data) {
-          return activities.resource.map((resource) => {
-            resource.collaboratorId = res.data.find(
-              (collaborator) => collaborator.id === resource.collaboratorId,
-            );
-            console.log(activities.resource);
-          });
-        }
-      });
-
-      // const collaboratorToArray = [];
-      // collaborators.forEach(function (item: any) {
-      //   collaboratorToArray.push(collaborators);
-      // });
-
-      // collaborators.pipe(first()).subscribe((res) => {
-      //   if (res.data) {
-      //     activities.resource.map((resource) => {
-      //       resource.collaboratorId = collaboratorToArray.find(
-      //         (collaborator) => collaborator.id === resource.collaboratorId,
-      //       );
-      //       return resource;
-      //     });
-      //   }
-      // });
+      if (collaborators.data) {
+        activities.resource.map((resource) => {
+          const collaborator = collaborators.data.find(
+            (collaborator) => collaborator.id === resource.collaboratorId,
+          );
+          resource.collaborator = {
+            firstNameCorporateName: collaborator.firstNameCorporateName,
+            lastNameFantasyName: collaborator.lastNameFantasyName,
+          };
+          return resource;
+        });
+      }
       return activities;
     } catch {
       throw new NotFoundException();

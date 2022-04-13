@@ -1,20 +1,19 @@
 import {
   Component,
   EventEmitter,
-  Input,
   OnInit,
   Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { ProjectProvider } from 'src/providers/project.provider';
 import { ProjectActivityDialog } from './projects-activities-dialog.component';
 import { ProjectResourceDialog } from './projects-resources-dialog.component';
-import { ResourceProvider} from 'src/providers/resource.provider';
+import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
@@ -57,26 +56,25 @@ export class ProjectsResourcesTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.method = sessionStorage.getItem('method')!  
-    if(this.method === 'edit'){
+    this.method = sessionStorage.getItem('method')!;
+    if (this.method === 'edit') {
       this.getActivityList();
     }
-   
+
     // if (this.activityArray.value.length > 0) {
     //   this.data = this.activityArray.value;
     // }
     // this.initObservables();
   }
-
   async getActivityList() {
     this.projectId = sessionStorage.getItem('project_id');
     const activity = await this.projectProvider.findOne(this.projectId);
-    console.log("🚀 ~ file: projects-resources-tab.component.ts ~ line 68 ~ ProjectsResourcesTabComponent ~ getActivityList ~ activity", activity)
     this.data = activity.activities;
     console.log(this.data);
   }
 
-  async getResourceList(){
+  async getResourceList() {
+    // TODO - Revisar a mesma questão de mapeamento e uso de dados aqui
     this.projectId = sessionStorage.getItem('project_id');
     const ressource = await this.resourceProvider.findOne(this.projectId);
     this.data = ressource.ressources;
@@ -142,7 +140,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
       }
     });
   }
-
 
   async deleteActivity(id: string) {
     const options = {
