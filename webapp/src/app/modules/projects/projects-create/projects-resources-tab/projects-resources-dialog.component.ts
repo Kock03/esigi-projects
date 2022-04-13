@@ -6,6 +6,7 @@ import {
   Input,
   Output,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -23,6 +24,7 @@ import { SnackBarService } from 'src/services/snackbar.service';
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
   styleUrls: ['projects-resources-dialog.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProjectResourceDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();

@@ -1,4 +1,7 @@
 .button {
-  border-radius: 10px;
-  margin-right: 10px;
+  background-color: #673ab7;
+}
+.content {
+  overflow: auto;
+  height: calc(50vh - 100px);
 }
