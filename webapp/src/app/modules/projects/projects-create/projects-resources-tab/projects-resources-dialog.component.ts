@@ -171,6 +171,7 @@ export class ProjectResourceDialog {
 
   close(){
     this.dialogRef.close();
+    sessionStorage.clear;
   }
 
   async saveResource() {
