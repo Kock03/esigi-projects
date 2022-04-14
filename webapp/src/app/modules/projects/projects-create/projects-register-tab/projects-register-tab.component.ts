@@ -58,10 +58,6 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.projectId = this.route.snapshot.paramMap.get('id');
 
     this.projectType = sessionStorage.getItem('project_type');
-    console.log(
-      '🚀 ~ file: projects-register-tab.component.ts ~ line 20 ~ ProjectsRegisterTabComponent ~ ngOnInit ~  this.projectType',
-      this.projectType
-    );
 
     this.codeInputDisabled.disable();
   }

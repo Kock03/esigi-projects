@@ -74,27 +74,8 @@ export class ProjectResourceDialog {
     this.initFilter();
   }
 
-  async searchCollaborators(query?: string) {
-    try {
-      this.collaborators = await this.collaboratorProvider.findByName(query);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  initFilter() {
-    fromEvent(this.filter.nativeElement, 'keyup')
-      .pipe(debounceTime(200), distinctUntilChanged())
-
-      .subscribe((res) => {
-        this.filteredCollaborators = this.collaborators.filter((collaborator) =>
-          collaborator.firstNameCorporateName
-            .toLocaleLowerCase()
-            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
-        );
-        const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
-        this.searchCollaborators(params);
-      });
+  async getCollaboratorList() {
+    this.collaborators = await this.collaboratorProvider.findActive();
   }
 
   inputChange(text: any) {
@@ -124,15 +105,27 @@ export class ProjectResourceDialog {
     ));
   }
 
-  async getResourceList() {
-    const resourceList = await this.activityProvider.findOne(this.activityId);
-    // TODO - Revisar, esta sendo usado atividade, porém retorna todos 
-    // os relacionamentos, com projeto todo aninhado, o provider
-    // utilizado é de atividade, porém foi declarado uma constante
-    // como se fosse uma lista de recurso. e existe dados que não
-    // serão utilizados. pode se recuperar os recursos com o id da atividade
-    // assim retornando apenas uma lista de recurso direta
-    this.dataTable = resourceList.resource;
+  initFilter() {
+    fromEvent(this.filter.nativeElement, 'keyup')
+      .pipe(debounceTime(200), distinctUntilChanged())
+
+      .subscribe((res) => {
+        this.filteredCollaborators = this.collaborators.filter((collaborator) =>
+          collaborator.firstNameCorporateName
+            .toLocaleLowerCase()
+            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+        );
+        const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
+        this.searchCollaborators(params);
+      });
+  }
+
+  async searchCollaborators(query?: string) {
+    try {
+      this.collaborators = await this.collaboratorProvider.findByName(query);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   initForm(): void {
@@ -163,15 +156,15 @@ export class ProjectResourceDialog {
     this.Accordion.openAll();
   }
 
-  onNoClick(): void {
-    this.method = '';
-    this.Accordion.closeAll();
-    this.initForm();
-  }
-
-  close(){
-    this.dialogRef.close();
-    sessionStorage.clear;
+  async getResourceList() {
+    const resourceList = await this.activityProvider.findOne(this.activityId);
+    // TODO - Revisar, esta sendo usado atividade, porém retorna todos 
+    // os relacionamentos, com projeto todo aninhado, o provider
+    // utilizado é de atividade, porém foi declarado uma constante
+    // como se fosse uma lista de recurso. e existe dados que não
+    // serão utilizados. pode se recuperar os recursos com o id da atividade
+    // assim retornando apenas uma lista de recurso direta
+    this.dataTable = resourceList.resource;
   }
 
   async saveResource() {
@@ -238,7 +231,16 @@ export class ProjectResourceDialog {
     this.step = index;
   }
 
-  async getCollaboratorList() {
-    this.collaborators = await this.collaboratorProvider.findActive();
+  onNoClick(): void {
+    this.method = '';
+    this.Accordion.closeAll();
+    this.initForm();
   }
+
+  close(){
+    this.dialogRef.close();
+    sessionStorage.clear;
+  }
+
+
 }
