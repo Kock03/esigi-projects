@@ -8,7 +8,12 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
@@ -64,12 +69,12 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
     this.activityId = sessionStorage.getItem('activity_id')!;
-    this.getResourceList()
+    this.getResourceList();
     this.initForm();
     this.initFilter();
   }
@@ -171,7 +176,10 @@ export class ProjectResourceDialog {
     const data = this.resourceForm.getRawValue();
     console.log(data);
     if (this.method === 'edit') {
-      console.log("🚀 ~ file: projects-resources-dialog.component.ts ~ line 161 ~ ProjectResourceDialog ~ saveResource ~ this.method ", this.method )
+      console.log(
+        '🚀 ~ file: projects-resources-dialog.component.ts ~ line 161 ~ ProjectResourceDialog ~ saveResource ~ this.method ',
+        this.method
+      );
       try {
         const resource = await this.resourceProvider.update(
           this.resourceId,
@@ -180,7 +188,6 @@ export class ProjectResourceDialog {
         this.method = '';
         this.Accordion.closeAll();
         this.initForm();
-
         this.getResourceList();
       } catch (error: any) {
         console.log('ERROR 132' + error);
@@ -192,14 +199,13 @@ export class ProjectResourceDialog {
         this.Accordion.closeAll();
         this.initForm();
         this.getResourceList();
+        this.collaboratorControl.reset();
       } catch (error: any) {
         console.log('ERROR 132' + error);
       }
     }
   }
 
-
-  
   async deleteResource(id: string) {
     const options = {
       data: {
