@@ -16,7 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { PortalComponent } from './portal/portal/portal.component';
+import { PortalComponent } from './portal/portal.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProjectsCreateComponent } from './projects-create/projects-create.component';
@@ -27,6 +27,7 @@ import { ProjectActivityDialog } from './projects-create/projects-resources-tab/
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 const routes: Routes = [
   {

@@ -60,11 +60,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
     if (this.method === 'edit') {
       this.getActivityList();
     }
-
-    // if (this.activityArray.value.length > 0) {
-    //   this.data = this.activityArray.value;
-    // }
-    // this.initObservables();
   }
   async getActivityList() {
     this.projectId = sessionStorage.getItem('project_id');
@@ -81,23 +76,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     console.log(this.data);
   }
 
-  // initObservables() {
-  //   this.activityArray.valueChanges.subscribe((res) => {
-  //     const isNullIndex = this.activityArray.value.findIndex(
-  //       (activity: any) => activity == null
-  //     );
-  //     if (isNullIndex !== -1) {
-  //       this.activityArray.removeAt(isNullIndex);
-  //     }
-  //     if (res) {
-  //       this.data = this.activityArray.value;
-  //     }
-  //   });
-  // }
 
-  next() {
-    this.onChange.next(true);
-  }
 
   openDialog() {
     this.method = 'add';
@@ -166,5 +145,9 @@ export class ProjectsResourcesTabComponent implements OnInit {
         }
       }
     });
+  }
+
+  next() {
+    this.onChange.next(true);
   }
 }

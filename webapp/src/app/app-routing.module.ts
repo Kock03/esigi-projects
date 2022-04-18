@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { PortalComponent } from './modules/projects/portal/portal/portal.component';
-import { ProjectsCreateComponent } from './modules/projects/projects-create/projects-create.component';
-import { ProjectsListComponent } from './modules/projects/projects-list/projects-list.component';
+import { PortalComponent } from './modules/projects/portal/portal.component';
+
 
 const routes: Routes = [
   {

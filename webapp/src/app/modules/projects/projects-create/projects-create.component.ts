@@ -29,8 +29,6 @@ export class ProjectsCreateComponent implements OnInit {
   Resources!: any;
   projectType: any;
   projectId!: string | null;
-  // method: string = '';
-  // accordion!: MatAccordion;
 
   validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
