@@ -3,7 +3,6 @@ import {
   ElementRef,
   EventEmitter,
   Inject,
-  Input,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -69,7 +68,7 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const col = this.getCollaboratorList();
@@ -243,7 +242,7 @@ export class ProjectResourceDialog {
     this.initForm();
   }
 
-  close(){
+  close() {
     this.dialogRef.close();
     sessionStorage.clear;
   }
