@@ -29,8 +29,6 @@ export class ProjectsCreateComponent implements OnInit {
   Resources!: any;
   projectType: any;
   projectId!: string | null;
-  // method: string = '';
-  // accordion!: MatAccordion;
 
   validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
@@ -40,7 +38,7 @@ export class ProjectsCreateComponent implements OnInit {
     private fb: FormBuilder,
     private projectProvider: ProjectProvider,
     private snackbarService: SnackBarService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     if (sessionStorage.getItem('project_tab') !== undefined) {
@@ -77,7 +75,11 @@ export class ProjectsCreateComponent implements OnInit {
   initForm(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
+<<<<<<< HEAD
       code: ['15', Validators.required], //id
+=======
+      code: [786, Validators.required], //id
+>>>>>>> e606e995abb26dc6655d4ac1bdef1bd0f5365a7d
       responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
@@ -161,7 +163,7 @@ export class ProjectsCreateComponent implements OnInit {
     return isValid;
   }
 
-  handleChanges(value: any): void {}
+  handleChanges(value: any): void { }
 
   goBackProjects() {
     sessionStorage.clear();

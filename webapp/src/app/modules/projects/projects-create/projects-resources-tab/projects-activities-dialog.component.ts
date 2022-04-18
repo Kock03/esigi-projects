@@ -81,10 +81,6 @@ export class ProjectActivityDialog {
     }
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   async save() {
     const data = this.activityForm.getRawValue();
     if (this.method === 'add') {
@@ -106,5 +102,9 @@ export class ProjectActivityDialog {
         console.log('ERROR 132' + error);
       }
     }
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

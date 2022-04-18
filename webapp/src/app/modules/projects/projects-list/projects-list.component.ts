@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
@@ -44,15 +43,6 @@ export class ProjectsListComponent implements OnInit {
     this.initFilter();
   }
 
-  async searchProjects(query?: string) {
-    try {
-      this.projects = await this.projectsProvider.findByName(query);
-      console.log(this.projects);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   initFilter() {
     fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(debounceTime(200), distinctUntilChanged())
@@ -70,6 +60,45 @@ export class ProjectsListComponent implements OnInit {
 
         }
       });
+  }
+  async searchProjects(query?: string) {
+    try {
+      this.projects = await this.projectsProvider.findByName(query);
+      console.log(this.projects);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  createProject() {
+    this.router.navigate(['projeto/tipo']);
+  }
+
+  async selectList(ev: any) {
+    if (ev.value == 1) {
+      return (this.filteredProjectList = this.projects =
+        await this.projectsProvider.findAll());
+    }
+  }
+
+  async getProjectList() {
+    this.filteredProjectList.data = this.projects =
+      await this.projectsProvider.findAll();
+  }
+
+  async editProject(projectSelected: any, projectId: string) {
+    this.method = 'edit'
+    this.project = projectSelected;
+    console.log(this.project);
+    if (this.project.type === 3) {
+      const type = 1;
+      sessionStorage.setItem('project_type', type.toString());
+    } else {
+      sessionStorage.setItem('project_type', this.project.type.toString());
+    }
+    sessionStorage.setItem('project_id', projectId);
+    sessionStorage.setItem('method', this.method);
+    this.router.navigate([`projetos/${projectId}`]);
   }
 
   async deleteProject(projectId: any) {
@@ -97,44 +126,5 @@ export class ProjectsListComponent implements OnInit {
         }
       }
     });
-  }
-
-  async selectList(ev: any) {
-    if (ev.value == 1) {
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.findAll());
-    }
-    // if (ev.value == 2) {
-    //   return (this.filteredProjectList = this.projects =
-    //     await this.projectsProvider.findActive());
-    // }
-    // if (ev.value == 3) {
-    //   return (this.filteredProjectList = this.projects =
-    //     await this.projectsProvider.findInactive());
-    // }
-  }
-
-  createProject() {
-    this.router.navigate(['projeto/tipo']);
-  }
-
-  async getProjectList() {
-    this.filteredProjectList.data = this.projects =
-      await this.projectsProvider.findAll();
-  }
-
-  async editProject(projectSelected: any, projectId: string) {
-    this.method = 'edit'
-    this.project = projectSelected;
-    console.log(this.project);
-    if (this.project.type === 3) {
-      const type = 1;
-      sessionStorage.setItem('project_type', type.toString());
-    } else {
-      sessionStorage.setItem('project_type', this.project.type.toString());
-    }
-    sessionStorage.setItem('project_id', projectId);
-    sessionStorage.setItem('method', this.method);
-    this.router.navigate([`projetos/${projectId}`]);
   }
 }
