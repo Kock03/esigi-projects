@@ -25,11 +25,6 @@ export class UpdateProjectDto {
   name: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  @ApiProperty()
-  code: number; //id: string
-
-  @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)
   @IsString()
