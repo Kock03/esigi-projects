@@ -40,7 +40,7 @@ export class ProjectsCreateComponent implements OnInit {
     private fb: FormBuilder,
     private projectProvider: ProjectProvider,
     private snackbarService: SnackBarService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     if (sessionStorage.getItem('project_tab') !== undefined) {
@@ -77,7 +77,7 @@ export class ProjectsCreateComponent implements OnInit {
   initForm(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
-      code: ['', Validators.required], //id
+      code: [736, Validators.required], //id
       responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
@@ -161,7 +161,7 @@ export class ProjectsCreateComponent implements OnInit {
     return isValid;
   }
 
-  handleChanges(value: any): void {}
+  handleChanges(value: any): void { }
 
   goBackProjects() {
     sessionStorage.clear();
