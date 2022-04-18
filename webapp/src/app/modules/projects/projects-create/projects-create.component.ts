@@ -75,11 +75,7 @@ export class ProjectsCreateComponent implements OnInit {
   initForm(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
-<<<<<<< HEAD
       code: ['15', Validators.required], //id
-=======
-      code: [786, Validators.required], //id
->>>>>>> e606e995abb26dc6655d4ac1bdef1bd0f5365a7d
       responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
