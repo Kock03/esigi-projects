@@ -1,7 +1,21 @@
-.button {
-  background-color: #673ab7;
+#resourceDialog{
+  max-width: 100%;
+
+  .button {
+    background-color: #673ab7;
+  }
+  .content-scroll-resource {
+    overflow: auto;
+    height: calc(100vh - 300px);
+  }
+
+  #resourceDialogTable {
+    width: 600px;
+    max-height: 600px;
+    width: 100%;
+
+
+    border-radius: 10px;
+  }
 }
-.content {
-  overflow: auto;
-  height: calc(49vh - 90px);
-}
+

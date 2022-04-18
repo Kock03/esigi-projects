@@ -24,6 +24,7 @@ import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
+
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
