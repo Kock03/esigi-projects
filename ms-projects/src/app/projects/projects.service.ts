@@ -13,7 +13,9 @@ export class ProjectsService {
   constructor(
     @InjectRepository(ProjectsEntity)
     private readonly projectsRepository: Repository<ProjectsEntity>,
-  ) { }
+  ) { 
+      projectsRepository : { useSoftDelete: true };
+  }
 
   async findAll() {
     return await this.projectsRepository.find();

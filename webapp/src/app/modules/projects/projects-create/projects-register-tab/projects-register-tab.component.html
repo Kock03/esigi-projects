@@ -80,8 +80,7 @@
         <mat-form-field *ngIf="projectType === '1'" floatLabel="always" style="disabled" fxFlex="70"
           appearance="outline">
           <mat-label>Valor do Projeto</mat-label>
-          <input matInput type="number" formControlName="value" class="example-right-align" placeholder="00,00">
-          <span matPrefix>R$&nbsp;</span>
+          <input matInput type="number" formControlName="value" class="example-right-align">
         </mat-form-field>
         <mat-checkbox *ngIf="projectType === '1'" style="disabled" fxFlex="30" fxLayoutAlign="center start"
           class="checkbox" color="primary" formControlName="hourControl">Controle de horas</mat-checkbox>

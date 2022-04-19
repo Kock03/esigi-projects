@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { ActivitiesEntity } from 'src/app/activities/activities.entity';
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -67,4 +68,9 @@ export class ProjectsEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @BeforeInsert()
+  InsertCode() {
+    this.code = Math.floor(Math.random() * 65536);
+  }
 }
