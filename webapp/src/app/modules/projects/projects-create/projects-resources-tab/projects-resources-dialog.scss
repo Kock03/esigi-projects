@@ -9,13 +9,30 @@
     height: calc(100vh - 300px);
   }
 
-  #resourceDialogTable {
-    width: 600px;
-    max-height: 600px;
-    width: 100%;
-
-
+  .envolti-table  {
+    margin-top: 0;
+    height: 250px;
     border-radius: 10px;
+    max-width: 100%;
+    width: 640px !important;
   }
-}
 
+  .formBox{
+    padding: 30px;
+  }
+
+  .resourcesButton{
+    margin-top: 25px;
+  }
+
+  .buttonSaveAndCancel{
+    margin-top: 20px;
+  }
+
+
+
+};
+
+.mat-select-panel{
+  max-height: 150px!important;
+}

@@ -27,6 +27,7 @@ import { ProjectActivityDialog } from './projects-create/projects-resources-tab/
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 const routes: Routes = [
@@ -78,6 +79,7 @@ const routes: Routes = [
     MatDialogModule,
     MatExpansionModule,
     MatAutocompleteModule,
+    MatMenuModule,
   ],
   entryComponents: [
     ProjectsCreateComponent,
