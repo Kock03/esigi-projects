@@ -9,7 +9,7 @@
         <mat-dialog-content class="mat-typography">
           <form [formGroup]="resourceForm" fxLayout="column">
             <div fxFlex="100" fxLayoutGap="16px">
-              <mat-form-field fxFlex="34" class="example-full-width" appearance="fill">
+              <mat-form-field *ngIf="this.method !== 'edit'" fxFlex="34" class="example-full-width" appearance="fill">
                 <mat-label>Colaborador</mat-label>
                 <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
                   (input)="inputChange($event)" [formControl]="collaboratorControl" />
@@ -18,6 +18,10 @@
                     {{collaborator.firstNameCorporateName}}
                   </mat-option>
                 </mat-autocomplete>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.method === 'edit'" fxFlex="34" class="example-full-width" appearance="fill">
+                <mat-label>Colaborador</mat-label>
+                <input disabled matInput disableRipple [value]="this.collaboratorControl.value" />
               </mat-form-field>
 
               <mat-form-field fxFlex="33" appearance="outline">
@@ -54,7 +58,7 @@
               'Ativo': 'Inativo'}}</mat-checkbox>
           </form>
 
-          <div fxLayoutAlign="center end">
+          <div  fxLayoutAlign="center end">
             <button mat-flat-button (click)="onNoClick()">Cancelar</button>
             <button color="primary" [disabled]="resourceForm.invalid" mat-flat-button (click)="saveResource()">
               Salvar
@@ -125,7 +129,7 @@
                 </button>
               </th>
               <td class="button-tab" mat-cell *matCellDef="let resource; let index = index">
-                <button (click)="getResource(resource, resource.id)" class="table-button" mat-button>
+                <button (click)="getResource(resource, resource.id, resource.collaborator.firstNameCorporateName )" class="table-button" mat-button>
                   <mat-icon>edit</mat-icon>
                 </button>
 

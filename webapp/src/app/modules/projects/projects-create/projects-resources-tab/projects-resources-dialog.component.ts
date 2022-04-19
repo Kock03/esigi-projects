@@ -154,11 +154,11 @@ export class ProjectResourceDialog {
     });
   }
 
-  getResource(resourceSelected: any, id: string) {
+  getResource(resourceSelected: any, id: string, collaborator: string) {
     this.method = 'edit';
     this.resourceId = id;
+    this.collaboratorControl.patchValue(collaborator);
     this.resourceForm.patchValue(resourceSelected);
-    this.Accordion.openAll();
   }
 
   async getResourceList() {
@@ -186,7 +186,6 @@ export class ProjectResourceDialog {
           data
         );
         this.method = '';
-        this.Accordion.closeAll();
         this.initForm();
         this.getResourceList();
       } catch (error: any) {
@@ -196,7 +195,6 @@ export class ProjectResourceDialog {
       try {
         const resource = await this.resourceProvider.store(data);
 
-        this.Accordion.closeAll();
         this.initForm();
         this.getResourceList();
         this.collaboratorControl.reset();
@@ -204,6 +202,7 @@ export class ProjectResourceDialog {
         console.log('ERROR 132' + error);
       }
     }
+    this.method = '';
   }
 
   async deleteResource(id: string) {
@@ -239,8 +238,10 @@ export class ProjectResourceDialog {
 
   onNoClick(): void {
     this.method = '';
-    this.Accordion.closeAll();
-    this.initForm();
+    this.getResourceList();
+    this.initForm()
+    this.collaboratorControl.reset();
+    this.method = '';
   }
 
   close() {
