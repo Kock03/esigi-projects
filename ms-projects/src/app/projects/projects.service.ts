@@ -13,7 +13,9 @@ export class ProjectsService {
   constructor(
     @InjectRepository(ProjectsEntity)
     private readonly projectsRepository: Repository<ProjectsEntity>,
-  ) { }
+  ) {
+    projectsRepository: { useSoftDelete: true };
+  }
 
   async findAll() {
     return await this.projectsRepository.find();
@@ -41,6 +43,29 @@ export class ProjectsService {
         { client: Like(`${query.client}%`) },
         { managerEnvoltiProjectManager: Like(`${query.managerEnvoltiProjectManager}%`) },]
     });
+  }
+
+  async findStop() {
+    return await this.projectsRepository
+      .createQueryBuilder('projects')
+      .where('projects.status = 3')
+      .getMany();
+  }
+
+
+  async findActive() {
+    return await this.projectsRepository
+      .createQueryBuilder('projects')
+      .where('projects.status = 1')
+      .getMany();
+  }
+
+
+  async findSet() {
+    return await this.projectsRepository
+      .createQueryBuilder('projects')
+      .where('projects.status = 2')
+      .getMany();
   }
 
 

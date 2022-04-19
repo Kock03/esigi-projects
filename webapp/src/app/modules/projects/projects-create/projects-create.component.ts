@@ -75,10 +75,10 @@ export class ProjectsCreateComponent implements OnInit {
   initForm(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
-      code: [736, Validators.required], //id
       responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
+      code: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
       hourControl: [null, Validators.required],

@@ -26,10 +26,8 @@ export class CreateProjectDto {
   @ApiProperty()
   name: string;
 
-  @IsNotEmpty()
-  @IsNumber()
   @ApiProperty()
-  code: number; //id: string
+  code: number;
 
   @IsNotEmpty()
   @MinLength(3)
@@ -55,7 +53,7 @@ export class CreateProjectDto {
 
   @IsNotEmpty()
   @ApiProperty()
-  contractedHours: number;
+  contractedHours: Double;
 
   @IsOptional()
   @IsNumber()

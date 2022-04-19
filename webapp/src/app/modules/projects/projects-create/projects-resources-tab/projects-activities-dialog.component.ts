@@ -38,10 +38,9 @@ export class PickDateAdapter extends NativeDateAdapter {
 @Component({
   selector: 'projects-activities-dialog',
   templateUrl: 'projects-activities-dialog.html',
-  styleUrls: ['projects-activities-dialog.scss'],
   providers: [
     { provide: DateAdapter, useClass: PickDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },
+  { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },
   ],
 })
 export class ProjectActivityDialog {
@@ -61,7 +60,7 @@ export class ProjectActivityDialog {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private activityProvider: ActivityProvider
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.method = sessionStorage.getItem('method')!;
