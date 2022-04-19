@@ -24,6 +24,9 @@ export class UpdateProjectDto {
   @ApiProperty()
   name: string;
 
+  
+  code: number;
+
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)

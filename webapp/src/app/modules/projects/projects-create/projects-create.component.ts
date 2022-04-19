@@ -78,6 +78,7 @@ export class ProjectsCreateComponent implements OnInit {
       responsible: [null, Validators.required],
       client: ['', Validators.required],
       type: [null, Validators.required],
+      code: [null, Validators.required],
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
       hourControl: [null, Validators.required],

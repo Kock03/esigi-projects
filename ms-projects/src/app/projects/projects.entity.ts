@@ -37,8 +37,8 @@ export class ProjectsEntity {
   @Column({ nullable: true })
   endDate: Date;
 
-  @Column()
-  contractedHours: number;
+  @Column({ type: 'double' })
+  contractedHours: Double;
 
   @Column({ type: 'double', nullable: true })
   value: Double;
