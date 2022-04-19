@@ -17,7 +17,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PortalComponent } from './portal/portal.component';
-import { NgxMaskModule } from 'ngx-mask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProjectsCreateComponent } from './projects-create/projects-create.component';
 import { ProjectsRegisterTabComponent } from './projects-create/projects-register-tab/projects-register-tab.component';
@@ -27,6 +26,8 @@ import { ProjectActivityDialog } from './projects-create/projects-resources-tab/
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+
 
 
 const routes: Routes = [
@@ -73,9 +74,9 @@ const routes: Routes = [
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMaskModule,
     MatCheckboxModule,
     MatDialogModule,
+    NgxMaskModule,
     MatExpansionModule,
     MatAutocompleteModule,
   ],

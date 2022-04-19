@@ -24,7 +24,7 @@ import { SnackBarService } from 'src/services/snackbar.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
-
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,7 @@ import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.
     MatButtonModule,
     MatSidenavModule,
     MatTableModule,
-    NgxMaskModule,
+    NgxMaskModule.forRoot(),
     HttpClientModule,
     MatSnackBarModule,
     ConfirmDialogModule,
