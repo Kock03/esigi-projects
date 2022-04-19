@@ -30,6 +30,21 @@ export class ProjectsController {
     return this.projectsService.findProject(query);
   }
 
+  @Get('list/active')
+  async findActive() {
+    return await this.projectsService.findActive();
+  }
+
+  @Get('list/stop')
+  async findStop() {
+    return await this.projectsService.findStop();
+  }
+
+  @Get('list/set')
+  async findSet() {
+    return await this.projectsService.findSet();
+  }
+
 
   @Post()
   async store(@Body() body: CreateProjectDto) {
