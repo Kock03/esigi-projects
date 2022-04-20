@@ -18,11 +18,10 @@ export class ProjectsListComponent implements OnInit {
   @ViewChild('filter', { static: true }) filter!: ElementRef;
 
   displayedProjects: string[] = [
-    'type',
     'name',
     'client',
-    'managerEnvoltiProjectManager',
-    'icon',
+    'startDate',
+    'status',
   ];
 
   filteredProjectList = new MatTableDataSource();
