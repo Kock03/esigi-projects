@@ -30,9 +30,9 @@ export class ProjectsController {
     return this.projectsService.findProject(query);
   }
 
-  @Get('list/:number')
-  async findStatus(@Param('number') number: string) {
-    return await this.projectsService.findStatus(number);
+  @Get('find')
+  async findStatus(@Query() query: any) {
+    return await this.projectsService.findStatus(query);
   }
 
   @Post()

@@ -29,6 +29,7 @@ export class ProjectsCreateComponent implements OnInit {
   Resources!: any;
   projectType: any;
   projectId!: string | null;
+  method: string = '';
 
   validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
 
@@ -106,11 +107,14 @@ export class ProjectsCreateComponent implements OnInit {
 
     try {
       const project = await this.projectProvider.store(data);
-
       this.snackbarService.successMessage('Projeto cadastrado com sucesso');
       sessionStorage.setItem('project_id', project.id);
       this.navigate('next');
       console.log(data);
+      this.method = 'edit'
+      sessionStorage.setItem('method', this.method);
+      this.router.navigate([`projetos/${project.id}`]);
+      this.projectId = project.id;
     } catch (error: any) {
       this.snackbarService.showError(
         error.error?.message ?? 'Ocorreu um erro, tente novamente'
@@ -139,6 +143,7 @@ export class ProjectsCreateComponent implements OnInit {
       this.step -= 1;
     } else if (this.checkValid() && this.step < 4 && direction === 'next') {
       this.step += 1;
+
     } else {
       this.snackbarService.showAlert('Verifique os campos');
     }

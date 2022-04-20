@@ -38,17 +38,15 @@ export class ProjectsService {
     return this.projectsRepository.find({
       where: [
         { name: Like(`${query.name}%`) },
-        { code: Like(`${query.code}%`) }, //id
-        { responsible: Like(`${query.responsible}%`) },
-        { client: Like(`${query.client}%`) },
-        { managerEnvoltiProjectManager: Like(`${query.managerEnvoltiProjectManager}%`) },]
+        { status: (`${query.status}%`) },]
     });
   }
 
-  async findStatus(number: string) {
+  async findStatus(query) {
     return await this.projectsRepository
       .createQueryBuilder('projects')
-      .where(`projects.status = ${number}`)
+      .where("projects.name = :name", { name: Like(`${query.name}%`) })
+      .andWhere("projects.status = :status", { status: (`${query.status}%`) })
       .getMany();
   }
 
