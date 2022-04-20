@@ -75,12 +75,12 @@ export class ProjectsListComponent implements OnInit {
     this.router.navigate(['projeto/tipo']);
   }
 
-  async selectList(ev: any) {
-    if (ev.value == 1) {
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.findAll());
-    }
-  }
+  // async selectList(ev: any) {
+  //   if (ev.value == 1) {
+  //     return (this.filteredProjectList = this.projects =
+  //       await this.projectsProvider.findAll());
+  //   }
+  // }
 
   async getProjectList() {
     this.filteredProjectList.data = this.projects =
@@ -100,6 +100,17 @@ export class ProjectsListComponent implements OnInit {
     sessionStorage.setItem('project_id', projectId);
     sessionStorage.setItem('method', this.method);
     this.router.navigate([`projetos/${projectId}`]);
+  }
+
+  async selectList(ev: any) {
+    if (ev.value == 4) {
+      return (this.filteredProjectList = this.projects =
+        await this.projectsProvider.findAll());
+    }
+     else {
+      return (this.filteredProjectList = this.projects =
+        await this.projectsProvider.findStatus(ev.value.toString()));
+      }
   }
 
   async deleteProject(projectId: any) {
