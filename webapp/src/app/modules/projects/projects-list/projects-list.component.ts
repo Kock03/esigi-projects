@@ -22,7 +22,7 @@ export class ProjectsListComponent implements OnInit {
     'client',
     'managerEnvoltiProjectManager',
     'startDate',
-    'status', 
+    'status',
     'icon',
   ];
 
@@ -64,7 +64,7 @@ export class ProjectsListComponent implements OnInit {
   }
   async searchProjects(query?: string) {
     try {
-      this.projects = await this.projectsProvider.findByName(query);
+      this.filteredProjectList = await this.projectsProvider.findByName(query);
       console.log(this.projects);
     } catch (error) {
       console.error(error);
@@ -74,13 +74,6 @@ export class ProjectsListComponent implements OnInit {
   createProject() {
     this.router.navigate(['projeto/tipo']);
   }
-
-  // async selectList(ev: any) {
-  //   if (ev.value == 1) {
-  //     return (this.filteredProjectList = this.projects =
-  //       await this.projectsProvider.findAll());
-  //   }
-  // }
 
   async getProjectList() {
     this.filteredProjectList.data = this.projects =
@@ -107,10 +100,10 @@ export class ProjectsListComponent implements OnInit {
       return (this.filteredProjectList = this.projects =
         await this.projectsProvider.findAll());
     }
-     else {
+    else {
       return (this.filteredProjectList = this.projects =
         await this.projectsProvider.findStatus(ev.value.toString()));
-      }
+    }
   }
 
   async deleteProject(projectId: any) {
