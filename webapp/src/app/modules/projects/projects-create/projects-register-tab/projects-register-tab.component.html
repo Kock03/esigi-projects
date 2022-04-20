@@ -80,7 +80,7 @@
         <mat-form-field *ngIf="projectType === '1'" floatLabel="always" style="disabled" fxFlex="70"
           appearance="outline">
           <mat-label>Valor do Projeto</mat-label>
-          <input matInput  prefix="R$" type="text" mask="dot_separator.2" thousandSeparator="." separatorLimit="100000000" formControlName="value" class="example-right-align">
+          <input matInput  prefix="R$" type="text" mask="separator.2" thousandSeparator="." separatorLimit="100000000" formControlName="value" class="example-right-align">
           <!-- <mat-icon matPrefix style="cursor: pointer">attach_money</mat-icon> -->
         </mat-form-field>
         <mat-checkbox *ngIf="projectType === '1'" style="disabled" fxFlex="30" fxLayoutAlign="center start"
