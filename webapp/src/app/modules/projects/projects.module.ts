@@ -26,12 +26,10 @@ import { ProjectActivityDialog } from './projects-create/projects-resources-tab/
 import { ProjectResourceDialog } from './projects-create/projects-resources-tab/projects-resources-dialog.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-<<<<<<< HEAD
-import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
+import { MatMenuModule } from '@angular/material/menu';
 
-=======
-import {MatMenuModule} from '@angular/material/menu';
->>>>>>> 3ae0d2af1e0810cbef37f18887d96681c4d0865b
+
 
 
 const routes: Routes = [
@@ -80,7 +78,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatCheckboxModule,
     MatDialogModule,
-    NgxMaskModule,
+    NgxMaskModule.forRoot(),
     MatExpansionModule,
     MatAutocompleteModule,
     MatMenuModule,

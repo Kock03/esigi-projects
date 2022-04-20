@@ -22,6 +22,7 @@ export class ProjectsListComponent implements OnInit {
     'client',
     'startDate',
     'status',
+    'icon',
   ];
 
   filteredProjectList = new MatTableDataSource();
