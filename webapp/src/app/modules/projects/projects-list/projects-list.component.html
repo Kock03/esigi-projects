@@ -29,6 +29,18 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="managerEnvoltiProjectManager">
+        <th mat-header-cell *matHeaderCellDef>Gerente</th>
+        <td mat-cell *matCellDef="let project">
+          {{ project.managerEnvoltiProjectManager == 1
+          ? "Wellington"
+          : project.managerEnvoltiProjectManager == 2
+          ? "Charles"
+          : "Danilo"
+          }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef>Data de abertura</th>
         <td mat-cell *matCellDef="let project">

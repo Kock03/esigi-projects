@@ -20,8 +20,9 @@ export class ProjectsListComponent implements OnInit {
   displayedProjects: string[] = [
     'name',
     'client',
+    'managerEnvoltiProjectManager',
     'startDate',
-    'status',
+    'status', 
     'icon',
   ];
 
