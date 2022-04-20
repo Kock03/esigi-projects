@@ -45,26 +45,10 @@ export class ProjectsService {
     });
   }
 
-  async findStop() {
+  async findStatus(number: string) {
     return await this.projectsRepository
       .createQueryBuilder('projects')
-      .where('projects.status = 3')
-      .getMany();
-  }
-
-
-  async findActive() {
-    return await this.projectsRepository
-      .createQueryBuilder('projects')
-      .where('projects.status = 1')
-      .getMany();
-  }
-
-
-  async findSet() {
-    return await this.projectsRepository
-      .createQueryBuilder('projects')
-      .where('projects.status = 2')
+      .where(`projects.status = ${number}`)
       .getMany();
   }
 

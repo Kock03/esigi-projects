@@ -39,30 +39,10 @@ export class ProjectProvider {
     });
   }
 
-  findActive(): Promise<any> {
+  findStatus(number: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'projects/list/active')
-        .subscribe((response: HttpResponse<any>) => {
-          resolve(response.body);
-        }, reject);
-    });
-  }
-
-  findStop(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'projects/list/stop')
-        .subscribe((response: HttpResponse<any>) => {
-          resolve(response.body);
-        }, reject);
-    });
-  }
-
-  findSet(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'projects/list/set')
+        .get(environment.PROJECT_MS + 'projects/list/:number', { number: number })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
