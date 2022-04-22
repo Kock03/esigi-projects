@@ -31,6 +31,7 @@ export class ProjectsListComponent implements OnInit {
   project!: any;
   projectId!: string;
   method: string = '';
+  params!: string;
 
   constructor(
     private router: Router,
@@ -54,22 +55,37 @@ export class ProjectsListComponent implements OnInit {
             .toLocaleLowerCase()
             .includes(this.filter.nativeElement.value.toLocaleLowerCase())
         );
-        const params = `name=${this.filter.nativeElement.value}`;
-        this.searchProjects(params);
+       this.params = `name=${this.filter.nativeElement.value}`;
+        this.searchProjects(this.params);
         if (this.filter.nativeElement.value === '') {
           this.getProjectList()
 
         }
       });
   }
-  async searchProjects(query?: string) {
+
+  async searchProjects(name: string, status?: string) {
     try {
-      this.filteredProjectList = await this.projectsProvider.findByName(query);
+      this.filteredProjectList = await this.projectsProvider.find(name, status);
       console.log(this.projects);
     } catch (error) {
       console.error(error);
     }
   }
+
+  async selectList(ev: any) {
+    if (ev.value == 4) {
+      return (this.filteredProjectList = this.projects =
+        await this.projectsProvider.findAll());
+    }
+    else {
+      const params = `status=${ev.value}`;
+      console.log(params);
+      return (this.filteredProjectList = this.projects =
+        await this.projectsProvider.find(this.params, params));
+    }
+  }
+
 
   createProject() {
     this.router.navigate(['projeto/tipo']);
@@ -95,17 +111,7 @@ export class ProjectsListComponent implements OnInit {
     this.router.navigate([`projetos/${projectId}`]);
   }
 
-  async selectList(ev: any) {
-    if (ev.value == 4) {
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.findAll());
-    }
-    else {
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.findStatus(ev.value.toString()));
-    }
-  }
-
+ 
   async deleteProject(projectId: any) {
     const options = {
       data: {

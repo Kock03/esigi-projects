@@ -26,7 +26,7 @@ export class ProjectsController {
   }
 
   @Get('find')
-  find(@Query('name') name: any, @Query('status') status: any) {
+  find(@Query('name') name?: any, @Query('status') status?: any) {
     return this.projectsService.findProject(name, status);
   }
 

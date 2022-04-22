@@ -34,18 +34,34 @@ export class ProjectsService {
     }
   }
 
-  async findProject(name: string, status: string) {
-    return await this.projectsRepository.query(
-      'select * from projects where projects.name like ' +
-      '"%' +
-      name +
-      '"' +
-      ' and projects.status like'
-      + '"%' +
-      status +
-      '"' +
-      'and projects.deleted_at is null ',
-    );
+  async findProject(name?: string, status?: string) {
+
+    if(name === undefined){
+      return await this.projectsRepository.query(
+        'select * from projects where projects.status like' +
+        '"%' +
+        status +
+        '"' +
+        'and projects.deleted_at is null ')
+    }else if(status === undefined){
+      return await this.projectsRepository.query(
+        'select * from projects where projects.name like ' +
+        '"%' +
+        name +
+        '"' +
+        'and projects.deleted_at is null ')
+    }else{
+      return await this.projectsRepository.query(
+        'select * from projects where projects.name like ' +
+        '"%' +
+        name +
+        '"' +
+        ' and projects.status like'
+        + '"%' +
+        status +
+        '"' +
+        'and projects.deleted_at is null ',)
+    }
   }
 
 

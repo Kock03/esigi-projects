@@ -30,10 +30,10 @@ export class ProjectProvider {
     });
   }
 
-  find(name: string, status: number ): Promise<any> {
+  find(name: string, status?: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.PROJECT_MS + 'projects/find/:name:status', { name: name, status:status })
+        .get(environment.PROJECT_MS + 'projects/find/?' + name + '&' + status)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
