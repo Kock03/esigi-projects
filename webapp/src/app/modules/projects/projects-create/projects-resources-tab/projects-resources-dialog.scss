@@ -1,34 +1,64 @@
-#resourceDialog{
+#resourceDialog {
   max-width: 100%;
 
-  .button {
+  .buttonResourceDialogControl {
+    border: 0px solid #673ab7;
+    border-radius: 10px;
+    padding: 1px;
     background-color: #673ab7;
-  }
-  .content-scroll-resource {
-    overflow: auto;
-    height: calc(100vh - 300px);
+
+    p {
+      color: #fff;
+      margin-top: 10px
+    }
   }
 
-  .envolti-table  {
+  .buttonSaveAndCancel{
+    margin-top: 35px
+  }
+
+  .button-resource {
+    width: 100%;
+  }
+
+  .table-margin {
+    height: 100%;
+    max-height: 400px;
+  }
+
+  .iconRessourceDialog {
+    color: rgb(247, 247, 247);
+    margin-top: 15px;
+  }
+
+  .mat-typography {
+    margin-top: 30px;
+  }
+
+  .content-scroll-resource {
+    overflow: auto;
+    height: calc(100% - 300px);
+  }
+
+  .envolti-table {
     margin-top: 0;
+    height: 100%;
     max-height: 250px;
     border-radius: 10px;
     max-width: 100%;
     width: 640px !important;
   }
 
-  .formBox{
+  .formBox {
     padding: 30px;
   }
 
-  .resourcesButton{
-    margin-top: 25px;
+  .table-form{
+  width: 100%;
+    position: block !important;
   }
+}
 
-
-
-};
-
-.mat-select-panel{
-  max-height: 150px!important;
+.mat-select-panel {
+  max-height: 168px !important;
 }

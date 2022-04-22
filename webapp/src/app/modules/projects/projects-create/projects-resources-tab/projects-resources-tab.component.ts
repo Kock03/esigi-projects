@@ -98,7 +98,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
       width: '750px',
-      height: '650px',
+      height: '700px',
     });
   }
 
