@@ -34,20 +34,18 @@ export class ProjectsService {
     }
   }
 
-  findProject(query): Promise<ProjectsEntity[]> {
-    return this.projectsRepository.find({
-      where: [
-        { name: Like(`${query.name}%`) },
-        { status: (`${query.status}%`) },]
-    });
-  }
-
-  async findStatus(query) {
-    return await this.projectsRepository
-      .createQueryBuilder('projects')
-      .where("projects.name = :name", { name: Like(`${query.name}%`) })
-      .andWhere("projects.status = :status", { status: (`${query.status}%`) })
-      .getMany();
+  async findProject(name: string, status: string) {
+    return await this.projectsRepository.query(
+      'select * from projects where projects.name like ' +
+      '"%' +
+      name +
+      '"' +
+      ' and projects.status like'
+      + '"%' +
+      status +
+      '"' +
+      'and projects.deleted_at is null ',
+    );
   }
 
 
