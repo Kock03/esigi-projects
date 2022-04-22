@@ -1,5 +1,6 @@
 #resourceDialog {
-  max-width: 100%;
+  width: 100%;
+  max-height: 800px;
 
   .buttonResourceDialogControl {
     border: 0px solid #673ab7;
@@ -61,4 +62,8 @@
 
 .mat-select-panel {
   max-height: 168px !important;
+}
+
+.resourcesBtn{
+  margin-top: 80px !important;
 }
