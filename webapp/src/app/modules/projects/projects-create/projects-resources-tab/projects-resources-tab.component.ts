@@ -121,7 +121,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   async deleteActivity(id: string) {
     const options = {
       data: {
-        title: 'Anteção',
+        title: 'Atenção',
         subtitle: 'Você tem certeza que deseja excluir esta atividade?',
       },
       panelClass: 'confirm-modal',

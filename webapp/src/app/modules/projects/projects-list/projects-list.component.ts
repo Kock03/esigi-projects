@@ -115,7 +115,7 @@ export class ProjectsListComponent implements OnInit {
   async deleteProject(projectId: any) {
     const options = {
       data: {
-        title: 'Anteção',
+        title: 'Atenção',
         subtitle: 'Você tem certeza que deseja excluir este projeto?',
       },
       panelClass: 'confirm-modal',
