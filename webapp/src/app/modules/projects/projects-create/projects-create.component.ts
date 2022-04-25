@@ -92,7 +92,7 @@ export class ProjectsCreateComponent implements OnInit {
 
   handleStep(number: number): void {
     if (!this.checkValid() && this.step < number) {
-      this.snackbarService.showAlert('Verifique os campos');
+      this.snackbarService.showError('Verifique os campos');
     } else if (this.step - number < 1) {
       this.step = number;
       sessionStorage.setItem('project_tab', this.step.toString());
@@ -145,7 +145,7 @@ export class ProjectsCreateComponent implements OnInit {
       this.step += 1;
 
     } else {
-      this.snackbarService.showAlert('Verifique os campos');
+      this.snackbarService.showError('Verifique os campos');
     }
   }
 
