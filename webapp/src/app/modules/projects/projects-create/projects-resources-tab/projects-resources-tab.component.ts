@@ -76,8 +76,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
     console.log(this.data);
   }
 
-
-
   openDialog() {
     this.method = 'add';
     sessionStorage.setItem('method', this.method);
@@ -97,8 +95,10 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.activityId = id;
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
-      width: '750px',
-
+      width: '80%',
+      maxWidth: '1000px',
+      height: '80%',
+      maxHeight: '800px',
     });
   }
 
