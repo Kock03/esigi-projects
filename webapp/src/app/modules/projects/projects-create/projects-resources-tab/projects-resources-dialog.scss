@@ -1,6 +1,11 @@
 #resourceDialog {
   width: 100%;
-  max-height: 800px;
+  height: 80%;
+  max-height: 900px;
+
+  .resource-box {
+    width: 100%;
+  }
 
   .buttonResourceDialogControl {
     border: 0px solid #673ab7;
@@ -10,12 +15,12 @@
 
     p {
       color: #fff;
-      margin-top: 10px
+      margin-top: 10px;
     }
   }
 
-  .buttonSaveAndCancel{
-    margin-top: 35px
+  .buttonSaveAndCancel {
+    margin-top: 35px;
   }
 
   .button-resource {
@@ -24,6 +29,7 @@
 
   .table-margin {
     height: 100%;
+    width: 100%;
     max-height: 400px;
   }
 
@@ -38,7 +44,7 @@
 
   .content-scroll-resource {
     overflow: auto;
-    height: calc(100% - 300px);
+    height: calc(100% - 500px);
   }
 
   .envolti-table {
@@ -46,16 +52,11 @@
     height: 100%;
     max-height: 250px;
     border-radius: 10px;
-    max-width: 100%;
-    width: 640px !important;
+    width: 100%;
   }
 
-  .formBox {
-    padding: 30px;
-  }
-
-  .table-form{
-  width: 100%;
+  .table-form {
+    width: 100%;
     position: block !important;
   }
 }
@@ -64,6 +65,6 @@
   max-height: 168px !important;
 }
 
-.resourcesBtn{
+.resourcesBtn {
   margin-top: 80px !important;
 }

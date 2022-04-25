@@ -2,135 +2,135 @@
   <div
     class="formBox"
     fxLayout="column"
-    fxLayoutAlign="space-evenly center"
     fxLayoutGap="32px"
   >
+    <!-- TODO - Tags utilizadas sem necessidade, existem dois forms e o mat-accordion esta sendo declarado
+  mas não apresenta funcionalidade -->
     <mat-accordion #accordion="matAccordion" [multi]="true">
-      <form>
-        <div class="buttonResourceDialogControl">
-          <mat-panel-title>
-            <div fxLayout="row">
-              <mat-icon class="iconRessourceDialog">account_circle</mat-icon>
-              <button disabled class="button-resource" mat-button>
-                <p fxLayoutAlign="start">Cadastro de Recurso</p>
-              </button>
-            </div>
-          </mat-panel-title>
-        </div>
-        <mat-dialog-content class="mat-typography">
-          <form [formGroup]="resourceForm" fxLayout="column">
-            <div fxFlex="100" fxLayoutGap="16px">
-              <mat-form-field
-                *ngIf="this.method !== 'edit'"
-                fxFlex="34"
-                class="example-full-width"
-                appearance="outline"
-              >
-                <mat-label>Colaborador</mat-label>
-                <input
-                  type="text"
-                  placeholder="Colaborador"
-                  aria-label="text"
-                  #filter
-                  matInput
-                  [matAutocomplete]="auto"
-                  (input)="inputChange($event)"
-                  [formControl]="collaboratorControl"
-                />
-                <mat-autocomplete
-                  autoActiveFirstOption
-                  #auto="matAutocomplete"
-                  [displayWith]="displayFn"
-                >
-                  <mat-option
-                    *ngFor="let collaborator of filteredCollaborators"
-                    [value]="collaborator"
-                  >
-                    {{collaborator.firstNameCorporateName}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-              <mat-form-field
-                appearance="outline"
-                *ngIf="this.method === 'edit'"
-                fxFlex="34"
-                class="example-full-width"
-              >
-                <mat-label>Colaborador</mat-label>
-                <input
-                  disabled
-                  matInput
-                  disableRipple
-                  [value]="this.collaboratorControl.value"
-                />
-              </mat-form-field>
-
-              <mat-form-field fxFlex="33" appearance="outline">
-                <mat-label>Papel</mat-label>
-                <mat-select
-                  class="select"
-                  disableRipple
-                  formControlName="paper"
-                >
-                  <mat-option [value]="1">Gerente de Projeto</mat-option>
-                  <mat-option [value]="2">Arquiteto de Software</mat-option>
-                  <mat-option [value]="3">Analista de Dados</mat-option>
-                  <mat-option [value]="4">Analista de Testes</mat-option>
-                  <mat-option [value]="5">Engenheiro de Software</mat-option>
-                  <mat-option [value]="6">Desenvolvedor Angular</mat-option>
-                  <mat-option [value]="7">Desenvolvedor React</mat-option>
-                  <mat-option [value]="8">Desenvolvedor C#</mat-option>
-                  <mat-option [value]="9">Desenvolvedor Java</mat-option>
-                  <mat-option [value]="10">Desenvolvedor PHP</mat-option>
-                  <mat-option [value]="11">Desenvolvedor Node</mat-option>
-                  <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
-                  <mat-option [value]="13">Desenvolvedor C++</mat-option>
-                  <mat-option [value]="14">Desenvolvedor Python</mat-option>
-                  <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field fxFlex="33" appearance="outline">
-                <mat-label>Estimativa de Horas</mat-label>
-                <input
-                  matInput
-                  disableRipple
-                  type="number"
-                  formControlName="estimatedHours"
-                  placeholder="Estimativa de Horas"
-                />
-              </mat-form-field>
-            </div>
-            <mat-checkbox
-              *ngIf="method === 'edit'"
-              style="disabled"
-              fxFlex="30"
-              fxLayoutAlign="start start"
-              class="checkbox"
-              color="primary"
-              formControlName="isActive"
-              >Recurso {{resourceForm.controls['isActive'].value == true ?
-              'Ativo': 'Inativo'}}</mat-checkbox
+      <!-- <form> -->
+      <div class="buttonResourceDialogControl">
+        <mat-panel-title class="resource-box" fxLayout="row">
+          <mat-icon class="iconRessourceDialog">account_circle</mat-icon>
+          <button disabled class="button-resource" mat-button>
+            <p fxLayoutAlign="start">Cadastro de Recurso</p>
+          </button>
+        </mat-panel-title>
+      </div>
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="resourceForm" fxLayout="column">
+          <div fxFlex="100" fxLayoutGap="16px">
+            <mat-form-field
+              *ngIf="this.method !== 'edit'"
+              fxFlex="34"
+              class="example-full-width"
+              appearance="outline"
             >
-          </form>
-
-          <div class="buttonSaveAndCancel" fxLayoutAlign="center end">
-            <button mat-flat-button (click)="onNoClick()">Cancelar</button>
-            <button
-              color="primary"
-              [disabled]="resourceForm.invalid"
-              mat-flat-button
-              (click)="saveResource()"
+              <mat-label>Colaborador</mat-label>
+              <input
+                type="text"
+                placeholder="Colaborador"
+                aria-label="text"
+                #filter
+                matInput
+                [matAutocomplete]="auto"
+                (input)="inputChange($event)"
+                [formControl]="collaboratorControl"
+              />
+              <mat-autocomplete
+                autoActiveFirstOption
+                #auto="matAutocomplete"
+                [displayWith]="displayFn"
+              >
+                <mat-option
+                  *ngFor="let collaborator of filteredCollaborators"
+                  [value]="collaborator"
+                >
+                  {{collaborator.firstNameCorporateName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field
+              appearance="outline"
+              *ngIf="this.method === 'edit'"
+              fxFlex="34"
+              class="example-full-width"
             >
-              Salvar
-            </button>
+              <mat-label>Colaborador</mat-label>
+              <input
+                disabled
+                matInput
+                disableRipple
+                [value]="this.collaboratorControl.value"
+              />
+            </mat-form-field>
+
+            <mat-form-field fxFlex="33" appearance="outline">
+              <mat-label>Papel</mat-label>
+              <mat-select class="select" disableRipple formControlName="paper">
+                <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome -->
+                <mat-option [value]="1">Gerente de Projeto</mat-option>
+                <mat-option [value]="2">Arquiteto de Software</mat-option>
+                <mat-option [value]="3">Analista de Dados</mat-option>
+                <mat-option [value]="4">Analista de Testes</mat-option>
+                <mat-option [value]="5">Engenheiro de Software</mat-option>
+                <mat-option [value]="6">Desenvolvedor Angular</mat-option>
+                <mat-option [value]="7">Desenvolvedor React</mat-option>
+                <mat-option [value]="8">Desenvolvedor C#</mat-option>
+                <mat-option [value]="9">Desenvolvedor Java</mat-option>
+                <mat-option [value]="10">Desenvolvedor PHP</mat-option>
+                <mat-option [value]="11">Desenvolvedor Node</mat-option>
+                <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
+                <mat-option [value]="13">Desenvolvedor C++</mat-option>
+                <mat-option [value]="14">Desenvolvedor Python</mat-option>
+                <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="33" appearance="outline">
+              <mat-label>Estimativa de Horas</mat-label>
+              <input
+                matInput
+                disableRipple
+                type="number"
+                formControlName="estimatedHours"
+                placeholder="Estimativa de Horas"
+              />
+            </mat-form-field>
           </div>
-        </mat-dialog-content>
-      </form>
+          <mat-checkbox
+            *ngIf="method === 'edit'"
+            fxFlex="30"
+            fxLayoutAlign="start start"
+            class="checkbox disabled"
+            color="primary"
+            formControlName="isActive"
+            >Recurso {{resourceForm.controls['isActive'].value == true ?
+            'Ativo': 'Inativo'}}</mat-checkbox
+          >
+        </form>
+
+        <div class="buttonSaveAndCancel" fxLayoutAlign="center end">
+          <button mat-flat-button (click)="onNoClick()">Cancelar</button>
+          <button
+            color="primary"
+            [disabled]="resourceForm.invalid"
+            mat-flat-button
+            (click)="saveResource()"
+          >
+            Salvar
+          </button>
+        </div>
+
+
+        
+      </mat-dialog-content>
+      <!-- </form> -->
     </mat-accordion>
 
+    <!-- TODO - A tabela se encontra fora do content do dialog -->
     <div class="table-margin" fxLayout="column">
       <div class="table-styles tab">
+        <!-- TODO - div utilizada sem necessidade -->
         <div>
           <div class="envolti-table mat-elevation-z4">
             <table mat-table [dataSource]="dataTable" #resourceDialogTable>
@@ -143,8 +143,12 @@
 
               <ng-container matColumnDef="paper">
                 <th mat-header-cell *matHeaderCellDef>Papel</th>
+                <!-- TODO - criar um metodo no ts por exemplo checkPaper(resource.paper)
+                que terá um switch para utilizar as descrições, poderia utilizar um 
+                custom pipe, que é uma solução mais elegante, caso queriam estudar
+                e aplicar também é uma boa -->
                 <td mat-cell *matCellDef="let resource">
-                  {{ resource.paper == 1 ? "Gerente de Projeto" : resource.paper
+                  <!-- {{ resource.paper == 1 ? "Gerente de Projeto" : resource.paper
                   == 2 ? "Arquiteto de Software" : resource.paper == 3 ?
                   "Analista de Dados" : resource.paper == 4 ? "Analista de
                   Testes" : resource.paper == 5 ? "Engenheiro de Software" :
@@ -155,7 +159,7 @@
                   resource.paper == 11 ? "Desenvolvedor Node" : resource.paper
                   == 12 ? "Desenvolvedor Javascript" : resource.paper == 13 ?
                   "Desenvolvedor C++" : resource.paper == 14 ? "Desenvolvedor
-                  Python" : "Desenvolvedor Ruby" }}
+                  Python" : "Desenvolvedor Ruby" }} -->
                 </td>
               </ng-container>
 
@@ -206,5 +210,4 @@
       </button>
     </div>
   </div>
-
 </div>
