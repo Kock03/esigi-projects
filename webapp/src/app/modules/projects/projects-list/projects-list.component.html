@@ -40,13 +40,13 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="managerEnvoltiProjectManager">
+      <ng-container matColumnDef="projectManagerEnvolti">
         <th mat-header-cell *matHeaderCellDef>Gerente</th>
         <td mat-cell *matCellDef="let project">
           {{
-          project.managerEnvoltiProjectManager == 1
+          project.projectManagerEnvolti == 1
           ? "Wellington"
-          : project.managerEnvoltiProjectManager == 2
+          : project.projectManagerEnvolti == 2
           ? "Charles"
           : "Danilo"
           }}

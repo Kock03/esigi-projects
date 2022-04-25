@@ -65,7 +65,7 @@ export class CreateProjectDto {
   @MaxLength(100)
   @IsString()
   @ApiProperty()
-  managerEnvoltiProjectManager: string;
+  projectManagerEnvolti: string;
 
   @IsNotEmpty()
   @IsEnum(Type)

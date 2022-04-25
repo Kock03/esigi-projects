@@ -44,7 +44,7 @@ export class ProjectsEntity {
   value: Double;
 
   @Column()
-  managerEnvoltiProjectManager: string;
+  projectManagerEnvolti: string;
 
   @Column({ type: 'int' })
   type: Type;

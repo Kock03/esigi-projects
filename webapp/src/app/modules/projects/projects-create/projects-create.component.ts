@@ -31,7 +31,7 @@ export class ProjectsCreateComponent implements OnInit {
   projectId!: string | null;
   method: string = '';
 
-  validations = [['name', 'client', 'managerEnvoltiProjectManager', 'status']];
+  validations = [['name', 'client', 'projectManagerEnvolti', 'status']];
 
   constructor(
     private router: Router,
@@ -83,7 +83,7 @@ export class ProjectsCreateComponent implements OnInit {
       contractedHours: ['', Validators.required],
       value: [0, Validators.required],
       hourControl: [null, Validators.required],
-      managerEnvoltiProjectManager: [null, Validators.required],
+      projectManagerEnvolti: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
