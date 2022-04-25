@@ -41,7 +41,7 @@ export class ProjectResourceDialog {
     'collaboratorId',
     'paper',
     'estimatedHours',
-    'icon',
+    'icon'
   ];
   resourceForm!: FormGroup;
   step = 0;

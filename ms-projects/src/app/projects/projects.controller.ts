@@ -26,13 +26,8 @@ export class ProjectsController {
   }
 
   @Get('find')
-  findListProject(@Query() query: any) {
-    return this.projectsService.findProject(query);
-  }
-
-  @Get('find')
-  async findStatus(@Query() query: any) {
-    return await this.projectsService.findStatus(query);
+  find(@Query('name') name?: any, @Query('status') status?: any) {
+    return this.projectsService.findProject(name, status);
   }
 
   @Post()

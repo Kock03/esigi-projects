@@ -29,12 +29,12 @@
   <app-projects-panel-tab [hidden]="step != 3" [form]="projectForm" (onChange)="handleChanges($event)">
   </app-projects-panel-tab>
 
-  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px" *ngIf="projectId == 'cadastro'">
+  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
     <button mat-button *ngIf="step != 1" (click)="navigate('back')">
       Voltar
     </button>
 
-    <button *ngIf="projectId !== 'cadastro'" mat-flat-button (click)="navigate('next')" color="primary">
+    <button *ngIf="step == 2"  mat-flat-button (click)="navigate('next')" color="primary">
       Continuar
     </button>
 
@@ -43,7 +43,7 @@
     </button>
   </div>
 
-  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px" *ngIf="projectId !== 'cadastro'">
+  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px" *ngIf="projectId !== 'cadastro' &&  step == 1">
     <button mat-flat-button (click)="editProject()" color="primary">
       Editar
     </button>

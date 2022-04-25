@@ -20,15 +20,6 @@ export class ProjectProvider {
     });
   }
 
-  findByName(query: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.PROJECT_MS + `projects/find?${query}`)
-        .subscribe((response: HttpResponse<any>) => {
-          resolve(response.body);
-        }, reject);
-    });
-  }
-
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
@@ -39,10 +30,10 @@ export class ProjectProvider {
     });
   }
 
-  findStatus(number: string): Promise<any> {
+  find(name: string, status?: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.PROJECT_MS + 'projects/list/:number', { number: number })
+        .get(environment.PROJECT_MS + 'projects/find/?' + name + '&' + status)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

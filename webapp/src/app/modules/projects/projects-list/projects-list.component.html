@@ -13,12 +13,8 @@
 
       <mat-form-field fxFlex="20" appearance="outline">
         <mat-label>Filtro</mat-label>
-        <mat-select
-          (selectionChange)="selectList($event)"
-          matInput
-          disableRipple
-        >
-          
+        <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
+
           <mat-option [value]="1">Ativos</mat-option>
           <mat-option [value]="2">Concluídos</mat-option>
           <mat-option [value]="3">Parados</mat-option>
@@ -48,11 +44,11 @@
         <th mat-header-cell *matHeaderCellDef>Gerente</th>
         <td mat-cell *matCellDef="let project">
           {{
-            project.managerEnvoltiProjectManager == 1
-              ? "Wellington"
-              : project.managerEnvoltiProjectManager == 2
-              ? "Charles"
-              : "Danilo"
+          project.managerEnvoltiProjectManager == 1
+          ? "Wellington"
+          : project.managerEnvoltiProjectManager == 2
+          ? "Charles"
+          : "Danilo"
           }}
         </td>
       </ng-container>
@@ -68,58 +64,36 @@
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let project">
           {{
-            project.status == 1
-              ? "Em elaboração"
-              : project.status == 2
-              ? "Enviada"
-              : project.status == 3
-              ? "Parada"
-              : project.status == 4
-              ? "Declinada"
-              : "Nova proposta"
+          project.status == 1
+          ? "Em elaboração"
+          : project.status == 2
+          ? "Enviado"
+          : project.status == 3
+          ? "Parado"
+          : project.status == 4
+          ? "Declinado"
+          : "Nova proposta"
           }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="icon">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          clas="iconAdd"
-          style="text-align: end"
-        >
+        <th mat-header-cell *matHeaderCellDef clas="iconAdd" style="text-align: end">
           <button class="edit-button" mat-button (click)="createProject()">
             <mat-icon>add</mat-icon>
           </button>
         </th>
-        <td
-          class="button-tab"
-          mat-cell
-          *matCellDef="let project"
-          clas="icon"
-          style="text-align: end"
-        >
-          <button
-            class="table-button"
-            mat-button
-            (click)="editProject(project, project.id)"
-          >
+        <td class="button-tab" mat-cell *matCellDef="let project" clas="icon" style="text-align: end">
+          <button class="table-button" mat-button (click)="editProject(project, project.id)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button
-            class="table-button"
-            mat-button
-            (click)="deleteProject(project.id)"
-          >
+          <button class="table-button" mat-button (click)="deleteProject(project.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
 
-      <tr
-        mat-header-row
-        *matHeaderRowDef="displayedProjects; sticky: true"
-      ></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedProjects; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedProjects"></tr>
     </table>
   </div>
