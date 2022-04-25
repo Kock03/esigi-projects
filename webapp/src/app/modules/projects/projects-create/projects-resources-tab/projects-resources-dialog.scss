@@ -23,6 +23,11 @@
     margin-top: 35px;
   }
 
+.form-content{
+  width: 100%;
+  max-width: 800px;
+}
+
   .button-resource {
     width: 100%;
   }
@@ -67,4 +72,9 @@
 
 .resourcesBtn {
   margin-top: 80px !important;
+}
+
+.mat-dialog-container {
+  padding: 0!important;
+  border-radius: 10px 10px 0 0;
 }
