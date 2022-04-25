@@ -16,7 +16,7 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTable } from '@angular/material/table';
-import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ICollaborator } from 'src/app/interfaces/icollaborator';
 import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
@@ -41,7 +41,7 @@ export class ProjectResourceDialog {
     'collaboratorId',
     'paper',
     'estimatedHours',
-    'icon'
+    'icon',
   ];
   resourceForm!: FormGroup;
   step = 0;
@@ -69,10 +69,11 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    const col = this.getCollaboratorList();
+    // TODO - pensar para limitar a busca inicial em uma determinada quantidade
+    this.getCollaboratorList();
     this.activityId = sessionStorage.getItem('activity_id')!;
     this.getResourceList();
     this.initForm();
@@ -80,11 +81,16 @@ export class ProjectResourceDialog {
   }
 
   async getCollaboratorList() {
-    this.collaborators = await this.collaboratorProvider.findActive();
+    this.filteredCollaboratorList = this.collaborators =
+      await this.collaboratorProvider.findActive();
   }
 
-  inputChange(text: any) {
-    this._filter(text.target.value);
+  private initFilter() {
+    this.collaboratorControl.valueChanges
+      .pipe(debounceTime(350), distinctUntilChanged())
+      .subscribe((res) => {
+        this._filter(res);
+      });
   }
 
   displayFn(user: any): string {
@@ -98,39 +104,11 @@ export class ProjectResourceDialog {
       : '';
   }
 
-  private _filter(name: string): any[] {
-    const filterValue = name.toUpperCase();
-
-    if (name == null || '')
-      return (this.filteredCollaborators = this.collaborators);
-
-    return (this.filteredCollaborators = this.collaborators.filter(
-      (collaborators) =>
-        collaborators.firstNameCorporateName.toUpperCase().includes(filterValue)
-    ));
-  }
-
-  initFilter() {
-    fromEvent(this.filter.nativeElement, 'keyup')
-      .pipe(debounceTime(200), distinctUntilChanged())
-
-      .subscribe((res) => {
-        this.filteredCollaborators = this.collaborators.filter((collaborator) =>
-          collaborator.firstNameCorporateName
-            .toLocaleLowerCase()
-            .includes(this.filter.nativeElement.value.toLocaleLowerCase())
-        );
-        const params = `firstNameCorporateName=${this.filter.nativeElement.value}`;
-        this.searchCollaborators(params);
-      });
-  }
-
-  async searchCollaborators(query?: string) {
-    try {
-      this.collaborators = await this.collaboratorProvider.findByName(query);
-    } catch (error) {
-      console.error(error);
-    }
+  private async _filter(name: string): Promise<void> {
+    const params = `firstNameCorporateName=${name}`;
+    this.filteredCollaborators = await this.collaboratorProvider.findByName(
+      params
+    );
   }
 
   initForm(): void {
@@ -163,7 +141,7 @@ export class ProjectResourceDialog {
 
   async getResourceList() {
     const resourceList = await this.activityProvider.findOne(this.activityId);
-    // TODO - Revisar, esta sendo usado atividade, porém retorna todos 
+    // TODO - Revisar, esta sendo usado atividade, porém retorna todos
     // os relacionamentos, com projeto todo aninhado, o provider
     // utilizado é de atividade, porém foi declarado uma constante
     // como se fosse uma lista de recurso. e existe dados que não
@@ -176,15 +154,8 @@ export class ProjectResourceDialog {
     const data = this.resourceForm.getRawValue();
     console.log(data);
     if (this.method === 'edit') {
-      console.log(
-        '🚀 ~ file: projects-resources-dialog.component.ts ~ line 161 ~ ProjectResourceDialog ~ saveResource ~ this.method ',
-        this.method
-      );
       try {
-        const resource = await this.resourceProvider.update(
-          this.resourceId,
-          data
-        );
+        await this.resourceProvider.update(this.resourceId, data);
         this.method = '';
         this.initForm();
         this.getResourceList();
@@ -193,7 +164,7 @@ export class ProjectResourceDialog {
       }
     } else {
       try {
-        const resource = await this.resourceProvider.store(data);
+        await this.resourceProvider.store(data);
 
         this.initForm();
         this.getResourceList();
@@ -208,7 +179,7 @@ export class ProjectResourceDialog {
   async deleteResource(id: string) {
     const options = {
       data: {
-        title: 'Anteção',
+        title: 'Atenção',
         subtitle: 'Você tem certeza que deseja excluir este recurso?',
       },
       panelClass: 'confirm-modal',
@@ -219,13 +190,13 @@ export class ProjectResourceDialog {
     this.dialogService.confirmed().subscribe(async (confirmed) => {
       if (confirmed) {
         try {
-          let deleteResource = await this.resourceProvider.destroy(id);
+          await this.resourceProvider.destroy(id);
           this.getResourceList();
 
-          this.snackbarService.successMessage('Recurso Excluido Com Sucesso');
+          this.snackbarService.successMessage('Recurso excluido com sucesso');
         } catch (error) {
           console.log('ERROR 132' + error);
-          this.snackbarService.showError('Falha ao Excluir');
+          this.snackbarService.showError('Falha ao excluir');
           this.getResourceList();
         }
       }
@@ -239,7 +210,7 @@ export class ProjectResourceDialog {
   onNoClick(): void {
     this.method = '';
     this.getResourceList();
-    this.initForm()
+    this.initForm();
     this.collaboratorControl.reset();
     this.method = '';
   }
@@ -248,6 +219,4 @@ export class ProjectResourceDialog {
     this.dialogRef.close();
     sessionStorage.clear;
   }
-
-
 }
