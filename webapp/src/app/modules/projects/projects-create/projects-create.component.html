@@ -38,7 +38,7 @@
       Continuar
     </button>
 
-    <button mat-flat-button *ngIf="step == 1" color="primary" (click)="handleStep(1)" (click)="saveProject()">
+    <button mat-flat-button *ngIf="projectId == 'cadastro' &&  step == 1" color="primary" (click)="handleStep(1)" (click)="saveProject()">
       Salvar
     </button>
   </div>
