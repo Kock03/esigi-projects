@@ -1,11 +1,53 @@
 #projectActivityDialog {
 
-    .content-acivities {
-        overflow: none !important;
-        max-height:  300px;
-        height: 100%;
-        max-width: 500px;
-        width: 100%;
 
+    .content-button {
+        padding: 0px;
+       
+    }
+
+    .form-content-activities{
+        width: 100%;
+        max-width: 500px !important;
+        margin-left: 15px !important;
+    }
+
+    .content-acivities {
+        padding: 1px;
+        background: #3f1870;
+        max-height: 60px;
+        height: 100%;
+
+        h2 {
+            color: #fff;
+            margin-top: 10px;
+        }
+    }
+
+    
+
+    .icon-activities-dialog {
+        color: rgb(247, 247, 247);
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .button-activities {
+        width: 100%;
+    }
+
+    .cancel-icon {
+        color: #fff;
+    }
+
+    .mat-typography {
+        margin-top: 20px;
     }
 }
+
+.mat-dialog-container {
+    padding: 0;
+    border-radius: 10px;
+  }
+
+

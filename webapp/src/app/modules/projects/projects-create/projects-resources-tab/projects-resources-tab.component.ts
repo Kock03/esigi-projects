@@ -81,7 +81,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     sessionStorage.setItem('method', this.method);
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
       width: '500px',
-      height: '300px',
+      height: '250px',
     });
 
     dialogRef.afterClosed().subscribe((activity) => {
@@ -95,10 +95,10 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.activityId = id;
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
-      width: '80%',
+      width: '100%',
       maxWidth: '1000px',
       height: '100%',
-      maxHeight: '600px',
+      maxHeight: '510px',
     });
   }
 
@@ -108,6 +108,8 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.activityId = id;
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
+      width: '500px',
+      height: '250px',
       data: activitySelected,
     });
 
