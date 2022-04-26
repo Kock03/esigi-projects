@@ -1,13 +1,11 @@
 #resourceDialog {
 
 
-  .button-resourcedialogC-control {
-    border: 0px solid #673ab7;
-    border-radius: 10px;
+  .button-resource-dialog-control {
     padding: 1px;
-    background-color: #673ab7;
+    background: #3f1870;
 
-    p {
+    h2 {
       color: #fff;
       margin-top: 10px;
     }
@@ -36,6 +34,7 @@
   .icon-ressource-dialog {
     color: rgb(247, 247, 247);
     margin-top: 15px;
+    margin-left: 20px;
   }
 
   .mat-typography {
@@ -64,10 +63,12 @@
 
 
 .mat-dialog-container {
-  padding: 0 !important;
-  border-radius: 10px 10px 0 0;
+  padding: 0;
+  border-radius: 10px;
 }
 
 .mat-select-panel {
   max-height: 168px !important;
 }
+
+

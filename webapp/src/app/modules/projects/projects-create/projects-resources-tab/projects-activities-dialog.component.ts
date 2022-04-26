@@ -109,4 +109,9 @@ export class ProjectActivityDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  close() {
+    this.dialogRef.close();
+    sessionStorage.clear;
+  }
 }
