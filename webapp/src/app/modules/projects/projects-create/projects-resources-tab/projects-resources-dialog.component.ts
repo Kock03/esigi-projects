@@ -46,7 +46,7 @@ export class ProjectResourceDialog {
   resourceForm!: FormGroup;
   step = 0;
 
-  collaborators!: any[];
+  collaborators!: ICollaborator[] | any[];
   filteredCollaborators?: any[];
 
   index: any = null;
@@ -69,7 +69,7 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // TODO - pensar para limitar a busca inicial em uma determinada quantidade
@@ -82,7 +82,9 @@ export class ProjectResourceDialog {
 
   async getCollaboratorList() {
     this.filteredCollaboratorList = this.collaborators =
-      await this.collaboratorProvider.findActive();
+      await this.collaboratorProvider.shortListCollaborators();
+
+    console.log(this.filteredCollaboratorList)
   }
 
   private initFilter() {
