@@ -36,21 +36,21 @@ export class ProjectsService {
 
   async findProject(name?: string, status?: string) {
 
-    if(name === undefined){
+    if (!name) {
       return await this.projectsRepository.query(
         'select * from projects where projects.status like' +
         '"%' +
         status +
         '"' +
         'and projects.deleted_at is null ')
-    }else if(status === undefined){
+    } else if (!status) {
       return await this.projectsRepository.query(
         'select * from projects where projects.name like ' +
         '"%' +
         name +
         '"' +
         'and projects.deleted_at is null ')
-    }else{
+    } else {
       return await this.projectsRepository.query(
         'select * from projects where projects.name like ' +
         '"%' +
@@ -60,7 +60,7 @@ export class ProjectsService {
         + '"%' +
         status +
         '"' +
-        'and projects.deleted_at is null ',)
+        'and projects.deleted_at is null')
     }
   }
 
