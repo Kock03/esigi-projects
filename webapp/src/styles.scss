@@ -171,11 +171,13 @@ html {
 
 .confirm-modal {
   mat-dialog-container {
-    min-width: 300px;
-    max-width: 320px;
+    padding: 20px !important;
     width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 180px;
     border-radius: 10px;
-    border: 2px solid #673ab7;
+    border: 2px solid #8f8d92;
     p {
       letter-spacing: 0.25px;
     }

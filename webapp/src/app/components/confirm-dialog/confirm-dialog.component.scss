@@ -1,3 +1,4 @@
-.mat-dialog-container {
-    padding: 24px;
+.mat-dialog-content {
+    overflow: auto;
+    height: calc(100% - 180px);
   }

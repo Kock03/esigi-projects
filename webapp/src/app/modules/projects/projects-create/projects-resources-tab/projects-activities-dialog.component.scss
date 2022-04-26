@@ -10,6 +10,7 @@
         width: 100%;
         max-width: 500px !important;
         margin-left: 15px !important;
+        display: block;
     }
 
     .content-acivities {
@@ -24,7 +25,10 @@
         }
     }
 
-    
+    .button-dialog{
+        width: 100%;
+        margin-left: 165px;
+    }
 
     .icon-activities-dialog {
         color: rgb(247, 247, 247);
