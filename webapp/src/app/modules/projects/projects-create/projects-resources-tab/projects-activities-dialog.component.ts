@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   Inject,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {
@@ -39,6 +40,7 @@ export class PickDateAdapter extends NativeDateAdapter {
   selector: 'projects-activities-dialog',
   templateUrl: 'projects-activities-dialog.html',
   styleUrls: ['./projects-activities-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     { provide: DateAdapter, useClass: PickDateAdapter },
   { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },

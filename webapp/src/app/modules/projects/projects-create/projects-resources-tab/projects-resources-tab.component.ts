@@ -97,8 +97,8 @@ export class ProjectsResourcesTabComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectResourceDialog, {
       width: '80%',
       maxWidth: '1000px',
-      height: '80%',
-      maxHeight: '800px',
+      height: '100%',
+      maxHeight: '600px',
     });
   }
 
