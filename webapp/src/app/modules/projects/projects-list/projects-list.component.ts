@@ -38,7 +38,7 @@ export class ProjectsListComponent implements OnInit {
     private projectsProvider: ProjectProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService
-  ) { }
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.getProjectList();
@@ -55,11 +55,10 @@ export class ProjectsListComponent implements OnInit {
             .toLocaleLowerCase()
             .includes(this.filter.nativeElement.value.toLocaleLowerCase())
         );
-       this.params = `name=${this.filter.nativeElement.value}`;
+        this.params = `name=${this.filter.nativeElement.value}`;
         this.searchProjects(this.params);
         if (this.filter.nativeElement.value === '') {
-          this.getProjectList()
-
+          this.getProjectList();
         }
       });
   }
@@ -77,15 +76,20 @@ export class ProjectsListComponent implements OnInit {
     if (ev.value == 4) {
       return (this.filteredProjectList = this.projects =
         await this.projectsProvider.findAll());
-    }
-    else {
+    } else {
       const params = `status=${ev.value}`;
-      console.log(params);
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.find(this.params, params));
+      if (params === undefined) {
+        return (this.filteredProjectList = this.projects =
+          await this.projectsProvider.find(this.params));
+      } else if (this.params === undefined) {
+        return (this.filteredProjectList = this.projects =
+          await this.projectsProvider.find(params));
+      } else {
+        return (this.filteredProjectList = this.projects =
+          await this.projectsProvider.find(this.params, params));
+      }
     }
   }
-
 
   createProject() {
     this.router.navigate(['projeto/tipo']);
@@ -97,7 +101,7 @@ export class ProjectsListComponent implements OnInit {
   }
 
   async editProject(projectSelected: any, projectId: string) {
-    this.method = 'edit'
+    this.method = 'edit';
     this.project = projectSelected;
     console.log(this.project);
     if (this.project.type === 3) {
@@ -111,7 +115,6 @@ export class ProjectsListComponent implements OnInit {
     this.router.navigate([`projetos/${projectId}`]);
   }
 
- 
   async deleteProject(projectId: any) {
     const options = {
       data: {
