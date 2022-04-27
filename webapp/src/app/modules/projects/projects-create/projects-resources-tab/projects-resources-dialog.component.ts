@@ -117,8 +117,8 @@ export class ProjectResourceDialog {
   initForm(): void {
     this.resourceForm = this.fb.group({
       collaboratorId: [null],
-      paper: ['', Validators.required],
-      estimatedHours: ['', Validators.required],
+      paper: [' ', Validators.required],
+      estimatedHours: [' ', Validators.required],
       isActive: [true],
       activity: { id: this.activityId },
     });
