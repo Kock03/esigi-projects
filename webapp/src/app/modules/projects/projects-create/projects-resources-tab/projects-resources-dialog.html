@@ -12,7 +12,7 @@
   </div>
   <mat-dialog-content fxLayout="column" fxLayoutAlign="space-between" class="mat-typography">
     <form class="form-content" [formGroup]="resourceForm" fxLayout="column">
-      <div fxFlex="100" fxLayoutGap="7px">
+      <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field *ngIf="this.method !== 'edit'" fxFlex="34" class="example-full-width" appearance="outline">
           <mat-label>Colaborador</mat-label>
           <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
@@ -23,31 +23,31 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="40" class="example-full-width">
+        <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
           <mat-label>Colaborador</mat-label>
           <input disabled matInput disableRipple [value]="this.collaboratorControl.value" />
         </mat-form-field>
 
-        <mat-form-field fxFlex="25" appearance="outline">
+        <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Papel</mat-label>
           <mat-select class="select" disableRipple formControlName="paper">
             <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
                 ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
-            <mat-option [value]="1">Gerente de Projeto</mat-option>
-            <mat-option [value]="2">Arquiteto de Software</mat-option>
-            <mat-option [value]="3">Analista de Dados</mat-option>
-            <mat-option [value]="4">Analista de Testes</mat-option>
-            <mat-option [value]="5">Engenheiro de Software</mat-option>
-            <mat-option [value]="6">Desenvolvedor Angular</mat-option>
-            <mat-option [value]="7">Desenvolvedor React</mat-option>
-            <mat-option [value]="8">Desenvolvedor C#</mat-option>
-            <mat-option [value]="9">Desenvolvedor Java</mat-option>
-            <mat-option [value]="10">Desenvolvedor PHP</mat-option>
-            <mat-option [value]="11">Desenvolvedor Node</mat-option>
-            <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
-            <mat-option [value]="13">Desenvolvedor C++</mat-option>
-            <mat-option [value]="14">Desenvolvedor Python</mat-option>
-            <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
+            <mat-option value="1">Gerente de Projeto</mat-option>
+            <mat-option value="2">Arquiteto de Software</mat-option>
+            <mat-option value="3">Analista de Dados</mat-option>
+            <mat-option value="4">Analista de Testes</mat-option>
+            <mat-option value="5">Engenheiro de Software</mat-option>
+            <mat-option value="6">Desenvolvedor Angular</mat-option>
+            <mat-option value="7">Desenvolvedor React</mat-option>
+            <mat-option value="8">Desenvolvedor C#</mat-option>
+            <mat-option value="9">Desenvolvedor Java</mat-option>
+            <mat-option value="10">Desenvolvedor PHP</mat-option>
+            <mat-option value="11">Desenvolvedor Node</mat-option>
+            <mat-option value="12">Desenvolvedor Javascript</mat-option>
+            <mat-option value="13">Desenvolvedor C++</mat-option>
+            <mat-option value="14">Desenvolvedor Python</mat-option>
+            <mat-option value="15">Desenvolvedor Ruby</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -56,7 +56,7 @@
           <input matInput disableRipple type="number" formControlName="estimatedHours"
             placeholder="Estimativa de Horas" />
         </mat-form-field>
-        <div fxFlex="20" fxLayoutGap="7px" fxLayout="row">
+        <div fxFlex="20" fxLayout="row">
           <button class="button-form" mat-button (click)="onNoClick()" color="primary">
             <mat-icon>close</mat-icon>
           </button>
