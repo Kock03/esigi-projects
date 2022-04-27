@@ -25,6 +25,7 @@ import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
+
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -41,6 +42,7 @@ export class ProjectResourceDialog {
     'collaboratorId',
     'paper',
     'estimatedHours',
+    'isActive',
     'icon',
   ];
   resourceForm!: FormGroup;
