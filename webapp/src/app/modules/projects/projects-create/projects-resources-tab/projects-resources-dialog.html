@@ -62,21 +62,21 @@
             <mat-select class="select" disableRipple formControlName="paper">
               <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
                 ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
-              <mat-option [value]="1">Gerente de Projeto</mat-option>
-              <mat-option [value]="2">Arquiteto de Software</mat-option>
-              <mat-option [value]="3">Analista de Dados</mat-option>
-              <mat-option [value]="4">Analista de Testes</mat-option>
-              <mat-option [value]="5">Engenheiro de Software</mat-option>
-              <mat-option [value]="6">Desenvolvedor Angular</mat-option>
-              <mat-option [value]="7">Desenvolvedor React</mat-option>
-              <mat-option [value]="8">Desenvolvedor C#</mat-option>
-              <mat-option [value]="9">Desenvolvedor Java</mat-option>
-              <mat-option [value]="10">Desenvolvedor PHP</mat-option>
-              <mat-option [value]="11">Desenvolvedor Node</mat-option>
-              <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
-              <mat-option [value]="13">Desenvolvedor C++</mat-option>
-              <mat-option [value]="14">Desenvolvedor Python</mat-option>
-              <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
+              <mat-option value="1">Gerente de Projeto</mat-option>
+              <mat-option value="2">Arquiteto de Software</mat-option>
+              <mat-option value="3">Analista de Dados</mat-option>
+              <mat-option value="4">Analista de Testes</mat-option>
+              <mat-option value="5">Engenheiro de Software</mat-option>
+              <mat-option value="6">Desenvolvedor Angular</mat-option>
+              <mat-option value="7">Desenvolvedor React</mat-option>
+              <mat-option value="8">Desenvolvedor C#</mat-option>
+              <mat-option value="9">Desenvolvedor Java</mat-option>
+              <mat-option value="10">Desenvolvedor PHP</mat-option>
+              <mat-option value="11">Desenvolvedor Node</mat-option>
+              <mat-option value="12">Desenvolvedor Javascript</mat-option>
+              <mat-option value="13">Desenvolvedor C++</mat-option>
+              <mat-option value="14">Desenvolvedor Python</mat-option>
+              <mat-option value="15">Desenvolvedor Ruby</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -148,7 +148,7 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="icon">
+          <ng-container  matColumnDef="icon">
             <th mat-header-cell *matHeaderCellDef></th>
             <td
               class="button-tab"
@@ -164,6 +164,7 @@
               </button>
 
               <button
+                 mat-icon-resource
                 (click)="deleteResource(resource.id)"
                 class="table-button"
                 mat-button
