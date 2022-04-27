@@ -59,6 +59,7 @@ export class ProjectResourceDialog {
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
   collaboratorControl = new FormControl();
+  collaboratorValid: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -83,8 +84,6 @@ export class ProjectResourceDialog {
   async getCollaboratorList() {
     this.filteredCollaboratorList = this.collaborators =
       await this.collaboratorProvider.shortListCollaborators();
-
-    console.log(this.filteredCollaboratorList)
   }
 
   private initFilter() {
@@ -92,6 +91,11 @@ export class ProjectResourceDialog {
       .pipe(debounceTime(350), distinctUntilChanged())
       .subscribe((res) => {
         this._filter(res);
+       if(res && res.id){
+         this.collaboratorValid = true;
+       }else{
+         this.collaboratorValid = false;
+       }
       });
   }
 
@@ -167,10 +171,8 @@ export class ProjectResourceDialog {
     } else {
       try {
         await this.resourceProvider.store(data);
-
-        this.initForm();
+        this.clearForm();
         this.getResourceList();
-        this.collaboratorControl.reset();
       } catch (error: any) {
         console.log('ERROR 132' + error);
       }
@@ -194,7 +196,7 @@ export class ProjectResourceDialog {
         try {
           await this.resourceProvider.destroy(id);
           this.getResourceList();
-
+          this.clearForm();
           this.snackbarService.successMessage('Recurso excluido com sucesso');
         } catch (error) {
           console.log('ERROR 132' + error);
@@ -209,12 +211,15 @@ export class ProjectResourceDialog {
     this.step = index;
   }
 
-  onNoClick(): void {
-    this.method = '';
-    this.getResourceList();
+  clearForm(){
     this.initForm();
     this.collaboratorControl.reset();
     this.method = '';
+
+  }
+
+  clear(): void {
+   this.clearForm();
   }
 
   close() {

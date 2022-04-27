@@ -15,7 +15,7 @@
         <div fxFlex="100" fxLayoutGap="16px">
           <mat-form-field
             *ngIf="this.method !== 'edit'"
-            fxFlex="34"
+            fxFlex="40"
             class="example-full-width"
             appearance="outline"
           >
@@ -57,7 +57,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field fxFlex="35" appearance="outline">
+          <mat-form-field fxFlex="25" appearance="outline">
             <mat-label>Papel</mat-label>
             <mat-select class="select" disableRipple formControlName="paper">
               <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
@@ -94,7 +94,7 @@
             <button
               class="button-form"
               mat-button
-              (click)="onNoClick()"
+              (click)="clear()"
               color="primary"
             >
               <mat-icon>close</mat-icon>
@@ -102,7 +102,7 @@
             <button
               class="button-form"
               color="primary"
-              [disabled]="resourceForm.invalid"
+              [disabled]="resourceForm.invalid || collaboratorValid === false"
               mat-flat-button
               (click)="saveResource()"
             >
