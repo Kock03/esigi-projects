@@ -1,0 +1,92 @@
+<div id="projectRegisterTab" class="tab">
+  <div class="content-scroll" *ngIf="projectForm">
+    <form (submit)="next()" [formGroup]="projectForm" fxLayout="column">
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="50" appearance="outline" *ngIf="projectType === '1'">
+          <mat-label>Tipo de Projeto</mat-label>
+          <mat-select formControlName="type">
+            <mat-option [value]="1">Projeto</mat-option>
+            <mat-option [value]="3">Alocação</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" appearance="outline" *ngIf="projectType === '2'">
+          <mat-label>Tipo de Projeto</mat-label>
+          <mat-select formControlName="type">
+            <mat-option [value]="2">AMS</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput disableRipple formControlName="name" placeholder="Nome" />
+        </mat-form-field>
+        <mat-form-field fxFlex=" 30" appearance="outline" *ngIf="projectId!=='cadastro'">
+          <mat-label>Código</mat-label>
+          <input matInput [formControl]="codeInputDisabled" type="number" placeholder="Código" formControlName="code" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Cliente</mat-label>
+          <input matInput disableRipple formControlName="client" placeholder="Cliente" />
+        </mat-form-field>
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Responsável</mat-label>
+          <mat-select formControlName="responsible">
+            <mat-option value="1">João da Silva</mat-option>
+            <mat-option value="2">Fernando Garcia</mat-option>
+            <mat-option value="3">Paulo Pereira</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Previsão de início e fim</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" placeholder="Início" />
+            <input matEndDate formControlName="endDate" placeholder="Fim" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Horas Contratadas</mat-label>
+          <input matInput type="number" formControlName="contractedHours" placeholder="Horas Contratadas" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Gerente Envolti</mat-label>
+          <mat-select disableRipple formControlName="projectManagerEnvolti">
+            <mat-option value="1">Wellington</mat-option>
+            <mat-option value="2">Charles</mat-option>
+            <mat-option value="3">Danilo</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option [value]="1">Em elaboração</mat-option>
+            <mat-option [value]="2">Enviado</mat-option>
+            <mat-option [value]="3">Parado</mat-option>
+            <mat-option [value]="4">Declinado</mat-option>
+            <mat-option [value]="5">Nova proposta</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field *ngIf="projectType === '1'" floatLabel="always" style="disabled" fxFlex="70"
+          appearance="outline">
+          <mat-label>Valor do Projeto</mat-label>
+          <input matInput prefix="R$" type="text" mask="separator.2" thousandSeparator="." separatorLimit="100000000"
+            formControlName="value" class="example-right-align">
+          <!-- <mat-icon matPrefix style="cursor: pointer">attach_money</mat-icon> -->
+        </mat-form-field>
+        <mat-checkbox *ngIf="projectType === '1'" style="disabled" fxFlex="30" fxLayoutAlign="center start"
+          class="checkbox" color="primary" formControlName="hourControl">Controle de horas</mat-checkbox>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+#projectRegisterTab{
+  max-width: 1200px;
+  
+    .content-scroll {
+        overflow: auto;
+        height: calc(100vh - 280px);
+      }
+
+      .example-right-align{
+        margin-top:3px;
+      }
+      
+      .checkbox{
+        margin-top: 15px;
+      }
+}

@@ -1,0 +1,22 @@
+#projectCreate {
+    .tab-group {
+      width: 100%;
+      cursor: pointer;
+    }
+  
+    .tab-item {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  
+    .title {
+      margin: 0 !important;
+    }
+
+    .disabled {
+      pointer-events: none;
+      color: grey!important;
+      opacity: 0.5;
+      cursor: block;
+    }
+  }

@@ -1,0 +1,221 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$esigi-projects-primary: mat.define-palette(mat.$indigo-palette);
+$esigi-projects-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$esigi-projects-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$esigi-projects-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $esigi-projects-primary,
+      accent: $esigi-projects-accent,
+      warn: $esigi-projects-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($esigi-projects-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "../src/app/layout/themes/table.scss";
+
+@import "../src/app/layout/themes/snack-bar.scss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none !important;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.page {
+  padding: 32px 32px 0;
+  max-width: 1280px;
+  margin: auto;
+  height: calc(100% - 64px);
+}
+
+// @media (min-width: 1201px) {
+//   .page {
+//     height: calc(100vh - 200px) !important;
+//   }
+// }
+
+.tab {
+  margin-top: 24px;
+
+  &-group {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  &-item {
+    cursor: default;
+    margin-bottom: 8px !important;
+    color: black;
+  }
+
+  &-border {
+    border-bottom: 4px solid #b8bdbf;
+    border-radius: 4px;
+  }
+
+  .done {
+    .tab-border {
+      border-color: #ff6a39 !important;
+    }
+  }
+
+  .active {
+    p {
+      color: #ff6a39;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed !important;
+    color: grey;
+    opacity: 0.5;
+
+    p {
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.navigation-buttons {
+  margin: auto;
+  width: 100%;
+  position: relative;
+  display: flex;
+  bottom: 0;
+  margin-top: 12px;
+}
+
+.title {
+  margin-bottom: 24px !important;
+}
+.table-styles {
+  max-width: 1220px;
+
+  table {
+    width: 100%;
+  }
+
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 600px;
+    width: 100%;
+    border-radius: 10px;
+   
+  
+
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .edit-button {
+      background-color: transparent !important;
+      color: white;
+    }
+  }
+}
+.table-button {
+  height: 100%;
+  margin-right: 0px !important;
+
+  mat-icon {
+    color: #753bbd;
+   
+  }
+}
+
+.confirm-modal {
+  mat-dialog-container {
+    padding: 20px !important;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 180px;
+    border-radius: 10px;
+    border: 2px solid #8f8d92;
+    p {
+      letter-spacing: 0.25px;
+    }
+    button.delete {
+      color: #673ab7;
+    }
+  }
+}
+
+.content-scroll {
+  overflow: auto;
+  height: calc(100vh - 280px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+
+
