@@ -101,8 +101,7 @@ export class ProjectResourceDialog {
         (collaborator) => collaborator.id === user
       );
     }
-    return user && user.firstNameCorporateName
-      ? user.firstNameCorporateName
+    return user && user.firstNameCorporateName && user.lastNameFantasyName ? user.firstNameCorporateName + ' ' + user.lastNameFantasyName
       : '';
   }
 
@@ -116,7 +115,7 @@ export class ProjectResourceDialog {
   initForm(): void {
     this.resourceForm = this.fb.group({
       collaboratorId: [null],
-      paper: [null, Validators.required],
+      paper: ['', Validators.required],
       estimatedHours: ['', Validators.required],
       isActive: [true],
       activity: { id: this.activityId },

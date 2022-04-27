@@ -38,7 +38,7 @@
                 *ngFor="let collaborator of filteredCollaborators"
                 [value]="collaborator"
               >
-                {{collaborator.firstNameCorporateName}}
+                {{collaborator.firstNameCorporateName }} {{collaborator.lastNameFantasyName}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
