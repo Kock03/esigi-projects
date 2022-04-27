@@ -56,7 +56,7 @@ export class ProjectsService {
         '"%' +
         name +
         '"' +
-        ' and projects.status like'
+        ' and projects.status like' 
         + '"%' +
         status +
         '"' +

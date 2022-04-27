@@ -25,6 +25,7 @@ import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
+
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -41,6 +42,7 @@ export class ProjectResourceDialog {
     'collaboratorId',
     'paper',
     'estimatedHours',
+    'isActive',
     'icon',
   ];
   resourceForm!: FormGroup;
@@ -105,8 +107,7 @@ export class ProjectResourceDialog {
         (collaborator) => collaborator.id === user
       );
     }
-    return user && user.firstNameCorporateName
-      ? user.firstNameCorporateName
+    return user && user.firstNameCorporateName && user.lastNameFantasyName ? user.firstNameCorporateName + ' ' + user.lastNameFantasyName
       : '';
   }
 
@@ -121,7 +122,7 @@ export class ProjectResourceDialog {
     this.resourceForm = this.fb.group({
       collaboratorId: [null],
       paper: [null, Validators.required],
-      estimatedHours: ['', Validators.required],
+      estimatedHours: [null, Validators.required],
       isActive: [true],
       activity: { id: this.activityId },
     });
