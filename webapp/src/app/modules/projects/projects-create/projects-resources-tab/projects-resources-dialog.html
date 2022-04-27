@@ -12,7 +12,7 @@
     </div>
     <mat-dialog-content  fxLayout="column" fxLayoutAlign="space-between" class="mat-typography">
       <form class="form-content" [formGroup]="resourceForm" fxLayout="column">
-        <div fxFlex="100" fxLayoutGap="16px">
+        <div fxFlex="100" fxLayoutGap="7px">
           <mat-form-field
             *ngIf="this.method !== 'edit'"
             fxFlex="34"
@@ -45,7 +45,7 @@
           <mat-form-field
             appearance="outline"
             *ngIf="this.method === 'edit'"
-            fxFlex="25"
+            fxFlex="40"
             class="example-full-width"
           >
             <mat-label>Colaborador</mat-label>
@@ -57,7 +57,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field fxFlex="35" appearance="outline">
+          <mat-form-field fxFlex="25" appearance="outline">
             <mat-label>Papel</mat-label>
             <mat-select class="select" disableRipple formControlName="paper">
               <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
@@ -90,7 +90,7 @@
               placeholder="Estimativa de Horas"
             />
           </mat-form-field>
-          <div fxFlex="20" fxLayout="row">
+          <div fxFlex="20" fxLayoutGap="7px" fxLayout="row">
             <button
               class="button-form"
               mat-button
