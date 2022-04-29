@@ -13,11 +13,11 @@ import { ProjectProvider } from 'src/providers/project.provider';
   styleUrls: ['./projects-panel-tab.component.scss'],
 })
 export class ProjectsPanelTabComponent implements OnInit {
-  @ViewChild('ressourceTable') ressourceTable!: MatTable<any>;
+  @ViewChild('resourceTable') ressourceTable!: MatTable<any>;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
 
-  displayedPanel: string[] = ['ressource', 'hours', 'status', 'icon'];
+  displayedPanel: string[] = ['resource', 'hours', 'status', 'icon'];
   ressource: any;
 
 
