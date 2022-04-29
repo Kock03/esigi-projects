@@ -28,7 +28,7 @@ export class ProjectsListComponent implements OnInit {
 
   filteredProjectList = new MatTableDataSource();
   projects!: IProjects[];
-  project!: any;
+  project!: IProjects;
   projectId!: string;
   method: string = '';
   params!: string;
