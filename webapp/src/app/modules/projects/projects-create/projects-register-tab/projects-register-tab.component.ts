@@ -11,6 +11,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 
 export const PICK_FORMATS = {
@@ -52,7 +53,8 @@ export class ProjectsRegisterTabComponent implements OnInit {
   projectId: any;
   codeInputDisabled = new FormControl({ disabled: true });
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, 
+    public translateService: TranslateService) {}
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
