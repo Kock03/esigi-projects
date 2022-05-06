@@ -1,0 +1,17 @@
+{
+    "projects_list": {
+        "projects": "Projetos",  
+        "search_projects": "Buscar Projetos",
+        "filter": "Filtro",
+        "active": "Ativos",
+        "inactive": "Inativos",
+        "concluded": "Concluídos",
+        "stopped": "Parados",
+        "all": "Todos",
+        "name": "Nome",
+        "client": "client",
+        "manager": "Gerente",
+        "opening_date": "Data de abertura",
+        "status": "Status"
+    }
+}

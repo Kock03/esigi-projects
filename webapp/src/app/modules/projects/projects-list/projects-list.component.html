@@ -1,24 +1,24 @@
 <div id="projectList" class="page">
-  <h2>Projetos</h2>
+  <h2>{{ "projects_list.projects" | translate }}</h2>
 
   <div fxLayout="row"></div>
 
   <div fxLayoutAlign="space-between">
     <form class="search" fxLayout="row" fxLayoutGap="16px">
       <mat-form-field appearance="outline" fxFlex="100">
-        <mat-label>Buscar Projetos</mat-label>
+        <mat-label>{{ "projects_list.search_projects" | translate }}</mat-label>
         <input matInput placeholder="Nome do Projeto" #filter matInput />
         <mat-icon matSuffix style="cursor: pointer">search</mat-icon>
       </mat-form-field>
 
       <mat-form-field fxFlex="20" appearance="outline">
-        <mat-label>Filtro</mat-label>
+        <mat-label>{{ "projects_list.filter" | translate }}</mat-label>
         <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
 
-          <mat-option [value]="1">Ativos</mat-option>
-          <mat-option [value]="2">Concluídos</mat-option>
-          <mat-option [value]="3">Parados</mat-option>
-          <mat-option [value]="4">Todos</mat-option>
+          <mat-option [value]="1">{{ "projects_list.active" | translate }}</mat-option>
+          <mat-option [value]="2">{{ "projects_list.concluded" | translate }}</mat-option>
+          <mat-option [value]="3">{{ "projects_list.stopped" | translate }}</mat-option>
+          <mat-option [value]="4">{{ "projects_list.all" | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
     </form>
@@ -27,21 +27,21 @@
   <div class="envolti-table mat-elevation-z8" fxLayout="column">
     <table mat-table [dataSource]="filteredProjectList">
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "projects_list.name" | translate }}</th>
         <td mat-cell *matCellDef="let project">
           {{ project.name }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="client">
-        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "projects_list.client" | translate }}</th>
         <td mat-cell *matCellDef="let project">
           {{ project.client }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="projectManagerEnvolti">
-        <th mat-header-cell *matHeaderCellDef>Gerente</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "projects_list.manager" | translate }}</th>
         <td mat-cell *matCellDef="let project">
           {{
           project.projectManagerEnvolti == 1
@@ -54,14 +54,14 @@
       </ng-container>
 
       <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef>Data de abertura</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "projects_list.manager" | translate }}</th>
         <td mat-cell *matCellDef="let project">
           {{ project.startDate | date: "dd/MM/yyyy" }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "projects_list.status" | translate }}</th>
         <td mat-cell *matCellDef="let project">
           {{
           project.status == 1

@@ -28,6 +28,7 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatMenuModule } from '@angular/material/menu';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -65,6 +66,7 @@ const routes: Routes = [
     CommonModule,
     FlexLayoutModule,
     MatTabsModule,
+    TranslateModule.forChild(),
     MatButtonModule,
     ReactiveFormsModule,
     MatTableModule,
