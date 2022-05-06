@@ -7,14 +7,36 @@
         "concluded": "Concluídos",
         "stopped": "Parados",
         "all": "Todos",
-        "client": "Cliente",
-        "manager": "Gerente",
-        "opening_date": "Data de abertura",
-        "status": "Status"
+        "opening_date": "Data de abertura"
+    },
+    "home": {
+        "projects_and_allocation": "Projeto e alocação",
+        "ams_projects": "Projectos AMS"
+    },
+    "project_register": {
+        "projectType": "Tipo de projeto",
+        "code": "Código",
+        "responsible": "Responsável",
+        "start_date_and_end_date": "Previsão de início e fim",
+        "contractedHours": "Horas contratadas",
+        "in_preparation": "Em preparação",
+        "sent": "Enviado",
+        "stopped": "Parado",
+        "declined": "Declinado",
+        "new_proposal": "Nova Proposta",
+        "value": "Valor do projeto",
+        "hour_control": "Controle de horas"
     },
     "project_generic": {
+        "project": "Projeto",
         "projects": "Projetos",
         "name": "Nome",
-        "date": "data"
-    }
+        "date": "Data",
+        "back_button": "Voltar",
+        "allocation": "Alocação",
+        "ams": "ams",
+        "client": "Cliente",
+        "managerEnvolti": "Gerente Envolti",
+        "status": "Status"
+    }   
 }
