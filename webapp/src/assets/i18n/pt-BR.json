@@ -17,7 +17,6 @@
         "projectType": "Tipo de projeto",
         "code": "Código",
         "responsible": "Responsável",
-        "start_date_and_end_date": "Previsão de início e fim",
         "contractedHours": "Horas contratadas",
         "in_preparation": "Em preparação",
         "sent": "Enviado",
@@ -39,12 +38,17 @@
         "terminus": "Término",
         "resources": "Recurso"
     },
+    "projects-activities_dialog": {
+        "activity_registration": "Cadastro de atividade"
+    },
     "project_generic": {
+        "back_button": "Voltar",
+        "save_button": "Salvar",
+        "cancel_button": "Cancelar",
         "project": "Projeto",
         "projects": "Projetos",
         "name": "Nome",
         "date": "Data",
-        "back_button": "Voltar",
         "allocation": "Alocação",
         "ams": "ams",
         "client": "Cliente",
@@ -52,6 +56,9 @@
         "status": "Status",
         "collaborator": "Colabordor",
         "paper": "Papel",
-        "estimated_hours": "Horas estimadas"
-    }   
+        "estimated_hours": "Horas estimadas",
+        "activity": "Atividade",
+        "start_date_and_end_date": "Previsão de início e fim"
+    }
+    
 }
