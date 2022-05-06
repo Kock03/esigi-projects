@@ -4,28 +4,28 @@
             <table mat-table [dataSource]="data" #activityTable>
 
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef>Atividade</th>
+                    <th mat-header-cell *matHeaderCellDef>{{ "project_resource_tab.activity" | translate }}</th>
                     <td mat-cell *matCellDef="let activity">
                         {{ activity.name }}
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="startDate">
-                    <th mat-header-cell *matHeaderCellDef>Início</th>
+                    <th mat-header-cell *matHeaderCellDef>{{ "project_resource_tab.start" | translate }}</th>
                     <td mat-cell *matCellDef="let activity">
                         {{ activity.startDate | date: 'dd/MM/yyyy' }}
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="endDate">
-                    <th mat-header-cell *matHeaderCellDef>Término</th>
+                    <th mat-header-cell *matHeaderCellDef>{{ "project_resource_tab.terminus" | translate }}</th>
                     <td mat-cell *matCellDef="let activity">
                         {{ activity.endDate | date: 'dd/MM/yyyy' }}
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="resources">
-                    <th mat-header-cell *matHeaderCellDef>Recursos</th>
+                    <th mat-header-cell *matHeaderCellDef>{{ "project_resource_tab.resources" | translate }}</th>
                     <td mat-cell *matCellDef="let activity; let index = index">
                         <button class="table-button" mat-button (click)="openDialogResources(activity.id)">
                             <mat-icon>supervised_user_circle</mat-icon>

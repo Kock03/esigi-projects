@@ -27,6 +27,12 @@
         "value": "Valor do projeto",
         "hour_control": "Controle de horas"
     },
+    "project_resource_tab": {
+        "activity": "Atividade",
+        "start": "Início",
+        "terminus": "Término",
+        "resources": "Recurso"
+    },
     "project_generic": {
         "project": "Projeto",
         "projects": "Projetos",
