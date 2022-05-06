@@ -19,8 +19,8 @@
       class="avatar mat-elevation-z8"
       src="https://st.depositphotos.com/1734074/4228/v/450/depositphotos_42286141-stock-illustration-vector-man-with-mustache-in.jpg"
     />
-    <h4 class="name">Usuário</h4>
-    <p class="designation">Função</p>
+    <h4 class="name">{{ "project_sidenav.user" | translate }}</h4>
+    <p class="designation">{{ "project_sidenav.occupation" | translate }}</p>
     <mat-divider></mat-divider>
     <div *ngFor="let menu of menuList">
       <button
@@ -32,12 +32,12 @@
         (click)="navigate(menu.action)"
       >
         <mat-icon>{{ menu.icon }}</mat-icon>
-        <span>{{ menu.name }}</span>
+        <span>{{ menu.name | translate }}</span>
       </button>
     </div>
     <button mat-button class="menu-button logout">
       <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
+      <span>{{ "project_sidenav.logout" | translate }}</span>
     </button>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -3,21 +3,21 @@
     <button (click)="goBackProjects()" color="primary" mat-button>
       <mat-icon> chevron_left </mat-icon>
     </button>
-    <h2>Projetos</h2>
+    <h2>  {{ "project_generic.projects" | translate }}</h2>
   </div>
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
     <div [ngClass]="{ done: step > 0, active: step == 1 }" (click)="handleStep(1)" fxLayout="column" class="tab-group">
-      <p class="tab-item">Cadastro</p>
+      <p class="tab-item">{{ "projects-create.register" | translate }}</p>
       <span class="tab-border"></span>
     </div>
     <div [ngClass]="{ done: step > 1, active: step == 2, disabled: projectId === 'cadastro' && step === 1 }"
       (click)="handleStep(2)" fxLayout="column" class="tab-group">
-      <p class="tab-item">Atividades/Recursos</p>
+      <p class="tab-item">{{ "projects-create.activities_and_resources" | translate }}</p>
       <span class="tab-border"></span>
     </div>
     <div *ngIf="projectId !== 'cadastro'" [ngClass]="{ done: step > 2, active: step == 3 }" (click)="handleStep(3)"
       fxLayout="column" class="tab-group">
-      <p class="tab-item">Acompanhamento</p>
+      <p class="tab-item">{{ "projects-create.follow_up" | translate }}</p>
       <span class="tab-border"></span>
     </div>
   </div>
@@ -31,21 +31,21 @@
 
   <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
     <button mat-button *ngIf="step != 1" (click)="navigate('back')">
-      Voltar
+      {{ "project_generic.back_button" | translate }}
     </button>
 
     <button *ngIf="step == 2"  mat-flat-button (click)="navigate('next')" color="primary">
-      Continuar
+      {{ "project_generic.continue_button" | translate }}
     </button>
 
     <button mat-flat-button *ngIf="projectId == 'cadastro' &&  step == 1" color="primary" (click)="handleStep(1)" (click)="saveProject()">
-      Salvar
+      {{ "project_generic.save_button" | translate }}
     </button>
   </div>
 
   <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px" *ngIf="projectId !== 'cadastro' &&  step == 1">
     <button [disabled]="projectForm.invalid" mat-flat-button (click)="editProject()" color="primary">
-      Editar
+      {{ "project_generic.edit_button" | translate }}
     </button>
   </div>
 </div>

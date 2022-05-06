@@ -18,7 +18,7 @@ export class AppComponent {
 
   menuList = [
     {
-      name: 'Projetos',
+      name: 'project_sidenav.projects',
       icon: 'analytics',
       selected: false,
       action: 'projetos/lista',
