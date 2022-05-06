@@ -29,8 +29,7 @@
     "project_resource_tab": {
         "activity": "Atividade",
         "start": "Início",
-        "terminus": "Término",
-        "resources": "Recurso"
+        "terminus": "Término"
     },
     "project_resource_dialog": {
         "resource_registration": "Cadastro de recurso",
@@ -40,6 +39,9 @@
     },
     "projects-activities_dialog": {
         "activity_registration": "Cadastro de atividade"
+    },
+    "projects-panel": {
+        "hours_run": "Horas executadas"
     },
     "project_generic": {
         "back_button": "Voltar",
@@ -58,7 +60,8 @@
         "paper": "Papel",
         "estimated_hours": "Horas estimadas",
         "activity": "Atividade",
-        "start_date_and_end_date": "Previsão de início e fim"
+        "start_date_and_end_date": "Previsão de início e fim",
+        "resources": "Recurso"
     }
     
 }
