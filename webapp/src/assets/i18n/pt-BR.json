@@ -33,6 +33,12 @@
         "terminus": "Término",
         "resources": "Recurso"
     },
+    "project_resource_dialog": {
+        "resource_registration": "Cadastro de recurso",
+        "start": "Início",
+        "terminus": "Término",
+        "resources": "Recurso"
+    },
     "project_generic": {
         "project": "Projeto",
         "projects": "Projetos",
@@ -43,6 +49,9 @@
         "ams": "ams",
         "client": "Cliente",
         "managerEnvolti": "Gerente Envolti",
-        "status": "Status"
+        "status": "Status",
+        "collaborator": "Colabordor",
+        "paper": "Papel",
+        "estimated_hours": "Horas estimadas"
     }   
 }
