@@ -1,9 +1,4 @@
 {
-    "projects-create": {
-        "register": "Cadastro",
-        "activities_and_resources": "Atividades/Recursos",
-        "follow_up": "Acompanhamento"
-    },
     "projects_list": {
         "search_projects": "Buscar Projetos",
         "filter": "Filtro",
@@ -17,6 +12,11 @@
     "home": {
         "projects_and_allocation": "Projeto e alocação",
         "ams_projects": "Projectos AMS"
+    },
+    "projects-create": {
+        "register": "Cadastro",
+        "activities_and_resources": "Atividades/Recursos",
+        "follow_up": "Acompanhamento"
     },
     "project_register": {
         "projectType": "Tipo de projeto",
