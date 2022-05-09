@@ -4,7 +4,7 @@
       <mat-icon class="icon-ressource-dialog">account_circle</mat-icon>
       <button disabled class="button-resource" mat-button>
         <h2 fxLayoutAlign="start">
-          {{ "project_resource_dialog.resource_registration" | translate }}
+          {{ "projects.project_register.project_resource_dialog.resource_registration" | translate }}
         </h2>
       </button>
       <button (click)="close()" class="cancel-icon" mat-button>
@@ -26,7 +26,7 @@
           appearance="outline"
         >
           <mat-label
-            >{{ "project_generic.collaborator" | translate }}</mat-label
+            >{{ "projects.project_generic.collaborator" | translate }}</mat-label
           >
           <input
             type="text"
@@ -58,7 +58,7 @@
           class="example-full-width"
         >
           <mat-label
-            >{{ "project_generic.collaborator" | translate }}</mat-label
+            >{{ "projects.project_generic.collaborator" | translate }}</mat-label
           >
           <input
             disabled
@@ -69,7 +69,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="35" appearance="outline">
-          <mat-label>"{{ "project_generic.paper" | translate }}</mat-label>
+          <mat-label>"{{ "projects.project_generic.paper" | translate }}</mat-label>
           <mat-select class="select" disableRipple formControlName="paper">
             <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
                 ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
@@ -93,7 +93,7 @@
 
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label
-            > {{ "project_generic.estimated_hours" | translate }}</mat-label
+            > {{ "projects.project_generic.estimated_hours" | translate }}</mat-label
           >
           <input
             matInput
@@ -140,7 +140,7 @@
       <table mat-table [dataSource]="dataTable" #resourceDialogTable>
         <ng-container matColumnDef="collaboratorId">
           <th mat-header-cell *matHeaderCellDef>
-            {{ "project_generic.collaborator" | translate }}
+            {{ "projects.project_generic.collaborator" | translate }}
           </th>
           <td mat-cell *matCellDef="let resource">
             {{ resource.collaborator.firstNameCorporateName }}
@@ -157,7 +157,7 @@
 
         <ng-container matColumnDef="estimatedHours">
           <th mat-header-cell *matHeaderCellDef>
-            {{ "project_generic.estimated_hours" | translate }}
+            {{ "projects.project_generic.estimated_hours" | translate }}
           </th>
           <td mat-cell *matCellDef="let resource">
             {{ resource.estimatedHours }}
@@ -165,7 +165,7 @@
         </ng-container>
         <ng-container matColumnDef="isActive">
           <th mat-header-cell *matHeaderCellDef>
-            {{ "project_generic.status" | translate }}
+            {{ "projects.project_generic.status" | translate }}
           </th>
 
           <td mat-cell *matCellDef="let resource">

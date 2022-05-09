@@ -4,7 +4,7 @@
       <mat-panel-title fxLayout="row">
         <mat-icon class="icon-activities-dialog">account_circle</mat-icon>
         <button disabled class="button-activities" mat-button>
-          <h2 fxLayoutAlign="start"> {{ "projects-activities_dialog.activity_registration" | translate }}</h2>
+          <h2 fxLayoutAlign="start"> {{ "projects.project_register.projects-activities_dialog.activity_registration" | translate }}</h2>
         </button>
         <button (click)="close()" class="cancel-icon" mat-button>
           <mat-icon>cancel</mat-icon>
@@ -15,7 +15,7 @@
       <form [formGroup]="activityForm" fxLayout="column">
         <div  fxLayoutGap="16px" class="form-content-activities">
         <mat-form-field appearance="outline">
-          <mat-label>{{ "project_generic.activity" | translate }}</mat-label>
+          <mat-label>{{ "projects.project_generic.activity" | translate }}</mat-label>
           <input
             matInput
             disableRipple
@@ -25,7 +25,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>{{ "project_generic.start_date_and_end_date" | translate }}</mat-label>
+          <mat-label>{{ "projects.project_generic.start_date_and_end_date" | translate }}</mat-label>
           <mat-date-range-input [rangePicker]="picker">
             <input
               matStartDate
@@ -46,7 +46,7 @@
     <mat-dialog-actions>
       <div  class="button-dialog" >
         <button mat-flat-button mat-dialog-close (click)="onNoClick()">
-          {{ "project_generic.cancel_button" | translate }}
+          {{ "projects.project_generic.cancel_button" | translate }}
         </button>
         <button
           color="primary"
@@ -55,7 +55,7 @@
           [mat-dialog-close]="true"
           (click)="save()"
         >
-        {{ "project_generic.save_button" | translate }}
+        {{ "projects.project_generic.save_button" | translate }}
         </button>
       </div>
     </mat-dialog-actions>

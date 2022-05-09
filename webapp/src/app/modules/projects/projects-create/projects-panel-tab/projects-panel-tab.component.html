@@ -3,21 +3,21 @@
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
       <table mat-table  #resourceTable>
         <ng-container matColumnDef="resource">
-          <th mat-header-cell *matHeaderCellDef> {{ "project_generic.estimated_hours" | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef> {{ "projects.project_generic.estimated_hours" | translate }}</th>
           <td mat-cell *matCellDef="let panel">
             {{ panel.resource }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="hours">
-          <th mat-header-cell *matHeaderCellDef>{{ "projects-panel.hours_run" | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ "projects.projects-panel.hours_run" | translate }}</th>
           <td mat-cell *matCellDef="let panel">
             {{ panel.hours }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>{{ "project_generic.status" | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.status" | translate }}</th>
           <td mat-cell *matCellDef="let panel">
             {{ panel.status == 1
             ? "Em elaboração"
