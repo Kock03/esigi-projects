@@ -25,7 +25,6 @@ import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
-
 @Component({
   selector: 'app-projects-resources-dialog',
   templateUrl: 'projects-resources-dialog.html',
@@ -72,7 +71,7 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // TODO - pensar para limitar a busca inicial em uma determinada quantidade
@@ -93,11 +92,11 @@ export class ProjectResourceDialog {
       .pipe(debounceTime(350), distinctUntilChanged())
       .subscribe((res) => {
         this._filter(res);
-       if(res && res.id){
-         this.collaboratorValid = true;
-       }else{
-         this.collaboratorValid = false;
-       }
+        if (res && res.id) {
+          this.collaboratorValid = true;
+        } else {
+          this.collaboratorValid = false;
+        }
       });
   }
 
@@ -107,7 +106,8 @@ export class ProjectResourceDialog {
         (collaborator) => collaborator.id === user
       );
     }
-    return user && user.firstNameCorporateName && user.lastNameFantasyName ? user.firstNameCorporateName + ' ' + user.lastNameFantasyName
+    return user && user.firstNameCorporateName && user.lastNameFantasyName
+      ? user.firstNameCorporateName + ' ' + user.lastNameFantasyName
       : '';
   }
 
@@ -212,19 +212,55 @@ export class ProjectResourceDialog {
     this.step = index;
   }
 
-  clearForm(){
+  clearForm() {
     this.initForm();
     this.collaboratorControl.reset();
     this.method = '';
-
   }
 
   clear(): void {
-   this.clearForm();
+    this.clearForm();
   }
 
   close() {
     this.dialogRef.close();
     sessionStorage.clear;
+  }
+
+  getPaper(paper: number) {
+    switch (paper) {
+      case 1:
+        return 'Gerente de Projeto';
+      case 2:
+        return 'Arquiteto de Software';
+      case 3:
+        return 'Analista de Dados';
+      case 4:
+        return 'Analista de Testes';
+      case 5:
+        return 'Engenheiro de Software';
+      case 6:
+        return 'Desenvolvedor Angular';
+      case 7:
+        return 'Desenvolvedor React';
+      case 8:
+        return 'Desenvolvedor C#';
+      case 9:
+        return 'Desenvolvedor Java';
+      case 10:
+        return 'Desenvolvedor PHP';
+      case 11:
+        return 'Desenvolvedor Node';
+      case 12:
+        return 'Desenvolvedor Javascript';
+      case 13:
+        return 'Desenvolvedor C++';
+      case 14:
+        return 'Desenvolvedor Python';
+      case 15:
+        return 'Desenvolvedor Ruby';
+      default:
+        return '';
+    }
   }
 }

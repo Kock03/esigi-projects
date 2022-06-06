@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { TranslateService } from '@ngx-translate/core';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -17,7 +18,7 @@ export class AppComponent {
 
   menuList = [
     {
-      name: 'Projetos',
+      name: 'project_sidenav.projects',
       icon: 'analytics',
       selected: false,
       action: 'projetos/lista',
@@ -27,10 +28,13 @@ export class AppComponent {
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang('pt-BR');
+    this.translateService.use('pt-BR');
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {

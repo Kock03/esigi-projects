@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -24,6 +25,8 @@ import { SnackBarService } from 'src/services/snackbar.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
+import { ConfigDialogComponent } from './components/config-dialog/config-dialog.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ToolbarComponent,
     AppComponent,
     SnackBarComponent,
+    ConfigDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,13 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatToolbarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateFactory,
+        deps: [HttpClient],
+      },
+    }),
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -59,3 +70,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
   exports: [MatTableModule],
 })
 export class AppModule {}
+
+export function translateFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}

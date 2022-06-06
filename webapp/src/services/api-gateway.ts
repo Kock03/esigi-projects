@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Subject, Observable, catchError, throwError, finalize } from 'rxjs';
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 
 export declare const enum RequestMethod {
   Get = 'GET',

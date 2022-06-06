@@ -3,14 +3,14 @@
   <div class="portal-content" fxLayout="row" fxLayoutAlign="center">
     <button (click)="handleProject(1)" class="box-management-purple" fxLayout="column">
       <img src="../../../assets/icons/purple-rocket-icon.png" class="rocket-button" />
-      <a class="project">Projeto e Alocação</a>
+      <a class="project">{{ "projects.home.projects_and_allocation" | translate }}</a>
     </button>
     <button (click)="handleProject(2)" class="box-management-blue" fxLayout="column">
       <img src="../../../assets/icons/blue-rocket-icon.png" class="rocket-button" />
-      <a class="ams-project">Projeto AMS</a>
+      <a class="ams-project">{{ "projects.home.ams_projects" | translate }}</a>
     </button>
   </div>
 </div>
 <button class="button" (click)="goBackProjects()" color="primary" mat-flat-button>
-  <mat-icon> chevron_left </mat-icon> Voltar
+  <mat-icon> chevron_left </mat-icon> {{ "projects.project_generic.back_button" | translate }}
 </button>

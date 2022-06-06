@@ -1,0 +1,92 @@
+{
+    "project_sidenav": {
+        "projects": "Projetos",
+        "user": "Usuário",
+        "occupation": "Função",
+        "logout": "Logout"
+    },
+    "projects": {
+        "projects_list": {
+            "search_projects": "Buscar Projetos",
+            "filter": "Filtro",
+            "active": "Ativos",
+            "inactive": "Inativos",
+            "concluded": "Concluídos",
+            "stopped": "Parados",
+            "all": "Todos",
+            "opening_date": "Data de abertura"
+        },
+        "home": {
+            "projects_and_allocation": "Projeto e alocação",
+            "ams_projects": "Projectos AMS"
+        },
+        "projects-create": {
+            "register": "Cadastro",
+            "activities_and_resources": "Atividades/Recursos",
+            "follow_up": "Acompanhamento"
+        },
+        "project_register": {
+            "projectType": "Tipo de projeto",
+            "code": "Código",
+            "responsible": "Responsável",
+            "contractedHours": "Horas contratadas",
+            "in_preparation": "Em preparação",
+            "sent": "Enviado",
+            "stopped": "Parado",
+            "declined": "Declinado",
+            "new_proposal": "Nova Proposta",
+            "value": "Valor do projeto",
+            "hour_control": "Controle de horas",
+
+            "project_resource_tab": {
+                "activity": "Atividade",
+                "start": "Início",
+                "terminus": "Término"
+            },
+            "project_resource_dialog": {
+                "resource_registration": "Cadastro de recurso",
+                "start": "Início",
+                "terminus": "Término",
+                "resources": "Recurso"
+            },
+            "projects-activities_dialog": {
+                "activity_registration": "Cadastro de atividade"
+            }
+        },
+        "projects-panel": {
+            "hours_run": "Horas executadas"
+        },
+        "project_generic": {
+            "back_button": "Voltar",
+            "save_button": "Salvar",
+            "cancel_button": "Cancelar",
+            "edit_button": "Editar",
+            "continue_button": "Continuar",
+            "project": "Projeto",
+            "projects": "Projetos",
+            "name": "Nome",
+            "date": "Data",
+            "allocation": "Alocação",
+            "ams": "ams",
+            "client": "Cliente",
+            "managerEnvolti": "Gerente Envolti",
+            "status": "Status",
+            "collaborator": "Colabordor",
+            "paper": "Papel",
+            "estimated_hours": "Horas estimadas",
+            "activity": "Atividade",
+            "start_date_and_end_date": "Previsão de início e fim",
+            "resources": "Recurso"
+        },
+        "resume_list": {
+            "search_projects": "Buscar Projetos",
+            "filter": "Filtro",
+            "active": "Ativos",
+            "inactive": "Inativos",
+            "concluded": "Concluídos",
+            "stopped": "Parados",
+            "all": "Todos",
+            "opening_date": "Data de abertura"
+        }
+    }
+}
