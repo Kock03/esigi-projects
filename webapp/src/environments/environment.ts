@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   COLLABORATOR_MS: 'localhost:3501/api/v1/',
-  PROJECT_MS: 'localhost:3506/api/v1/',
+  PROJECT_MS: 'localhost:3505/api/v1/',
   message: 'LOCAL',
   protocol: 'http',
 };
