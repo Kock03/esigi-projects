@@ -1,7 +1,7 @@
 import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ApiGateway } from "src/services/api-gateway";
-import { environment } from "src/environments/environment.prod";
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root',
