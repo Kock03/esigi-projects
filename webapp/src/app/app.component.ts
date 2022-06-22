@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,9 @@ export class AppComponent {
     private observer: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute,
-    public translateService: TranslateService
-  ) {}
+    public translateService: TranslateService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.translateService.setDefaultLang('pt-BR');
@@ -59,5 +61,14 @@ export class AppComponent {
   navigate(route: string) {
     this.router.navigate([route]);
     sessionStorage.clear();
+  }
+
+
+  openApp(): void {
+    location.replace(`http://localhost:3406/portal`);
+  }
+
+  logout(): void {
+    this.userService.logout();
   }
 }
