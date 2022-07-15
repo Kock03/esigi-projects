@@ -12,65 +12,28 @@
       </button>
     </mat-panel-title>
   </div>
-  <mat-dialog-content
-    fxLayout="column"
-    fxLayoutAlign="space-between"
-    class="mat-typography"
-  >
+  <mat-dialog-content fxLayout="column" fxLayoutAlign="space-between" class="mat-typography">
     <form class="form-content" [formGroup]="resourceForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field
-          *ngIf="this.method !== 'edit'"
-          fxFlex="34"
-          class="example-full-width"
-          appearance="outline"
-        >
-          <mat-label
-            >{{ "projects.project_generic.collaborator" | translate }}</mat-label
-          >
-          <input
-            type="text"
-            placeholder="Colaborador"
-            aria-label="text"
-            #filter
-            matInput
-            [matAutocomplete]="auto"
-            [formControl]="collaboratorControl"
-          />
-          <mat-autocomplete
-            autoActiveFirstOption
-            #auto="matAutocomplete"
-            [displayWith]="displayFn"
-          >
-            <mat-option
-              *ngFor="let collaborator of filteredCollaborators"
-              [value]="collaborator"
-            >
+        <mat-form-field *ngIf="this.method !== 'edit'" fxFlex="34" class="example-full-width" appearance="outline">
+          <mat-label>{{ "projects.project_generic.collaborator" | translate }}</mat-label>
+          <input type="text" placeholder="Colaborador" aria-label="text" #filter matInput [matAutocomplete]="auto"
+            [formControl]="collaboratorControl" />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
               {{collaborator.firstNameCorporateName }}
               {{collaborator.lastNameFantasyName}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field
-          appearance="outline"
-          *ngIf="this.method === 'edit'"
-          fxFlex="25"
-          class="example-full-width"
-        >
-          <mat-label
-            >{{ "projects.project_generic.collaborator" | translate }}</mat-label
-          >
-          <input
-            disabled
-            matInput
-            disableRipple
-            [value]="this.collaboratorControl.value"
-          />
+        <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
+          <mat-label>{{ "projects.project_generic.collaborator" | translate }}</mat-label>
+          <input disabled matInput disableRipple [value]="this.collaboratorControl.value" />
         </mat-form-field>
 
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>"{{ "projects.project_generic.paper" | translate }}</mat-label>
-          <mat-select class="select" disableRipple formControlName="paper">
+          <mat-select [errorStateMatcher]="matcher" class="select" disableRipple formControlName="paper">
             <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
                 ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
             <mat-option [value]="1">Gerente de Projeto</mat-option>
@@ -92,48 +55,24 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label
-            > {{ "projects.project_generic.estimated_hours" | translate }}</mat-label
-          >
-          <input
-            matInput
-            disableRipple
-            type="number"
-            formControlName="estimatedHours"
-            placeholder="Estimativa de Horas"
-          />
+          <mat-label> {{ "projects.project_generic.estimated_hours" | translate }}</mat-label>
+          <input matInput disableRipple [errorStateMatcher]="matcher" type="number" formControlName="estimatedHours"
+            placeholder="Estimativa de Horas" />
         </mat-form-field>
         <div fxFlex="20" fxLayout="row">
-          <button
-            class="button-form"
-            mat-button
-            (click)="clear()"
-            color="primary"
-          >
+          <button class="button-form" mat-button (click)="clear()" color="primary">
             <mat-icon>close</mat-icon>
           </button>
-          <button
-            class="button-form"
-            color="primary"
-            [disabled]="resourceForm.invalid || collaboratorValid === false"
-            mat-flat-button
-            (click)="saveResource()"
-          >
+          <button class="button-form" color="primary" [disabled]="resourceForm.invalid || collaboratorValid === false"
+            mat-flat-button (click)="saveResource()">
             <mat-icon>save</mat-icon>
           </button>
         </div>
       </div>
 
-      <mat-checkbox
-        *ngIf="method === 'edit'"
-        fxFlex="30"
-        fxLayoutAlign="start start"
-        class="checkbox disabled"
-        color="primary"
-        formControlName="isActive"
-        >Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo':
-        'Inativo'}}</mat-checkbox
-      >
+      <mat-checkbox *ngIf="method === 'edit'" fxFlex="30" fxLayoutAlign="start start" class="checkbox disabled"
+        color="primary" formControlName="isActive">Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo':
+        'Inativo'}}</mat-checkbox>
     </form>
 
     <div class="envolti-table mat-elevation-z4">
@@ -175,33 +114,18 @@
 
         <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td
-            fxLayoutAlign="end center"
-            class="button-tab"
-            mat-cell
-            *matCellDef="let resource; let index = index"
-          >
-            <button
-              (click)="getResource(resource, resource.id, resource.collaborator.firstNameCorporateName )"
-              class="table-button"
-              mat-button
-            >
+          <td fxLayoutAlign="end center" class="button-tab" mat-cell *matCellDef="let resource; let index = index">
+            <button (click)="getResource(resource, resource.id, resource.collaborator.firstNameCorporateName )"
+              class="table-button" mat-button>
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button
-              (click)="deleteResource(resource.id)"
-              class="table-button"
-              mat-button
-            >
+            <button (click)="deleteResource(resource.id)" class="table-button" mat-button>
               <mat-icon>delete</mat-icon>
             </button>
           </td>
         </ng-container>
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>

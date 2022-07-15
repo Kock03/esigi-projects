@@ -30,8 +30,12 @@ export class ProjectsCreateComponent implements OnInit {
   projectType: any;
   projectId!: string | null;
   method: string = '';
+  collaboratorControl = new FormControl();
+  customerControl = new FormControl();
+  customerId!: string | null;
+  collaboratorRequesterId!: string | null;
 
-  validations = [['name', 'client', 'projectManagerEnvolti', 'status']];
+  validations = [['name', 'responsible', 'value', 'status']];
 
   constructor(
     private router: Router,
@@ -49,6 +53,8 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
+    this.customerId = sessionStorage.getItem('customer_id');
+    this.collaboratorRequesterId = sessionStorage.getItem('collaboratorRequester_id');
 
     if (this.projectId !== 'cadastro') {
       await this.getProject();
@@ -62,6 +68,8 @@ export class ProjectsCreateComponent implements OnInit {
   async setFormValue() {
     if (this.project) {
       this.projectForm.patchValue(this.project);
+      this.customerControl.patchValue(this.customerId);
+      this.collaboratorControl.patchValue(this.collaboratorRequesterId);
     }
   }
 
@@ -77,16 +85,33 @@ export class ProjectsCreateComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       responsible: [null, Validators.required],
-      client: ['', Validators.required],
+      customerId: ['', Validators.required],
       type: [null, Validators.required],
       code: [null],
       contractedHours: ['', Validators.required],
-      value: [0, Validators.required],
+      value: [null, Validators.required],
       hourControl: [null],
-      projectManagerEnvolti: [null, Validators.required],
+      collaboratorRequesterId: [null, Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+    });
+
+
+    this.collaboratorControl.valueChanges.subscribe((res) => {
+      if (res && res.id) {
+        this.projectForm.controls['collaboratorRequesterId'].setValue(res.id, {
+          emitEvent: true,
+        });
+      }
+    });
+
+    this.customerControl.valueChanges.subscribe((res) => {
+      if (res && res.id) {
+        this.projectForm.controls['customerId'].setValue(res.id, {
+          emitEvent: true,
+        });
+      }
     });
   }
 

@@ -13,6 +13,8 @@ import {
 } from 'typeorm';
 import { Status } from './dtos/status.enum';
 import { Type } from './dtos/type.enum';
+import { ICollaborator } from './_model/collaborator.model';
+import { ICustomer } from './_model/customer.model';
 
 @Entity({ name: 'projects' })
 export class ProjectsEntity {
@@ -29,7 +31,7 @@ export class ProjectsEntity {
   responsible: string;
 
   @Column()
-  client: string;
+  customerId: string;
 
   @Column()
   startDate: Date;
@@ -44,7 +46,7 @@ export class ProjectsEntity {
   value: Double;
 
   @Column()
-  projectManagerEnvolti: string;
+  collaboratorRequesterId: string;
 
   @Column({ type: 'int' })
   type: Type;
@@ -73,4 +75,8 @@ export class ProjectsEntity {
   InsertCode() {
     this.code = Math.floor(Math.random() * 65536);
   }
+
+  collaborator: ICollaborator;
+
+  customer: ICustomer;
 }

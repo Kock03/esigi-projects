@@ -38,7 +38,7 @@ export class ProjectsListComponent implements OnInit {
     private projectsProvider: ProjectProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     await this.getProjectList();
@@ -93,6 +93,7 @@ export class ProjectsListComponent implements OnInit {
 
   createProject() {
     this.router.navigate(['projeto/tipo']);
+    sessionStorage.setItem('method', 'create');
   }
 
   async getProjectList() {
@@ -100,9 +101,11 @@ export class ProjectsListComponent implements OnInit {
       await this.projectsProvider.findAll();
   }
 
-  async editProject(projectSelected: any, projectId: string) {
+  async editProject(projectSelected: any, projectId: string, customerId: any, collaboratorRequesterId: any) {
     this.method = 'edit';
     this.project = projectSelected;
+    sessionStorage.setItem('customer_id', customerId);
+    sessionStorage.setItem('collaboratorRequester_id', collaboratorRequesterId);
     console.log(this.project);
     if (this.project.type === 3) {
       const type = 1;

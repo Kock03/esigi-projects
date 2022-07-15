@@ -30,18 +30,12 @@ export class CreateProjectDto {
   code: number;
 
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
-  @ApiProperty()
+  @MinLength(1)
   responsible: string;
 
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
   @ApiProperty()
-  client: string;
+  clientId: string;
 
   @IsNotEmpty()
   @ApiProperty()
@@ -61,11 +55,9 @@ export class CreateProjectDto {
   value: Double;
 
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
+  @MinLength(1)
   @ApiProperty()
-  projectManagerEnvolti: string;
+  collaboratorRequesterId: string;
 
   @IsNotEmpty()
   @IsEnum(Type)

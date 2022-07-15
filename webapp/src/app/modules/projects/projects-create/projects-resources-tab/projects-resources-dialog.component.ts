@@ -23,6 +23,7 @@ import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
+import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
 @Component({
@@ -61,6 +62,7 @@ export class ProjectResourceDialog {
   collaborator!: ICollaborator;
   collaboratorControl = new FormControl();
   collaboratorValid: boolean = false;
+  matcher = new ErrorStateMatcherService();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -71,7 +73,7 @@ export class ProjectResourceDialog {
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // TODO - pensar para limitar a busca inicial em uma determinada quantidade

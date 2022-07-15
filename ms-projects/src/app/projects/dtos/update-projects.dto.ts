@@ -4,7 +4,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsEnum,
-  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
@@ -17,31 +16,22 @@ import { Status } from './status.enum';
 import { Type } from './type.enum';
 
 export class UpdateProjectDto {
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
+  @IsOptional()
   @ApiProperty()
   name: string;
 
-  
+
   code: number;
 
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
+  @IsOptional()
   @ApiProperty()
   responsible: string;
 
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
+  @IsOptional()
   @ApiProperty()
-  client: string;
+  clientId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   startDate: Date;
 
@@ -57,14 +47,11 @@ export class UpdateProjectDto {
   @ApiProperty()
   value: Double;
 
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsString()
+  @IsOptional()
   @ApiProperty()
-  projectManagerEnvolti: string;
+  collaboratorRequesterId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(Type)
   @ApiProperty()
   type: Type;

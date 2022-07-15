@@ -1,12 +1,13 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { environment } from 'src/environments/environment';
 import { ApiGateway } from 'src/services/api-gateway';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CollaboratorProvider {
+export class CustomerProvider {
   constructor(private apiGateway: ApiGateway) { }
 
   ngOnInit(): void { }
@@ -14,7 +15,7 @@ export class CollaboratorProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators')
+        .get(environment.CUSTOMER_MS + 'customers')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -24,43 +25,36 @@ export class CollaboratorProvider {
   findInactive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators/list/inactive')
+        .get(environment.CUSTOMER_MS + 'customers/list/inactive')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
     });
   }
-  findGerente(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators/list/gerente')
-        .subscribe((response: HttpResponse<any>) => {
-          resolve(response.body);
-        }, reject);
-    });
-  }
+
   findActive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators/list/active')
+        .get(environment.CUSTOMER_MS + 'customers/list/active')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
     });
   }
 
-  findByName(firstNameCorporateName?: string, inactive?: string): Promise<any> {
+  findByName(query: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.COLLABORATOR_MS + `collaborators/find/name?` + firstNameCorporateName + '&' + inactive)
+      this.apiGateway.get(environment.CUSTOMER_MS + `customers/find/name?${query}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
     });
   }
 
-  findByNameGerente(query: any): Promise<any> {
+  shortListCustomers(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.COLLABORATOR_MS + `collaborators/find/name/gerente?${query}`)
+      this.apiGateway
+        .get(environment.CUSTOMER_MS + 'customers/short/list/customers')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -70,30 +64,20 @@ export class CollaboratorProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators/:id', { id: id })
+        .get(environment.CUSTOMER_MS + 'customers/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
     });
   }
 
-  shortListCollaborators(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.apiGateway
-        .get(environment.COLLABORATOR_MS + 'collaborators/short/list/collaborators')
-        .subscribe((response: HttpResponse<any>) => {
-          resolve(response.body);
-        }, reject);
-    });
-  }
-
-  update(id: string | null, collaborator: any): Promise<any> {
+  update(id: string | null, customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .put(
-          environment.COLLABORATOR_MS + 'collaborators/:id',
+          environment.CUSTOMER_MS + 'customers/:id',
           { id: id },
-          collaborator
+          customer
         )
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -101,10 +85,10 @@ export class CollaboratorProvider {
     });
   }
 
-  store(collaborator: any): Promise<any> {
+  store(customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post(environment.COLLABORATOR_MS + 'collaborators', collaborator)
+        .post(environment.CUSTOMER_MS + 'customers', customer)
 
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -112,10 +96,10 @@ export class CollaboratorProvider {
     });
   }
 
-  destroy(collaboratorId: string): Promise<any> {
+  destroy(customerId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.COLLABORATOR_MS + 'collaborators/' + collaboratorId)
+        .delete(environment.CUSTOMER_MS + 'customers/' + customerId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

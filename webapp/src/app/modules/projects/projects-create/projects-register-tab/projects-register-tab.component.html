@@ -12,7 +12,7 @@
         <mat-form-field fxFlex="50" appearance="outline" *ngIf="projectType === '2'">
           <mat-label>{{ 'projects.project_register.projectType' | translate }}</mat-label>
           <mat-select formControlName="type">
-            <mat-option [value]="2">{{ 'projects.project_register.ams' | translate }}</mat-option>
+            <mat-option [value]="2">AMS</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="50" appearance="outline">
@@ -25,10 +25,21 @@
         </mat-form-field>
       </div>
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50" appearance="outline">
+        <mat-form-field fxFlex="50" appearance="outline" *ngIf="this.method === 'create'">
           <mat-label>{{ 'projects.project_generic.client' | translate }}</mat-label>
-          <input matInput disableRipple formControlName="client" placeholder="Cliente" />
+          <input type="text" placeholder="Cliente" aria-label="text" #fiilter matInput [matAutocomplete]="autoCustomer"
+            [formControl]="customerControl" />
+          <mat-autocomplete autoActiveFirstOption #autoCustomer="matAutocomplete" [displayWith]="displayFnCustomer">
+            <mat-option *ngFor="let customer of filteredCustomers" [value]="customer">
+              {{customer.corporateName }}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
+          <mat-label>{{'generic.client' | translate}}</mat-label>
+          <input disabled matInput disableRipple [value]="this.customerControl.value" />
+        </mat-form-field>
+
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>{{ 'projects.project_register.responsible' | translate }}</mat-label>
           <mat-select formControlName="responsible">
@@ -37,6 +48,7 @@
             <mat-option value="3">Paulo Pereira</mat-option>
           </mat-select>
         </mat-form-field>
+
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
@@ -57,14 +69,22 @@
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50" appearance="outline">
-          <mat-label>{{ 'projects.project_generic.managerEnvolti' | translate }}</mat-label>
-          <mat-select disableRipple formControlName="projectManagerEnvolti">
-            <mat-option value="1">Wellington</mat-option>
-            <mat-option value="2">Charles</mat-option>
-            <mat-option value="3">Danilo</mat-option>
-          </mat-select>
+        <mat-form-field fxFlex="50" appearance="outline" *ngIf="this.method === 'create'">
+          <input type="text" placeholder="Solicitante" aria-label="text" #filter matInput
+            [matAutocomplete]="autoRequester" [formControl]="collaboratorControl" />
+          <mat-autocomplete autoActiveFirstOption #autoRequester="matAutocomplete" [displayWith]="displayFnRequester">
+            <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
+              {{collaborator.firstNameCorporateName }}
+              {{collaborator.lastNameFantasyName}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
+          <mat-label>{{'generic.request' | translate}}</mat-label>
+          <input disabled matInput disableRipple [value]="this.collaboratorControl.value" />
+        </mat-form-field>
+
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>{{ "projects.project_generic.status" | translate }}</mat-label>
           <mat-select formControlName="status">
@@ -80,12 +100,12 @@
         <mat-form-field *ngIf="projectType === '1'" floatLabel="always" style="disabled" fxFlex="70"
           appearance="outline">
           <mat-label>{{ "projects.project_register.value" | translate }}</mat-label>
-          <input matInput prefix="R$" type="text" mask="separator.2" thousandSeparator="." separatorLimit="100000000"
+          <input matInput prefix="R$" type="text" mask="separator.2" thousandSeparator="." separatorLimit="10000000"
             formControlName="value" class="example-right-align">
-          <!-- <mat-icon matPrefix style="cursor: pointer">attach_money</mat-icon> -->
         </mat-form-field>
         <mat-checkbox *ngIf="projectType === '1'" style="disabled" fxFlex="30" fxLayoutAlign="center start"
-          class="checkbox" color="primary" formControlName="hourControl">{{ "projects.project_register.hour_control" | translate }}</mat-checkbox>
+          class="checkbox" color="primary" formControlName="hourControl">{{ "projects.project_register.hour_control" |
+          translate }}</mat-checkbox>
       </div>
     </form>
   </div>
