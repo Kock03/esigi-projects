@@ -16,7 +16,7 @@ import { Type } from './dtos/type.enum';
 import { ICollaborator } from './_model/collaborator.model';
 import { ICustomer } from './_model/customer.model';
 
-@Entity({ name: 'projects' })
+@Entity()
 export class ProjectsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

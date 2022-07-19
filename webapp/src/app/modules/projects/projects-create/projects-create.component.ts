@@ -34,7 +34,7 @@ export class ProjectsCreateComponent implements OnInit {
   customerControl = new FormControl();
   customerId!: string | null;
   collaboratorRequesterId!: string | null;
-
+  type: any;
   validations = [['name', 'responsible', 'value', 'status']];
 
   constructor(
@@ -49,7 +49,7 @@ export class ProjectsCreateComponent implements OnInit {
     if (sessionStorage.getItem('project_tab') !== undefined) {
       sessionStorage.setItem('project_tab', '1');
     }
-
+    this.type = sessionStorage.getItem('project_type')
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
@@ -97,6 +97,10 @@ export class ProjectsCreateComponent implements OnInit {
       endDate: ['', Validators.required],
     });
 
+
+    if (this.type == 2) {
+      this.projectForm.controls['value'].removeValidators(Validators.required)
+    }
 
     this.collaboratorControl.valueChanges.subscribe((res) => {
       if (res && res.id) {

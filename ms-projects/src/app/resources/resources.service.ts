@@ -14,10 +14,18 @@ export class ResourcesService {
     @InjectRepository(ResourcesEntity)
     private readonly resourcesRepository: Repository<ResourcesEntity>,
     private httpService: HttpService,
-  ) {}
+  ) { }
 
   async findAll() {
     return this.resourcesRepository.find();
+  }
+
+  async findByCollaborator(collaboratorId: string) {
+    try {
+      return await this.resourcesRepository.query('select resources_entity.collaborator_id, a.id, p.customer_id, p.name from resources_entity left join activities_entity a on a.id=resources_entity.activity_id  left join projects_entity p on p.id=a.project_id where resources_entity.collaborator_id = ' + '"' + collaboratorId + '"' + ' and resources_entity.deleted_at is null ');
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   async findOneOfFall(

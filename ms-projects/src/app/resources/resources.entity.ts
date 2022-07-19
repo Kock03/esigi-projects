@@ -11,7 +11,7 @@ import { ActivitiesEntity } from '../activities/activities.entity';
 import { ICollaborator } from './_model/collaborator.model';
 import { Paper } from './dtos/paper.enum';
 
-@Entity({ name: 'resources' })
+@Entity()
 export class ResourcesEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

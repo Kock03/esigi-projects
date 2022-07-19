@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put, Query } from "@nestjs/common";
 import { ResourcesService } from "./resources.service";
 import { CreateResourceDto } from "./dtos/create-resources.dto";
 import { UpdateResources } from "./dtos/update-resources.dto";
@@ -15,6 +15,11 @@ export class ResourcesController {
     @Post()
     async store(@Body() body: CreateResourceDto) {
         return await this.resourcesService.store(body);
+    }
+
+    @Get('collaborator')
+    async findByCollaborator(@Query('collaboratorId') collaboratorId?: any) {
+        return await this.resourcesService.findByCollaborator(collaboratorId);
     }
 
     @Get(':id')
