@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { FindConditions, FindManyOptions, FindOneOptions, Like, Repository } from 'typeorm';
@@ -39,15 +40,25 @@ export class ProjectsService {
       if (collaborators.data) {
         console.log(collaborators.data)
         projects.map((project) => {
-          const collaborator = collaborators.data.find(
-            (collaborator) => collaborator.id === project.collaboratorRequesterId);
+          if (project.collaboratorRequesterId != undefined) {
+            const collaborator = collaborators.data.find(
+              (collaborator) => collaborator.id === project.collaboratorRequesterId);
+            if (collaborator) {
+              project.collaborator = {
+                firstNameCorporateName: collaborator.firstNameCorporateName,
+                lastNameFantasyName: collaborator.lastNameFantasyName,
+              };
+            } else {
+              project.collaboratorRequesterId = null;
+            }
 
-          project.collaborator = {
-            firstNameCorporateName: collaborator.firstNameCorporateName,
-            lastNameFantasyName: collaborator.lastNameFantasyName,
-          };
-          return project;
+            return project;
+          } else {
+            return project;
+          }
         })
+      } else {
+        return projects;
       }
 
       const customerIdList = projects.map((project) => {
@@ -61,13 +72,25 @@ export class ProjectsService {
         .toPromise();
       if (customers.data) {
         projects.map((project) => {
-          const customer = customers.data.find(
-            (customer) => customer.id == project.customerId);
-          project.customer = {
-            corporateName: customer.corporateName,
-          };
-          return project;
+          if (project.customerId != undefined) {
+            const customer = customers.data.find(
+              (customer) => customer.id == project.customerId);
+            if (customer) {
+              project.customer = {
+                corporateName: customer.corporateName,
+              };
+            } else {
+              project.customerId = null;
+            }
+
+            return project;
+          } else {
+            return project;
+          }
+
         })
+      } else {
+        return projects
       }
       return projects;
     } catch (err) {

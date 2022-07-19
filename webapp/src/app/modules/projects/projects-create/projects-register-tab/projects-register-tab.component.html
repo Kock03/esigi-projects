@@ -36,7 +36,7 @@
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
-          <mat-label>{{'generic.client' | translate}}</mat-label>
+          <mat-label>{{'projects.project_generic.client' | translate}}</mat-label>
           <input disabled matInput disableRipple [value]="this.customerControl.value" />
         </mat-form-field>
 
@@ -70,6 +70,7 @@
 
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="50" appearance="outline" *ngIf="this.method === 'create'">
+          <mat-label>Solicitante</mat-label>
           <input type="text" placeholder="Solicitante" aria-label="text" #filter matInput
             [matAutocomplete]="autoRequester" [formControl]="collaboratorControl" />
           <mat-autocomplete autoActiveFirstOption #autoRequester="matAutocomplete" [displayWith]="displayFnRequester">
@@ -81,7 +82,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="this.method === 'edit'" fxFlex="25" class="example-full-width">
-          <mat-label>{{'generic.request' | translate}}</mat-label>
+          <mat-label>Solicitante</mat-label>
           <input disabled matInput disableRipple [value]="this.collaboratorControl.value" />
         </mat-form-field>
 
