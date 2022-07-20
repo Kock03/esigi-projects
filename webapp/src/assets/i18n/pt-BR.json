@@ -37,7 +37,6 @@
             "new_proposal": "Nova Proposta",
             "value": "Valor do projeto",
             "hour_control": "Controle de horas",
-
             "project_resource_tab": {
                 "activity": "Atividade",
                 "start": "Início",
@@ -75,7 +74,8 @@
             "paper": "Papel",
             "estimated_hours": "Horas estimadas",
             "activity": "Atividade",
-            "start_date_and_end_date": "Previsão de início e fim",
+            "start_date": "Início",
+            "end_date": "Conclusão",
             "resources": "Recurso"
         },
         "resume_list": {
