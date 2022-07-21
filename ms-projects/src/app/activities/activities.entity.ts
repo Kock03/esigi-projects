@@ -21,10 +21,10 @@ export class ActivitiesEntity {
   name: string;
 
   @Column()
-  startDate: Date;
+  startDate: string;
 
   @Column()
-  endDate: Date;
+  endDate: string;
 
   @ManyToOne(() => ProjectsEntity, (project) => project.activities)
   project: ProjectsEntity;

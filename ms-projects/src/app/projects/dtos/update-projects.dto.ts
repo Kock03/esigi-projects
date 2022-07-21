@@ -33,11 +33,11 @@ export class UpdateProjectDto {
 
   @IsOptional()
   @ApiProperty()
-  startDate: Date;
+  startDate: string;
 
   @IsOptional()
   @ApiProperty()
-  endDate: Date;
+  endDate: string;
 
   @IsOptional()
   @ApiProperty()

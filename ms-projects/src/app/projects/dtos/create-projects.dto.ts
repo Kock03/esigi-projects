@@ -39,11 +39,11 @@ export class CreateProjectDto {
 
   @IsNotEmpty()
   @ApiProperty()
-  startDate: Date;
+  startDate: string;
 
   @IsOptional()
   @ApiProperty()
-  endDate: Date;
+  endDate: string;
 
   @IsNotEmpty()
   @ApiProperty()

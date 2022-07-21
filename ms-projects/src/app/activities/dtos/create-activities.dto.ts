@@ -21,11 +21,11 @@ export class CreateActivitieDto {
 
   @IsNotEmpty()
   @ApiProperty()
-  startDate: Date;
+  startDate: string;
 
   @IsNotEmpty()
   @ApiProperty()
-  endDate: Date;
+  endDate: string;
 
   @IsOptional()
   @ApiProperty()

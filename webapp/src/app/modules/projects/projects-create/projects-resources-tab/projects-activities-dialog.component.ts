@@ -14,6 +14,7 @@ import {
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DocumentValidator } from 'src/app/validators/document.validator';
 import { ActivityProvider } from 'src/providers/activity.provider';
 
 export const PICK_FORMATS = {
@@ -43,7 +44,7 @@ export class PickDateAdapter extends NativeDateAdapter {
   encapsulation: ViewEncapsulation.None,
   providers: [
     { provide: DateAdapter, useClass: PickDateAdapter },
-  { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },
+    { provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS },
   ],
 })
 export class ProjectActivityDialog {
@@ -74,8 +75,8 @@ export class ProjectActivityDialog {
   initForm(): void {
     this.activityForm = this.fb.group({
       name: [null],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
       project: { id: this.projectId },
     });
     if (this.data) {

@@ -53,7 +53,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     private resourceProvider: ResourceProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.method = sessionStorage.getItem('method')!;
@@ -80,7 +80,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.method = 'add';
     sessionStorage.setItem('method', this.method);
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
-      width: '500px',
+      width: '565px',
       height: '250px',
     });
 
@@ -108,7 +108,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.activityId = id;
     sessionStorage.setItem('activity_id', this.activityId);
     const dialogRef = this.dialog.open(ProjectActivityDialog, {
-      width: '500px',
+      width: '565px',
       height: '250px',
       data: activitySelected,
     });

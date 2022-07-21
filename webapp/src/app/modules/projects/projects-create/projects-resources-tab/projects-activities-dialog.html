@@ -4,7 +4,8 @@
       <mat-panel-title fxLayout="row">
         <mat-icon class="icon-activities-dialog">account_circle</mat-icon>
         <button disabled class="button-activities" mat-button>
-          <h2 fxLayoutAlign="start"> {{ "projects.project_register.projects-activities_dialog.activity_registration" | translate }}</h2>
+          <h2 fxLayoutAlign="start"> {{ "projects.project_register.projects-activities_dialog.activity_registration" |
+            translate }}</h2>
         </button>
         <button (click)="close()" class="cancel-icon" mat-button>
           <mat-icon>cancel</mat-icon>
@@ -13,49 +14,33 @@
     </div>
     <mat-dialog-content class="mat-typography">
       <form [formGroup]="activityForm" fxLayout="column">
-        <div  fxLayoutGap="16px" class="form-content-activities">
-        <mat-form-field appearance="outline">
-          <mat-label>{{ "projects.project_generic.activity" | translate }}</mat-label>
-          <input
-            matInput
-            disableRipple
-            formControlName="name"
-            placeholder="Atividade"
-          />
-        </mat-form-field>
+        <div fxLayoutGap="16px" class="form-content-activities">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "projects.project_generic.activity" | translate }}</mat-label>
+            <input matInput disableRipple formControlName="name" placeholder="Atividade" />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>{{ "projects.project_generic.start_date_and_end_date" | translate }}</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input
-              matStartDate
-              formControlName="startDate"
-              placeholder="Início"
-            />
-            <input matEndDate formControlName="endDate" placeholder="Fim" />
-          </mat-date-range-input>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
-      </div>
+          <mat-form-field fxFlex="30" appearance="outline">
+            <mat-label>{{ "projects.project_generic.start_date" | translate }}</mat-label>
+            <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+              placeholder="startDate" formControlName="startDate" />
+          </mat-form-field>
+          <mat-form-field fxFlex="30" appearance="outline">
+            <mat-label>{{ "projects.project_generic.end_date" | translate }}</mat-label>
+            <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+              placeholder="endDate" formControlName="endDate" />
+          </mat-form-field>
+        </div>
       </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <div  class="button-dialog" >
+      <div class="button-dialog">
         <button mat-flat-button mat-dialog-close (click)="onNoClick()">
           {{ "projects.project_generic.cancel_button" | translate }}
         </button>
-        <button
-          color="primary"
-          [disabled]="activityForm.invalid"
-          mat-flat-button
-          [mat-dialog-close]="true"
-          (click)="save()"
-        >
-        {{ "projects.project_generic.save_button" | translate }}
+        <button color="primary" [disabled]="activityForm.invalid" mat-flat-button [mat-dialog-close]="true"
+          (click)="save()">
+          {{ "projects.project_generic.save_button" | translate }}
         </button>
       </div>
     </mat-dialog-actions>

@@ -34,10 +34,10 @@ export class ProjectsEntity {
   customerId: string;
 
   @Column()
-  startDate: Date;
+  startDate: string;
 
   @Column({ nullable: true })
-  endDate: Date;
+  endDate: string;
 
   @Column({ type: 'double' })
   contractedHours: Double;

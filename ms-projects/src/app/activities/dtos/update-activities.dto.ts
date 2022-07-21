@@ -1,21 +1,20 @@
 /* eslint-disable prettier/prettier */
 
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class UpdateActivities {
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
+
   @IsString()
   @ApiProperty()
+  @IsOptional()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
-  startDate: Date;
+  startDate: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
-  endDate: Date;
+  endDate: string;
 }

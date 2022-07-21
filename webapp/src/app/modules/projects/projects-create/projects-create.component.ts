@@ -12,6 +12,7 @@ import { SnackBarService } from 'src/services/snackbar.service';
 import { MatTable } from '@angular/material/table';
 import { filter, pairwise } from 'rxjs';
 import { MatAccordion } from '@angular/material/expansion';
+import { DocumentValidator } from 'src/app/validators/document.validator';
 
 @Component({
   selector: 'app-projects-create',
@@ -93,8 +94,8 @@ export class ProjectsCreateComponent implements OnInit {
       hourControl: [null],
       collaboratorRequesterId: [null, Validators.required],
       status: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
     });
 
 
