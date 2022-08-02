@@ -14,6 +14,7 @@ import {
 } from '@nestjs/common';
 import { CreateProjectDto } from './dtos/create-projects.dto';
 import { UpdateProjectDto } from './dtos/update-projects.dto';
+import { IProjects } from './interfaces/i-projects.interface';
 import { ProjectsService } from './projects.service';
 
 @Controller('api/v1/projects')
@@ -25,9 +26,19 @@ export class ProjectsController {
     return await this.projectsService.findAll();
   }
 
+  @Post('/list')
+  async findProjectsListById(@Body() body: IProjects) {
+    return await this.projectsService.findProjectsListById(body.idList);
+  }
+
   @Get('find')
   find(@Query('name') name?: any, @Query('status') status?: any) {
     return this.projectsService.findProject(name, status);
+  }
+
+  @Get('collaborator')
+  findByCollaborator(@Query('id') id?: any) {
+    return this.projectsService.findByCollaborator(id);
   }
 
   @Post()

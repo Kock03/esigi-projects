@@ -1,6 +1,6 @@
 import { Injectable, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, FindOneOptions, Repository } from 'typeorm';
+import { FindConditions, FindOneOptions, Repository, In, } from 'typeorm';
 import { ResourcesEntity } from './resources.entity';
 import { CreateResourceDto } from './dtos/create-resources.dto';
 import { UpdateResources } from './dtos/update-resources.dto';
@@ -20,12 +20,29 @@ export class ResourcesService {
     return this.resourcesRepository.find();
   }
 
-  async findByCollaborator(collaboratorId: string) {
-    try {
-      return await this.resourcesRepository.query('select resources_entity.collaborator_id, a.id, p.customer_id, p.name from resources_entity left join activities_entity a on a.id=resources_entity.activity_id  left join projects_entity p on p.id=a.project_id where resources_entity.collaborator_id = ' + '"' + collaboratorId + '"' + ' and resources_entity.deleted_at is null ');
-    } catch (e) {
-      console.log(e)
+  async findByCollaborator(idList: string[]) {
+    let data;
+    let object;
+    let array = [];
+    console.log(idList.length)
+    for (let i = 0; i < idList.length; i++) {
+
+      try {
+        data = await this.resourcesRepository.query('select resources_entity.collaborator_id, a.id, p.customer_id, p.name from resources_entity left join activities_entity a on a.id=resources_entity.activity_id  left join projects_entity p on p.id=a.project_id where resources_entity.collaborator_id=' + '"' + idList[i] + '"' + ' and resources_entity.deleted_at is null ');
+        if (data[0] !== undefined) {
+          object = data[0];
+          array.push(object);
+        }
+
+
+
+      } catch (e) {
+        console.log(e)
+      }
+
     }
+    console.log(array);
+    return array;
   }
 
   async findOneOfFall(

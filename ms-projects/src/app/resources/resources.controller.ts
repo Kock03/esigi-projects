@@ -16,11 +16,15 @@ export class ResourcesController {
     async store(@Body() body: CreateResourceDto) {
         return await this.resourcesService.store(body);
     }
-
-    @Get('collaborator')
-    async findByCollaborator(@Query('collaboratorId') collaboratorId?: any) {
-        return await this.resourcesService.findByCollaborator(collaboratorId);
+    @Post('/list')
+    async findCollaboratorsListById(@Body() body: any) {
+        return await this.resourcesService.findByCollaborator(body.idList);
     }
+
+    // @Get('collaborator')
+    // async findByCollaborator(@Query('collaboratorId') collaboratorId?: any) {
+    //     return await this.resourcesService.findByCollaborator(collaboratorId);
+    // }
 
     @Get(':id')
     async show(@Param('id', new ParseUUIDPipe()) id: string) {
