@@ -13,6 +13,7 @@ import { MatTable } from '@angular/material/table';
 import { filter, pairwise } from 'rxjs';
 import { MatAccordion } from '@angular/material/expansion';
 import { DocumentValidator } from 'src/app/validators/document.validator';
+import { RequireMatch } from 'src/services/autocomplete.service';
 
 @Component({
   selector: 'app-projects-create',
@@ -31,8 +32,8 @@ export class ProjectsCreateComponent implements OnInit {
   projectType: any;
   projectId!: string | null;
   method: string = '';
-  collaboratorControl = new FormControl();
-  customerControl = new FormControl();
+  collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
+  customerControl = new FormControl('', [Validators.required, RequireMatch]);
   customerId!: string | null;
   collaboratorRequesterId!: string | null;
   type: any;

@@ -88,5 +88,9 @@
             "all": "Todos",
             "opening_date": "Data de abertura"
         }
-    }
+    }, 
+    "validators": {
+        "validator-required": "Campo Obrigatório",
+        "select-option": "Selecione uma opção"
+      }
 }

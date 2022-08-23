@@ -22,6 +22,7 @@ import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
+import { RequireMatch } from 'src/services/autocomplete.service';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
 import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
@@ -60,7 +61,7 @@ export class ProjectResourceDialog {
   resourceId!: string | null;
   filteredCollaboratorList: any;
   collaborator!: ICollaborator;
-  collaboratorControl = new FormControl();
+  collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
   collaboratorValid: boolean = false;
   matcher = new ErrorStateMatcherService();
 

@@ -29,6 +29,22 @@
           <mat-label>{{ 'projects.project_generic.client' | translate }}</mat-label>
           <input type="text" placeholder="Cliente" aria-label="text" #fiilter matInput [matAutocomplete]="autoCustomer"
             [formControl]="customerControl" />
+            <mat-error
+            *ngIf="
+            customerControl && customerControl.hasError('required')
+            "
+          >
+            {{ "validators.validator-required" | translate }}
+          </mat-error>
+          <mat-error
+            *ngIf="
+            customerControl &&
+              !customerControl.hasError('required') &&
+              customerControl.hasError('incorrect')
+            "
+          >
+            {{ "validators.select-option" | translate }}
+          </mat-error>
           <mat-autocomplete autoActiveFirstOption #autoCustomer="matAutocomplete" [displayWith]="displayFnCustomer">
             <mat-option *ngFor="let customer of filteredCustomers" [value]="customer">
               {{customer.corporateName }}
@@ -75,6 +91,22 @@
           <mat-label>Solicitante</mat-label>
           <input type="text" placeholder="Solicitante" aria-label="text" #filter matInput
             [matAutocomplete]="autoRequester" [formControl]="collaboratorControl" />
+            <mat-error
+            *ngIf="
+            collaboratorControl && collaboratorControl.hasError('required')
+            "
+          >
+            {{ "validators.validator-required" | translate }}
+          </mat-error>
+          <mat-error
+            *ngIf="
+            collaboratorControl &&
+              !collaboratorControl.hasError('required') &&
+              collaboratorControl.hasError('incorrect')
+            "
+          >
+            {{ "validators.select-option" | translate }}
+          </mat-error>
           <mat-autocomplete autoActiveFirstOption #autoRequester="matAutocomplete" [displayWith]="displayFnRequester">
             <mat-option *ngFor="let collaborator of filteredCollaborators" [value]="collaborator">
               {{collaborator.firstNameCorporateName }}
