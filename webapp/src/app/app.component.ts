@@ -19,7 +19,7 @@ export class AppComponent {
   openTree: boolean = false;
   compare!: any
 
-  projects: string = 'projects';
+  projects: string = 'projetos';
 
   constructor(
     private observer: BreakpointObserver,
@@ -66,7 +66,7 @@ export class AppComponent {
   navigator(route: any) {
     console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
     switch (route) {
-      case 'projects':
+      case 'projetos':
         this.router.navigate(['projetos/lista']);
         break;
     }
