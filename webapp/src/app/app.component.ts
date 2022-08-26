@@ -16,15 +16,10 @@ export class AppComponent {
   activeMenu!: '';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  openTree: boolean = false;
+  compare!: any
 
-  menuList = [
-    {
-      name: 'project_sidenav.projects',
-      icon: 'analytics',
-      selected: false,
-      action: 'projetos/lista',
-    },
-  ];
+  projects: string = 'projects';
 
   constructor(
     private observer: BreakpointObserver,
@@ -58,9 +53,23 @@ export class AppComponent {
     }, 50);
   }
 
+  recize() {
+
+    this.openTree = this.openTree === true ? false : true;
+  }
+
   navigate(route: string) {
     this.router.navigate([route]);
     sessionStorage.clear();
+  }
+
+  navigator(route: any) {
+    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
+    switch (route) {
+      case 'projects':
+        this.router.navigate(['projetos/lista']);
+        break;
+    }
   }
 
 
