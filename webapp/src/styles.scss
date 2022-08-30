@@ -79,27 +79,34 @@ html {
 // }
 
 .tab {
+  max-width: 1650px;
   margin-top: 24px;
 
   &-group {
     width: 100%;
-    max-width: 220px;
+    max-width: 1000px;
+    
+    
   }
 
   &-item {
     cursor: default;
     margin-bottom: 8px !important;
     color: #2F3133;
+    
   }
 
   &-border {
-    border-bottom: 4px solid #b8bdbf;
+    border-bottom: 10px solid #b8bdbf;
     border-radius: 4px;
+    
   }
+
 
   .done {
     .tab-border {
       border-color: #ff6a39 !important;
+     
     }
   }
 
@@ -190,6 +197,26 @@ html {
       color: #673ab7;
     }
   }
+}
+
+.checkbox{
+  margin-top: 18px;
+}
+
+.custom-frame {
+  & .mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+    // width: 20px;
+    // height: 20px;
+  }
+}
+
+.mat-option:hover{
+  background: #D0E7EF !important;
+}
+
+.mat-selected{
+  background: #D0E7EF !important;
 }
 
 .content-scroll {
