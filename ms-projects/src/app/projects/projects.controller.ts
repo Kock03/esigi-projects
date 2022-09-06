@@ -31,9 +31,9 @@ export class ProjectsController {
     return await this.projectsService.findProjectsListById(body.idList);
   }
 
-  @Get('find')
-  find(@Query('name') name?: any, @Query('status') status?: any) {
-    return this.projectsService.findProject(name, status);
+  @Post('find')
+  async findByName(@Body() body: any) {
+    return await this.projectsService.findProject(body.name, body.status);
   }
 
   @Get('collaborator')

@@ -3,5 +3,6 @@ export enum Status{
     inPreparation = 1,
     sent =2,
     stop = 3,
-    declined = 4
+    declined = 4,
+    newProposal = 5
 }

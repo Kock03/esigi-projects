@@ -31,7 +31,8 @@ export class ProjectsListComponent implements OnInit {
   project!: IProjects;
   projectId!: string;
   method: string = '';
-  params!: string;
+  params: string = '';
+  select: number = 1;
 
   constructor(
     private router: Router,
@@ -55,40 +56,27 @@ export class ProjectsListComponent implements OnInit {
             .toLocaleLowerCase()
             .includes(this.filter.nativeElement.value.toLocaleLowerCase())
         );
-        this.params = `name=${this.filter.nativeElement.value}`;
-        this.searchProjects(this.params);
-        if (this.filter.nativeElement.value === '') {
-          this.getProjectList();
-        }
+        this.params = this.filter.nativeElement.value;
+        this.searchProjects();
+
       });
   }
 
-  async searchProjects(name: string, status?: string) {
+  async searchProjects() {
+    const data = {
+      name: this.params,
+      status: this.select,
+    };
     try {
-      this.filteredProjectList = await this.projectsProvider.find(name, status);
-      console.log(this.projects);
+      this.filteredProjectList = await this.projectsProvider.find(data);
     } catch (error) {
       console.error(error);
     }
   }
 
   async selectList(ev: any) {
-    if (ev.value == 4) {
-      return (this.filteredProjectList = this.projects =
-        await this.projectsProvider.findAll());
-    } else {
-      const params = `status=${ev.value}`;
-      if (params === undefined) {
-        return (this.filteredProjectList = this.projects =
-          await this.projectsProvider.find(this.params));
-      } else if (this.params === undefined) {
-        return (this.filteredProjectList = this.projects =
-          await this.projectsProvider.find(params));
-      } else {
-        return (this.filteredProjectList = this.projects =
-          await this.projectsProvider.find(this.params, params));
-      }
-    }
+    this.select = ev.value;
+    this.searchProjects();
   }
 
   createProject() {

@@ -26,6 +26,7 @@
             "follow_up": "Acompanhamento"
         },
         "project_register": {
+            "all": "Todos",
             "projectType": "Tipo de projeto",
             "code": "Código",
             "responsible": "Responsável",
