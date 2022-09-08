@@ -42,15 +42,15 @@ export class CustomerProvider {
     });
   }
 
-  findByName(query: any): Promise<any> {
+  findByName(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.CUSTOMER_MS + `customers/find/name?${query}`)
+      this.apiGateway.post('customers/find', data)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
     });
   }
-
+  
   shortListCustomers(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
