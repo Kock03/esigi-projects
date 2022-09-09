@@ -7,7 +7,7 @@
     },
     "projects": {
         "projects_list": {
-            "search_projects": "Buscar Projetos",
+            "search_projects": "Buscar projetos",
             "filter": "Filtro",
             "active": "Ativos",
             "inactive": "Inativos",
@@ -79,7 +79,7 @@
             "resources": "Recurso"
         },
         "resume_list": {
-            "search_projects": "Buscar Projetos",
+            "search_projects": "Buscar projetos",
             "filter": "Filtro",
             "active": "Ativos",
             "inactive": "Inativos",
