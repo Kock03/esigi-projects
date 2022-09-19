@@ -1,48 +1,46 @@
 <div id="projectActivityDialog" class="dialog">
-  <div class="content-acivities" *ngIf="activityForm">
-    <div class="content-button">
-      <mat-panel-title fxLayout="row">
-        <mat-icon class="icon-activities-dialog">account_circle</mat-icon>
-        <button disabled class="button-activities" mat-button>
-          <h2 fxLayoutAlign="start"> {{ "projects.project_register.projects-activities_dialog.activity_registration" |
-            translate }}</h2>
-        </button>
-        <button (click)="close()" class="cancel-icon" mat-button>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-panel-title>
+  <div class="content-scroll" *ngIf="activityForm">
+    <div class="content-header" fxLayout="row">
+      <h2 class="title-content" mat-dialog-title> {{ "projects.project_register.projects-activities_dialog.activity_registration" |
+        translate }}</h2>
+      <button mat-icon-button class="mat-icon-content" (click)="close()">
+        <mat-icon>cancel</mat-icon>
+      </button>
     </div>
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="activityForm" fxLayout="column">
-        <div fxLayoutGap="16px" class="form-content-activities">
-          <mat-form-field appearance="outline">
-            <mat-label>{{ "projects.project_generic.activity" | translate }}</mat-label>
-            <input matInput disableRipple formControlName="name" placeholder="Atividade" />
-          </mat-form-field>
+    <div class="dialog-content">
+      <mat-dialog-content class="mat-typography">
+        <form fxFlex="100"[formGroup]="activityForm" fxLayout="column">
+          <div fxLayoutGap="16px" class="form-content-activities">
+            <mat-form-field  fxFlex="40" appearance="outline">
+              <mat-label>{{ "projects.project_generic.activity" | translate }}</mat-label>
+              <input matInput disableRipple formControlName="name" placeholder="Atividade" />
+            </mat-form-field>
+  
+            <mat-form-field fxFlex="30" appearance="outline">
+              <mat-label>{{ "projects.project_generic.start_date" | translate }}</mat-label>
+              <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                placeholder="startDate" formControlName="startDate" />
+            </mat-form-field>
+            <mat-form-field fxFlex="30" appearance="outline">
+              <mat-label>{{ "projects.project_generic.end_date" | translate }}</mat-label>
+              <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                placeholder="endDate" formControlName="endDate" />
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-dialog-content>
 
-          <mat-form-field fxFlex="30" appearance="outline">
-            <mat-label>{{ "projects.project_generic.start_date" | translate }}</mat-label>
-            <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
-              placeholder="startDate" formControlName="startDate" />
-          </mat-form-field>
-          <mat-form-field fxFlex="30" appearance="outline">
-            <mat-label>{{ "projects.project_generic.end_date" | translate }}</mat-label>
-            <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
-              placeholder="endDate" formControlName="endDate" />
-          </mat-form-field>
+      <mat-dialog-actions>
+        <div class="button-dialog">
+          <button mat-flat-button mat-dialog-close (click)="onNoClick()">
+            {{ "projects.project_generic.cancel_button" | translate }}
+          </button>
+          <button color="primary" [disabled]="activityForm.invalid" mat-flat-button [mat-dialog-close]="true"
+            (click)="save()">
+            {{ "projects.project_generic.save_button" | translate }}
+          </button>
         </div>
-      </form>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <div class="button-dialog">
-        <button mat-flat-button mat-dialog-close (click)="onNoClick()">
-          {{ "projects.project_generic.cancel_button" | translate }}
-        </button>
-        <button color="primary" [disabled]="activityForm.invalid" mat-flat-button [mat-dialog-close]="true"
-          (click)="save()">
-          {{ "projects.project_generic.save_button" | translate }}
-        </button>
-      </div>
-    </mat-dialog-actions>
+      </mat-dialog-actions>
+    </div>
   </div>
 </div>
