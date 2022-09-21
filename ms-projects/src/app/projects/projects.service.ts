@@ -192,7 +192,6 @@ export class ProjectsService {
       } else {
         return projects;
       }
-      console.log(projects);
       return projects;
     } catch (err) {
       throw new NotFoundException();

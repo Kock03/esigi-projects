@@ -24,7 +24,6 @@ export class ResourcesService {
     let data;
     let object;
     let array = [];
-    console.log(idList.length)
     for (let i = 0; i < idList.length; i++) {
 
       try {
@@ -41,7 +40,6 @@ export class ResourcesService {
       }
 
     }
-    console.log(array);
     return array;
   }
 

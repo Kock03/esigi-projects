@@ -65,7 +65,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.projectId = sessionStorage.getItem('project_id');
     const activity = await this.projectProvider.findOne(this.projectId);
     this.data = activity.activities;
-    console.log(this.data);
   }
 
   async getResourceList() {
@@ -73,7 +72,6 @@ export class ProjectsResourcesTabComponent implements OnInit {
     this.projectId = sessionStorage.getItem('project_id');
     const ressource = await this.resourceProvider.findOne(this.projectId);
     this.data = ressource.ressources;
-    console.log(this.data);
   }
 
   openDialog() {

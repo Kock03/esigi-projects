@@ -94,7 +94,6 @@ export class ProjectsListComponent implements OnInit {
     this.project = projectSelected;
     sessionStorage.setItem('customer_id', customerId);
     sessionStorage.setItem('collaboratorRequester_id', collaboratorRequesterId);
-    console.log(this.project);
     if (this.project.type === 3) {
       const type = 1;
       sessionStorage.setItem('project_type', type.toString());
