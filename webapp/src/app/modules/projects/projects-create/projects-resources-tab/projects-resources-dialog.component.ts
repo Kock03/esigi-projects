@@ -115,7 +115,7 @@ export class ProjectResourceDialog {
   }
 
   private async _filter(name: string): Promise<void> {
-    const params = `firstNameCorporateName=${name}`;
+    const params = {firstNameCorporateName: name, status: 1};
     this.filteredCollaborators = await this.collaboratorProvider.findByName(
       params
     );

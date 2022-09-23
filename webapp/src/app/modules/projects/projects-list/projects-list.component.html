@@ -6,19 +6,34 @@
   <div fxLayoutAlign="space-between">
     <form class="search" fxLayout="row" fxLayoutGap="16px">
       <mat-form-field appearance="outline" fxFlex="100">
-        <mat-label>{{ "projects.projects_list.search_projects" | translate }}</mat-label>
+        <mat-label>{{
+          "projects.projects_list.search_projects" | translate
+        }}</mat-label>
         <input matInput placeholder="Nome do Projeto" #filter matInput />
         <mat-icon matSuffix style="cursor: pointer">search</mat-icon>
       </mat-form-field>
 
       <mat-form-field fxFlex="20" appearance="outline">
         <mat-label>{{ "projects.projects_list.filter" | translate }}</mat-label>
-        <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
-
-          <mat-option [value]="1">{{ "projects.projects_list.active" | translate }}</mat-option>
-          <mat-option [value]="2">{{ "projects.projects_list.concluded" | translate }}</mat-option>
-          <mat-option [value]="3">{{ "projects.projects_list.stopped" | translate }}</mat-option>
-          <mat-option [value]="4">{{ "projects.projects_list.all" | translate }}</mat-option>
+        <mat-select (selectionChange)="selectList($event)">
+          <mat-option [value]="1">{{
+            "projects.project_register.all" | translate
+          }}</mat-option>
+          <mat-option [value]="2">{{
+            "projects.project_register.in_preparation" | translate
+          }}</mat-option>
+          <mat-option [value]="3">{{
+            "projects.project_register.sent" | translate
+          }}</mat-option>
+          <mat-option [value]="4">{{
+            "projects.project_register.stopped" | translate
+          }}</mat-option>
+          <mat-option [value]="5">{{
+            "projects.project_register.declined" | translate
+          }}</mat-option>
+          <mat-option [value]="6">{{
+            "projects.project_register.new_proposal" | translate
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
     </form>
@@ -27,71 +42,107 @@
   <div class="envolti-table mat-elevation-z8" fxLayout="column">
     <table mat-table [dataSource]="filteredProjectList">
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.name" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "projects.project_generic.name" | translate }}
+        </th>
         <td mat-cell *matCellDef="let project">
           {{ project.name }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="client">
-        <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.client" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "projects.project_generic.client" | translate }}
+        </th>
         <td mat-cell *matCellDef="let project">
           {{ project.customer.corporateName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="projectManagerEnvolti">
-        <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.managerEnvolti" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "projects.project_generic.managerEnvolti" | translate }}
+        </th>
         <td mat-cell *matCellDef="let project">
-
           {{ project.collaborator.firstNameCorporateName }}
-          {{project.collaborator.lastNameFantasyName}}
-
+          {{ project.collaborator.lastNameFantasyName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.date" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "projects.project_generic.date" | translate }}
+        </th>
         <td mat-cell *matCellDef="let project">
           {{ project.startDate }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>{{ "projects.project_generic.status" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "projects.project_generic.status" | translate }}
+        </th>
         <td mat-cell *matCellDef="let project">
           {{
-          project.status == 1
-          ? "Em elaboração"
-          : project.status == 2
-          ? "Enviado"
-          : project.status == 3
-          ? "Parado"
-          : project.status == 4
-          ? "Declinado"
-          : "Nova proposta"
+            project.status == 1
+              ? "Em elaboração"
+              : project.status == 2
+              ? "Enviado"
+              : project.status == 3
+              ? "Parado"
+              : project.status == 4
+              ? "Declinado"
+              : "Nova proposta"
           }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="icon">
-        <th mat-header-cell *matHeaderCellDef clas="iconAdd" style="text-align: end">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          clas="iconAdd"
+          style="text-align: end"
+        >
           <button class="edit-button" mat-button (click)="createProject()">
             <mat-icon>add</mat-icon>
           </button>
         </th>
-        <td class="button-tab" mat-cell *matCellDef="let project" clas="icon" style="text-align: end">
-          <button class="table-button" mat-button
-            (click)="editProject(project, project.id, project.customer.corporateName, project.collaborator.firstNameCorporateName)">
+        <td
+          class="button-tab"
+          mat-cell
+          *matCellDef="let project"
+          clas="icon"
+          style="text-align: end"
+        >
+          <button
+            class="table-button"
+            mat-button
+            (click)="
+              editProject(
+                project,
+                project.id,
+                project.customer.corporateName,
+                project.collaborator.firstNameCorporateName
+              )
+            "
+          >
             <mat-icon>edit</mat-icon>
           </button>
-          <button class="table-button" mat-button (click)="deleteProject(project.id)">
+          <button
+            class="table-button"
+            mat-button
+            (click)="deleteProject(project.id)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedProjects; sticky: true"></tr>
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedProjects; sticky: true"
+      ></tr>
       <tr mat-row *matRowDef="let row; columns: displayedProjects"></tr>
     </table>
   </div>

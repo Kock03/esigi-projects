@@ -161,9 +161,12 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
 
   private async _filterCustomer(name: string): Promise<void> {
-    const params = `corporateName=${name}`;
+    const data = {
+      corporateName: name,
+      status: 1,
+    };
     this.filteredCustomers = await this.customerProvider.findByName(
-      params
+      data
     );
 
   }

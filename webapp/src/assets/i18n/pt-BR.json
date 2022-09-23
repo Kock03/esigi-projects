@@ -26,6 +26,7 @@
             "follow_up": "Acompanhamento"
         },
         "project_register": {
+            "all": "Todos",
             "projectType": "Tipo de projeto",
             "code": "Código",
             "responsible": "Responsável",
@@ -70,7 +71,7 @@
             "client": "Cliente",
             "managerEnvolti": "Gerente Envolti",
             "status": "Status",
-            "collaborator": "Colabordor",
+            "collaborator": "Colaborador",
             "paper": "Papel",
             "estimated_hours": "Horas estimadas",
             "activity": "Atividade",

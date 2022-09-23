@@ -53,7 +53,6 @@ export class ProjectsCreateComponent implements OnInit {
     }
     this.type = sessionStorage.getItem('project_type')
     this.projectId = this.route.snapshot.paramMap.get('id');
-    console.log(this.projectId);
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
     this.customerId = sessionStorage.getItem('customer_id');
     this.collaboratorRequesterId = sessionStorage.getItem('collaboratorRequester_id');
@@ -79,7 +78,7 @@ export class ProjectsCreateComponent implements OnInit {
     try {
       this.project = await this.projectProvider.findOne(this.projectId);
     } catch (error) {
-      console.log(error);
+      console.log('ERROR 132' + error);
     }
   }
 
@@ -141,7 +140,6 @@ export class ProjectsCreateComponent implements OnInit {
       this.snackbarService.successMessage('Projeto cadastrado com sucesso');
       sessionStorage.setItem('project_id', project.id);
       this.navigate('next');
-      console.log(data);
       this.method = 'edit'
       sessionStorage.setItem('method', this.method);
       this.router.navigate([`projetos/${project.id}`]);
@@ -157,7 +155,6 @@ export class ProjectsCreateComponent implements OnInit {
 
   async editProject() {
     const data = this.projectForm.getRawValue();
-    console.log(data);
     try {
       const porject = await this.projectProvider.update(this.projectId, data);
       this.router.navigate(['projetos/lista']);
