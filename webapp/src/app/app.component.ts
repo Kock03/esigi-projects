@@ -73,7 +73,7 @@ export class AppComponent {
 
   navigator(route: any) {
     switch (route) {
-      case 'projetos':
+      case 'projects':
         this.router.navigate(['projetos/lista']);
         break;
     }

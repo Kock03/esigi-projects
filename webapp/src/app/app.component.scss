@@ -34,6 +34,10 @@
     }
   }
 
+  .menu-button-logo{
+    margin-top: 60px;
+  }
+
   .mat-drawer-content {
     height: 100vh;
   }
@@ -69,7 +73,7 @@
 
   span{
     color: rgb(248, 242, 242);
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .menu-button:hover:not(.active) {
@@ -98,7 +102,7 @@
   .name {
     margin: 10px 0 5px;
     font-size: 22px;
-    color: rgb(248, 242, 242);
+    color: rgb(248, 242, 242) !important;
     
   }
 
@@ -117,6 +121,6 @@
     border-radius: 10px;
   }
 
-  // .btn-more {
-  //   background-color: rgba(239, 244, 250, 0.863);
-  // }
+  .mat-flat-button{
+    background-color: transparent !important;
+  }

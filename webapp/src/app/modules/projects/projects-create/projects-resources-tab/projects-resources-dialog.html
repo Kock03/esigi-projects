@@ -1,239 +1,236 @@
-<div id="resourceDialog" class="content-scroll-resource">
-  <div class="button-resource-dialog-control">
-    <mat-panel-title class="resource-box" fxLayout="row">
-      <mat-icon class="icon-ressource-dialog">account_circle</mat-icon>
-      <button disabled class="button-resource" mat-button>
-        <h2 fxLayoutAlign="start">
-          {{
-          "projects.project_register.project_resource_dialog.resource_registration"
-          | translate }}
-        </h2>
-      </button>
-      <button (click)="close()" class="cancel-icon" mat-button>
+<div id="resourceDialog" class="dialog">
+  <div class="content-scroll" *ngIf="resourceForm">
+    <div class="content-header" fxLayout="row">
+      <h2 class="title-content" mat-dialog-title> {{
+        "projects.project_register.project_resource_dialog.resource_registration"
+        | translate }}</h2>
+      <button mat-icon-button class="mat-icon-form" (click)="close()">
         <mat-icon>cancel</mat-icon>
       </button>
-    </mat-panel-title>
-  </div>
-  <mat-dialog-content
-    fxLayout="column"
-    fxLayoutAlign="space-between"
-    class="mat-typography"
-  >
-    <form class="form-content" [formGroup]="resourceForm" fxLayout="column">
-      <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field
-          *ngIf="this.method !== 'edit'"
-          fxFlex="34"
-          class="example-full-width"
-          appearance="outline"
-        >
-          <mat-label
-            >{{ "projects.project_generic.collaborator" | translate
-            }}</mat-label
-          >
-          <input
-            type="text"
-            placeholder="Colaborador"
-            aria-label="text"
-            [errorStateMatcher]="matcher"
-            #filter
-            matInput
-            [matAutocomplete]="auto"
-            [formControl]="collaboratorControl"
-          />
-          <mat-error
-            *ngIf="
-            collaboratorControl && collaboratorControl.hasError('required')
-            "
-          >
-            {{ "validators.validator-required" | translate }}
-          </mat-error>
-          <mat-error
-            *ngIf="
-            collaboratorControl &&
-              !collaboratorControl.hasError('required') &&
-              collaboratorControl.hasError('incorrect')
-            "
-          >
-            {{ "validators.select-option" | translate }}
-          </mat-error>
-          <mat-autocomplete
-            autoActiveFirstOption
-            #auto="matAutocomplete"
-            [displayWith]="displayFn"
-          >
-            <mat-option
-              *ngFor="let collaborator of filteredCollaborators"
-              [value]="collaborator"
-            >
-              {{collaborator.firstNameCorporateName }}
-              {{collaborator.lastNameFantasyName}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field
-          appearance="outline"
-          *ngIf="this.method === 'edit'"
-          fxFlex="25"
-          class="example-full-width"
-        >
-          <mat-label
-            >{{ "projects.project_generic.collaborator" | translate
-            }}</mat-label
-          >
-          <input
-            disabled
-            matInput
-            disableRipple
-            [value]="this.collaboratorControl.value"
-          />
-        </mat-form-field>
-
-        <mat-form-field fxFlex="35" appearance="outline">
-          <mat-label
-            >"{{ "projects.project_generic.paper" | translate }}</mat-label
-          >
-          <mat-select
-            [errorStateMatcher]="matcher"
-            class="select"
-            disableRipple
-            formControlName="paper"
-          >
-            <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
-                ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
-            <mat-option [value]="1">Gerente de Projeto</mat-option>
-            <mat-option [value]="2">Arquiteto de Software</mat-option>
-            <mat-option [value]="3">Analista de Dados</mat-option>
-            <mat-option [value]="4">Analista de Testes</mat-option>
-            <mat-option [value]="5">Engenheiro de Software</mat-option>
-            <mat-option [value]="6">Desenvolvedor Angular</mat-option>
-            <mat-option [value]="7">Desenvolvedor React</mat-option>
-            <mat-option [value]="8">Desenvolvedor C#</mat-option>
-            <mat-option [value]="9">Desenvolvedor Java</mat-option>
-            <mat-option [value]="10">Desenvolvedor PHP</mat-option>
-            <mat-option [value]="11">Desenvolvedor Node</mat-option>
-            <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
-            <mat-option [value]="13">Desenvolvedor C++</mat-option>
-            <mat-option [value]="14">Desenvolvedor Python</mat-option>
-            <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>
-            {{ "projects.project_generic.estimated_hours" | translate
-            }}</mat-label
-          >
-          <input
-            matInput
-            disableRipple
-            [errorStateMatcher]="matcher"
-            type="number"
-            formControlName="estimatedHours"
-            placeholder="Estimativa de Horas"
-          />
-        </mat-form-field>
-        <div fxFlex="20" fxLayout="row">
-          <button
-            class="button-form"
-            mat-button
-            (click)="clear()"
-            color="primary"
-          >
-            <mat-icon>close</mat-icon>
-          </button>
-          <button
-            class="button-form"
-            color="primary"
-            [disabled]="resourceForm.invalid || collaboratorControl.invalid"
-            mat-flat-button
-            (click)="saveResource()"
-          >
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </div>
-
-      <mat-checkbox
-        *ngIf="method === 'edit'"
-        fxFlex="30"
-        fxLayoutAlign="start start"
-        class="checkbox disabled"
-        color="primary"
-        formControlName="isActive"
-        >Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo':
-        'Inativo'}}</mat-checkbox
-      >
-    </form>
-
-    <div class="envolti-table mat-elevation-z4">
-      <table mat-table [dataSource]="dataTable" #resourceDialogTable>
-        <ng-container matColumnDef="collaboratorId">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "projects.project_generic.collaborator" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let resource">
-            {{ resource.collaborator.firstNameCorporateName }}
-            {{resource.collaborator.lastNameFantasyName}}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="paper">
-          <th mat-header-cell *matHeaderCellDef>Papel</th>
-          <td mat-cell *matCellDef="let resource">
-            {{getPaper(resource.paper)}}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="estimatedHours">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "projects.project_generic.estimated_hours" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let resource">
-            {{ resource.estimatedHours }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="isActive">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "projects.project_generic.status" | translate }}
-          </th>
-
-          <td mat-cell *matCellDef="let resource">
-            {{ resource.isActive ? 'Ativo' : 'Inativo' }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="icon">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td
-            fxLayoutAlign="end center"
-            class="button-tab"
-            mat-cell
-            *matCellDef="let resource; let index = index"
-          >
-            <button
-              (click)="getResource(resource, resource.id, resource.collaborator.firstNameCorporateName )"
-              class="table-button"
-              mat-button
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button
-              (click)="deleteResource(resource.id)"
-              class="table-button"
-              mat-button
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
     </div>
-  </mat-dialog-content>
+    <div class="dialog-content">
+      <mat-dialog-content class="mat-typography">
+        <form class="form-content" [formGroup]="resourceForm" fxLayout="column">
+          <div fxFlex="100" fxLayoutGap="16px">
+            <mat-form-field
+              *ngIf="this.method !== 'edit'"
+              fxFlex="30"
+              class="example-full-width"
+              appearance="outline"
+            >
+              <mat-label
+                >{{ "projects.project_generic.collaborator" | translate
+                }}</mat-label
+              >
+              <input
+                type="text"
+                placeholder="Colaborador"
+                aria-label="text"
+                #filter
+                matInput
+                [matAutocomplete]="auto"
+                [formControl]="collaboratorControl"
+              />
+              <mat-error
+                *ngIf="
+                collaboratorControl && collaboratorControl.hasError('required')
+                "
+              >
+                {{ "validators.validator-required" | translate }}
+              </mat-error>
+              <mat-error
+                *ngIf="
+                collaboratorControl &&
+                  !collaboratorControl.hasError('required') &&
+                  collaboratorControl.hasError('incorrect')
+                "
+              >
+                {{ "validators.select-option" | translate }}
+              </mat-error>
+              <mat-autocomplete
+                autoActiveFirstOption
+                #auto="matAutocomplete"
+                [displayWith]="displayFn"
+              >
+                <mat-option
+                  *ngFor="let collaborator of filteredCollaborators"
+                  [value]="collaborator"
+                >
+                  {{collaborator.firstNameCorporateName }}
+                  {{collaborator.lastNameFantasyName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field
+              appearance="outline"
+              *ngIf="this.method === 'edit'"
+              fxFlex="30"
+              class="example-full-width"
+            >
+              <mat-label
+                >{{ "projects.project_generic.collaborator" | translate
+                }}</mat-label
+              >
+              <input
+                disabled
+                matInput
+                disableRipple
+                [value]="this.collaboratorControl.value"
+              />
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="30" appearance="outline">
+              <mat-label
+                >"{{ "projects.project_generic.paper" | translate }}</mat-label
+              >
+              <mat-select
+                [errorStateMatcher]="matcher"
+                class="select"
+                disableRipple
+                formControlName="paper"
+              >
+                <!-- TODO - Criar serviço estatico para retornar lista contendo valor e nome
+                    ou um endpoint no ms config para retornar a lista cadastradas em tabela -->
+                <mat-option [value]="1">Gerente de Projeto</mat-option>
+                <mat-option [value]="2">Arquiteto de Software</mat-option>
+                <mat-option [value]="3">Analista de Dados</mat-option>
+                <mat-option [value]="4">Analista de Testes</mat-option>
+                <mat-option [value]="5">Engenheiro de Software</mat-option>
+                <mat-option [value]="6">Desenvolvedor Angular</mat-option>
+                <mat-option [value]="7">Desenvolvedor React</mat-option>
+                <mat-option [value]="8">Desenvolvedor C#</mat-option>
+                <mat-option [value]="9">Desenvolvedor Java</mat-option>
+                <mat-option [value]="10">Desenvolvedor PHP</mat-option>
+                <mat-option [value]="11">Desenvolvedor Node</mat-option>
+                <mat-option [value]="12">Desenvolvedor Javascript</mat-option>
+                <mat-option [value]="13">Desenvolvedor C++</mat-option>
+                <mat-option [value]="14">Desenvolvedor Python</mat-option>
+                <mat-option [value]="15">Desenvolvedor Ruby</mat-option>
+              </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="20" appearance="outline">
+              <mat-label>
+                {{ "projects.project_generic.estimated_hours" | translate
+                }}</mat-label
+              >
+              <input
+                matInput
+                disableRipple
+                [errorStateMatcher]="matcher"
+                type="number"
+                formControlName="estimatedHours"
+                placeholder="Estimativa de Horas"
+              />
+            </mat-form-field>
+            <div fxFlex="20" fxLayout="row">
+              <button
+                class="button-form"
+                mat-button
+                (click)="clear()"
+                color="primary"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+              <button
+                class="button-form"
+                color="primary"
+                [disabled]="resourceForm.invalid || collaboratorControl.invalid"
+                mat-flat-button
+                (click)="saveResource()"
+              >
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+          </div>
+    
+          <mat-checkbox
+            *ngIf="method === 'edit'"
+            fxFlex="30"
+            fxLayoutAlign="start start"
+            class="checkbox disabled"
+            color="primary"
+            formControlName="isActive"
+            >Recurso {{resourceForm.controls['isActive'].value == true ? 'Ativo':
+            'Inativo'}}</mat-checkbox
+          >
+        </form>
+
+        <div class="envolti-table mat-elevation-z4">
+          <table mat-table [dataSource]="dataTable" #resourceDialogTable>
+            <ng-container matColumnDef="collaboratorId">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.project_generic.collaborator" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let resource">
+                {{ resource.collaborator.firstNameCorporateName }}
+                {{resource.collaborator.lastNameFantasyName}}
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="paper">
+              <th mat-header-cell *matHeaderCellDef>Papel</th>
+              <td mat-cell *matCellDef="let resource">
+                {{getPaper(resource.paper)}}
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="estimatedHours">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.project_generic.estimated_hours" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let resource">
+                {{ resource.estimatedHours }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="isActive">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.project_generic.status" | translate }}
+              </th>
+    
+              <td mat-cell *matCellDef="let resource">
+                {{ resource.isActive ? 'Ativo' : 'Inativo' }}
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="icon">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td
+                fxLayoutAlign="end center"
+                class="button-tab"
+                mat-cell
+                *matCellDef="let resource; let index = index"
+              >
+                <button
+                  (click)="getResource(resource, resource.id, resource.collaborator.firstNameCorporateName )"
+                  class="table-button"
+                  mat-button
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+    
+                <button
+                  (click)="deleteResource(resource.id)"
+                  class="table-button"
+                  mat-button
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </mat-dialog-content>
+    </div>
+  </div>
 </div>
+
+
+
+
+
