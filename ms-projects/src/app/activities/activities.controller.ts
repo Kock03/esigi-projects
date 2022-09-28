@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Headers, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
 import { ActivitiesService } from "./activities.service";
 import { CreateActivitieDto } from "./dtos/create-activities.dto";
 import { UpdateActivities } from "./dtos/update-activities.dto";
@@ -20,8 +20,8 @@ export class ActivitiesController{
     }
 
     @Get(':id')
-    async show(@Param('id', new ParseUUIDPipe()) id: string){
-        return await this.activitiesService.findOneOfFall({id});
+    async show(@Param('id', new ParseUUIDPipe()) id: string, @Headers() headers){
+        return await this.activitiesService.findOneOfFall({id}, headers.authorization);
     }
 
     @Put(':id')

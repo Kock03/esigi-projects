@@ -8,6 +8,7 @@ import {
   HttpStatus,
   Param,
   ParseUUIDPipe,
+  Headers,
   Post,
   Put,
   Query,
@@ -22,8 +23,8 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) { }
 
   @Get()
-  async index() {
-    return await this.projectsService.findAll();
+  async index(@Headers() headers) {
+    return await this.projectsService.findAll(headers.authorization);
   }
 
   @Post('/list')
@@ -32,13 +33,13 @@ export class ProjectsController {
   }
 
   @Post('find')
-  async findByName(@Body() body: any) {
-    return await this.projectsService.findProject(body.name, body.status);
+  async findByName(@Body() body: any, @Headers() headers) {
+    return await this.projectsService.findProject(body.name, body.status, headers.authorization);
   }
 
   @Get('collaborator')
-  findByCollaborator(@Query('id') id?: any) {
-    return this.projectsService.findByCollaborator(id);
+ async findByCollaborator(@Headers() headers, @Query('id') id?: any) {
+    return this.projectsService.findByCollaborator(id, headers.authorization);
   }
 
   @Post()

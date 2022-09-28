@@ -44,7 +44,7 @@ export class CustomerProvider {
 
   findByName(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.post('customers/find', data)
+      this.apiGateway.post(environment.CUSTOMER_MS + 'customers/find', data)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
