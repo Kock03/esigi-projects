@@ -131,4 +131,8 @@ export class ProjectsListComponent implements OnInit {
       }
     });
   }
+
+  goHome(port: number): void {
+    location.replace(`http://localhost:${port}/portal`);
+  }
 }
