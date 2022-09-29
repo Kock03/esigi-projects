@@ -294,20 +294,24 @@ export class ProjectsService {
     return await this.projectsRepository.softDelete({ id });
   }
 
-  async projectRequest(projects: any, token: string){
+  async projectRequest(projects: any, token: string) {
     const collaboratorIdList = projects.map((project) => {
       let obj = { id: project.collaboratorRequesterId };
       return project.collaboratorRequesterId;
     });
 
     const collaborators = await this.httpService
-      .post('http://localhost:3501/api/v1/collaborators/list', {
-        idList: collaboratorIdList,
-      },  {
-        headers: {
-          authorization: token,
+      .post(
+        'http://localhost:3501/api/v1/collaborators/list',
+        {
+          idList: collaboratorIdList,
         },
-      },)
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      )
       .toPromise();
 
     if (collaborators.data) {
@@ -340,13 +344,17 @@ export class ProjectsService {
     });
 
     const customers = await this.httpService
-      .post('http://localhost:3506/api/v1/customers/list', {
-        idList: customerIdList,
-      },  {
-        headers: {
-          authorization: token,
+      .post(
+        'http://localhost:3506/api/v1/customers/list',
+        {
+          idList: customerIdList,
         },
-      },)
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      )
       .toPromise();
     if (customers.data) {
       projects.map((project) => {
@@ -367,8 +375,7 @@ export class ProjectsService {
           return project;
         }
       });
-    } else {
-      return projects;
     }
+    return projects;
   }
 }

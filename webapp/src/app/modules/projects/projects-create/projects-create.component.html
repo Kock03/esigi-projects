@@ -105,9 +105,7 @@
   >
     <button
       [disabled]="
-        projectForm.invalid ||
-        collaboratorControl.invalid ||
-        customerControl.invalid
+        projectForm.invalid 
       "
       mat-flat-button
       (click)="editProject()"
