@@ -5,6 +5,7 @@ import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserService } from 'src/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,10 @@ import { UserService } from 'src/services/user.service';
 export class AppComponent {
   title = 'esigi-projects';
   activeMenu!: '';
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  token!: string;
   openTree: boolean = false;
-  compare!: any
+  compare!: any;
 
   projects: string = 'projetos';
 
@@ -27,14 +28,22 @@ export class AppComponent {
     private route: ActivatedRoute,
     public translateService: TranslateService,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    console.log(this.sidenav);
     this.translateService.setDefaultLang('pt-BR');
     this.translateService.use('pt-BR');
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
+        let valid = res.url.indexOf('validate');
+        if (valid === -1) {
+          this.token = localStorage.getItem('token')!;
+          if (!this.token) {
+            location.replace(environment.portal);
+          }
+        }
         this.activeMenu = res.url.split('/')[1];
       });
   }
@@ -54,7 +63,6 @@ export class AppComponent {
   }
 
   recize() {
-
     this.openTree = this.openTree === true ? false : true;
   }
 
@@ -71,9 +79,8 @@ export class AppComponent {
     }
   }
 
-
-  openApp(port: number): void {
-    location.replace(`http://localhost:${port}`);
+  openApp(): void {
+    location.replace(`http://localhost:3406/validate/${this.token}`);
   }
 
   logout(): void {

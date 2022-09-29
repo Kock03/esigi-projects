@@ -64,6 +64,7 @@ export class ProjectResourceDialog {
   collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
   collaboratorValid: boolean = false;
   matcher = new ErrorStateMatcherService();
+  
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,

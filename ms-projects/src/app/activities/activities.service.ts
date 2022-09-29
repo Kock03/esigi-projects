@@ -22,6 +22,7 @@ export class ActivitiesService {
 
   async findOneOfFall(
     conditions: FindConditions<ActivitiesEntity>,
+    token: string,
     options?: FindOneOptions<ActivitiesEntity>,
   ) {
     options = { relations: ['resource'] };
@@ -38,7 +39,11 @@ export class ActivitiesService {
       const collaborators = await this.httpService
         .post('http://localhost:3501/api/v1/collaborators/list', {
           idList: collaboratorIdList,
-        })
+        } ,  {
+          headers: {
+            authorization: token,
+          },
+        },)
         .toPromise();
 
       if (collaborators.data) {
