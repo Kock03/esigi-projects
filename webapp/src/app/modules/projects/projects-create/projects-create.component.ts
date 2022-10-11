@@ -94,7 +94,7 @@ export class ProjectsCreateComponent implements OnInit {
       hourControl: [null],
       collaboratorRequesterId: [null, Validators.required],
       status: ['', Validators.required],
-      startDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      startDate: this.fb.control({disabled: false }, [DocumentValidator.isValidData(), DocumentValidator.isDateGreaterThanToday(),  Validators.required]),
       endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
     });
 

@@ -137,7 +137,7 @@ export class DocumentValidator {
       ) {
         return { dataNotValid: true };
       }
-      var dia = data.substr(0, 2);
+      var dia = data.substr(0, 2);      
       var barra1 = data.substr(2, 1);
       var mes = data.substr(3, 2);
       var barra2 = data.substr(5, 1);
@@ -148,6 +148,19 @@ export class DocumentValidator {
       if (ano < 1900) return  {dataNotValid: true};
       return true;
 
+    }
+  }
+
+
+  static isDateGreaterThanToday(): ValidatorFn {
+    return (control: AbstractControl): Validators => {
+
+      var data = control.value;
+      const today = new Date().toLocaleDateString();
+      if (data < today ) {
+        return {dataNotValid: true};
+      } 
+      return true;
     }
   }
 
