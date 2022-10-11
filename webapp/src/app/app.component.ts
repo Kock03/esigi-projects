@@ -28,7 +28,7 @@ export class AppComponent {
     private route: ActivatedRoute,
     public translateService: TranslateService,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     console.log(this.sidenav);
@@ -80,7 +80,7 @@ export class AppComponent {
   }
 
   openApp(): void {
-    location.replace(`http://localhost:3406/validate/${this.token}`);
+    location.replace(environment.port + `3406/validate/${this.token}`);
   }
 
   logout(): void {
