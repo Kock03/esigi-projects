@@ -151,4 +151,16 @@ export class DocumentValidator {
     }
   }
 
+  static isDateGreaterThanToday(): ValidatorFn {
+    return (control: AbstractControl): Validators => {
+
+      var data = control.value;
+      const today = new Date().toLocaleDateString();
+      if (data < today ) {
+        return {dataNotValid: true};
+      } 
+      return true;
+    }
+  }
+
 }

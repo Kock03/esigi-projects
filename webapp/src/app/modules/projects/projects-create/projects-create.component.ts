@@ -34,7 +34,9 @@ export class ProjectsCreateComponent implements OnInit {
   method: string = '';
   collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
   customerControl = new FormControl('', [Validators.required, RequireMatch]);
+  responsibleControl = new FormControl('', [Validators.required, RequireMatch]);
   customerId!: string | null;
+  responsible!: string | null;
   collaboratorRequesterId!: string | null;
   type: any;
   validations = [['name', 'responsible', 'value', 'status']];
@@ -94,7 +96,7 @@ export class ProjectsCreateComponent implements OnInit {
       hourControl: [null],
       collaboratorRequesterId: [null, Validators.required],
       status: ['', Validators.required],
-      startDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      startDate: this.fb.control({disabled: false }, [DocumentValidator.isValidData(), DocumentValidator.isDateGreaterThanToday(),  Validators.required]),
       endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
     });
 

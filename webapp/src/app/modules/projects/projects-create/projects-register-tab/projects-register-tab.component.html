@@ -121,7 +121,24 @@
           />
         </mat-form-field>
 
-        <mat-form-field fxFlex="50" appearance="outline">
+        <mat-form-field  appearance="outline" fxFlex="50"
+          class="example-full-width">
+          <mat-label>{{
+            "projects.project_register.responsible" | translate
+          }}</mat-label>
+          <input type="text" aria-label="text" matInput disableRipple  #fiiilter [matAutocomplete]="autoResponsible"
+            [formControl]="responsibleControl" />
+            <mat-autocomplete autoActiveFirstOption #autoResponsible="matAutocomplete" [displayWith]="displayFnResponsible">
+              <mat-option *ngFor="let responsible of filteredResponsibles" [value]="responsible">
+                {{ responsible.name }}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+
+        
+
+        <!-- <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>{{
             "projects.project_register.responsible" | translate
           }}</mat-label>
@@ -130,7 +147,9 @@
             <mat-option value="2">Fernando Garcia</mat-option>
             <mat-option value="3">Paulo Pereira</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+
+
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
@@ -168,7 +187,10 @@
           }}</mat-label>
           <input
             matInput
-            type="number"
+            type="text"
+            mask="separator.2"
+            thousandSeparator="."
+            separatorLimit="10000000"
             formControlName="contractedHours"
             placeholder="Horas Contratadas"
           />
