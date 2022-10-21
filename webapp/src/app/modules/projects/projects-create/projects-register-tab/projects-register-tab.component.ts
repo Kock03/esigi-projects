@@ -60,7 +60,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @ViewChild('filter', { static: true }) filter!: ElementRef;
   @ViewChild('fiiilter', { static: true }) fiiilter!: ElementRef;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  
+
 
   projectType: any;
   projectId: any;
@@ -95,10 +95,10 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.codeInputDisabled.disable();
     this.getCollaboratorList();
     this.getCustomerList();
-    this.getResponsibleList();
+    // this.getResponsibleList();
     this.initFilterCustomer();
     this.initFilterRequester();
-    this.initFilterResponsible();
+    // this.initFilterResponsible();
   }
 
 
@@ -109,11 +109,12 @@ export class ProjectsRegisterTabComponent implements OnInit {
   async getCustomerList() {
     this.filteredCustomerList = this.customers =
       await this.customerProvider.shortListCustomers();
+      await this.getResponsibleList();
   }
 
   async getResponsibleList() {
     this.filteredResponsibleList = this.responsibles =
-      await this.customerProvider.shortListContacts();
+      await this.customerProvider.findByNameContact(this.responsible.id);
   }
 
   private initFilterRequester() {
@@ -146,20 +147,20 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   }
 
-  private initFilterResponsible() {
-    this.collaboratorControl.valueChanges
-      .pipe(debounceTime(350), distinctUntilChanged())
-      .subscribe((res) => {
-        this._filterResponsible(res);
-        if (res && res.id) {
-          this.collaboratorValid = true;
-        } else {
-          this.collaboratorValid = false;
-        }
+  // private initFilterResponsible() {
+  //   this.collaboratorControl.valueChanges
+  //     .pipe(debounceTime(350), distinctUntilChanged())
+  //     .subscribe((res) => {
+  //       this._filterResponsible(res);
+  //       if (res && res.id) {
+  //         this.collaboratorValid = true;
+  //       } else {
+  //         this.collaboratorValid = false;
+  //       }
 
-      });
+  //     });
 
-  }
+  // }
 
   displayFnRequester(user: any): string {
     if (typeof user === 'string' && this.collaborators) {
@@ -172,7 +173,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
       : '';
   }
 
- 
+
 
   displayFnCustomer(user: any): string {
     if (typeof user === 'string' && this.customers) {
@@ -181,7 +182,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
       );
     }
     return user && user.corporateName
-      ? user.corporateName
+    ,  ? user.corporateName
       : '';
   }
 
@@ -191,8 +192,8 @@ export class ProjectsRegisterTabComponent implements OnInit {
         (customer) => customer.id === user
       );
     }
-    return user && user.corporateName
-      ? user.corporateName
+    return user && user.name
+      ? user.name
       : '';
   }
 
@@ -205,16 +206,16 @@ export class ProjectsRegisterTabComponent implements OnInit {
   }
 
 
-  private async _filterResponsible(name: string): Promise<void> {
-    const data = {
-      corporateName: name,
-      status: 1,
-    };
-    this.filteredCustomers = await this.customerProvider.findByNameContact(
-      data
-    );
+  // private async _filterResponsible(name: string): Promise<void> {
+  //   const data = {
+  //     corporateName: name,
+  //     status: 1,
+  //   };
+  //   this.filteredCustomers = await this.customerProvider.findByNameContact(
+  //     data
+  //   );
 
-  }
+  // }
 
   private async _filterCustomer(name: string): Promise<void> {
     const data = {
