@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { CustomerProvider } from 'src/providers/customer.provider';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { ContactProvider } from 'src/providers/contact.provider';
 
 
 
@@ -55,28 +56,44 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @Input('form') projectForm!: FormGroup;
   @Input('collaborator') collaboratorControl!: FormControl;
   @Input('customer') customerControl!: FormControl;
+  @Input('responsible') responsibleControl!: FormControl;
+
   @ViewChild('filter', { static: true }) filter!: ElementRef;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   projectType: any;
   projectId: any;
   codeInputDisabled = new FormControl({ disabled: true });
+
   collaborators!: any[];
   filteredCollaborators!: any[];
   filteredCollaboratorList: any;
   collaborator!: any;
   collaboratorValid: boolean = false;
+
   method!: any;
+
   customers!: any[];
   filteredCustomers!: any[];
   filteredCustomerList: any;
   customer!: any;
   customerValid: boolean = false;
 
+  responsibles!: any[];
+  customerId!: string;
+  customerObj: any
+  filteredResponsible!: any[];
+  filteredResponsibleList: any;
+  responsible: any;
+  responsibleValid: boolean = false;
+  view: boolean = false;
+
+
   constructor(private route: ActivatedRoute,
     public translateService: TranslateService,
     private collaboratorProvider: CollaboratorProvider,
-    private customerProvider: CustomerProvider) { }
+    private customerProvider: CustomerProvider,
+    private contactProvider: ContactProvider) { }
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
@@ -85,9 +102,13 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.codeInputDisabled.disable();
     this.getCollaboratorList();
     this.getCustomerList();
+    this.getResponsibleList()
+
     this.initFilterRequester();
     this.initFilterCustomer();
+    this.initFilterResponsible();
   }
+
 
 
   async getCollaboratorList() {
@@ -97,6 +118,24 @@ export class ProjectsRegisterTabComponent implements OnInit {
   async getCustomerList() {
     this.filteredCustomerList = this.customers =
       await this.customerProvider.shortListCustomers();
+
+  }
+
+  async getResponsibleList() {
+    const data = {
+      id: this.customerControl.value.id,
+      name: "",
+    };
+
+    this.filteredResponsibleList = this.responsibles =
+      await this.contactProvider.findByName(
+        data
+      );
+
+    console.log(this.filteredResponsibleList)
+
+
+
   }
 
   private initFilterRequester() {
@@ -129,6 +168,21 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   }
 
+  private initFilterResponsible() {
+    this.responsibleControl.valueChanges
+      .pipe(debounceTime(350), distinctUntilChanged())
+      .subscribe((res) => {
+        this._filterResponsible(res);
+        if (res && res.id) {
+          this.responsibleValid = true;
+        } else {
+          this.responsibleValid = false;
+        }
+
+      });
+
+  }
+
   displayFnRequester(user: any): string {
     if (typeof user === 'string' && this.collaborators) {
       return this.collaborators.find(
@@ -146,9 +200,19 @@ export class ProjectsRegisterTabComponent implements OnInit {
         (customer) => customer.id === user
       );
     }
+
     return user && user.corporateName
       ? user.corporateName
       : '';
+  }
+
+  displayFnResponsible(user: any): string {
+    if (typeof user === 'string' && this.responsibles) {
+      return this.responsibles.find(
+        (responsible) => responsible.id === user
+      );
+    }
+    return user && user.name ? user.name : '';
   }
 
   private async _filterRequester(name: string): Promise<void> {
@@ -168,6 +232,20 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.filteredCustomers = await this.customerProvider.findByName(
       data
     );
+    this.view = true;
+
+  }
+
+  private async _filterResponsible(name: string): Promise<void> {
+    const data = {
+      id: this.customerControl.value.id,
+      name: name,
+    };
+    this.filteredResponsible = await this.contactProvider.findByName(
+      data
+    );
+    this.getResponsibleList()
+
 
   }
 

@@ -50,7 +50,7 @@ export class CustomerProvider {
         }, reject);
     });
   }
-  
+
   shortListCustomers(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway

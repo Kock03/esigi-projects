@@ -25,7 +25,7 @@ export class UpdateProjectDto {
 
   @IsOptional()
   @ApiProperty()
-  responsible: string;
+  responsibleId: string;
 
   @IsOptional()
   @ApiProperty()

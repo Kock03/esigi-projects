@@ -34,10 +34,14 @@ export class ProjectsCreateComponent implements OnInit {
   method: string = '';
   collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
   customerControl = new FormControl('', [Validators.required, RequireMatch]);
+  responsibleControl = new FormControl('', [Validators.required, RequireMatch]);
+
   customerId!: string | null;
   collaboratorRequesterId!: string | null;
+  responsibleId!: string | null;
+
   type: any;
-  validations = [['name', 'responsible', 'value', 'status']];
+  validations = [['name', 'responsibleId', 'value', 'status']];
 
   constructor(
     private router: Router,
@@ -56,6 +60,7 @@ export class ProjectsCreateComponent implements OnInit {
     this.step = JSON.parse(sessionStorage.getItem('project_tab')!);
     this.customerId = sessionStorage.getItem('customer_id');
     this.collaboratorRequesterId = sessionStorage.getItem('collaboratorRequester_id');
+    this.responsibleId = sessionStorage.getItem('responsible_id');
 
     if (this.projectId !== 'cadastro') {
       await this.getProject();
@@ -71,6 +76,7 @@ export class ProjectsCreateComponent implements OnInit {
       this.projectForm.patchValue(this.project);
       this.customerControl.patchValue(this.customerId);
       this.collaboratorControl.patchValue(this.collaboratorRequesterId);
+      this.responsibleControl.patchValue(this.responsibleId)
     }
   }
 
@@ -85,7 +91,7 @@ export class ProjectsCreateComponent implements OnInit {
   initForm(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
-      responsible: [null, Validators.required],
+      responsibleId: [null, Validators.required],
       customerId: ['', Validators.required],
       type: [null, Validators.required],
       code: [null],
@@ -94,7 +100,7 @@ export class ProjectsCreateComponent implements OnInit {
       hourControl: [null],
       collaboratorRequesterId: [null, Validators.required],
       status: ['', Validators.required],
-      startDate: this.fb.control({disabled: false }, [DocumentValidator.isValidData(), DocumentValidator.isDateGreaterThanToday(),  Validators.required]),
+      startDate: this.fb.control({ disabled: false }, [DocumentValidator.isValidData(), DocumentValidator.isDateGreaterThanToday(), Validators.required]),
       endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
     });
 
@@ -114,6 +120,14 @@ export class ProjectsCreateComponent implements OnInit {
     this.customerControl.valueChanges.subscribe((res) => {
       if (res && res.id) {
         this.projectForm.controls['customerId'].setValue(res.id, {
+          emitEvent: true,
+        });
+      }
+    });
+
+    this.responsibleControl.valueChanges.subscribe((res) => {
+      if (res && res.id) {
+        this.projectForm.controls['responsibleId'].setValue(res.id, {
           emitEvent: true,
         });
       }

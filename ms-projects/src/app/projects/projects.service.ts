@@ -52,9 +52,9 @@ export class ProjectsService {
     try {
       const projects = await this.projectsRepository.query(
         'select projects_entity.name, r.paper, a.start_date, a.end_date, r.estimated_hours, projects_entity.collaborator_requester_id, projects_entity.customer_id from projects_entity left join  activities_entity a on a.project_id = projects_entity.id left join  resources_entity r on r.activity_id = a.id where r.collaborator_id = ' +
-          '"' +
-          id +
-          '"',
+        '"' +
+        id +
+        '"',
       );
       return await this.projectRequest(projects, token);
     } catch (err) {
@@ -339,6 +339,51 @@ export class ProjectsService {
       return projects;
     }
 
+    const responsiblesIdList = projects.map((project) => {
+      let obj = { id: project.responsibleId };
+      return project.responsibleId;
+    });
+
+    const responsibles = await this.httpService
+      .post(
+        'http://localhost:3506/api/v1/contacts/list',
+
+        {
+          idList: responsiblesIdList,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      )
+      .toPromise();
+
+    if (responsibles.data) {
+      projects.map((project) => {
+        if (project.responsibleId != undefined) {
+          const responsible = responsibles.data.find(
+            (responsible) =>
+              responsible.id === project.responsibleId,
+          );
+          if (responsible) {
+            project.responsible = {
+              name: responsible.name,
+            };
+          } else {
+            project.responsibleId = null;
+          }
+
+          return project;
+        } else {
+          return project;
+        }
+      });
+    } else {
+      return projects;
+    }
+
+
     const customerIdList = projects.map((project) => {
       return project.customerId;
     });
@@ -374,7 +419,9 @@ export class ProjectsService {
         } else {
           return project;
         }
+
       });
+
     }
     return projects;
   }

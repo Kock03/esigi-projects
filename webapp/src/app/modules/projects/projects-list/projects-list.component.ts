@@ -89,11 +89,13 @@ export class ProjectsListComponent implements OnInit {
       await this.projectsProvider.findAll();
   }
 
-  async editProject(projectSelected: any, projectId: string, customerId: any, collaboratorRequesterId: any) {
+  async editProject(projectSelected: any, projectId: string, customerId: any, collaboratorRequesterId: any, responsibleId: any) {
     this.method = 'edit';
     this.project = projectSelected;
     sessionStorage.setItem('customer_id', customerId);
     sessionStorage.setItem('collaboratorRequester_id', collaboratorRequesterId);
+    sessionStorage.setItem('responsible_id', responsibleId);
+
     if (this.project.type === 3) {
       const type = 1;
       sessionStorage.setItem('project_type', type.toString());
