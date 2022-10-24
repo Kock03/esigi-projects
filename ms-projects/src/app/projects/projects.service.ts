@@ -283,6 +283,12 @@ export class ProjectsService {
     }
     return await this.projectsRepository.save({ id: id, ...data });
   }
+  async findByProject(name: string) {
+    return await this.projectsRepository.createQueryBuilder('projects')
+      .where(`name like "%${name}%"`)
+      .getMany();
+  }
+
 
   async destroy(id: string) {
     try {
