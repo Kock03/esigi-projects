@@ -6,8 +6,9 @@ import {
   EventEmitter,
   Inject,
   ViewEncapsulation,
+  Input,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import {
   NativeDateAdapter,
   DateAdapter,
@@ -16,6 +17,8 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DocumentValidator } from 'src/app/validators/document.validator';
 import { ActivityProvider } from 'src/providers/activity.provider';
+import { CompareDates, isDateGreaterThanToday, isValidData } from 'src/app/validators/date-compare.validator';
+import { ProjectProvider } from 'src/providers/project.provider';
 
 export const PICK_FORMATS = {
   parse: { dateInput: { month: 'numeric', year: 'numeric', day: 'numeric' } },
@@ -49,6 +52,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 })
 export class ProjectActivityDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
+  @Input() dateCompare!: string;
 
   range = new FormGroup({});
   activityForm!: FormGroup;
@@ -58,32 +62,45 @@ export class ProjectActivityDialog {
   method!: string;
   activityId!: string | null;
   collaboratorControl = new FormControl();
+  compareDate!: any;
 
   constructor(
     public dialogRef: MatDialogRef<ProjectActivityDialog>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private activityProvider: ActivityProvider
+    private activityProvider: ActivityProvider,
+    private projectProvider: ProjectProvider,
   ) { }
 
-  ngOnInit(): void {
+ async ngOnInit() {
     this.method = sessionStorage.getItem('method')!;
     this.projectId = sessionStorage.getItem('project_id')!;
     this.initForm();
+    await this.getDate();
+    console.log("CompareDate " + this.compareDate)
   }
 
   initForm(): void {
     this.activityForm = this.fb.group({
-      name: [null],
+      name: [null,Validators.required],
+      compareDate: [null],
       startDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
-      endDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      endDate: this.fb.control({ value: '', disabled: false }, [DocumentValidator.isValidData(), Validators.required, DocumentValidator.isDateGreaterThanToday()]),
       project: { id: this.projectId },
-    });
+    },
+      {
+        validator: [CompareDates('compareDate', 'endDate'), isDateGreaterThanToday('endDate'), isValidData('endDate')]
+      });
     if (this.data) {
       this.activityForm.patchValue(this.data);
     }
   }
-
+  async getDate() {
+    const project = await this.projectProvider.findOne(this.projectId);
+    this.compareDate = project.endDate.split('/').reverse().join('/');
+    this.activityForm.controls['compareDate'].setValue(this.compareDate);
+  }
+  
   async save() {
     const data = this.activityForm.getRawValue();
     if (this.method === 'add') {
@@ -115,4 +132,5 @@ export class ProjectActivityDialog {
     this.dialogRef.close();
     sessionStorage.clear;
   }
+
 }

@@ -25,6 +25,9 @@
               <mat-label>{{ "projects.project_generic.end_date" | translate }}</mat-label>
               <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
                 placeholder="endDate" formControlName="endDate" />
+                <mat-error *ngIf="
+                activityForm && activityForm.controls['endDate'].hasError('compareDates')
+                ">A data final da atividade deve ser menor que a data final do projeto</mat-error>
             </mat-form-field>
           </div>
         </form>
