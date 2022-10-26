@@ -32,13 +32,18 @@ export class ProjectsController {
     return await this.projectsService.findProjectsListById(body.idList);
   }
 
+  @Post('find/name')
+  async find(@Body() body: any) {
+    return await this.projectsService.findByProject(body.name)
+  }
+
   @Post('find')
   async findByName(@Body() body: any, @Headers() headers) {
     return await this.projectsService.findProject(body.name, body.status, headers.authorization);
   }
 
   @Get('collaborator')
- async findByCollaborator(@Headers() headers, @Query('id') id?: any) {
+  async findByCollaborator(@Headers() headers, @Query('id') id?: any) {
     return this.projectsService.findByCollaborator(id, headers.authorization);
   }
 

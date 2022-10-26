@@ -15,6 +15,7 @@ import { Status } from './dtos/status.enum';
 import { Type } from './dtos/type.enum';
 import { ICollaborator } from './_model/collaborator.model';
 import { ICustomer } from './_model/customer.model';
+import { IResponsible } from './_model/responsible.model';
 
 @Entity()
 export class ProjectsEntity {
@@ -28,7 +29,7 @@ export class ProjectsEntity {
   code: number;
 
   @Column()
-  responsible: string;
+  responsibleId: string;
 
   @Column()
   customerId: string;
@@ -79,4 +80,7 @@ export class ProjectsEntity {
   collaborator: ICollaborator;
 
   customer: ICustomer;
+
+  responsible: IResponsible;
+
 }

@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
 import { CustomerProvider } from 'src/providers/customer.provider';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { ContactProvider } from 'src/providers/contact.provider';
 
 
 
@@ -56,7 +57,6 @@ export class ProjectsRegisterTabComponent implements OnInit {
   @Input('collaborator') collaboratorControl!: FormControl;
   @Input('customer') customerControl!: FormControl;
   @Input('responsible') responsibleControl!: FormControl;
-  @Input('replace') collaboratorReplaceControl!: FormControl;
   @ViewChild('filter', { static: true }) filter!: ElementRef;
   @ViewChild('fiiilter', { static: true }) fiiilter!: ElementRef;
   @Output() onChange: EventEmitter<any> = new EventEmitter();
@@ -65,12 +65,15 @@ export class ProjectsRegisterTabComponent implements OnInit {
   projectType: any;
   projectId: any;
   codeInputDisabled = new FormControl({ disabled: true });
+
   collaborators!: any[];
   filteredCollaborators!: any[];
   filteredCollaboratorList: any;
   collaborator!: any;
   collaboratorValid: boolean = false;
+
   method!: any;
+
   customers!: any[];
   filteredCustomers!: any[];
   filteredCustomerList: any;
@@ -78,15 +81,20 @@ export class ProjectsRegisterTabComponent implements OnInit {
   customerValid: boolean = false;
 
   responsibles!: any[];
-  filteredResponsibles!: any[];
+  customerId!: string;
+  customerObj: any
+  filteredResponsible!: any[];
   filteredResponsibleList: any;
-  responsible!: any;
+  responsible: any;
   responsibleValid: boolean = false;
+  view: boolean = false;
+
 
   constructor(private route: ActivatedRoute,
     public translateService: TranslateService,
     private collaboratorProvider: CollaboratorProvider,
-    private customerProvider: CustomerProvider) { }
+    private customerProvider: CustomerProvider,
+    private contactProvider: ContactProvider) { }
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
@@ -95,11 +103,13 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.codeInputDisabled.disable();
     this.getCollaboratorList();
     this.getCustomerList();
-    // this.getResponsibleList();
-    this.initFilterCustomer();
+    this.getResponsibleList()
+
     this.initFilterRequester();
-    // this.initFilterResponsible();
+    this.initFilterCustomer();
+    this.initFilterResponsible();
   }
+
 
 
   async getCollaboratorList() {
@@ -109,12 +119,24 @@ export class ProjectsRegisterTabComponent implements OnInit {
   async getCustomerList() {
     this.filteredCustomerList = this.customers =
       await this.customerProvider.shortListCustomers();
-      await this.getResponsibleList();
+
   }
 
   async getResponsibleList() {
+    const data = {
+      id: this.customerControl.value.id,
+      name: "",
+    };
+
     this.filteredResponsibleList = this.responsibles =
-      await this.customerProvider.findByNameContact(this.responsible.id);
+      await this.contactProvider.findByName(
+        data
+      );
+
+    console.log(this.filteredResponsibleList)
+
+
+
   }
 
   private initFilterRequester() {
@@ -147,20 +169,20 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   }
 
-  // private initFilterResponsible() {
-  //   this.collaboratorControl.valueChanges
-  //     .pipe(debounceTime(350), distinctUntilChanged())
-  //     .subscribe((res) => {
-  //       this._filterResponsible(res);
-  //       if (res && res.id) {
-  //         this.collaboratorValid = true;
-  //       } else {
-  //         this.collaboratorValid = false;
-  //       }
+  private initFilterResponsible() {
+    this.responsibleControl.valueChanges
+      .pipe(debounceTime(350), distinctUntilChanged())
+      .subscribe((res) => {
+        this._filterResponsible(res);
+        if (res && res.id) {
+          this.responsibleValid = true;
+        } else {
+          this.responsibleValid = false;
+        }
 
-  //     });
+      });
 
-  // }
+  }
 
   displayFnRequester(user: any): string {
     if (typeof user === 'string' && this.collaborators) {
@@ -181,6 +203,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
         (customer) => customer.id === user
       );
     }
+
     return user && user.corporateName
     ,  ? user.corporateName
       : '';
@@ -195,6 +218,15 @@ export class ProjectsRegisterTabComponent implements OnInit {
     return user && user.name
       ? user.name
       : '';
+  }
+
+  displayFnResponsible(user: any): string {
+    if (typeof user === 'string' && this.responsibles) {
+      return this.responsibles.find(
+        (responsible) => responsible.id === user
+      );
+    }
+    return user && user.name ? user.name : '';
   }
 
   private async _filterRequester(name: string): Promise<void> {
@@ -225,6 +257,20 @@ export class ProjectsRegisterTabComponent implements OnInit {
     this.filteredCustomers = await this.customerProvider.findByName(
       data
     );
+    this.view = true;
+
+  }
+
+  private async _filterResponsible(name: string): Promise<void> {
+    const data = {
+      id: this.customerControl.value.id,
+      name: name,
+    };
+    this.filteredResponsible = await this.contactProvider.findByName(
+      data
+    );
+    this.getResponsibleList()
+
 
   }
 

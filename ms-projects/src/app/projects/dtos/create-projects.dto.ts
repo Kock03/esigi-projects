@@ -31,7 +31,7 @@ export class CreateProjectDto {
 
   @IsNotEmpty()
   @MinLength(1)
-  responsible: string;
+  responsibleyId: string;
 
   @IsNotEmpty()
   @ApiProperty()

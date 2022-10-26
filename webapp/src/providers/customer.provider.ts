@@ -51,25 +51,6 @@ export class CustomerProvider {
     });
   }
 
-  // findByNameContact(data: any): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     this.apiGateway.post(environment.CUSTOMER_MS + 'contacts/find', data)
-  //       .subscribe((response: HttpResponse<any>) => {
-  //         resolve(response.body);
-  //       }, reject);
-  //   });
-  // }
-
-  findByNameContact(id: string | null): Promise<any> {
-    return new Promise((resolve, reject) => {
-        this.apiGateway
-            .get(environment.CUSTOMER_MS + 'contacts/customer/:id', { id })
-            .subscribe((response: HttpResponse<any>) => {
-                resolve(response.body);
-            }, reject);
-    });
-}
-  
   shortListCustomers(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway

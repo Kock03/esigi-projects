@@ -9,6 +9,7 @@ export const environment = {
   PROJECT_MS: 'localhost:3505/api/v1/',
   CUSTOMER_MS: 'localhost:3506/api/v1/',
   portal: 'http://localhost:3406/login',
+  port: 'http://localhost:',
   message: 'LOCAL',
   protocol: 'http',
 };
