@@ -19,6 +19,26 @@ export function CompareDates(dateProject: string, dateActivity: string) {
   };
 }
 
+
+export function CompareStartDate(dateProject: string, dateActivity: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[dateProject];
+    const matchingControl = formGroup.controls[dateActivity];
+
+    if (!control || !matchingControl) {
+      return;
+    }
+
+    let value = control.value;
+    let Matchvalue = matchingControl.value.split('/').reverse().join('/');
+    if (value > Matchvalue) {
+      matchingControl.setErrors({ validateDate: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
+  };
+}
+
 export function isDateGreaterThanToday(dateActivity: string) {
   return (formGroup: FormGroup): Validators => {
     const control = formGroup.controls[dateActivity];
