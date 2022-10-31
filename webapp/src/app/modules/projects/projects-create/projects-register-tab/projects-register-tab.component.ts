@@ -124,7 +124,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
   async getResponsibleList() {
     const data = {
       id: this.customerControl.value.id,
-      name: "",
+      name: ""
     };
 
     this.filteredResponsibleList = this.responsibles =
@@ -227,7 +227,7 @@ export class ProjectsRegisterTabComponent implements OnInit {
   private async _filterCustomer(name: string): Promise<void> {
     const data = {
       corporateName: name,
-      status: 1,
+      status: 2,
     };
     this.filteredCustomers = await this.customerProvider.findByName(
       data
