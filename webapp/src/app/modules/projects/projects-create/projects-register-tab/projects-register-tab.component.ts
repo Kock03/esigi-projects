@@ -217,8 +217,8 @@ export class ProjectsRegisterTabComponent implements OnInit {
 
   private async _filterRequester(name: string): Promise<void> {
     const params = `firstNameCorporateName=${name}`;
-    this.filteredCollaborators = await this.collaboratorProvider.findByNameGerente(
-      params
+    this.filteredCollaborators = await this.collaboratorProvider.findAll(
+      
     );
 
   }
