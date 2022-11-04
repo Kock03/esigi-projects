@@ -42,7 +42,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   activity: any;
   projectId!: string | null;
   activityId!: string | null;
-  method: string = '';
+  method!: any;
   tab!: string;
 
   constructor(
@@ -56,7 +56,7 @@ export class ProjectsResourcesTabComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.method = sessionStorage.getItem('method')!;
+    this.method = sessionStorage.getItem('method');
     if (this.method === 'edit') {
       this.getActivityList();
     }

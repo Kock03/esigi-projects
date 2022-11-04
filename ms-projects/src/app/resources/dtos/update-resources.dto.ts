@@ -9,7 +9,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { ActivitiesEntity } from 'src/app/activities/activities.entity';
-import { Paper } from './paper.enum';
 
 export class UpdateResources {
   @IsNotEmpty()
@@ -37,11 +36,8 @@ export class UpdateResources {
   isActive: boolean;
 
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsEnum(Paper)
   @ApiProperty()
-  paper: Paper;
+  paper: string;
 
   @IsOptional()
   activity: ActivitiesEntity;

@@ -21,6 +21,7 @@ import { ICollaborator } from 'src/app/interfaces/icollaborator';
 import { IResource } from 'src/app/interfaces/iresource';
 import { ActivityProvider } from 'src/providers/activity.provider';
 import { CollaboratorProvider } from 'src/providers/collaborator.provider';
+import { ConfigProvider } from 'src/providers/config-provider';
 import { ResourceProvider } from 'src/providers/resource.provider';
 import { RequireMatch } from 'src/services/autocomplete.service';
 import { ConfirmDialogService } from 'src/services/confirm-dialog.service';
@@ -52,10 +53,11 @@ export class ProjectResourceDialog {
   collaborators!: ICollaborator[] | any[];
   filteredCollaborators?: any[];
 
+  papers: any[] = []
   index: any = null;
   resource!: IResource;
   accordion: any;
-  dataTable: [] = [];
+  dataTable: any[] = [];
   activityId!: string;
   method: string = '';
   resourceId!: string | null;
@@ -64,7 +66,7 @@ export class ProjectResourceDialog {
   collaboratorControl = new FormControl('', [Validators.required, RequireMatch]);
   collaboratorValid: boolean = false;
   matcher = new ErrorStateMatcherService();
-  
+
 
   constructor(
     public dialogRef: MatDialogRef<ProjectResourceDialog>,
@@ -72,18 +74,37 @@ export class ProjectResourceDialog {
     private activityProvider: ActivityProvider,
     private resourceProvider: ResourceProvider,
     private collaboratorProvider: CollaboratorProvider,
+    private configProvider: ConfigProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
+    this.getKeys();
+
     // TODO - pensar para limitar a busca inicial em uma determinada quantidade
-    this.getCollaboratorList();
     this.activityId = sessionStorage.getItem('activity_id')!;
-    this.getResourceList();
+    this.getCollaboratorList();
+
     this.initForm();
     this.initFilter();
+    this.getResourceList();
+
+  }
+  async getKeys() {
+    let data = {
+      key: ["registration_papers"]
+    }
+    const arrays = await this.configProvider.findKeys('project', data)
+
+    const keyList = arrays.reduce(function (array: any, register: any) {
+      array[register.key] = array[register.key] || [];
+      array[register.key].push({ id: register.id, value: register.value });
+      return array;
+    }, Object.create(null));
+    this.papers = keyList['registration_papers'];
+
   }
 
   async getCollaboratorList() {
@@ -116,7 +137,7 @@ export class ProjectResourceDialog {
   }
 
   private async _filter(name: string): Promise<void> {
-    const params = {firstNameCorporateName: name, status: 1};
+    const params = { firstNameCorporateName: name, status: 1 };
     this.filteredCollaborators = await this.collaboratorProvider.findByName(
       params
     );
@@ -125,7 +146,7 @@ export class ProjectResourceDialog {
   initForm(): void {
     this.resourceForm = this.fb.group({
       collaboratorId: [null],
-      paper: [null, Validators.required],
+      paper: ["", Validators.required],
       estimatedHours: [null, Validators.required],
       isActive: [true],
       activity: { id: this.activityId },
@@ -147,6 +168,11 @@ export class ProjectResourceDialog {
     this.method = 'edit';
     this.resourceId = id;
     this.collaboratorControl.patchValue(collaborator);
+    for (let j = 0; j < this.papers.length; j++) {
+      if (this.papers[j].value === resourceSelected.paper) {
+        resourceSelected.paper = this.papers[j].id
+      }
+    }
     this.resourceForm.patchValue(resourceSelected);
   }
 
@@ -158,7 +184,17 @@ export class ProjectResourceDialog {
     // como se fosse uma lista de recurso. e existe dados que não
     // serão utilizados. pode se recuperar os recursos com o id da atividade
     // assim retornando apenas uma lista de recurso direta
+
+
     this.dataTable = resourceList.resource;
+
+    for (let i = 0; i < this.dataTable.length; i++) {
+      for (let j = 0; j < this.papers.length; j++) {
+        if (this.dataTable[i].paper === this.papers[j].id) {
+          this.dataTable[i].paper = this.papers[j].value
+        }
+      }
+    }
   }
 
   async saveResource() {
@@ -231,40 +267,5 @@ export class ProjectResourceDialog {
     sessionStorage.clear;
   }
 
-  getPaper(paper: number) {
-    switch (paper) {
-      case 1:
-        return 'Gerente de Projeto';
-      case 2:
-        return 'Arquiteto de Software';
-      case 3:
-        return 'Analista de Dados';
-      case 4:
-        return 'Analista de Testes';
-      case 5:
-        return 'Engenheiro de Software';
-      case 6:
-        return 'Desenvolvedor Angular';
-      case 7:
-        return 'Desenvolvedor React';
-      case 8:
-        return 'Desenvolvedor C#';
-      case 9:
-        return 'Desenvolvedor Java';
-      case 10:
-        return 'Desenvolvedor PHP';
-      case 11:
-        return 'Desenvolvedor Node';
-      case 12:
-        return 'Desenvolvedor Javascript';
-      case 13:
-        return 'Desenvolvedor C++';
-      case 14:
-        return 'Desenvolvedor Python';
-      case 15:
-        return 'Desenvolvedor Ruby';
-      default:
-        return '';
-    }
-  }
+
 }

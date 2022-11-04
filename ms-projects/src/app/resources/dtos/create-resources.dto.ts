@@ -10,7 +10,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { ActivitiesEntity } from 'src/app/activities/activities.entity';
-import { Paper } from './paper.enum';
 
 export class CreateResourceDto {
   @IsNotEmpty()
@@ -21,11 +20,8 @@ export class CreateResourceDto {
   collaboratorId: string;
 
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(100)
-  @IsEnum(Paper)
   @ApiProperty()
-  paper: Paper;
+  paper: string;
 
   @IsNotEmpty()
   @IsString()

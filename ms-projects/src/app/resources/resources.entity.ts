@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 import { ActivitiesEntity } from '../activities/activities.entity';
 import { ICollaborator } from './_model/collaborator.model';
-import { Paper } from './dtos/paper.enum';
 
 @Entity()
 export class ResourcesEntity {
@@ -17,7 +16,7 @@ export class ResourcesEntity {
   id: string;
 
   @Column()
-  paper: Paper;
+  paper: string;
 
   @Column()
   estimatedHours: string;

@@ -21,6 +21,7 @@ export class AppComponent {
   compare!: any;
 
   projects: string = 'projetos';
+  home: string = 'portal';
 
   constructor(
     private observer: BreakpointObserver,
@@ -73,8 +74,11 @@ export class AppComponent {
 
   navigator(route: any) {
     switch (route) {
-      case 'projects':
-        this.router.navigate(['projetos/lista']);
+      case 'projetos':
+        location.replace(`http://192.168.8.184:3402/validate/${this.token}`)
+        break;
+        case 'portal':
+          location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
         break;
     }
   }
