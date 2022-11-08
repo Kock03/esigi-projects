@@ -53,10 +53,11 @@
         "
       >
         <button
+        [ngClass]="{ active: activeMenu == home }"
           class="btn-menu"
           mat-button
           class="menu-button"
-          (click)="openApp()"
+          (click)="navigator('portal')"
         >
           <mat-icon
             [ngStyle]="

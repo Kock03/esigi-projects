@@ -33,6 +33,7 @@ export class ProjectsListComponent implements OnInit {
   method: string = '';
   params: string = '';
   select: number = 1;
+  token!: string;
 
   constructor(
     private router: Router,
@@ -134,7 +135,7 @@ export class ProjectsListComponent implements OnInit {
     });
   }
 
-  goHome(port: number): void {
-    location.replace(`http://localhost:${port}/portal`);
+  goHome(): void {
+    location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
   }
 }
