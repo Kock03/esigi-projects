@@ -20,6 +20,9 @@
               <mat-label>{{ "projects.project_generic.start_date" | translate }}</mat-label>
               <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
                 placeholder="startDate" formControlName="startDate" />
+                <mat-error *ngIf="
+                activityForm && activityForm.controls['startDate'].hasError('validateDate')
+                ">Data inferior ao inicio do projeto</mat-error>
             </mat-form-field>
             <mat-form-field fxFlex="30" appearance="outline">
               <mat-label>{{ "projects.project_generic.end_date" | translate }}</mat-label>

@@ -15,14 +15,26 @@
               }}</mat-option>
           </mat-select>
         </mat-form-field>
+
+        <!-- <mat-form-field  fxFlex="50" appearance="outline" *ngIf="projectType === '2'">
+          <mat-label>{{
+            "projects.project_register.projectType" | translate
+            }}</mat-label>
+          <input matInput
+            placeholder="Tipo de projeto" formControlName="type" />
+        </mat-form-field> -->
+
         <mat-form-field fxFlex="50" appearance="outline" *ngIf="projectType === '2'">
           <mat-label>{{
             "projects.project_register.projectType" | translate
             }}</mat-label>
-          <mat-select formControlName="type">
-            <mat-option [value]="2">AMS</mat-option>
+          <mat-select [disabled]="true" formControlName="type" >
+            <mat-option   [value]="2">AMS</mat-option>
           </mat-select>
         </mat-form-field>
+
+
+
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>{{
             "projects.project_generic.name" | translate
