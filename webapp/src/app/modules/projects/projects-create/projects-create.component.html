@@ -59,9 +59,7 @@
 
   <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px"
     *ngIf="projectId !== 'cadastro' && step == 1">
-    <button [disabled]="
-        projectForm.invalid 
-      " mat-flat-button (click)="editProject()" color="primary">
+    <button mat-flat-button (click)="editProject()" color="primary">
       {{ "projects.project_generic.edit_button" | translate }}
     </button>
   </div>
