@@ -136,6 +136,6 @@ export class ProjectsListComponent implements OnInit {
   }
 
   goHome(): void {
-    location.replace(`http://44.198.33.18:3406/validate/${this.token}`);
+    location.replace(`http://44.205.159.254:3406/validate/${this.token}`);
   }
 }
