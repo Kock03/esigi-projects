@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
 
-  COLLABORATOR_MS: 'localhost:3501/api/v1/',
-  PROJECT_MS: 'localhost:3505/api/v1/',
-  CONFIG_MS: 'localhost:3508/api/v1/registers/',
-  CUSTOMER_MS: 'localhost:3506/api/v1/',
-  portal: 'http://localhost:3406/login',
-  port: 'http://localhost:',
+  COLLABORATOR_MS: '44.205.159.254:3501/api/v1/',
+  PROJECT_MS: '44.205.159.254:3505/api/v1/',
+  CONFIG_MS: '44.205.159.254:3508/api/v1/registers/',
+  CUSTOMER_MS: '44.205.159.254:3506/api/v1/',
+  portal: 'http://44.205.159.254:3406/login',
+  port: 'http://44.205.159.254:',
   message: 'LOCAL',
   protocol: 'http',
 };
