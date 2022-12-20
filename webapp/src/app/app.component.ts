@@ -84,6 +84,7 @@ export class AppComponent {
   }
 
   openApp(): void {
+    this.token = localStorage.getItem('token')!;
     location.replace(environment.port + `3406/validate/${this.token}`);
   }
 
