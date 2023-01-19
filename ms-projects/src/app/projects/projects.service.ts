@@ -308,7 +308,7 @@ export class ProjectsService {
 
     const collaborators = await this.httpService
       .post(
-        'https://esigi.envolti.com.br:3501/api/v1/collaborators/list',
+        'https://esigi.envolti.com.br/coll/api/v1/collaborators/list',
         {
           idList: collaboratorIdList,
         },
@@ -352,7 +352,7 @@ export class ProjectsService {
 
     const responsibles = await this.httpService
       .post(
-        'https://esigi.envolti.com.br:3506/api/v1/contacts/list',
+        'https://esigi.envolti.com.br/customer/api/v1/contacts/list',
 
         {
           idList: responsiblesIdList,
@@ -396,7 +396,7 @@ export class ProjectsService {
 
     const customers = await this.httpService
       .post(
-        'https://esigi.envolti.com.br:3506/api/v1/customers/list',
+        'https://esigi.envolti.com.br/customer/api/v1/customers/list',
         {
           idList: customerIdList,
         },

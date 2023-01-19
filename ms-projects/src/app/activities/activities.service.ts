@@ -37,7 +37,7 @@ export class ActivitiesService {
       });
       // TODO - Substituir futuramente e remover o toPromise()
       const collaborators = await this.httpService
-        .post('https://esigi.envolti.com.br:3501/api/v1/collaborators/list', {
+        .post('https://esigi.envolti.com.br/coll/api/v1/collaborators/list', {
           idList: collaboratorIdList,
         } ,  {
           headers: {
