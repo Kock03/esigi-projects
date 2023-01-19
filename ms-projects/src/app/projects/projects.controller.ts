@@ -18,7 +18,7 @@ import { UpdateProjectDto } from './dtos/update-projects.dto';
 import { IProjects } from './interfaces/i-projects.interface';
 import { ProjectsService } from './projects.service';
 
-@Controller('api/v1/projects')
+@Controller('projects/api/v1/projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) { }
 

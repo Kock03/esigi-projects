@@ -3,7 +3,7 @@ import { ResourcesService } from "./resources.service";
 import { CreateResourceDto } from "./dtos/create-resources.dto";
 import { UpdateResources } from "./dtos/update-resources.dto";
 
-@Controller('api/v1/resources')
+@Controller('projects/api/v1/resources')
 export class ResourcesController {
     constructor(private readonly resourcesService: ResourcesService) { }
 

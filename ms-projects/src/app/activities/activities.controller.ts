@@ -4,7 +4,7 @@ import { ActivitiesService } from "./activities.service";
 import { CreateActivitieDto } from "./dtos/create-activities.dto";
 import { UpdateActivities } from "./dtos/update-activities.dto";
 
-@Controller('api/v1/activities')
+@Controller('projects/api/v1/activities')
 export class ActivitiesController{
     constructor(private readonly activitiesService: ActivitiesService) { }
 
